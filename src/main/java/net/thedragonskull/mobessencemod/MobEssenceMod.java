@@ -11,6 +11,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.thedragonskull.mobessencemod.item.ModItems;
+import net.thedragonskull.mobessencemod.util.ModItemProperties;
 import org.slf4j.Logger;
 
 @Mod(MobEssenceMod.MOD_ID)
@@ -21,10 +23,11 @@ public class MobEssenceMod {
     public MobEssenceMod(FMLJavaModLoadingContext context) {
         IEventBus modEventBus = context.getModEventBus();
 
+        ModItems.register(modEventBus);
+
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::addCreative);
-
 
     }
 
@@ -45,7 +48,7 @@ public class MobEssenceMod {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-
+            event.enqueueWork(ModItemProperties::addCustomItemProperties);
         }
     }
 }

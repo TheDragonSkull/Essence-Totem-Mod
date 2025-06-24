@@ -1,0 +1,16 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "mobessencemod:item/totem_of_essence_empty"
+  },
+  "overrides": [
+    {
+      "predicate": { "essence_pig": 1 },
+      "model": "mobessencemod:item/totem_of_essence_pig"
+    },
+    {
+      "predicate": { "essence_bee": 1 },
+      "model": "mobessencemod:item/totem_of_essence_bee"
+    }
+  ]
+}
