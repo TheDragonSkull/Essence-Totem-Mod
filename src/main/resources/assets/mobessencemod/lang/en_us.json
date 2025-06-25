@@ -1,3 +1,8 @@
 {
-  "item.mobessencemod.totem_of_essence": "Empty Totem of Essence"
+  "item.mobessencemod.totem_of_essence": "Empty Totem of Essence",
+  "item.mobessencemod.totem_of_essence.pig": "Essence Totem of the Pig",
+  "item.mobessencemod.totem_of_essence.bee": "Essence Totem of the Bee",
+
+
+  "curios.identifier.totem_of_essence": "Totem of Essence"
 }

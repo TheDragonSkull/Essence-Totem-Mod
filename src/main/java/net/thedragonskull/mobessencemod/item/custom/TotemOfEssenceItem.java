@@ -1,9 +1,12 @@
 package net.thedragonskull.mobessencemod.item.custom;
 
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -14,13 +17,19 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.thedragonskull.mobessencemod.abilities.IMobAbility;
+import net.thedragonskull.mobessencemod.abilities.MobAbilityRegistry;
+import net.thedragonskull.mobessencemod.util.TotemTooltipData;
+import net.thedragonskull.mobessencemod.util.TotemUtils;
+import top.theillusivec4.curios.api.SlotContext;
+import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-import java.util.Map;
+import java.util.List;
 
-public class TotemOfEssenceItem extends Item {
+public class TotemOfEssenceItem extends Item implements ICurioItem {
 
     public TotemOfEssenceItem(Properties pProperties) {
         super(pProperties);
@@ -28,10 +37,18 @@ public class TotemOfEssenceItem extends Item {
 
     @Override
     public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity target, InteractionHand hand) {
-
         ResourceLocation mobId = ForgeRegistries.ENTITY_TYPES.getKey(target.getType());
 
         if (mobId != null && !player.getCooldowns().isOnCooldown(this)) {
+
+            if (stack.hasTag() && stack.getTag().contains("Essence")) {
+                String currentEssence = stack.getTag().getString("Essence");
+                if (currentEssence.equals(mobId.toString())) {
+                    player.displayClientMessage(Component.literal("This totem already contains the essence of " + mobId.getPath()).withStyle(ChatFormatting.GRAY), true);
+                    return InteractionResult.PASS;
+                }
+            }
+
             ItemStack copy = stack.copy();
             copy.getOrCreateTag().putString("Essence", mobId.toString());
 
@@ -39,8 +56,7 @@ public class TotemOfEssenceItem extends Item {
             player.getCooldowns().addCooldown(this, 20);
             player.displayClientMessage(Component.literal("Stored essence of " + mobId.getPath()), true);
 
-            System.out.println(mobId);
-            SoundEvent sound = MobEssenceSounds.getSoundForMob(mobId);
+            SoundEvent sound = TotemUtils.getSoundForMob(mobId);
             player.playSound(sound, 1.0F, 1.0F);
 
             player.level().playSound(null, target.getX(), target.getY(), target.getZ(), SoundEvents.SOUL_ESCAPE, SoundSource.PLAYERS, 10.0F, 1.0F);
@@ -96,7 +112,8 @@ public class TotemOfEssenceItem extends Item {
 
                 player.displayClientMessage(Component.literal("Essence removed"), true);
             } else {
-                player.displayClientMessage(Component.literal("No essence to remove"), true);
+                player.displayClientMessage(Component.literal("No essence to remove").withStyle(ChatFormatting.GRAY), true);
+                return InteractionResultHolder.pass(stack);
             }
 
             return InteractionResultHolder.success(stack);
@@ -105,15 +122,66 @@ public class TotemOfEssenceItem extends Item {
         return InteractionResultHolder.pass(stack);
     }
 
-    private static class MobEssenceSounds {
+    @Override
+    public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
 
-        public static final Map<String, SoundEvent> MOB_SOUNDS = Map.ofEntries(
-                Map.entry("minecraft:pig", SoundEvents.PIG_HURT),
-                Map.entry("minecraft:bee", SoundEvents.BEE_HURT)
-        );
+        if (!stack.hasTag() || !stack.getTag().contains("Essence")) return;
 
-        public static SoundEvent getSoundForMob(ResourceLocation mobId) {
-            return MOB_SOUNDS.getOrDefault(mobId.toString(), SoundEvents.EXPERIENCE_ORB_PICKUP);
+        String essenceStr = stack.getTag().getString("Essence");
+
+        if (Screen.hasShiftDown()) {
+
+            TotemTooltipData data = TotemUtils.getTooltipForMob(new ResourceLocation(essenceStr));
+            tooltip.add(Component.literal(data.title + ":").withStyle(ChatFormatting.GOLD));
+            tooltip.add(Component.literal(data.description).withStyle(ChatFormatting.AQUA));
+
+        } else {
+            tooltip.add(Component.literal("Press Shift for details").withStyle(ChatFormatting.GRAY));
+        }
+
+        super.appendHoverText(stack, level, tooltip, flag);
+    }
+
+    @Override
+    public String getDescriptionId(ItemStack stack) {
+
+        if (!stack.hasTag() || !stack.getTag().contains("Essence")) {
+            return this.getDescriptionId();
+        }
+
+        String mobId = stack.getTag().getString("Essence");
+        ResourceLocation rl = ResourceLocation.parse(mobId);
+        String mobName = rl.getPath();
+
+        return this.getDescriptionId() + "." + mobName;
+    }
+
+    // CURIOS THINGS
+
+
+    @Override
+    public void curioTick(SlotContext slotContext, ItemStack stack) {
+        if (!(slotContext.entity() instanceof ServerPlayer serverPlayer)) return;
+
+        if (!stack.hasTag() || !stack.getTag().contains("Essence")) return;
+
+        String essenceId = stack.getTag().getString("Essence");
+        IMobAbility ability = MobAbilityRegistry.getAbility(essenceId);
+
+        if (ability != null) {
+            ability.tick(serverPlayer, stack);
         }
     }
+
+    @Override
+    public List<Component> getSlotsTooltip(List<Component> tooltips, ItemStack stack) {
+        tooltips.clear();
+        return tooltips;
+    }
+
+    @Override
+    public boolean canEquipFromUse(SlotContext slotContext, ItemStack stack) {
+        return false;
+    }
+
 }
