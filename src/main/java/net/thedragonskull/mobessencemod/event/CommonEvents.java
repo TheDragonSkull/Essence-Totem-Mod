@@ -1,5 +1,6 @@
 package net.thedragonskull.mobessencemod.event;
 
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -7,6 +8,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.thedragonskull.mobessencemod.MobEssenceMod;
 import net.thedragonskull.mobessencemod.abilities.BeeAbility;
 import net.thedragonskull.mobessencemod.abilities.PigAbility;
+import net.thedragonskull.mobessencemod.abilities.ZombieAbility;
 
 @Mod.EventBusSubscriber(modid = MobEssenceMod.MOD_ID)
 public class CommonEvents {
@@ -19,6 +21,11 @@ public class CommonEvents {
     @SubscribeEvent
     public static void onLivingUseItem(LivingEntityUseItemEvent.Finish event) {
         PigAbility.onItemEaten(event);
+    }
+
+    @SubscribeEvent
+    public static void onLivingDeath(LivingDeathEvent event) {
+        ZombieAbility.onPlayerDeath(event);
     }
 
 }

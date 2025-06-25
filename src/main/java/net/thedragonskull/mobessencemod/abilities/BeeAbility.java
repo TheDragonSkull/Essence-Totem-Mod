@@ -1,5 +1,6 @@
 package net.thedragonskull.mobessencemod.abilities;
 
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -9,6 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.thedragonskull.mobessencemod.item.ModItems;
+import net.thedragonskull.mobessencemod.util.TotemUtils;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 
@@ -25,15 +27,7 @@ public class BeeAbility implements IMobAbility{
         if (event.getSource().is(DamageTypeTags.IS_PROJECTILE)) return;
         if (!(event.getSource().getEntity() instanceof LivingEntity attacker)) return;
 
-        Optional<ItemStack> beeTotem = CuriosApi.getCuriosHelper()
-                .findFirstCurio(player, stack ->
-                        stack.getItem() == ModItems.TOTEM_OF_ESSENCE.get() &&
-                                stack.hasTag() &&
-                                "minecraft:bee".equals(stack.getTag().getString("Essence"))
-                )
-                .map(SlotResult::stack);
-
-
+        Optional<SlotResult> beeTotem = TotemUtils.findTotemWithEssence(player, ResourceLocation.parse("minecraft:bee"));
 
         if (beeTotem.isEmpty()) return;
 

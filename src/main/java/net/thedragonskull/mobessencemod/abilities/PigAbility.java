@@ -1,5 +1,6 @@
 package net.thedragonskull.mobessencemod.abilities;
 
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -11,6 +12,7 @@ import net.minecraft.world.item.Items;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.thedragonskull.mobessencemod.item.ModItems;
+import net.thedragonskull.mobessencemod.util.TotemUtils;
 import top.theillusivec4.curios.api.CuriosApi;
 
 import java.util.List;
@@ -29,24 +31,12 @@ public class PigAbility implements IMobAbility {
         ItemStack eaten = event.getItem();
 
         if (!eaten.isEdible()) return;
-        if (!hasPigTotem(player)) return;
+        if (!TotemUtils.hasTotemWithEssence(player, ResourceLocation.parse("minecraft:pig"))) return;
 
         Item item = eaten.getItem();
         if (isBadFood(item)) {
             removeNegativeEffects(player);
         }
-    }
-
-    private static boolean hasPigTotem(ServerPlayer player) {
-
-        return CuriosApi.getCuriosHelper()
-                .findFirstCurio(player, stack ->
-                        stack.getItem() == ModItems.TOTEM_OF_ESSENCE.get() &&
-                                stack.hasTag() &&
-                                stack.getTag().contains("Essence") &&
-                                "minecraft:pig".equals(stack.getTag().getString("Essence"))
-                )
-                .isPresent();
     }
 
     private static boolean isBadFood(Item item) {

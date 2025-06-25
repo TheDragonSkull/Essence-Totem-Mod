@@ -1,32 +1,41 @@
 package net.thedragonskull.mobessencemod.util;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.ItemStack;
+import net.thedragonskull.mobessencemod.item.ModItems;
+import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.SlotResult;
 
-import java.util.Map;
+import javax.annotation.Nullable;
+import java.util.Optional;
 
 public class TotemUtils {
 
-    // SOUNDS
-    public static final Map<String, SoundEvent> MOB_SOUNDS = Map.ofEntries(
-            Map.entry("minecraft:pig", SoundEvents.PIG_HURT),
-            Map.entry("minecraft:bee", SoundEvents.BEE_HURT)
-    );
+    public static @Nullable ResourceLocation getEssence(ItemStack stack) {
+        if (!stack.hasTag() || !stack.getTag().contains("Essence")) return null;
 
-    public static SoundEvent getSoundForMob(ResourceLocation mobId) {
-        return MOB_SOUNDS.getOrDefault(mobId.toString(), SoundEvents.EXPERIENCE_ORB_PICKUP);
+        try {
+            return ResourceLocation.parse(stack.getTag().getString("Essence"));
+        } catch (Exception ignored) {
+            return null;
+        }
     }
 
-    // TOOLTIPS
-    public static final Map<String, TotemTooltipData> TOTEM_TOOLTIPS = Map.ofEntries(
-            Map.entry("minecraft:pig", new TotemTooltipData("Cast-Iron Stomach", "Immune to negative food effects")),
-            Map.entry("minecraft:bee", new TotemTooltipData("Stinger Reflex", "Stings and poisons enemies when hit from behind"))
-    );
+    public static boolean hasEssence(ItemStack stack) {
+        return getEssence(stack) != null;
+    }
 
-    public static TotemTooltipData getTooltipForMob(ResourceLocation mobId) {
-        return TOTEM_TOOLTIPS.getOrDefault(mobId.toString(),
-                new TotemTooltipData("Unknown", "No effect known."));
+    public static Optional<SlotResult> findTotemWithEssence(ServerPlayer player, ResourceLocation essenceId) {
+        return CuriosApi.getCuriosHelper().findFirstCurio(player, stack -> {
+            if (stack.getItem() != ModItems.TOTEM_OF_ESSENCE.get()) return false;
+            ResourceLocation essence = getEssence(stack);
+            return essenceId.equals(essence);
+        });
+    }
+
+    public static boolean hasTotemWithEssence(ServerPlayer player, ResourceLocation essenceId) {
+        return findTotemWithEssence(player, essenceId).isPresent();
     }
 
 

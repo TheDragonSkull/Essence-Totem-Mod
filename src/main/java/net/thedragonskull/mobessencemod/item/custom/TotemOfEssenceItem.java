@@ -21,8 +21,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.thedragonskull.mobessencemod.abilities.IMobAbility;
-import net.thedragonskull.mobessencemod.abilities.MobAbilityRegistry;
-import net.thedragonskull.mobessencemod.util.TotemTooltipData;
+import net.thedragonskull.mobessencemod.abilities.TotemEssenceRegistry;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
@@ -39,8 +38,12 @@ public class TotemOfEssenceItem extends Item implements ICurioItem {
     public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity target, InteractionHand hand) {
         ResourceLocation mobId = ForgeRegistries.ENTITY_TYPES.getKey(target.getType());
 
-        if (mobId != null && !player.getCooldowns().isOnCooldown(this)) {
+        if (mobId == null || !TotemEssenceRegistry.isRegistered(mobId)) {
+            player.displayClientMessage(Component.literal("This creature has no essence to offer.").withStyle(ChatFormatting.RED), true);
+            return InteractionResult.PASS;
+        }
 
+        if (!player.getCooldowns().isOnCooldown(this)) {
             if (stack.hasTag() && stack.getTag().contains("Essence")) {
                 String currentEssence = stack.getTag().getString("Essence");
                 if (currentEssence.equals(mobId.toString())) {
@@ -51,17 +54,19 @@ public class TotemOfEssenceItem extends Item implements ICurioItem {
 
             ItemStack copy = stack.copy();
             copy.getOrCreateTag().putString("Essence", mobId.toString());
-
             player.setItemInHand(hand, copy);
             player.getCooldowns().addCooldown(this, 20);
+
             player.displayClientMessage(Component.literal("Stored essence of " + mobId.getPath()), true);
 
-            SoundEvent sound = TotemUtils.getSoundForMob(mobId);
-            player.playSound(sound, 1.0F, 1.0F);
+            TotemEssenceRegistry.EssenceData data = TotemEssenceRegistry.get(mobId);
+            if (data != null) {
+                player.playSound(data.sound(), 1.0F, 1.0F);
+            }
 
-            player.level().playSound(null, target.getX(), target.getY(), target.getZ(), SoundEvents.SOUL_ESCAPE, SoundSource.PLAYERS, 10.0F, 1.0F);
-            player.level().playSound(null, target.getX(), target.getY(), target.getZ(), SoundEvents.SOUL_ESCAPE, SoundSource.PLAYERS, 10.0F, 1.0F);
-            player.level().playSound(null, target.getX(), target.getY(), target.getZ(), SoundEvents.SOUL_ESCAPE, SoundSource.PLAYERS, 10.0F, 1.0F);
+            for (int i = 0; i < 3; i++) {
+                player.level().playSound(null, target.getX(), target.getY(), target.getZ(), SoundEvents.SOUL_ESCAPE, SoundSource.PLAYERS, 10.0F, 1.0F);
+            }
 
             if (!player.level().isClientSide()) {
                 ServerLevel serverLevel = (ServerLevel) player.level();
@@ -88,14 +93,20 @@ public class TotemOfEssenceItem extends Item implements ICurioItem {
 
         if (!level.isClientSide && player.isShiftKeyDown()) {
             if (stack.hasTag() && stack.getTag().contains("Essence")) {
+
+                String essenceId = stack.getTag().getString("Essence");
+                if (!TotemEssenceRegistry.isRegistered(new ResourceLocation(essenceId))) {
+                    player.displayClientMessage(Component.literal("This essence is invalid").withStyle(ChatFormatting.RED), true);
+                    return InteractionResultHolder.pass(stack);
+                }
+
                 stack.getTag().remove("Essence");
                 player.setItemInHand(hand, stack);
-
                 player.getCooldowns().addCooldown(this, 20);
 
-                level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.SOUL_ESCAPE, SoundSource.PLAYERS, 10.0F, 1.0F);
-                level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.SOUL_ESCAPE, SoundSource.PLAYERS, 10.0F, 1.0F);
-                level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.SOUL_ESCAPE, SoundSource.PLAYERS, 10.0F, 1.0F);
+                for (int i = 0; i < 3; i++) {
+                    level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.SOUL_ESCAPE, SoundSource.PLAYERS, 10.0F, 1.0F);
+                }
 
                 ServerLevel serverLevel = (ServerLevel) player.level();
                 double x = player.getX();
@@ -111,12 +122,16 @@ public class TotemOfEssenceItem extends Item implements ICurioItem {
                 );
 
                 player.displayClientMessage(Component.literal("Essence removed"), true);
-            } else {
-                player.displayClientMessage(Component.literal("No essence to remove").withStyle(ChatFormatting.GRAY), true);
-                return InteractionResultHolder.pass(stack);
-            }
+                return InteractionResultHolder.success(stack);
 
-            return InteractionResultHolder.success(stack);
+            } else {
+                ResourceLocation essence = TotemUtils.getEssence(stack);
+                if (essence == null || !TotemEssenceRegistry.isRegistered(essence)) {
+                    player.displayClientMessage(Component.literal("No valid essence to remove").withStyle(ChatFormatting.GRAY), true);
+                    return InteractionResultHolder.pass(stack);
+                }
+
+            }
         }
 
         return InteractionResultHolder.pass(stack);
@@ -124,16 +139,14 @@ public class TotemOfEssenceItem extends Item implements ICurioItem {
 
     @Override
     public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
+        ResourceLocation essence = TotemUtils.getEssence(stack);
+        if (essence == null) return;
 
-        if (!stack.hasTag() || !stack.getTag().contains("Essence")) return;
+        TotemEssenceRegistry.EssenceData data = TotemEssenceRegistry.get(essence);
 
-        String essenceStr = stack.getTag().getString("Essence");
-
-        if (Screen.hasShiftDown()) {
-
-            TotemTooltipData data = TotemUtils.getTooltipForMob(new ResourceLocation(essenceStr));
-            tooltip.add(Component.literal(data.title + ":").withStyle(ChatFormatting.GOLD));
-            tooltip.add(Component.literal(data.description).withStyle(ChatFormatting.AQUA));
+        if (data != null && Screen.hasShiftDown()) {
+            tooltip.add(Component.literal(data.tooltip().title + ":").withStyle(ChatFormatting.GOLD));
+            tooltip.add(Component.literal(data.tooltip().description).withStyle(ChatFormatting.AQUA));
 
         } else {
             tooltip.add(Component.literal("Press Shift for details").withStyle(ChatFormatting.GRAY));
@@ -145,31 +158,25 @@ public class TotemOfEssenceItem extends Item implements ICurioItem {
     @Override
     public String getDescriptionId(ItemStack stack) {
 
-        if (!stack.hasTag() || !stack.getTag().contains("Essence")) {
-            return this.getDescriptionId();
+        ResourceLocation essence = TotemUtils.getEssence(stack);
+        if (essence == null || !TotemEssenceRegistry.isRegistered(essence)) {
+            return super.getDescriptionId();
         }
-
-        String mobId = stack.getTag().getString("Essence");
-        ResourceLocation rl = ResourceLocation.parse(mobId);
-        String mobName = rl.getPath();
-
-        return this.getDescriptionId() + "." + mobName;
+        return super.getDescriptionId() + "." + essence.getPath();
     }
 
     // CURIOS THINGS
-
 
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
         if (!(slotContext.entity() instanceof ServerPlayer serverPlayer)) return;
 
-        if (!stack.hasTag() || !stack.getTag().contains("Essence")) return;
+        ResourceLocation essence = TotemUtils.getEssence(stack);
+        if (essence == null) return;
 
-        String essenceId = stack.getTag().getString("Essence");
-        IMobAbility ability = MobAbilityRegistry.getAbility(essenceId);
-
-        if (ability != null) {
-            ability.tick(serverPlayer, stack);
+        TotemEssenceRegistry.EssenceData data = TotemEssenceRegistry.get(essence);
+        if (data != null && data.ability() != null) {
+            data.ability().tick(serverPlayer, stack);
         }
     }
 
