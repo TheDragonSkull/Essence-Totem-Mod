@@ -39,9 +39,15 @@ public class ZombieAbility implements  IMobAbility{
             tag.remove("Essence");
         }
 
-        // Efectos visuales
+        // VFX
         ServerLevel serverLevel = (ServerLevel) player.level();
-        serverLevel.sendParticles(ParticleTypes.SOUL_FIRE_FLAME, player.getX(), player.getY(), player.getZ(), 40, 0.5, 0.5, 0.5, 0.02);
+
+        serverLevel.sendParticles(ParticleTypes.SOUL_FIRE_FLAME,
+                player.getX(),
+                player.getY() + player.getBbHeight() / 2,
+                player.getZ(),
+                40, 0.5, 0.5, 0.5, 0.02);
+
         serverLevel.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.TOTEM_USE, SoundSource.PLAYERS, 1.5F, 0.7F);
 
         player.displayClientMessage(Component.literal("You claw your way back from death...").withStyle(ChatFormatting.DARK_GREEN), true);
