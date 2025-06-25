@@ -9,9 +9,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.thedragonskull.mobessencemod.item.ModItems;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
-import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 
 import java.util.Optional;
@@ -27,7 +25,7 @@ public class BeeAbility implements IMobAbility{
         if (event.getSource().is(DamageTypeTags.IS_PROJECTILE)) return;
         if (!(event.getSource().getEntity() instanceof LivingEntity attacker)) return;
 
-        Optional<SlotResult> beeTotem = TotemUtils.findTotemWithEssence(player, ResourceLocation.parse("minecraft:bee"));
+        Optional<SlotResult> beeTotem = TotemUtils.findTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:bee"));
 
         if (beeTotem.isEmpty()) return;
 

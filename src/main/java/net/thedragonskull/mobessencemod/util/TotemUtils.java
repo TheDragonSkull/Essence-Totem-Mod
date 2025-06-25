@@ -2,6 +2,7 @@ package net.thedragonskull.mobessencemod.util;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.thedragonskull.mobessencemod.item.ModItems;
 import top.theillusivec4.curios.api.CuriosApi;
@@ -26,7 +27,8 @@ public class TotemUtils {
         return getEssence(stack) != null;
     }
 
-    public static Optional<SlotResult> findTotemWithEssence(ServerPlayer player, ResourceLocation essenceId) {
+    // CLIENT
+    public static Optional<SlotResult> findTotemWithEssenceClient(Player player, ResourceLocation essenceId) {
         return CuriosApi.getCuriosHelper().findFirstCurio(player, stack -> {
             if (stack.getItem() != ModItems.TOTEM_OF_ESSENCE.get()) return false;
             ResourceLocation essence = getEssence(stack);
@@ -34,8 +36,21 @@ public class TotemUtils {
         });
     }
 
-    public static boolean hasTotemWithEssence(ServerPlayer player, ResourceLocation essenceId) {
-        return findTotemWithEssence(player, essenceId).isPresent();
+    public static boolean hasTotemWithEssenceClient(Player player, ResourceLocation essenceId) {
+        return findTotemWithEssenceClient(player, essenceId).isPresent();
+    }
+
+    // SERVER
+    public static Optional<SlotResult> findTotemWithEssenceServer(ServerPlayer player, ResourceLocation essenceId) {
+        return CuriosApi.getCuriosHelper().findFirstCurio(player, stack -> {
+            if (stack.getItem() != ModItems.TOTEM_OF_ESSENCE.get()) return false;
+            ResourceLocation essence = getEssence(stack);
+            return essenceId.equals(essence);
+        });
+    }
+
+    public static boolean hasTotemWithEssenceServer(ServerPlayer player, ResourceLocation essenceId) {
+        return findTotemWithEssenceServer(player, essenceId).isPresent();
     }
 
 

@@ -41,6 +41,12 @@ public class TotemEssenceRegistry {
                 new ZombieAbility()
         );
 
+        register("minecraft:spider", "essence_spider",
+                new TotemTooltipData("Wall-Crawler", "Slowly climb vertical surfaces"),
+                SoundEvents.SPIDER_HURT,
+                new SpiderAbility()
+        );
+
     }
 
     private static void register(String id, String predicate, TotemTooltipData tooltip, SoundEvent sound, IMobAbility ability) {

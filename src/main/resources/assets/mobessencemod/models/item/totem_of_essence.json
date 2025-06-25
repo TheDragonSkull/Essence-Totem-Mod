@@ -15,6 +15,10 @@
     {
       "predicate": { "essence_zombie": 1 },
       "model": "mobessencemod:item/totem_of_essence_zombie"
+    },
+    {
+      "predicate": { "essence_spider": 1 },
+      "model": "mobessencemod:item/totem_of_essence_spider"
     }
   ]
 }

@@ -16,7 +16,7 @@ import top.theillusivec4.curios.api.SlotResult;
 
 import java.util.Optional;
 
-public class ZombieAbility implements  IMobAbility{
+public class ZombieAbility implements IMobAbility{
 
     @Override
     public void tick(ServerPlayer player, ItemStack totemStack) {
@@ -25,7 +25,7 @@ public class ZombieAbility implements  IMobAbility{
     public static void onPlayerDeath(LivingDeathEvent event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
 
-        Optional<SlotResult> zombieTotem = TotemUtils.findTotemWithEssence(player, ResourceLocation.parse("minecraft:zombie"));
+        Optional<SlotResult> zombieTotem = TotemUtils.findTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:zombie"));
 
         if (zombieTotem.isEmpty()) return;
 

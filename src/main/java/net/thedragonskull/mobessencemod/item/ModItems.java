@@ -14,7 +14,7 @@ public class ModItems {
             DeferredRegister.create(ForgeRegistries.ITEMS, MobEssenceMod.MOD_ID);
 
     public static final RegistryObject<Item> TOTEM_OF_ESSENCE = ITEMS.register("totem_of_essence",
-            () -> new TotemOfEssenceItem(new Item.Properties()));
+            () -> new TotemOfEssenceItem(new Item.Properties().stacksTo(1)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
