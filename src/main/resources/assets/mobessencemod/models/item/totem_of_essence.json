@@ -31,6 +31,10 @@
     {
       "predicate": { "essence_enderman": 1 },
       "model": "mobessencemod:item/totem_of_essence_enderman"
+    },
+    {
+      "predicate": { "essence_cod": 1 },
+      "model": "mobessencemod:item/totem_of_essence_cod"
     }
   ]
 }

@@ -31,16 +31,23 @@ public class TotemEssenceRegistry {
                 new PigAbility()
         );
 
-        register("minecraft:bee", "essence_bee",
-                new TotemTooltipData("Stinger Reflex", "Stings and poisons enemies when hit from behind"),
-                SoundEvents.BEE_HURT,
-                new BeeAbility()
+        register("minecraft:cod", "essence_cod",
+                new TotemTooltipData("Adaptive Lungs", "Increases underwater breathing time while fully submerged"),
+                SoundEvents.COD_HURT,
+                new CodAbility()
         );
 
         register("minecraft:parrot", "essence_parrot",
                 new TotemTooltipData("Featherlight", "Descend slowly and don't trigger pressure plates or tripwires"),
                 SoundEvents.PARROT_HURT,
                 new ParrotAbility()
+        );
+
+        // NEUTRAL
+        register("minecraft:bee", "essence_bee",
+                new TotemTooltipData("Stinger Reflex", "Stings and poisons enemies when hit from behind"),
+                SoundEvents.BEE_HURT,
+                new BeeAbility()
         );
 
         // MONSTERS
