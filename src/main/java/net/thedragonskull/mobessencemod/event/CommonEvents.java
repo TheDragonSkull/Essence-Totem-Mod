@@ -19,6 +19,11 @@ public class CommonEvents {
     }
 
     @SubscribeEvent
+    public static void onLivingAttack(LivingAttackEvent event) {
+        EndermanAbility.onPlayerHurt(event);
+    }
+
+    @SubscribeEvent
     public static void onLivingUseItem(LivingEntityUseItemEvent.Finish event) {
         PigAbility.onItemEaten(event);
     }

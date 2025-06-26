@@ -39,7 +39,7 @@ public class TotemEssenceRegistry {
 
         register("minecraft:parrot", "essence_parrot",
                 new TotemTooltipData("Featherlight", "Descend slowly and don't trigger pressure plates or tripwires"),
-                SoundEvents.SPIDER_HURT,
+                SoundEvents.PARROT_HURT,
                 new ParrotAbility()
         );
 
@@ -60,6 +60,12 @@ public class TotemEssenceRegistry {
                 new TotemTooltipData("Poisonous Wall-Crawler", "Slowly climb walls + poison enemies when unarmed (20%)"),
                 SoundEvents.SPIDER_HURT,
                 new CaveSpiderAbility()
+        );
+
+        register("minecraft:enderman", "essence_enderman",
+                new TotemTooltipData("Blink Instinct", "Teleport away to evade ranged damage"),
+                SoundEvents.ENDERMAN_HURT,
+                new EndermanAbility()
         );
 
     }

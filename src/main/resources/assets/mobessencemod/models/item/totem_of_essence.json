@@ -27,6 +27,10 @@
     {
       "predicate": { "essence_parrot": 1 },
       "model": "mobessencemod:item/totem_of_essence_parrot"
+    },
+    {
+      "predicate": { "essence_enderman": 1 },
+      "model": "mobessencemod:item/totem_of_essence_enderman"
     }
   ]
 }
