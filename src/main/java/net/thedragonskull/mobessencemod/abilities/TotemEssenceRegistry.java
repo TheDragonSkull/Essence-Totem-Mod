@@ -47,6 +47,12 @@ public class TotemEssenceRegistry {
                 new SpiderAbility()
         );
 
+        register("minecraft:cave_spider", "essence_cave_spider",
+                new TotemTooltipData("Poisonous Wall-Crawler", "Slowly climb walls + poison enemies when unarmed (20%)"),
+                SoundEvents.SPIDER_HURT,
+                new CaveSpiderAbility()
+        );
+
     }
 
     private static void register(String id, String predicate, TotemTooltipData tooltip, SoundEvent sound, IMobAbility ability) {

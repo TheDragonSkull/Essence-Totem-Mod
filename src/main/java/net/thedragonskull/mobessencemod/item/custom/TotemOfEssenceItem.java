@@ -190,5 +190,4 @@ public class TotemOfEssenceItem extends Item implements ICurioItem {
     public boolean canEquipFromUse(SlotContext slotContext, ItemStack stack) {
         return false;
     }
-
 }

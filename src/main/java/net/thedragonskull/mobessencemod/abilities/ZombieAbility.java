@@ -42,11 +42,21 @@ public class ZombieAbility implements IMobAbility{
         // VFX
         ServerLevel serverLevel = (ServerLevel) player.level();
 
+        double x = player.getX();
+        double y = player.getY() + player.getBbHeight() / 2.0;
+        double z = player.getZ();
+
         serverLevel.sendParticles(ParticleTypes.SOUL_FIRE_FLAME,
-                player.getX(),
-                player.getY() + player.getBbHeight() / 2,
-                player.getZ(),
+                x, y, z,
                 40, 0.5, 0.5, 0.5, 0.02);
+
+        serverLevel.sendParticles(
+                ParticleTypes.SOUL,
+                x, y, z,
+                20,
+                0.3, 0.5, 0.3,
+                0.01
+        );
 
         serverLevel.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.TOTEM_USE, SoundSource.PLAYERS, 1.5F, 0.7F);
 

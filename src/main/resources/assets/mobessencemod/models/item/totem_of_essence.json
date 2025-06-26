@@ -19,6 +19,10 @@
     {
       "predicate": { "essence_spider": 1 },
       "model": "mobessencemod:item/totem_of_essence_spider"
+    },
+    {
+      "predicate": { "essence_cave_spider": 1 },
+      "model": "mobessencemod:item/totem_of_essence_cave_spider"
     }
   ]
 }
