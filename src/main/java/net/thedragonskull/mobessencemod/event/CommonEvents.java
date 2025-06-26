@@ -37,6 +37,7 @@ public class CommonEvents {
     public static void onPlayerTickEvent(TickEvent.PlayerTickEvent event) {
         SpiderAbility.climb(event);
         CaveSpiderAbility.climb(event);
+        ParrotAbility.slowFall(event);
     }
 
 }

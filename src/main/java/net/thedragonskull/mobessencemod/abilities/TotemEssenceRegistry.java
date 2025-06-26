@@ -23,6 +23,8 @@ public class TotemEssenceRegistry {
     private static final Map<String, EssenceData> ESSENCE_DATA = new LinkedHashMap<>();
 
     static {
+
+        // PASSIVE
         register("minecraft:pig", "essence_pig",
                 new TotemTooltipData("Cast-Iron Stomach", "Immune to negative food effects"),
                 SoundEvents.PIG_HURT,
@@ -35,6 +37,13 @@ public class TotemEssenceRegistry {
                 new BeeAbility()
         );
 
+        register("minecraft:parrot", "essence_parrot",
+                new TotemTooltipData("Featherlight", "Descend slowly and don't trigger pressure plates or tripwires"),
+                SoundEvents.SPIDER_HURT,
+                new ParrotAbility()
+        );
+
+        // MONSTERS
         register("minecraft:zombie", "essence_zombie",
                 new TotemTooltipData("Zombie Recall", "Revives on death with half heart (one time use)"),
                 SoundEvents.ZOMBIE_HURT,
