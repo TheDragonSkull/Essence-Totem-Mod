@@ -43,6 +43,10 @@
     {
       "predicate": { "essence_tropical_fish": 1 },
       "model": "mobessencemod:item/totem_of_essence_tropical_fish"
+    },
+    {
+      "predicate": { "essence_pufferfish": 1 },
+      "model": "mobessencemod:item/totem_of_essence_pufferfish"
     }
   ]
 }

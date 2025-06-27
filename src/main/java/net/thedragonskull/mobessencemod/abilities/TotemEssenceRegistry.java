@@ -62,9 +62,15 @@ public class TotemEssenceRegistry {
                 new BeeAbility()
         );
 
+        register("minecraft:pufferfish", "essence_pufferfish",
+                new TotemTooltipData("???", "Chance to inflict knockback + poison on contact (1/3)"),
+                SoundEvents.PUFFER_FISH_HURT,
+                new PufferfishAbility()
+        );
+
         // MONSTERS
         register("minecraft:zombie", "essence_zombie",
-                new TotemTooltipData("Zombie Recall", "Revives on death with half heart (one time use)"),
+                new TotemTooltipData("Toxic Touch", "Revives on death with half heart (one time use)"),
                 SoundEvents.ZOMBIE_HURT,
                 new ZombieAbility()
         );

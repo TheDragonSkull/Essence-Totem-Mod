@@ -1,21 +1,39 @@
 package net.thedragonskull.mobessencemod.event;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.event.ViewportEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.thedragonskull.mobessencemod.MobEssenceMod;
 import net.thedragonskull.mobessencemod.abilities.*;
-import net.thedragonskull.mobessencemod.util.TotemUtils;
+import net.thedragonskull.mobessencemod.item.custom.TotemOfEssenceItem;
 
 @Mod.EventBusSubscriber(modid = MobEssenceMod.MOD_ID)
 public class CommonEvents {
+
+    @SubscribeEvent
+    public static void onPlayerEntityInteract(PlayerInteractEvent.EntityInteractSpecific event) {
+        ItemStack stack = event.getItemStack();
+
+        if (!(stack.getItem() instanceof TotemOfEssenceItem totem)) return;
+        if (!(event.getTarget() instanceof LivingEntity target)) return;
+
+        InteractionResult result = totem.interactLivingEntity(stack, event.getEntity(), target, event.getHand());
+
+        if (result != InteractionResult.PASS) {
+            event.setCancellationResult(result);
+            event.setCanceled(true);
+        }
+    }
 
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {
@@ -48,6 +66,7 @@ public class CommonEvents {
         CaveSpiderAbility.climb(event);
         ParrotAbility.slowFall(event);
         SalmonAbility.swimBoost(event);
+        PufferfishAbility.applyPoisonOnContact(event);
     }
 
     @SubscribeEvent
