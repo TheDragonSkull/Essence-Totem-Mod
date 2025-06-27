@@ -13,6 +13,14 @@ import java.util.Optional;
 
 public class TotemUtils {
 
+    public static @Nullable ItemStack getVisibleTotemStack(Player player) {
+        return CuriosApi.getCuriosHelper()
+                .findFirstCurio(player, stack -> stack.getItem() == ModItems.TOTEM_OF_ESSENCE.get())
+                .filter(result -> result.slotContext().visible())
+                .map(SlotResult::stack)
+                .orElse(null);
+    }
+
     public static @Nullable ResourceLocation getEssence(ItemStack stack) {
         if (!stack.hasTag() || !stack.getTag().contains("Essence")) return null;
 

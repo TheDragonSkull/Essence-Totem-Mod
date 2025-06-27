@@ -1,10 +1,16 @@
 package net.thedragonskull.mobessencemod.event;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.event.ViewportEvent;
+import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -16,6 +22,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.thedragonskull.mobessencemod.MobEssenceMod;
 import net.thedragonskull.mobessencemod.abilities.*;
 import net.thedragonskull.mobessencemod.item.custom.TotemOfEssenceItem;
+import net.thedragonskull.mobessencemod.util.TotemUtils;
 
 @Mod.EventBusSubscriber(modid = MobEssenceMod.MOD_ID)
 public class CommonEvents {
@@ -77,6 +84,31 @@ public class CommonEvents {
     @SubscribeEvent
     public static void onFogColor(ViewportEvent.ComputeFogColor event) {
         TropicalFishAbility.onFogColor(event);
+    }
+
+    private static final ResourceLocation FRAME = ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "textures/gui/totem_frame.png");
+
+    @SubscribeEvent
+    public static void renderTotemIndicator(RenderGuiOverlayEvent.Post event) {
+        if (event.getOverlay().id() != VanillaGuiOverlay.EXPERIENCE_BAR.id()) return;
+
+        GuiGraphics guiGraphics = event.getGuiGraphics();
+        Minecraft mc = Minecraft.getInstance();
+        LocalPlayer player = mc.player;
+
+        if (player == null) return;
+
+        ItemStack totem = TotemUtils.getVisibleTotemStack(player);
+        if (totem == null) return;
+
+        int screenWidth = event.getWindow().getGuiScaledWidth();
+        int screenHeight = event.getWindow().getGuiScaledHeight();
+
+        int x = screenWidth / 2 + 100;
+        int y = screenHeight - 19;
+
+        guiGraphics.blit(FRAME, x - 3, y - 3, 0, 0, 22, 22, 22, 22);
+        guiGraphics.renderItem(totem, x, y);
     }
 
 }
