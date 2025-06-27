@@ -31,16 +31,28 @@ public class TotemEssenceRegistry {
                 new PigAbility()
         );
 
-        register("minecraft:cod", "essence_cod",
-                new TotemTooltipData("Adaptive Lungs", "Increases underwater breathing time while fully submerged"),
-                SoundEvents.COD_HURT,
-                new CodAbility()
-        );
-
         register("minecraft:parrot", "essence_parrot",
                 new TotemTooltipData("Featherlight", "Descend slowly and don't trigger pressure plates or tripwires"),
                 SoundEvents.PARROT_HURT,
                 new ParrotAbility()
+        );
+
+        register("minecraft:cod", "essence_cod",
+                new TotemTooltipData("Adaptive Lungs", "Increases underwater breathing time"),
+                SoundEvents.COD_HURT,
+                new CodAbility()
+        );
+
+        register("minecraft:salmon", "essence_salmon",
+                new TotemTooltipData("Underwater Momentum", "Increases swimming speed"),
+                SoundEvents.SALMON_HURT,
+                new SalmonAbility()
+        );
+
+        register("minecraft:tropical_fish", "essence_tropical_fish",
+                new TotemTooltipData("Clear Waters", "Enhanced underwater visibility"),
+                SoundEvents.TROPICAL_FISH_HURT,
+                new TropicalFishAbility()
         );
 
         // NEUTRAL
