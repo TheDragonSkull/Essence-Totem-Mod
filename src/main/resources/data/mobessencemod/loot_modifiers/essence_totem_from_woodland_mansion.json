@@ -1,0 +1,10 @@
+{
+  "type": "mobessencemod:add_item",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:chests/woodland_mansion"
+    }
+  ],
+  "item": "mobessencemod:totem_of_essence"
+}

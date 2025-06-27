@@ -1,0 +1,9 @@
+{
+  "entries": [
+    "mobessencemod:essence_totem_from_bonus_chest",
+    "mobessencemod:essence_totem_from_woodland_mansion",
+    "mobessencemod:essence_totem_from_simple_dungeon",
+    "mobessencemod:essence_totem_from_bastion_treasure"
+  ],
+  "replace": false
+}
