@@ -61,7 +61,8 @@ public class GoatAbility implements IMobAbility {
 
                 if (target.hurt(player.level().damageSources().playerAttack(player), computeDamage(speed))) {
                     Vec3 dir = player.getLookAngle().normalize();
-                    target.knockback(KNOCKBACK_STRENGTH, -dir.x, -dir.z);
+
+                    target.knockback(computeKnockback(speed), -dir.x, -dir.z);
 
                     player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
                             SoundEvents.GOAT_RAM_IMPACT, SoundSource.PLAYERS, 1.0F, 1.0F);
@@ -79,5 +80,12 @@ public class GoatAbility implements IMobAbility {
         double percent = (clamped - 0.12) / (0.35 - 0.12);
         return BASE_DAMAGE + (float)(percent * MAX_BONUS_DAMAGE);
     }
+
+    private static double computeKnockback(double speed) {
+        double clamped = Mth.clamp(speed, 0.12, 0.25);
+        double percent = (clamped - 0.12) / (0.25 - 0.12);
+        return 0.5 + percent * 0.75;
+    }
+
 
 }
