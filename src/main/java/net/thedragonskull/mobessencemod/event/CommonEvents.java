@@ -45,6 +45,7 @@ public class CommonEvents {
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {
         BeeAbility.onPlayerHurt(event);
+        CreeperAbility.onPlayerHurt(event);
     }
 
     @SubscribeEvent

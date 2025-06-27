@@ -51,6 +51,10 @@
     {
       "predicate": { "essence_goat": 1 },
       "model": "mobessencemod:item/totem_of_essence_goat"
+    },
+    {
+      "predicate": { "essence_creeper": 1 },
+      "model": "mobessencemod:item/totem_of_essence_creeper"
     }
   ]
 }

@@ -99,6 +99,12 @@ public class TotemEssenceRegistry {
                 new ZombieAbility()
         );
 
+        register("minecraft:creeper", "essence_creeper",
+                new TotemTooltipData("Explosive Retaliation", "When taking melee damage, there's a chance to trigger a small explosion that doesn't affect blocks"),
+                SoundEvents.CREEPER_HURT,
+                new CreeperAbility()
+        );
+
     }
 
     private static void register(String id, String predicate, TotemTooltipData tooltip, SoundEvent sound, IMobAbility ability) {
