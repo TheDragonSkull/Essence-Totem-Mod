@@ -68,13 +68,6 @@ public class TotemEssenceRegistry {
                 new PufferfishAbility()
         );
 
-        // MONSTERS
-        register("minecraft:zombie", "essence_zombie",
-                new TotemTooltipData("Zombie Recall", "Revives on death with half heart (one time use)"),
-                SoundEvents.ZOMBIE_HURT,
-                new ZombieAbility()
-        );
-
         register("minecraft:spider", "essence_spider",
                 new TotemTooltipData("Wall-Crawler", "Slowly climb vertical surfaces"),
                 SoundEvents.SPIDER_HURT,
@@ -91,6 +84,19 @@ public class TotemEssenceRegistry {
                 new TotemTooltipData("Blink Instinct", "Teleport away to evade ranged damage"),
                 SoundEvents.ENDERMAN_HURT,
                 new EndermanAbility()
+        );
+
+        register("minecraft:goat", "essence_goat",
+                new TotemTooltipData("Ram Charge", "Tackle any mob in your way while running; the faster the player, the more the damage"),
+                SoundEvents.GOAT_HURT,
+                new GoatAbility()
+        );
+
+        // HOSTILE
+        register("minecraft:zombie", "essence_zombie",
+                new TotemTooltipData("Zombie Recall", "Revives on death with half heart (one time use)"),
+                SoundEvents.ZOMBIE_HURT,
+                new ZombieAbility()
         );
 
     }

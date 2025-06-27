@@ -47,6 +47,10 @@
     {
       "predicate": { "essence_pufferfish": 1 },
       "model": "mobessencemod:item/totem_of_essence_pufferfish"
+    },
+    {
+      "predicate": { "essence_goat": 1 },
+      "model": "mobessencemod:item/totem_of_essence_goat"
     }
   ]
 }

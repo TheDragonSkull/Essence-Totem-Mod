@@ -74,6 +74,7 @@ public class CommonEvents {
         ParrotAbility.slowFall(event);
         SalmonAbility.swimBoost(event);
         PufferfishAbility.applyPoisonOnContact(event);
+        GoatAbility.applyRamAttack(event);
     }
 
     @SubscribeEvent
