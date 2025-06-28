@@ -59,6 +59,10 @@
     {
       "predicate": { "essence_skeleton": 1 },
       "model": "mobessencemod:item/totem_of_essence_skeleton"
+    },
+    {
+      "predicate": { "essence_slime": 1 },
+      "model": "mobessencemod:item/totem_of_essence_slime"
     }
   ]
 }

@@ -111,6 +111,12 @@ public class TotemEssenceRegistry {
                 new SkeletonAbility()
         );
 
+        register("minecraft:slime", "essence_slime",
+                new TotemTooltipData("Elastic Body", "Bounce on the ground when falling + chance to absorbe melee damage"),
+                SoundEvents.SLIME_HURT,
+                new SlimeAbility()
+        );
+
     }
 
     private static void register(String id, String predicate, TotemTooltipData tooltip, SoundEvent sound, IMobAbility ability) {
