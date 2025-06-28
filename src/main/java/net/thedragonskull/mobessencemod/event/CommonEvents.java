@@ -2,7 +2,12 @@ package net.thedragonskull.mobessencemod.event;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.model.PlayerModel;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
+import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
@@ -10,6 +15,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.event.ViewportEvent;
@@ -27,6 +33,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.thedragonskull.mobessencemod.MobEssenceMod;
 import net.thedragonskull.mobessencemod.abilities.*;
 import net.thedragonskull.mobessencemod.item.custom.TotemOfEssenceItem;
+import net.thedragonskull.mobessencemod.render.VillagerNoseLayer;
+import net.thedragonskull.mobessencemod.render.VillagerNoseModel;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
 
 @Mod.EventBusSubscriber(modid = MobEssenceMod.MOD_ID)

@@ -67,6 +67,10 @@
     {
       "predicate": { "essence_chicken": 1 },
       "model": "mobessencemod:item/totem_of_essence_chicken"
+    },
+    {
+      "predicate": { "essence_villager": 1 },
+      "model": "mobessencemod:item/totem_of_essence_villager"
     }
   ]
 }

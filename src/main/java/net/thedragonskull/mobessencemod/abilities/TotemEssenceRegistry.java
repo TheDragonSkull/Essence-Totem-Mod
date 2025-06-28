@@ -123,6 +123,16 @@ public class TotemEssenceRegistry {
                 new SlimeAbility()
         );
 
+        // NON MOBS
+        register("minecraft:villager", "essence_villager",
+                new TotemTooltipData("???", "???"),
+                SoundEvents.VILLAGER_HURT,
+                new VillagerAbility()
+        );
+
+        // SPECIAL
+
+
     }
 
     private static void register(String id, String predicate, TotemTooltipData tooltip, SoundEvent sound, IMobAbility ability) {
