@@ -1,0 +1,8 @@
+{
+  "villager_money": {
+    "subtitle": "sounds.mobessencemod.villager_money",
+    "sounds": [
+      "mobessencemod:villager_money"
+    ]
+  }
+}

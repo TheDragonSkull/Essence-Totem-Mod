@@ -125,7 +125,7 @@ public class TotemEssenceRegistry {
 
         // NON MOBS
         register("minecraft:villager", "essence_villager",
-                new TotemTooltipData("???", "???"),
+                new TotemTooltipData("Scent of the Money", "Grow a big nose to smell nearby emerald ores (~20 blocks)"),
                 SoundEvents.VILLAGER_HURT,
                 new VillagerAbility()
         );

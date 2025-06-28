@@ -14,6 +14,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.thedragonskull.mobessencemod.item.ModItems;
 import net.thedragonskull.mobessencemod.loot.ModLootModifiers;
 import net.thedragonskull.mobessencemod.network.PacketHandler;
+import net.thedragonskull.mobessencemod.sound.ModSounds;
 import net.thedragonskull.mobessencemod.util.ModItemProperties;
 import org.slf4j.Logger;
 
@@ -27,6 +28,7 @@ public class MobEssenceMod {
 
         ModItems.register(modEventBus);
         ModLootModifiers.register(modEventBus);
+        ModSounds.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
