@@ -71,6 +71,10 @@
     {
       "predicate": { "essence_villager": 1 },
       "model": "mobessencemod:item/totem_of_essence_villager"
+    },
+    {
+      "predicate": { "essence_zombie_villager": 1 },
+      "model": "mobessencemod:item/totem_of_essence_zombie_villager"
     }
   ]
 }

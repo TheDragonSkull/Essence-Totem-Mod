@@ -75,6 +75,7 @@ public class CommonEvents {
     @SubscribeEvent
     public static void onLivingDeath(LivingDeathEvent event) {
         ZombieAbility.onPlayerDeath(event);
+        ZombieVillagerAbility.onPlayerDeath(event);
     }
 
     @SubscribeEvent

@@ -6,6 +6,7 @@
   "item.mobessencemod.totem_of_essence.salmon": "Essence Totem of the Salmon",
   "item.mobessencemod.totem_of_essence.tropical_fish": "Essence Totem of the Tropical Fish",
   "item.mobessencemod.totem_of_essence.chicken": "Essence Totem of the Chicken",
+  "item.mobessencemod.totem_of_essence.villager": "Essence Totem of the Villager",
 
   "item.mobessencemod.totem_of_essence.bee": "Essence Totem of the Bee",
   "item.mobessencemod.totem_of_essence.pufferfish": "Essence Totem of the Pufferfish",
@@ -19,7 +20,7 @@
   "item.mobessencemod.totem_of_essence.skeleton": "Essence Totem of the Skeleton",
   "item.mobessencemod.totem_of_essence.slime": "Essence Totem of the Slime",
 
-  "item.mobessencemod.totem_of_essence.villager": "Essence Totem of the Villager",
+  "item.mobessencemod.totem_of_essence.zombie_villager": "Essence Totem of the Zombie Villager",
 
 
   "curios.identifier.totem_of_essence": "Totem of Essence"

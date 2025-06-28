@@ -61,6 +61,12 @@ public class TotemEssenceRegistry {
                 new ChickenAbility()
         );
 
+        register("minecraft:villager", "essence_villager",
+                new TotemTooltipData("Scent of the Money", "Grow a big nose to smell nearby emerald ores (~20 blocks)"),
+                SoundEvents.VILLAGER_HURT,
+                new VillagerAbility()
+        );
+
         // NEUTRAL
         register("minecraft:bee", "essence_bee",
                 new TotemTooltipData("Stinger Reflex", "Stings and poisons enemies when hit from behind"),
@@ -100,7 +106,7 @@ public class TotemEssenceRegistry {
 
         // HOSTILE
         register("minecraft:zombie", "essence_zombie",
-                new TotemTooltipData("Zombie Recall", "Revives on death with half heart (one time use)"),
+                new TotemTooltipData("Zombie Recall", "Revive with half heart (one time use)"),
                 SoundEvents.ZOMBIE_HURT,
                 new ZombieAbility()
         );
@@ -123,15 +129,12 @@ public class TotemEssenceRegistry {
                 new SlimeAbility()
         );
 
-        // NON MOBS
-        register("minecraft:villager", "essence_villager",
-                new TotemTooltipData("Scent of the Money", "Grow a big nose to smell nearby emerald ores (~20 blocks)"),
-                SoundEvents.VILLAGER_HURT,
-                new VillagerAbility()
-        );
-
         // SPECIAL
-
+        register("minecraft:zombie_villager", "essence_zombie_villager",
+                new TotemTooltipData("Undead Scent of the Money", "Grow a big nose to smell nearby emerald ores (~20 blocks) + revive with half heart (one time use)"),
+                SoundEvents.ZOMBIE_VILLAGER_HURT,
+                new ZombieVillagerAbility()
+        );
 
     }
 

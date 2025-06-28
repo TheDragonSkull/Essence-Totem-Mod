@@ -17,6 +17,7 @@ import net.thedragonskull.mobessencemod.util.TotemUtils;
 public class VillagerNoseLayer extends RenderLayer<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> {
     private final VillagerNoseModel villagerNoseModel;
     private static final ResourceLocation NOSE_TEXTURE = ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "textures/misc/villager_nose.png");
+    private static final ResourceLocation ZOMBIE_NOSE_TEXTURE = ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "textures/misc/zombie_villager_nose.png");
 
     public VillagerNoseLayer(RenderLayerParent<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> pRenderer, ModelPart villagerNosePart) {
         super(pRenderer);
@@ -28,10 +29,14 @@ public class VillagerNoseLayer extends RenderLayer<AbstractClientPlayer, PlayerM
                        AbstractClientPlayer player, float pLimbSwing, float pLimbSwingAmount,
                        float pPartialTick, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
 
-        if (!TotemUtils.hasTotemWithEssenceClient(player, ResourceLocation.parse("minecraft:villager"))) return;
+        boolean hasVillager = TotemUtils.hasTotemWithEssenceClient(player, ResourceLocation.parse("minecraft:villager"));
+        boolean hasZombie = TotemUtils.hasTotemWithEssenceClient(player, ResourceLocation.parse("minecraft:zombie_villager"));
+
+        if (!hasVillager && !hasZombie) return;
         if (player.isInvisible()) return;
 
-        VertexConsumer vertexconsumer = pBuffer.getBuffer(RenderType.entityCutoutNoCull(NOSE_TEXTURE));
+        ResourceLocation texture = hasVillager ? NOSE_TEXTURE : ZOMBIE_NOSE_TEXTURE;
+        VertexConsumer vertexconsumer = pBuffer.getBuffer(RenderType.entityCutoutNoCull(texture));
 
         poseStack.pushPose();
         this.getParentModel().head.translateAndRotate(poseStack);
