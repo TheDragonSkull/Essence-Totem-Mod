@@ -4,18 +4,22 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.event.ViewportEvent;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -76,6 +80,11 @@ public class CommonEvents {
         SalmonAbility.swimBoost(event);
         PufferfishAbility.applyPoisonOnContact(event);
         GoatAbility.applyRamAttack(event);
+
+        if (event.phase != TickEvent.Phase.END) return;
+        if (!(event.player instanceof ServerPlayer serverPlayer)) return;
+
+        SkeletonAbility.tryReturnArrow(serverPlayer);
     }
 
     @SubscribeEvent
@@ -86,6 +95,21 @@ public class CommonEvents {
     @SubscribeEvent
     public static void onFogColor(ViewportEvent.ComputeFogColor event) {
         TropicalFishAbility.onFogColor(event);
+    }
+
+    @SubscribeEvent
+    public static void onArrowLoose(ArrowLooseEvent event) {
+        SkeletonAbility.tryPreventArrowConsumption(event);
+    }
+
+    @SubscribeEvent
+    public static void onArrowSpawn(EntityJoinLevelEvent event) {
+        if (!(event.getEntity() instanceof AbstractArrow arrow)) return;
+        if (!(arrow.getOwner() instanceof Player player)) return;
+
+        if (SkeletonAbility.markedFreeArrow(player)) {
+            arrow.pickup = AbstractArrow.Pickup.DISALLOWED;
+        }
     }
 
     private static final ResourceLocation FRAME = ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "textures/gui/totem_frame.png");

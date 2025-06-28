@@ -105,6 +105,12 @@ public class TotemEssenceRegistry {
                 new CreeperAbility()
         );
 
+        register("minecraft:skeleton", "essence_skeleton",
+                new TotemTooltipData("Bone Quiver", "Arrows fired have a chance to not be consumed: 50% for regular arrows, 25% for spectral or tipped arrows"),
+                SoundEvents.SKELETON_HURT,
+                new SkeletonAbility()
+        );
+
     }
 
     private static void register(String id, String predicate, TotemTooltipData tooltip, SoundEvent sound, IMobAbility ability) {
