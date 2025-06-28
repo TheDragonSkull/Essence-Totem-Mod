@@ -32,7 +32,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:parrot", "essence_parrot",
-                new TotemTooltipData("Featherlight", "Descend slowly and don't trigger pressure plates or tripwires"),
+                new TotemTooltipData("Featherlight", "Double jump + don't trigger pressure plates or tripwires"),
                 SoundEvents.PARROT_HURT,
                 new ParrotAbility()
         );

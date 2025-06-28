@@ -10,6 +10,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.event.ViewportEvent;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
@@ -111,6 +112,11 @@ public class CommonEvents {
         if (SkeletonAbility.markedFreeArrow(player)) {
             arrow.pickup = AbstractArrow.Pickup.DISALLOWED;
         }
+    }
+
+    @SubscribeEvent
+    public static void onInputKeyEvent(InputEvent.Key event) {
+        ParrotAbility.flap(event);
     }
 
     private static final ResourceLocation FRAME = ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "textures/gui/totem_frame.png");
