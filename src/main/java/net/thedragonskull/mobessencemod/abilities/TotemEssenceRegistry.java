@@ -55,6 +55,12 @@ public class TotemEssenceRegistry {
                 new TropicalFishAbility()
         );
 
+        register("minecraft:chicken", "essence_chicken",
+                new TotemTooltipData("Feathered Fiend", "Basically permanent slow falling"),
+                SoundEvents.CHICKEN_HURT,
+                new ChickenAbility()
+        );
+
         // NEUTRAL
         register("minecraft:bee", "essence_bee",
                 new TotemTooltipData("Stinger Reflex", "Stings and poisons enemies when hit from behind"),

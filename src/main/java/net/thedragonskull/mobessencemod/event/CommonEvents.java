@@ -77,7 +77,7 @@ public class CommonEvents {
     public static void onPlayerTickEvent(TickEvent.PlayerTickEvent event) {
         SpiderAbility.climb(event);
         CaveSpiderAbility.climb(event);
-        ParrotAbility.slowFall(event);
+        ChickenAbility.slowFall(event);
         SalmonAbility.swimBoost(event);
         PufferfishAbility.applyPoisonOnContact(event);
         GoatAbility.applyRamAttack(event);
