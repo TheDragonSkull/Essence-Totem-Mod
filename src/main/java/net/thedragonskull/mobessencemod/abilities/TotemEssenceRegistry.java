@@ -111,7 +111,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:llama", "essence_llama",
-                new TotemTooltipData("???", "???"),
+                new TotemTooltipData("Spit Happens", "Automatically spits at hostile mobs nearby dealing damage and knockback"),
                 SoundEvents.LLAMA_HURT,
                 new LlamaAbility()
         );
@@ -146,6 +146,12 @@ public class TotemEssenceRegistry {
                 new TotemTooltipData("Undead Scent of the Money", "Grow a big nose to smell nearby emerald ores (~20 blocks) + revive with half heart (one time use)"),
                 SoundEvents.ZOMBIE_VILLAGER_HURT,
                 new ZombieVillagerAbility()
+        );
+
+        register("minecraft:trader_llama", "essence_trader_llama",
+                new TotemTooltipData("Wandering Spitter", "Automatically spits at hostile mobs nearby dealing damage and knockback + llamas won't spit at the player + control llamas while riding"),
+                SoundEvents.LLAMA_HURT,
+                new TraderLlamaAbility()
         );
 
     }

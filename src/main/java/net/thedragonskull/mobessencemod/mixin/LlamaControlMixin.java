@@ -29,7 +29,9 @@ public class LlamaControlMixin {
 
         Entity rider = llama.getFirstPassenger();
         if (rider instanceof ServerPlayer player &&
-                TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:wandering_trader"))) {
+                (TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:wandering_trader"))
+                        || TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:trader_llama")))) {
+
             cir.setReturnValue(player);
         }
     }

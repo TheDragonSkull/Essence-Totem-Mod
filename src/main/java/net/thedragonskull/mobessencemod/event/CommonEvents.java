@@ -5,11 +5,8 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.animal.horse.Llama;
-import net.minecraft.world.entity.animal.horse.TraderLlama;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
@@ -19,7 +16,6 @@ import net.minecraftforge.client.event.ViewportEvent;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
-import net.minecraftforge.event.entity.EntityMountEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
@@ -114,6 +110,7 @@ public class CommonEvents {
     @SubscribeEvent
     public static void onProjectileImpact(ProjectileImpactEvent event) {
         LlamaAbility.onLlamaSpitImpact(event);
+        TraderLlamaAbility.onTraderLlamaSpitImpact(event);
     }
 
     @SubscribeEvent
@@ -142,6 +139,7 @@ public class CommonEvents {
     @SubscribeEvent
     public static void onLivingChangeTarget(LivingChangeTargetEvent event) {
         WanderingTraderAbility.onLlamaTarget(event);
+        TraderLlamaAbility.onTraderLlamaTarget(event);
     }
 
 

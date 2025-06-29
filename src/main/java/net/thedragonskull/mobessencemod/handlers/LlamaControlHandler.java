@@ -25,8 +25,8 @@ public class LlamaControlHandler {
 
         if (!(player.getVehicle() instanceof Llama llama)) return;
 
-        if (!TotemUtils.hasTotemWithEssenceServer((ServerPlayer) player, ResourceLocation.parse("minecraft:wandering_trader")))
-            return;
+        if (!TotemUtils.hasTotemWithEssenceServer((ServerPlayer) player, ResourceLocation.parse("minecraft:wandering_trader")) &&
+                !TotemUtils.hasTotemWithEssenceServer((ServerPlayer) player, ResourceLocation.parse("minecraft:trader_llama"))) return;
 
         llama.setYRot(player.getYRot());
         llama.yRotO = llama.getYRot();
