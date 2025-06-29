@@ -22,6 +22,8 @@
 
   "item.mobessencemod.totem_of_essence.zombie_villager": "Essence Totem of the Zombie Villager",
 
+  "key.category.mobessencemod.mob_essence": "Mob Essence Mod",
+  "key.category.mobessencemod.totem_swap": "Swap Totem With Hand",
 
   "curios.identifier.totem_of_essence": "Totem of Essence"
 }

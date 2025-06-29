@@ -26,6 +26,12 @@ public class PacketHandler {
                 .consumerMainThread(C2SParrotFlapSoundPacket::handle)
                 .add();
 
+        INSTANCE.messageBuilder(C2SSwapTotemPacket.class, id++, NetworkDirection.PLAY_TO_SERVER)
+                .encoder(C2SSwapTotemPacket::encode)
+                .decoder(C2SSwapTotemPacket::new)
+                .consumerMainThread(C2SSwapTotemPacket::handle)
+                .add();
+
     }
 
     public static void sendToServer(Object msg) {
