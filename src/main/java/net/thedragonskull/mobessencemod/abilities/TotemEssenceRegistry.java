@@ -142,7 +142,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:blaze", "essence_blaze",
-                new TotemTooltipData("Infernal Drift", "Levitation + chance to set any mob on fire (1/3) on hit (melee)"),
+                new TotemTooltipData("Infernal Drift", "Shift while on air to levitate + chance to set any mob on fire (1/4) on hit (melee)"),
                 SoundEvents.BLAZE_HURT,
                 new BlazeAbility()
         );
