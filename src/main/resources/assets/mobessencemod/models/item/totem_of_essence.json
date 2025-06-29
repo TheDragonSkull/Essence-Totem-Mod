@@ -79,6 +79,10 @@
     {
       "predicate": { "essence_wandering_trader": 1 },
       "model": "mobessencemod:item/totem_of_essence_wandering_trader"
+    },
+    {
+      "predicate": { "essence_llama": 1 },
+      "model": "mobessencemod:item/totem_of_essence_llama"
     }
   ]
 }

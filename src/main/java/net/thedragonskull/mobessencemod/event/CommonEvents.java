@@ -20,6 +20,7 @@ import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.EntityMountEvent;
+import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -108,6 +109,11 @@ public class CommonEvents {
     @SubscribeEvent
     public static void onArrowLoose(ArrowLooseEvent event) {
         SkeletonAbility.tryPreventArrowConsumption(event);
+    }
+
+    @SubscribeEvent
+    public static void onProjectileImpact(ProjectileImpactEvent event) {
+        LlamaAbility.onLlamaSpitImpact(event);
     }
 
     @SubscribeEvent

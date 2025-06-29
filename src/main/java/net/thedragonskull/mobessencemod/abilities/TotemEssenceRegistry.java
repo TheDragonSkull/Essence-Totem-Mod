@@ -68,7 +68,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:wandering_trader", "essence_wandering_trader",
-                new TotemTooltipData("???", "???"),
+                new TotemTooltipData("Llama Whisperer", "Llamas won't spit at the player + now you can control llamas while riding"),
                 SoundEvents.WANDERING_TRADER_HURT,
                 new WanderingTraderAbility()
         );
@@ -108,6 +108,12 @@ public class TotemEssenceRegistry {
                 new TotemTooltipData("Ram Charge", "Tackle any mob in your way while running; the faster the player, the more the damage"),
                 SoundEvents.GOAT_HURT,
                 new GoatAbility()
+        );
+
+        register("minecraft:llama", "essence_llama",
+                new TotemTooltipData("???", "???"),
+                SoundEvents.LLAMA_HURT,
+                new LlamaAbility()
         );
 
         // HOSTILE
