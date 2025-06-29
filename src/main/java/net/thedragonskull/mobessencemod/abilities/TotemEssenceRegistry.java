@@ -141,6 +141,12 @@ public class TotemEssenceRegistry {
                 new SlimeAbility()
         );
 
+        register("minecraft:blaze", "essence_blaze",
+                new TotemTooltipData("Infernal Drift", "Levitation + chance to set any mob on fire (1/3) on hit (melee)"),
+                SoundEvents.BLAZE_HURT,
+                new BlazeAbility()
+        );
+
         // SPECIAL
         register("minecraft:zombie_villager", "essence_zombie_villager",
                 new TotemTooltipData("Undead Scent of the Money", "Grow a big nose to smell nearby emerald ores (~20 blocks) + revive with half heart (one time use)"),

@@ -57,11 +57,6 @@ public class CommonEvents {
     }
 
     @SubscribeEvent
-    public static void onLivingAttack(LivingAttackEvent event) {
-        EndermanAbility.onPlayerHurt(event);
-    }
-
-    @SubscribeEvent
     public static void onLivingUseItem(LivingEntityUseItemEvent.Finish event) {
         PigAbility.onItemEaten(event);
     }
@@ -74,7 +69,9 @@ public class CommonEvents {
 
     @SubscribeEvent
     public static void onAttack(LivingAttackEvent event) {
-        CaveSpiderAbility.onAttack(event);
+        CaveSpiderAbility.caveSpiderPoison(event);
+        EndermanAbility.teleport(event);
+        BlazeAbility.blazeSetOnFire(event);
     }
 
     @SubscribeEvent
@@ -85,6 +82,7 @@ public class CommonEvents {
         SalmonAbility.swimBoost(event);
         PufferfishAbility.applyPoisonOnContact(event);
         GoatAbility.applyRamAttack(event);
+        BlazeAbility.blazeLevitate(event);
 
         if (event.phase != TickEvent.Phase.END) return;
         if (!(event.player instanceof ServerPlayer serverPlayer)) return;

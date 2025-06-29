@@ -18,7 +18,7 @@ public class CaveSpiderAbility implements IMobAbility {
     public void tick(ServerPlayer player, ItemStack totemStack) {
     }
 
-    public static void onAttack(LivingAttackEvent event) {
+    public static void caveSpiderPoison(LivingAttackEvent event) {
         if (!(event.getSource().getEntity() instanceof ServerPlayer player)) return;
 
         if (!player.getMainHandItem().isEmpty()) return;

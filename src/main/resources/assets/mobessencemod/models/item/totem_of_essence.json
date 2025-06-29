@@ -87,6 +87,10 @@
     {
       "predicate": { "essence_trader_llama": 1 },
       "model": "mobessencemod:item/totem_of_essence_trader_llama"
+    },
+    {
+      "predicate": { "essence_blaze": 1 },
+      "model": "mobessencemod:item/totem_of_essence_blaze"
     }
   ]
 }

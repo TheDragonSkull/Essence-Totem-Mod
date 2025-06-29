@@ -22,7 +22,7 @@ public class EndermanAbility implements IMobAbility {
     public void tick(ServerPlayer player, ItemStack totemStack) {
     }
 
-    public static void onPlayerHurt(LivingAttackEvent event) {
+    public static void teleport(LivingAttackEvent event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
 
         ResourceLocation id = ResourceLocation.parse("minecraft:enderman");
