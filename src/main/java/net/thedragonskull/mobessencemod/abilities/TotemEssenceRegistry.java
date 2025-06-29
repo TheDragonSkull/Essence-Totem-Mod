@@ -67,6 +67,12 @@ public class TotemEssenceRegistry {
                 new VillagerAbility()
         );
 
+        register("minecraft:wandering_trader", "essence_wandering_trader",
+                new TotemTooltipData("???", "???"),
+                SoundEvents.WANDERING_TRADER_HURT,
+                new WanderingTraderAbility()
+        );
+
         // NEUTRAL
         register("minecraft:bee", "essence_bee",
                 new TotemTooltipData("Stinger Reflex", "Stings and poisons enemies when hit from behind"),
