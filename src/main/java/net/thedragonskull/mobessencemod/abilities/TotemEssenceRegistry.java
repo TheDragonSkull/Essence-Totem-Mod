@@ -173,9 +173,15 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:red_mooshroom", "essence_red_mooshroom",
-                new TotemTooltipData("???", "???"),
+                new TotemTooltipData("Cleansing Feast", "Chance of cleansing a harmful effect (1/3) when applied while the totem is equipped + chance of filling +1 hunger when eating non harmful food (1/3)"),
                 SoundEvents.COW_HURT,
                 new RedMooshroomAbility()
+        );
+
+        register("minecraft:brown_mooshroom", "essence_brown_mooshroom",
+                new TotemTooltipData("Enriched Cleanse", "Chance of cleansing a harmful effect (1/3) when applied while the totem is equipped + chance of adding +1 saturation after eating non harmful food (1/3)"),
+                SoundEvents.COW_HURT,
+                new BrownMooshroomAbility()
         );
 
     }

@@ -103,6 +103,10 @@
     {
       "predicate": { "essence_red_mooshroom": 1 },
       "model": "mobessencemod:item/totem_of_essence_red_mooshroom"
+    },
+    {
+      "predicate": { "essence_brown_mooshroom": 1 },
+      "model": "mobessencemod:item/totem_of_essence_brown_mooshroom"
     }
   ]
 }

@@ -61,6 +61,7 @@ public class CommonEvents {
     public static void onLivingUseItem(LivingEntityUseItemEvent.Finish event) {
         PigAbility.onItemEaten(event);
         RedMooshroomAbility.onEat(event);
+        BrownMooshroomAbility.onEat(event);
     }
 
     @SubscribeEvent

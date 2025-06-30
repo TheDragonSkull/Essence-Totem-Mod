@@ -37,7 +37,7 @@ public abstract class CancelEffectMixin {
             if (!pEffectInstance.getEffect().isBeneficial() &&
                     pEffectInstance.getEffect() != MobEffects.GLOWING &&
                     pEffectInstance.getEffect() != MobEffects.BAD_OMEN &&
-                    (hasCow || hasRedMooshroom)) { //todo: los otros 2 totems
+                    (hasCow || hasRedMooshroom || hasBrownMooshroom)) {
 
                 if (player.hasEffect(type)) return;
 
