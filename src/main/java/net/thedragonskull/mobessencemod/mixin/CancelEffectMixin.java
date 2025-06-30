@@ -30,10 +30,14 @@ public abstract class CancelEffectMixin {
 
         if (self instanceof ServerPlayer player) {
 
+            boolean hasCow = TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:cow"));
+            boolean hasRedMooshroom = TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:red_mooshroom"));
+            boolean hasBrownMooshroom = TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:brown_mooshroom"));
+
             if (!pEffectInstance.getEffect().isBeneficial() &&
                     pEffectInstance.getEffect() != MobEffects.GLOWING &&
                     pEffectInstance.getEffect() != MobEffects.BAD_OMEN &&
-                    TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:cow"))) { //todo: los otros 2 totems
+                    (hasCow || hasRedMooshroom)) { //todo: los otros 2 totems
 
                 if (player.hasEffect(type)) return;
 

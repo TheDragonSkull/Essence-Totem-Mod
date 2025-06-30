@@ -7,13 +7,11 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
 
 import java.util.List;
-import java.util.Set;
 
 public class PigAbility implements IMobAbility {
 
@@ -31,25 +29,9 @@ public class PigAbility implements IMobAbility {
         if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:pig"))) return;
 
         Item item = eaten.getItem();
-        if (isBadFood(item)) {
+        if (TotemUtils.isBadFood(item)) {
             removeNegativeEffects(player);
         }
-    }
-
-    private static boolean isBadFood(Item item) {
-        return Set.of(
-                Items.ROTTEN_FLESH,
-                Items.SPIDER_EYE,
-                Items.PUFFERFISH,
-                Items.POISONOUS_POTATO,
-                Items.CHICKEN,
-                Items.PORKCHOP,
-                Items.MUTTON,
-                Items.BEEF,
-                Items.RABBIT,
-                Items.COD,
-                Items.SALMON
-        ).contains(item);
     }
 
     private static void removeNegativeEffects(Player player) {

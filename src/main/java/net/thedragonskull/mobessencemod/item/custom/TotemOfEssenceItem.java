@@ -14,6 +14,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.animal.MushroomCow;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -36,7 +37,18 @@ public class TotemOfEssenceItem extends Item implements ICurioItem {
 
     @Override
     public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity target, InteractionHand hand) {
-        ResourceLocation mobId = ForgeRegistries.ENTITY_TYPES.getKey(target.getType());
+        ResourceLocation mobId;
+
+        if (target instanceof MushroomCow mooshroom) {
+            MushroomCow.MushroomType variant = mooshroom.getVariant();
+
+            mobId = switch (variant) {
+                case RED -> ResourceLocation.parse("minecraft:red_mooshroom");
+                case BROWN -> ResourceLocation.parse("minecraft:brown_mooshroom");
+            };
+        } else {
+            mobId = ForgeRegistries.ENTITY_TYPES.getKey(target.getType());
+        }
 
         if (mobId == null || !TotemEssenceRegistry.isRegistered(mobId)) {
             player.displayClientMessage(Component.literal("This creature has no essence to offer.").withStyle(ChatFormatting.RED), true);

@@ -99,6 +99,10 @@
     {
       "predicate": { "essence_cow": 1 },
       "model": "mobessencemod:item/totem_of_essence_cow"
+    },
+    {
+      "predicate": { "essence_red_mooshroom": 1 },
+      "model": "mobessencemod:item/totem_of_essence_red_mooshroom"
     }
   ]
 }

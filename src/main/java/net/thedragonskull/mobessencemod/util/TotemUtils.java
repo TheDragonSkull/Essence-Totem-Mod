@@ -4,7 +4,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.thedragonskull.mobessencemod.item.ModItems;
 import net.thedragonskull.mobessencemod.item.custom.TotemOfEssenceItem;
 import top.theillusivec4.curios.api.CuriosApi;
@@ -15,9 +17,11 @@ import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
+import java.util.Set;
 
 public class TotemUtils {
 
+    // TOTEM RELATED
     public static @Nullable ItemStack getVisibleTotemStack(Player player) {
         return CuriosApi.getCuriosHelper()
                 .findFirstCurio(player, stack -> stack.getItem() == ModItems.TOTEM_OF_ESSENCE.get())
@@ -102,7 +106,22 @@ public class TotemUtils {
         });
     }
 
-
+    // ABILITY RELATED
+    public static boolean isBadFood(Item item) {
+        return Set.of(
+                Items.ROTTEN_FLESH,
+                Items.SPIDER_EYE,
+                Items.PUFFERFISH,
+                Items.POISONOUS_POTATO,
+                Items.CHICKEN,
+                Items.PORKCHOP,
+                Items.MUTTON,
+                Items.BEEF,
+                Items.RABBIT,
+                Items.COD,
+                Items.SALMON
+        ).contains(item);
+    }
 
 
 }

@@ -172,6 +172,12 @@ public class TotemEssenceRegistry {
                 new TraderLlamaAbility()
         );
 
+        register("minecraft:red_mooshroom", "essence_red_mooshroom",
+                new TotemTooltipData("???", "???"),
+                SoundEvents.COW_HURT,
+                new RedMooshroomAbility()
+        );
+
     }
 
     private static void register(String id, String predicate, TotemTooltipData tooltip, SoundEvent sound, IMobAbility ability) {
