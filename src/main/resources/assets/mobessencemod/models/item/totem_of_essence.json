@@ -91,6 +91,10 @@
     {
       "predicate": { "essence_blaze": 1 },
       "model": "mobessencemod:item/totem_of_essence_blaze"
+    },
+    {
+      "predicate": { "essence_magma_cube": 1 },
+      "model": "mobessencemod:item/totem_of_essence_magma_cube"
     }
   ]
 }

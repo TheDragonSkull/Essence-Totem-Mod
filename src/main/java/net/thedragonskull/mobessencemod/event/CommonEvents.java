@@ -54,6 +54,7 @@ public class CommonEvents {
         BeeAbility.onPlayerHurt(event);
         CreeperAbility.onPlayerHurt(event);
         SlimeAbility.onPlayerHurt(event);
+        MagmaCubeAbility.onPlayerHurt(event);
     }
 
     @SubscribeEvent
@@ -83,6 +84,7 @@ public class CommonEvents {
         PufferfishAbility.applyPoisonOnContact(event);
         GoatAbility.applyRamAttack(event);
         BlazeAbility.blazeLevitate(event);
+        MagmaCubeAbility.setOnFireOnContact(event);
 
         if (event.phase != TickEvent.Phase.END) return;
         if (!(event.player instanceof ServerPlayer serverPlayer)) return;

@@ -141,6 +141,12 @@ public class TotemEssenceRegistry {
                 new SlimeAbility()
         );
 
+        register("minecraft:magma_cube", "essence_magma_cube",
+                new TotemTooltipData("Igneous Elastic Body", "Bounce on the ground when falling + ???"),
+                SoundEvents.MAGMA_CUBE_HURT,
+                new MagmaCubeAbility()
+        );
+
         register("minecraft:blaze", "essence_blaze",
                 new TotemTooltipData("Infernal Drift", "Shift while on air to levitate + chance to set any mob on fire (1/4) on hit (melee)"),
                 SoundEvents.BLAZE_HURT,
