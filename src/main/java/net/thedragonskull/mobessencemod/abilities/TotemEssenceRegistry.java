@@ -73,6 +73,12 @@ public class TotemEssenceRegistry {
                 new WanderingTraderAbility()
         );
 
+        register("minecraft:cow", "essence_cow",
+                new TotemTooltipData("Cleanse", "Chance of cleansing a harmful effect (1/3) when applied while the totem is equipped"),
+                SoundEvents.COW_HURT,
+                new CowAbility()
+        );
+
         // NEUTRAL
         register("minecraft:bee", "essence_bee",
                 new TotemTooltipData("Stinger Reflex", "Stings and poisons enemies when hit from behind"),
@@ -142,7 +148,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:magma_cube", "essence_magma_cube",
-                new TotemTooltipData("Igneous Elastic Body", "Bounce on the ground when falling + ???"),
+                new TotemTooltipData("Igneous Elastic Body", "Bounce on the ground when falling + chance to set any mob on fire on contact (1/3)"),
                 SoundEvents.MAGMA_CUBE_HURT,
                 new MagmaCubeAbility()
         );
