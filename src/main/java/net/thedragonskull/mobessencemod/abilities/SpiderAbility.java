@@ -36,7 +36,7 @@ public class SpiderAbility implements IMobAbility {
         if (!moving) return;
 
         Vec3 inputMotion = player.getDeltaMovement();
-        double climbSpeed = 0.1;
+        double climbSpeed = 0.2;
 
         player.setDeltaMovement(inputMotion.x * 0.9, climbSpeed, inputMotion.z * 0.9);
         player.fallDistance = 0.0F;
