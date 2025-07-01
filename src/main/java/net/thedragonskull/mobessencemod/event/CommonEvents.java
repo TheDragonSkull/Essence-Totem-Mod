@@ -56,6 +56,7 @@ public class CommonEvents {
         SlimeAbility.onPlayerHurt(event);
         MagmaCubeAbility.onPlayerHurt(event);
         SheepAbility.onPlayerHurt(event);
+        WolfAbility.onPlayerHurt(event);
     }
 
     @SubscribeEvent

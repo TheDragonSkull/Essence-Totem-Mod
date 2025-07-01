@@ -111,6 +111,10 @@
     {
       "predicate": { "essence_sheep": 1 },
       "model": "mobessencemod:item/totem_of_essence_sheep"
+    },
+    {
+      "predicate": { "essence_wolf": 1 },
+      "model": "mobessencemod:item/totem_of_essence_wolf"
     }
   ]
 }

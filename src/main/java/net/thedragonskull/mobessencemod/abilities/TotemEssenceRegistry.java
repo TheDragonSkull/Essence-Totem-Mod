@@ -146,6 +146,13 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.NEUTRAL
         );
 
+        register("minecraft:wolf", "essence_wolf",
+                new TotemTooltipData("???", "???"),
+                SoundEvents.WOLF_HURT,
+                new WolfAbility(),
+                TotemMobCategory.NEUTRAL
+        );
+
         // HOSTILE
         register("minecraft:zombie", "essence_zombie",
                 new TotemTooltipData("Zombie Recall", "Revive with half heart (one time use)"),
