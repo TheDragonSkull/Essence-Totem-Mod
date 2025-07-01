@@ -23,6 +23,7 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.thedragonskull.mobessencemod.abilities.IMobAbility;
 import net.thedragonskull.mobessencemod.abilities.TotemEssenceRegistry;
+import net.thedragonskull.mobessencemod.util.TotemMobCategory;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
@@ -168,6 +169,20 @@ public class TotemOfEssenceItem extends Item implements ICurioItem {
     }
 
     @Override
+    public Component getName(ItemStack stack) {
+        ResourceLocation essence = TotemUtils.getEssence(stack);
+
+        if (essence != null && TotemEssenceRegistry.isRegistered(essence)) {
+            TotemEssenceRegistry.EssenceData data = TotemEssenceRegistry.get(essence);
+
+            return Component.translatable(this.getDescriptionId(stack)).withStyle(data.category().asStyle());
+        }
+
+        return super.getName(stack);
+    }
+
+
+    @Override
     public String getDescriptionId(ItemStack stack) {
 
         ResourceLocation essence = TotemUtils.getEssence(stack);
@@ -175,6 +190,19 @@ public class TotemOfEssenceItem extends Item implements ICurioItem {
             return super.getDescriptionId();
         }
         return super.getDescriptionId() + "." + essence.getPath();
+    }
+
+    @Override
+    public boolean isFoil(ItemStack pStack) {
+        ResourceLocation essence = TotemUtils.getEssence(pStack);
+
+        if (essence != null && TotemEssenceRegistry.isRegistered(essence)) {
+            TotemEssenceRegistry.EssenceData data = TotemEssenceRegistry.get(essence);
+
+            return data.category() == TotemMobCategory.SPECIAL || data.category() == TotemMobCategory.NON_MOB || data.category() == TotemMobCategory.BOSS;
+        }
+
+        return false;
     }
 
     // CURIOS THINGS

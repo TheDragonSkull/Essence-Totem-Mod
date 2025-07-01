@@ -55,6 +55,7 @@ public class CommonEvents {
         CreeperAbility.onPlayerHurt(event);
         SlimeAbility.onPlayerHurt(event);
         MagmaCubeAbility.onPlayerHurt(event);
+        SheepAbility.onPlayerHurt(event);
     }
 
     @SubscribeEvent

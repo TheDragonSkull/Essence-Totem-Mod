@@ -3,8 +3,8 @@ package net.thedragonskull.mobessencemod.abilities;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.thedragonskull.mobessencemod.util.TotemMobCategory;
 import net.thedragonskull.mobessencemod.util.TotemTooltipData;
-
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -17,7 +17,8 @@ public class TotemEssenceRegistry {
             String modelPredicateName,
             TotemTooltipData tooltip,
             SoundEvent sound,
-            IMobAbility ability
+            IMobAbility ability,
+            TotemMobCategory category
     ) {}
 
     private static final Map<String, EssenceData> ESSENCE_DATA = new LinkedHashMap<>();
@@ -28,171 +29,205 @@ public class TotemEssenceRegistry {
         register("minecraft:pig", "essence_pig",
                 new TotemTooltipData("Cast-Iron Stomach", "Immune to negative food effects"),
                 SoundEvents.PIG_HURT,
-                new PigAbility()
+                new PigAbility(),
+                TotemMobCategory.PASSIVE
         );
 
         register("minecraft:parrot", "essence_parrot",
                 new TotemTooltipData("Featherlight", "Double jump + don't trigger pressure plates or tripwires"),
                 SoundEvents.PARROT_HURT,
-                new ParrotAbility()
+                new ParrotAbility(),
+                TotemMobCategory.PASSIVE
         );
 
         register("minecraft:cod", "essence_cod",
                 new TotemTooltipData("Adaptive Lungs", "Increases underwater breathing time"),
                 SoundEvents.COD_HURT,
-                new CodAbility()
+                new CodAbility(),
+                TotemMobCategory.PASSIVE
         );
 
         register("minecraft:salmon", "essence_salmon",
                 new TotemTooltipData("Underwater Momentum", "Increases swimming speed"),
                 SoundEvents.SALMON_HURT,
-                new SalmonAbility()
+                new SalmonAbility(),
+                TotemMobCategory.PASSIVE
         );
 
         register("minecraft:tropical_fish", "essence_tropical_fish",
                 new TotemTooltipData("Clear Waters", "Enhanced underwater visibility"),
                 SoundEvents.TROPICAL_FISH_HURT,
-                new TropicalFishAbility()
+                new TropicalFishAbility(),
+                TotemMobCategory.PASSIVE
         );
 
         register("minecraft:chicken", "essence_chicken",
                 new TotemTooltipData("Feathered Fiend", "Basically permanent slow falling"),
                 SoundEvents.CHICKEN_HURT,
-                new ChickenAbility()
+                new ChickenAbility(),
+                TotemMobCategory.PASSIVE
         );
 
         register("minecraft:villager", "essence_villager",
                 new TotemTooltipData("Scent of the Money", "Grow a big nose to smell nearby emerald ores (~20 blocks)"),
                 SoundEvents.VILLAGER_HURT,
-                new VillagerAbility()
+                new VillagerAbility(),
+                TotemMobCategory.PASSIVE
         );
 
         register("minecraft:wandering_trader", "essence_wandering_trader",
                 new TotemTooltipData("Llama Whisperer", "Llamas won't spit at the player + now you can control llamas while riding"),
                 SoundEvents.WANDERING_TRADER_HURT,
-                new WanderingTraderAbility()
+                new WanderingTraderAbility(),
+                TotemMobCategory.PASSIVE
         );
 
         register("minecraft:cow", "essence_cow",
                 new TotemTooltipData("Cleanse", "Chance of cleansing a harmful effect (1/3) when applied while the totem is equipped"),
                 SoundEvents.COW_HURT,
-                new CowAbility()
+                new CowAbility(),
+                TotemMobCategory.PASSIVE
+        );
+
+        register("minecraft:sheep", "essence_sheep",
+                new TotemTooltipData("Wooly Shield", "Chance of halving melee and projectile damage (1/3)"),
+                SoundEvents.SHEEP_HURT,
+                new SheepAbility(),
+                TotemMobCategory.PASSIVE
         );
 
         // NEUTRAL
         register("minecraft:bee", "essence_bee",
                 new TotemTooltipData("Stinger Reflex", "Stings and poisons enemies when hit from behind"),
                 SoundEvents.BEE_HURT,
-                new BeeAbility()
+                new BeeAbility(),
+                TotemMobCategory.NEUTRAL
         );
 
         register("minecraft:pufferfish", "essence_pufferfish",
                 new TotemTooltipData("Toxic Touch", "Chance to inflict knockback + poison on contact (1/3)"),
                 SoundEvents.PUFFER_FISH_HURT,
-                new PufferfishAbility()
+                new PufferfishAbility(),
+                TotemMobCategory.NEUTRAL
         );
 
         register("minecraft:spider", "essence_spider",
                 new TotemTooltipData("Wall-Crawler", "Slowly climb vertical surfaces"),
                 SoundEvents.SPIDER_HURT,
-                new SpiderAbility()
+                new SpiderAbility(),
+                TotemMobCategory.NEUTRAL
         );
 
         register("minecraft:cave_spider", "essence_cave_spider",
                 new TotemTooltipData("Poisonous Wall-Crawler", "Slowly climb walls + poison enemies when unarmed (20%)"),
                 SoundEvents.SPIDER_HURT,
-                new CaveSpiderAbility()
+                new CaveSpiderAbility(),
+                TotemMobCategory.NEUTRAL
         );
 
         register("minecraft:enderman", "essence_enderman",
                 new TotemTooltipData("Blink Instinct", "Teleport away to evade ranged damage"),
                 SoundEvents.ENDERMAN_HURT,
-                new EndermanAbility()
+                new EndermanAbility(),
+                TotemMobCategory.NEUTRAL
         );
 
         register("minecraft:goat", "essence_goat",
                 new TotemTooltipData("Ram Charge", "Tackle any mob in your way while running; the faster the player, the more the damage"),
                 SoundEvents.GOAT_HURT,
-                new GoatAbility()
+                new GoatAbility(),
+                TotemMobCategory.NEUTRAL
         );
 
         register("minecraft:llama", "essence_llama",
                 new TotemTooltipData("Spit Happens", "Automatically spits at hostile mobs nearby dealing damage and knockback"),
                 SoundEvents.LLAMA_HURT,
-                new LlamaAbility()
+                new LlamaAbility(),
+                TotemMobCategory.NEUTRAL
         );
 
         // HOSTILE
         register("minecraft:zombie", "essence_zombie",
                 new TotemTooltipData("Zombie Recall", "Revive with half heart (one time use)"),
                 SoundEvents.ZOMBIE_HURT,
-                new ZombieAbility()
+                new ZombieAbility(),
+                TotemMobCategory.HOSTILE
         );
 
         register("minecraft:creeper", "essence_creeper",
                 new TotemTooltipData("Explosive Retaliation", "When taking melee damage, there's a chance to trigger a small explosion that doesn't affect blocks"),
                 SoundEvents.CREEPER_HURT,
-                new CreeperAbility()
+                new CreeperAbility(),
+                TotemMobCategory.HOSTILE
         );
 
         register("minecraft:skeleton", "essence_skeleton",
                 new TotemTooltipData("Bone Quiver", "Arrows fired have a chance to not be consumed: 50% for regular arrows, 25% for spectral or tipped arrows"),
                 SoundEvents.SKELETON_HURT,
-                new SkeletonAbility()
+                new SkeletonAbility(),
+                TotemMobCategory.HOSTILE
         );
 
         register("minecraft:slime", "essence_slime",
                 new TotemTooltipData("Elastic Body", "Bounce on the ground when falling + chance to absorbe melee damage"),
                 SoundEvents.SLIME_HURT,
-                new SlimeAbility()
+                new SlimeAbility(),
+                TotemMobCategory.HOSTILE
         );
 
         register("minecraft:magma_cube", "essence_magma_cube",
                 new TotemTooltipData("Igneous Elastic Body", "Bounce on the ground when falling + chance to set any mob on fire on contact (1/3)"),
                 SoundEvents.MAGMA_CUBE_HURT,
-                new MagmaCubeAbility()
+                new MagmaCubeAbility(),
+                TotemMobCategory.HOSTILE
         );
 
         register("minecraft:blaze", "essence_blaze",
                 new TotemTooltipData("Infernal Drift", "Shift while on air to levitate + chance to set any mob on fire (1/4) on hit (melee)"),
                 SoundEvents.BLAZE_HURT,
-                new BlazeAbility()
+                new BlazeAbility(),
+                TotemMobCategory.HOSTILE
         );
 
         // SPECIAL
         register("minecraft:zombie_villager", "essence_zombie_villager",
                 new TotemTooltipData("Undead Scent of the Money", "Grow a big nose to smell nearby emerald ores (~20 blocks) + revive with half heart (one time use)"),
                 SoundEvents.ZOMBIE_VILLAGER_HURT,
-                new ZombieVillagerAbility()
+                new ZombieVillagerAbility(),
+                TotemMobCategory.SPECIAL
         );
 
         register("minecraft:trader_llama", "essence_trader_llama",
                 new TotemTooltipData("Wandering Spitter", "Automatically spits at hostile mobs nearby dealing damage and knockback + llamas won't spit at the player + control llamas while riding"),
                 SoundEvents.LLAMA_HURT,
-                new TraderLlamaAbility()
+                new TraderLlamaAbility(),
+                TotemMobCategory.SPECIAL
         );
 
         register("minecraft:red_mooshroom", "essence_red_mooshroom",
                 new TotemTooltipData("Cleansing Feast", "Chance of cleansing a harmful effect (1/3) when applied while the totem is equipped + chance of filling +1 hunger when eating non harmful food (1/3)"),
                 SoundEvents.COW_HURT,
-                new RedMooshroomAbility()
+                new RedMooshroomAbility(),
+                TotemMobCategory.SPECIAL
         );
 
         register("minecraft:brown_mooshroom", "essence_brown_mooshroom",
                 new TotemTooltipData("Enriched Cleanse", "Chance of cleansing a harmful effect (1/3) when applied while the totem is equipped + chance of adding +1 saturation after eating non harmful food (1/3)"),
                 SoundEvents.COW_HURT,
-                new BrownMooshroomAbility()
+                new BrownMooshroomAbility(),
+                TotemMobCategory.SPECIAL
         );
-
     }
 
-    private static void register(String id, String predicate, TotemTooltipData tooltip, SoundEvent sound, IMobAbility ability) {
+
+    private static void register(String id, String predicate, TotemTooltipData tooltip, SoundEvent sound, IMobAbility ability, TotemMobCategory category) {
         ESSENCE_DATA.put(id, new EssenceData(
                 ResourceLocation.parse(id),
                 predicate,
                 tooltip,
                 sound,
-                ability
+                ability,
+                category
         ));
     }
 
