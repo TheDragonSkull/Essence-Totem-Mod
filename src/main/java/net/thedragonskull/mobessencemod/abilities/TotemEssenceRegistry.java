@@ -197,7 +197,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:silverfish", "essence_silverfish",
-                new TotemTooltipData("Infested Strike", "Silverfish will ignore the player + chance for a silverfish to emerge from the target's feet and attack it (1/10)"),
+                new TotemTooltipData("Infested Strike", "Silverfish will ignore the player + chance for a silverfish to emerge from the target's feet and attack it (1/8)"),
                 SoundEvents.SILVERFISH_HURT,
                 new SilverfishAbility(),
                 TotemMobCategory.HOSTILE

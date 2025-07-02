@@ -34,7 +34,7 @@ public class SilverfishAbility implements IMobAbility {
 
         if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:silverfish"))) return;
 
-        if (player.getRandom().nextFloat() > 0.1f) return;
+        if (player.getRandom().nextInt(8) != 0) return;
 
         LivingEntity target = event.getEntity();
 
