@@ -115,6 +115,8 @@ public class TraderLlamaAbility implements IMobAbility {
 
             if (mob.getTarget() != null || mob.isPassenger() || mob.isVehicle()) return false;
 
+            if (mob.isLeashed() && !(mob.getLeashHolder() instanceof Player)) return false;
+
             return true;
         });
 

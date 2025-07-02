@@ -196,6 +196,13 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.HOSTILE
         );
 
+        register("minecraft:silverfish", "essence_silverfish",
+                new TotemTooltipData("Infested Strike", "Silverfish will ignore the player + chance for a silverfish to emerge from the target's feet and attack it (1/10)"),
+                SoundEvents.SILVERFISH_HURT,
+                new SilverfishAbility(),
+                TotemMobCategory.HOSTILE
+        );
+
         // SPECIAL
         register("minecraft:zombie_villager", "essence_zombie_villager",
                 new TotemTooltipData("Undead Scent of the Money", "Grow a big nose to smell nearby emerald ores (~20 blocks) + revive with half heart (one time use)"),

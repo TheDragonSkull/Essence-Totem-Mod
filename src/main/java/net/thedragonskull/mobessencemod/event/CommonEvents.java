@@ -57,6 +57,7 @@ public class CommonEvents {
         MagmaCubeAbility.onPlayerHurt(event);
         SheepAbility.onPlayerHurt(event);
         WolfAbility.onPlayerHurt(event);
+        SilverfishAbility.onPlayerHurt(event);
     }
 
     @SubscribeEvent
@@ -125,6 +126,13 @@ public class CommonEvents {
     }
 
     @SubscribeEvent
+    public static void onLivingChangeTarget(LivingChangeTargetEvent event) {
+        WanderingTraderAbility.onLlamaTarget(event);
+        PhantomAbility.onPhantomTarget(event);
+        SilverfishAbility.onSilverfishTarget(event);
+    }
+
+    @SubscribeEvent
     public static void onArrowSpawn(EntityJoinLevelEvent event) {
         if (!(event.getEntity() instanceof AbstractArrow arrow)) return;
         if (!(arrow.getOwner() instanceof Player player)) return;
@@ -145,12 +153,6 @@ public class CommonEvents {
             }
         }
 
-    }
-
-    @SubscribeEvent
-    public static void onLivingChangeTarget(LivingChangeTargetEvent event) {
-        WanderingTraderAbility.onLlamaTarget(event);
-        PhantomAbility.onPhantomTarget(event);
     }
 
 

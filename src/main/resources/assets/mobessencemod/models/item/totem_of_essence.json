@@ -119,6 +119,10 @@
     {
       "predicate": { "essence_phantom": 1 },
       "model": "mobessencemod:item/totem_of_essence_phantom"
+    },
+    {
+      "predicate": { "essence_silverfish": 1 },
+      "model": "mobessencemod:item/totem_of_essence_silverfish"
     }
   ]
 }
