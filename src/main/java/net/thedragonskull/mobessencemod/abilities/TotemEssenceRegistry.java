@@ -75,13 +75,6 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.PASSIVE
         );
 
-        register("minecraft:wandering_trader", "essence_wandering_trader",
-                new TotemTooltipData("Llama Whisperer", "Llamas won't spit at the player + now you can control llamas while riding"),
-                SoundEvents.WANDERING_TRADER_HURT,
-                new WanderingTraderAbility(),
-                TotemMobCategory.PASSIVE
-        );
-
         register("minecraft:cow", "essence_cow",
                 new TotemTooltipData("Cleanse", "Chance of cleansing a harmful effect (1/3) when applied while the totem is equipped"),
                 SoundEvents.COW_HURT,
@@ -140,7 +133,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:llama", "essence_llama",
-                new TotemTooltipData("Spit Happens", "Automatically spits at hostile mobs nearby dealing damage and knockback"),
+                new TotemTooltipData("Spit Happens", "Automatically spits at hostile mobs nearby dealing damage and knockback (every 5 seconds)"),
                 SoundEvents.LLAMA_HURT,
                 new LlamaAbility(),
                 TotemMobCategory.NEUTRAL
@@ -197,7 +190,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:phantom", "essence_phantom",
-                new TotemTooltipData("???", "Phantoms will no longer bother the player + temporary glide (only at night and lasts for 20 seconds) [1 minute cooldown]"),
+                new TotemTooltipData("Night Glider", "Phantoms will no longer bother the player + gliding (only at night)"),
                 SoundEvents.PHANTOM_HURT,
                 new PhantomAbility(),
                 TotemMobCategory.HOSTILE
@@ -211,8 +204,15 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.SPECIAL
         );
 
+        register("minecraft:wandering_trader", "essence_wandering_trader",
+                new TotemTooltipData("Llama Whisperer", "Llamas won't spit at the player + control llamas while riding"),
+                SoundEvents.WANDERING_TRADER_HURT,
+                new WanderingTraderAbility(),
+                TotemMobCategory.SPECIAL
+        );
+
         register("minecraft:trader_llama", "essence_trader_llama",
-                new TotemTooltipData("Wandering Spitter", "Automatically spits at hostile mobs nearby dealing damage and knockback + llamas won't spit at the player + control llamas while riding"),
+                new TotemTooltipData("???", "Automatically spits at hostile mobs nearby dealing damage and knockback (every 5 seconds)"),
                 SoundEvents.LLAMA_HURT,
                 new TraderLlamaAbility(),
                 TotemMobCategory.SPECIAL

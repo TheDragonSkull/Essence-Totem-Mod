@@ -16,7 +16,13 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 public class PhantomAbility implements IMobAbility {
+
+    private static final Map<UUID, Boolean> lastJumping = new HashMap<>();
 
     @Override
     public void tick(ServerPlayer player, ItemStack totemStack) {
@@ -37,7 +43,10 @@ public class PhantomAbility implements IMobAbility {
         Player player = event.player;
         if (!(event.player instanceof LocalPlayer localPlayer)) return;
 
-        if (!TotemUtils.hasTotemWithEssenceClient(localPlayer, ResourceLocation.parse("minecraft:phantom"))) return;
+        if (!TotemUtils.hasTotemWithEssenceClient(localPlayer, ResourceLocation.parse("minecraft:phantom"))) {
+            localPlayer.stopFallFlying();
+            return;
+        }
 
         if (!isNight(localPlayer.level())) return;
 
@@ -47,14 +56,14 @@ public class PhantomAbility implements IMobAbility {
 
         if (localPlayer.isFallFlying()) {
             double yawRad = Math.toRadians(localPlayer.getYRot());
-            float offsetScale = 1.3F + 0.21F * 0;
+            float offsetScale = 0.2F + 0.21F * 0;
             float sideX = Mth.cos((float) yawRad) * offsetScale;
             float sideZ = Mth.sin((float) yawRad) * offsetScale;
-            float heightOffset = 0.3F + 0.45F * 0.0F;
+            float heightOffset = 0.3F + 0.25F * 0.0F;
 
             double baseX = localPlayer.getX();
             double baseY = localPlayer.getY() + heightOffset;
-            double baseZ = localPlayer.getZ(); //todo, que salgan los 2 de los pies
+            double baseZ = localPlayer.getZ();
 
             localPlayer.level().addParticle(ParticleTypes.MYCELIUM, baseX + sideX, baseY, baseZ + sideZ, 0.0D, 0.0D, 0.0D);
             localPlayer.level().addParticle(ParticleTypes.MYCELIUM, baseX - sideX, baseY, baseZ - sideZ, 0.0D, 0.0D, 0.0D);
@@ -65,7 +74,13 @@ public class PhantomAbility implements IMobAbility {
             return;
         }
 
-        if (localPlayer.input.jumping
+        boolean prevJumping = lastJumping.getOrDefault(localPlayer.getUUID(), false);
+        boolean jumpPressedNow = localPlayer.input.jumping;
+        boolean jumpJustPressed = !prevJumping && jumpPressedNow;
+
+        lastJumping.put(localPlayer.getUUID(), jumpPressedNow);
+
+        if (jumpJustPressed
                 && !localPlayer.getAbilities().flying
                 && !localPlayer.isPassenger()
                 && !localPlayer.onClimbable()
