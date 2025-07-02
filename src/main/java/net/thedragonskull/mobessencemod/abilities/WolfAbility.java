@@ -46,7 +46,7 @@ public class WolfAbility implements IMobAbility {
         ServerLevel level = (ServerLevel) player.level();
         Vec3 backDir = player.getLookAngle().scale(-1).normalize();
 
-        if (player.getRandom().nextInt(1) != 0) return; //todo 1/8
+        if (player.getRandom().nextInt(8) != 0) return;
 
         List<Wolf> wolves = new ArrayList<>();
         for (int i = 0; i < 2; i++) {

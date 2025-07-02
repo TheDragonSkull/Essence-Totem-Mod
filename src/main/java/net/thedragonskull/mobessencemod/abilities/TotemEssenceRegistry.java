@@ -212,7 +212,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:trader_llama", "essence_trader_llama",
-                new TotemTooltipData("???", "Automatically spits at hostile mobs nearby dealing damage and knockback (every 5 seconds)"),
+                new TotemTooltipData("Caravan Aura", "Automatically spits at hostile mobs nearby dealing damage and knockback (every 5 seconds) + nearby creatures follow the player (5 blocks radius)"),
                 SoundEvents.LLAMA_HURT,
                 new TraderLlamaAbility(),
                 TotemMobCategory.SPECIAL
