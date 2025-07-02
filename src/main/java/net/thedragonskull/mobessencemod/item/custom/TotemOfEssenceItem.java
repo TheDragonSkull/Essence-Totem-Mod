@@ -38,6 +38,11 @@ public class TotemOfEssenceItem extends Item implements ICurioItem {
     }
 
     @Override
+    public boolean canElytraFly(ItemStack stack, LivingEntity entity) {
+        return true;
+    }
+
+    @Override
     public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity target, InteractionHand hand) {
         ResourceLocation mobId;
 

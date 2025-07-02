@@ -89,6 +89,7 @@ public class CommonEvents {
         GoatAbility.applyRamAttack(event);
         BlazeAbility.blazeLevitate(event);
         MagmaCubeAbility.setOnFireOnContact(event);
+        PhantomAbility.onPlayerPhantomFly(event);
 
         if (event.phase != TickEvent.Phase.END) return;
         if (!(event.player instanceof ServerPlayer serverPlayer)) return;
@@ -149,6 +150,7 @@ public class CommonEvents {
     public static void onLivingChangeTarget(LivingChangeTargetEvent event) {
         WanderingTraderAbility.onLlamaTarget(event);
         TraderLlamaAbility.onTraderLlamaTarget(event);
+        PhantomAbility.onPhantomTarget(event);
     }
 
 

@@ -196,6 +196,13 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.HOSTILE
         );
 
+        register("minecraft:phantom", "essence_phantom",
+                new TotemTooltipData("???", "Phantoms will no longer bother the player + temporary glide (only at night and lasts for 20 seconds) [1 minute cooldown]"),
+                SoundEvents.PHANTOM_HURT,
+                new PhantomAbility(),
+                TotemMobCategory.HOSTILE
+        );
+
         // SPECIAL
         register("minecraft:zombie_villager", "essence_zombie_villager",
                 new TotemTooltipData("Undead Scent of the Money", "Grow a big nose to smell nearby emerald ores (~20 blocks) + revive with half heart (one time use)"),
