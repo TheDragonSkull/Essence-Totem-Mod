@@ -147,7 +147,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:wolf", "essence_wolf",
-                new TotemTooltipData("???", "???"),
+                new TotemTooltipData("Pack Instinct", "When injured, there's a chance two wolves will come to your aid and attack your assailant"),
                 SoundEvents.WOLF_HURT,
                 new WolfAbility(),
                 TotemMobCategory.NEUTRAL

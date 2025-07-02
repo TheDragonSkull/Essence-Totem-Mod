@@ -118,6 +118,11 @@ public class CommonEvents {
     }
 
     @SubscribeEvent
+    public static void onServerTick(TickEvent.ServerTickEvent event) {
+        WolfAbility.onServerTick(event);
+    }
+
+    @SubscribeEvent
     public static void onArrowSpawn(EntityJoinLevelEvent event) {
         if (!(event.getEntity() instanceof AbstractArrow arrow)) return;
         if (!(arrow.getOwner() instanceof Player player)) return;

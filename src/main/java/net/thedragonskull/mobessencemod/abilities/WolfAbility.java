@@ -1,6 +1,5 @@
 package net.thedragonskull.mobessencemod.abilities;
 
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -15,39 +14,19 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.server.ServerLifecycleHooks;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
 
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 public class WolfAbility implements IMobAbility {
-    private static final Map<UUID, TrackedWolfGroup> activeWolves = new HashMap<>();
-    private static final int DURATION_TICKS = 60 * 20;
+
 
     @Override
     public void tick(ServerPlayer player, ItemStack totemStack) {
-        UUID uuid = player.getUUID();
-        TrackedWolfGroup group = activeWolves.get(uuid);
-        if (group == null) return;
 
-        group.ticksLeft--;
-
-        boolean expired = group.ticksLeft <= 0;
-        boolean targetDead = group.target.isDeadOrDying();
-
-        if (expired || targetDead) {
-            for (Wolf wolf : group.wolves) {
-                if (!wolf.isRemoved()) {
-
-                    //todo: sonido al irse + particulas poof
-
-                    wolf.discard();
-                }
-            }
-            activeWolves.remove(uuid);
-        }
     }
 
     public static void onPlayerHurt(LivingHurtEvent event) {
@@ -55,22 +34,19 @@ public class WolfAbility implements IMobAbility {
 
         if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:wolf"))) return;
 
-        Entity attacker = event.getSource().getEntity();
-        if (!(attacker instanceof LivingEntity target)) return;
+        DamageSource source = event.getSource();
+        Entity cause = source.getEntity();
 
-        String id = event.getSource().getMsgId();
-        if (!(id.equals("player") || id.equals("mob"))) return;
-
-        if (activeWolves.containsKey(player.getUUID())) return;
-
-        if (target.isDeadOrDying()) return;
+        if (!(cause instanceof LivingEntity attacker)) return;
+        if (attacker.getUUID().equals(player.getUUID())) return;
+        if (attacker.isDeadOrDying()) return;
 
         if (player.isDeadOrDying()) return;
 
         ServerLevel level = (ServerLevel) player.level();
         Vec3 backDir = player.getLookAngle().scale(-1).normalize();
 
-        if (player.getRandom().nextInt(6) != 0) return;
+        if (player.getRandom().nextInt(1) != 0) return; //todo 1/8
 
         List<Wolf> wolves = new ArrayList<>();
         for (int i = 0; i < 2; i++) {
@@ -79,35 +55,51 @@ public class WolfAbility implements IMobAbility {
 
             double spacing = (i == 0 ? 2 : 3);
             Vec3 spawn = player.position().add(backDir.scale(spacing)).add(0, 0.1, 0);
+            int despawnTimer = 20 * 60;
 
             wolf.moveTo(spawn.x, spawn.y, spawn.z, player.getYRot(), 0.0F);
 
-            wolf.setTarget(target);
-            wolf.setLastHurtByMob(target);
+            wolf.setTarget(attacker);
+            wolf.setLastHurtByMob(attacker);
             wolf.setOwnerUUID(player.getUUID());
             wolf.setTame(true);
             wolf.setAggressive(true);
             wolf.setPersistenceRequired();
 
+            wolf.getPersistentData().putInt("MobEssence_DespawnTimer", despawnTimer);
+            wolf.getPersistentData().putUUID("MobEssence_Owner", player.getUUID());
+
             level.addFreshEntity(wolf);
             wolves.add(wolf);
+
+            player.displayClientMessage(Component.literal("The pack has your back..."), true);
         }
 
-        activeWolves.put(player.getUUID(), new TrackedWolfGroup(wolves, target));
 
         level.playSound(null, player.blockPosition(), SoundEvents.WOLF_GROWL, SoundSource.PLAYERS, 1.0F, 1.0F);
     }
 
-    private static class TrackedWolfGroup {
-        public final List<Wolf> wolves;
-        public final LivingEntity target;
-        public int ticksLeft;
 
-        public TrackedWolfGroup(List<Wolf> wolves, LivingEntity target) {
-            this.wolves = wolves;
-            this.target = target;
-            this.ticksLeft = DURATION_TICKS;
+
+    public static void onServerTick(TickEvent.ServerTickEvent event) {
+        if (event.phase != TickEvent.Phase.END) return;
+
+        for (ServerLevel level : ServerLifecycleHooks.getCurrentServer().getAllLevels()) {
+            for (Wolf wolf : level.getEntities(EntityType.WOLF, Entity::isAlive)) {
+                if (wolf.getPersistentData().contains("MobEssence_DespawnTimer")) {
+                    int timer = wolf.getPersistentData().getInt("MobEssence_DespawnTimer");
+
+                    if (--timer <= 0 || wolf.getTarget() == null || wolf.getTarget().isDeadOrDying()) {
+                        level.sendParticles(ParticleTypes.POOF, wolf.getX(), wolf.getY() + 0.5, wolf.getZ(), 10, 0.3, 0.3, 0.3, 0.01);
+                        level.playSound(null, wolf.blockPosition(), SoundEvents.FIRE_EXTINGUISH, SoundSource.PLAYERS, 1.0F, 1.0F);
+                        wolf.discard();
+                    } else {
+                        wolf.getPersistentData().putInt("MobEssence_DespawnTimer", timer);
+                    }
+                }
+            }
         }
+
     }
 
 }
