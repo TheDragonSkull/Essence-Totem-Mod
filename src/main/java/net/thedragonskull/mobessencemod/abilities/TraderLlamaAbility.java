@@ -111,7 +111,12 @@ public class TraderLlamaAbility implements IMobAbility {
 
             MobCategory mobCategory = mob.getType().getCategory();
             if (mobCategory == MobCategory.MISC ||
-                    mobCategory == MobCategory.MONSTER) return false;
+                    mobCategory == MobCategory.MONSTER ||
+                    mobCategory == MobCategory.AXOLOTLS ||
+                    mobCategory == MobCategory.UNDERGROUND_WATER_CREATURE ||
+                    mobCategory == MobCategory.WATER_CREATURE ||
+                    mobCategory == MobCategory.WATER_AMBIENT
+            ) return false;
 
             if (mob.getTarget() != null || mob.isPassenger() || mob.isVehicle()) return false;
 
