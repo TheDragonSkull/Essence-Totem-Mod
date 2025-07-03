@@ -58,6 +58,7 @@ public class CommonEvents {
         SheepAbility.onPlayerHurt(event);
         WolfAbility.onPlayerHurt(event);
         SilverfishAbility.onPlayerHurt(event);
+        EndermiteAbility.onPlayerHurt(event);
     }
 
     @SubscribeEvent
@@ -130,6 +131,7 @@ public class CommonEvents {
         WanderingTraderAbility.onLlamaTarget(event);
         PhantomAbility.onPhantomTarget(event);
         SilverfishAbility.onSilverfishTarget(event);
+        EndermiteAbility.onEndermiteTarget(event);
     }
 
     @SubscribeEvent
