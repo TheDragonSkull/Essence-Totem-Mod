@@ -85,6 +85,7 @@ public class DolphinAbility implements IMobAbility {
                     1, 0.5, 0.5, 0.5, 0.02);
 
             player.level().playSound(null, player.blockPosition(), SoundEvents.DOLPHIN_SWIM, SoundSource.PLAYERS, 1.0f, 1.0f);
+            player.startAutoSpinAttack(20);
         }
     }
 

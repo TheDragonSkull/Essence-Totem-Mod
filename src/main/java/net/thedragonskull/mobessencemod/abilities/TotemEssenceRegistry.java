@@ -48,7 +48,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:salmon", "essence_salmon",
-                new TotemTooltipData("Underwater Momentum", "Increases swimming speed"),
+                new TotemTooltipData("Underwater Momentum", "Increased swimming speed"),
                 SoundEvents.SALMON_HURT,
                 new SalmonAbility(),
                 TotemMobCategory.PASSIVE
@@ -147,7 +147,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:dolphin", "essence_dolphin",
-                new TotemTooltipData("Wave Rider", "???"),
+                new TotemTooltipData("Wave Rider", "Increased swimming speed + spin boost when swimming near an entity (if the entity is hit, damage is applied but it cancels the boost)"),
                 SoundEvents.DOLPHIN_HURT,
                 new DolphinAbility(),
                 TotemMobCategory.NEUTRAL
