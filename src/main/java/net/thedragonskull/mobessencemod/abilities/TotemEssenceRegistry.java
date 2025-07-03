@@ -146,6 +146,13 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.NEUTRAL
         );
 
+        register("minecraft:dolphin", "essence_dolphin",
+                new TotemTooltipData("Wave Rider", "???"),
+                SoundEvents.DOLPHIN_HURT,
+                new DolphinAbility(),
+                TotemMobCategory.NEUTRAL
+        );
+
         // HOSTILE
         register("minecraft:zombie", "essence_zombie",
                 new TotemTooltipData("Zombie Recall", "Revive with half heart (one time use)"),

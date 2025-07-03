@@ -19,6 +19,7 @@ import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -93,6 +94,8 @@ public class CommonEvents {
         MagmaCubeAbility.setOnFireOnContact(event);
         PhantomAbility.onPlayerPhantomFly(event);
         TraderLlamaAbility.onPlayerTick(event);
+        DolphinAbility.swimBoost(event);
+        DolphinAbility.dolphinAutoSpinDash(event);
 
         if (event.phase != TickEvent.Phase.END) return;
         if (!(event.player instanceof ServerPlayer serverPlayer)) return;

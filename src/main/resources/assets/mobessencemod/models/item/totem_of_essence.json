@@ -127,6 +127,10 @@
     {
       "predicate": { "essence_endermite": 1 },
       "model": "mobessencemod:item/totem_of_essence_endermite"
+    },
+    {
+      "predicate": { "essence_dolphin": 1 },
+      "model": "mobessencemod:item/totem_of_essence_dolphin"
     }
   ]
 }
