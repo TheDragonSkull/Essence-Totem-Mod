@@ -39,6 +39,7 @@ public class SilverfishAbility implements IMobAbility {
         LivingEntity target = event.getEntity();
 
         spawnInfestedSilverfish(player, target);
+        spawnInfestedSilverfish(player, target);
     }
 
     private static void spawnInfestedSilverfish(ServerPlayer player, LivingEntity target) {
@@ -76,7 +77,7 @@ public class SilverfishAbility implements IMobAbility {
             );
         }
 
-        level.playSound(null, under, blockState.getSoundType().getBreakSound(), SoundSource.HOSTILE, 1.0f, 1.2f);
+        level.playSound(null, under, blockState.getSoundType().getBreakSound(), SoundSource.HOSTILE, 1.0f, 1.0f);
     }
 
     public static void onSilverfishTarget(LivingChangeTargetEvent event) {
