@@ -96,6 +96,13 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.PASSIVE
         );
 
+        register("minecraft:glow_squid", "essence_glow_squid",
+                new TotemTooltipData("Hypnotic Glowing", "Hypnotize aquatic mobs into following the player (10 blocks radius) + when melee attacked, chance to release glowing ink and put glowing effect to the attacker (1/3). If underwater, it also pushes the player away"),
+                SoundEvents.GLOW_SQUID_HURT,
+                new GlowSquidAbility(),
+                TotemMobCategory.PASSIVE
+        );
+
         // NEUTRAL
         register("minecraft:bee", "essence_bee",
                 new TotemTooltipData("Stinger Reflex", "Stings and poisons enemies when hit from behind"),

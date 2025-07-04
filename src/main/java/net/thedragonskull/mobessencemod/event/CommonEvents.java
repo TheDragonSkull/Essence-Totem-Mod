@@ -61,6 +61,7 @@ public class CommonEvents {
         SilverfishAbility.onPlayerHurt(event);
         EndermiteAbility.onPlayerHurt(event);
         SquidAbility.onPlayerHurt(event);
+        GlowSquidAbility.onPlayerHurt(event);
     }
 
     @SubscribeEvent
@@ -97,6 +98,7 @@ public class CommonEvents {
         TraderLlamaAbility.onPlayerTick(event);
         DolphinAbility.swimBoost(event);
         DolphinAbility.dolphinAutoSpinDash(event);
+        GlowSquidAbility.followGlowSquid(event);
 
         if (event.phase != TickEvent.Phase.END) return;
         if (!(event.player instanceof ServerPlayer serverPlayer)) return;
