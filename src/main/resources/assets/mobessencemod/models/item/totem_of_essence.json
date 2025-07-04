@@ -139,6 +139,10 @@
     {
       "predicate": { "essence_glow_squid": 1 },
       "model": "mobessencemod:item/totem_of_essence_glow_squid"
+    },
+    {
+      "predicate": { "essence_horse": 1 },
+      "model": "mobessencemod:item/totem_of_essence_horse"
     }
   ]
 }

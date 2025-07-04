@@ -103,6 +103,13 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.PASSIVE
         );
 
+        register("minecraft:horse", "essence_horse",
+                new TotemTooltipData("Power Leap", "Upgraded jump when sprinting for more than 3 seconds without stopping + chance to horse kick if melee attacked from behind (1/3)"),
+                SoundEvents.HORSE_HURT,
+                new HorseAbility(),
+                TotemMobCategory.PASSIVE
+        );
+
         // NEUTRAL
         register("minecraft:bee", "essence_bee",
                 new TotemTooltipData("Stinger Reflex", "Stings and poisons enemies when hit from behind"),
