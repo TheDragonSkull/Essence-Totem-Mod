@@ -143,6 +143,10 @@
     {
       "predicate": { "essence_horse": 1 },
       "model": "mobessencemod:item/totem_of_essence_horse"
+    },
+    {
+      "predicate": { "essence_donkey": 1 },
+      "model": "mobessencemod:item/totem_of_essence_donkey"
     }
   ]
 }

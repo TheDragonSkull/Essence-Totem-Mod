@@ -62,6 +62,7 @@ public class CommonEvents {
         SquidAbility.onPlayerHurt(event);
         GlowSquidAbility.onPlayerHurt(event);
         HorseAbility.horseKick(event);
+        DonkeyAbility.donkeyKick(event);
     }
 
     @SubscribeEvent

@@ -8,8 +8,10 @@
   },
   "mixins": [
     "CancelEffectMixin",
+    "ChestRemoveMixin",
     "LlamaControlMixin",
     "PhantomElytraMixin",
+    "PlayerDestroyChestMixin",
     "PressurePlateMixin",
     "TripWireMixin"
   ],

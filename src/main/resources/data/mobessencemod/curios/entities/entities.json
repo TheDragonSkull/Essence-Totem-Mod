@@ -1,4 +1,6 @@
 {
   "entities": ["player"],
-  "slots": ["totem_of_essence"]
+  "slots": [
+    "totem_of_essence"
+  ]
 }
