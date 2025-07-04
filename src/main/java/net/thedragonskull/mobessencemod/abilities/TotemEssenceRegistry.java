@@ -89,6 +89,13 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.PASSIVE
         );
 
+        register("minecraft:squid", "essence_squid",
+                new TotemTooltipData("Ink Escape", "When melee attacked, chance to release ink and slow the attacker (1/3). If underwater, it also pushes the player away"),
+                SoundEvents.SQUID_HURT,
+                new SquidAbility(),
+                TotemMobCategory.PASSIVE
+        );
+
         // NEUTRAL
         register("minecraft:bee", "essence_bee",
                 new TotemTooltipData("Stinger Reflex", "Stings and poisons enemies when hit from behind"),

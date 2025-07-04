@@ -60,6 +60,7 @@ public class CommonEvents {
         WolfAbility.onPlayerHurt(event);
         SilverfishAbility.onPlayerHurt(event);
         EndermiteAbility.onPlayerHurt(event);
+        SquidAbility.onPlayerHurt(event);
     }
 
     @SubscribeEvent
