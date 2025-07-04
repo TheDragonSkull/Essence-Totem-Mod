@@ -63,6 +63,7 @@ public class CommonEvents {
         GlowSquidAbility.onPlayerHurt(event);
         HorseAbility.horseKick(event);
         DonkeyAbility.donkeyKick(event);
+        MuleAbility.muleKick(event);
     }
 
     @SubscribeEvent
@@ -101,6 +102,7 @@ public class CommonEvents {
         DolphinAbility.dolphinAutoSpinDash(event);
         GlowSquidAbility.followGlowSquid(event);
         HorseAbility.horseJump(event);
+        MuleAbility.muleJump(event);
 
         if (event.phase != TickEvent.Phase.END) return;
         if (!(event.player instanceof ServerPlayer serverPlayer)) return;

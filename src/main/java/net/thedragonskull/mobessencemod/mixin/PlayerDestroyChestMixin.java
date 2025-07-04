@@ -33,8 +33,10 @@ public class PlayerDestroyChestMixin {
 
         if (blockEntity instanceof ChestBlockEntity chest) {
             if (player instanceof ServerPlayer serverPlayer &&
-                    TotemUtils.hasTotemWithEssenceServer(serverPlayer, ResourceLocation.parse("minecraft:donkey")) &&
-                    !serverPlayer.isCreative()) {
+                    !serverPlayer.isCreative() &&
+                    (TotemUtils.hasTotemWithEssenceServer(serverPlayer, ResourceLocation.parse("minecraft:donkey")) ||
+                            TotemUtils.hasTotemWithEssenceServer(serverPlayer, ResourceLocation.parse("minecraft:mule")))
+            ) {
 
                 ItemStack stack = new ItemStack(state.getBlock());
                 CompoundTag nbt = chest.saveWithFullMetadata();

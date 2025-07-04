@@ -147,6 +147,10 @@
     {
       "predicate": { "essence_donkey": 1 },
       "model": "mobessencemod:item/totem_of_essence_donkey"
+    },
+    {
+      "predicate": { "essence_mule": 1 },
+      "model": "mobessencemod:item/totem_of_essence_mule"
     }
   ]
 }

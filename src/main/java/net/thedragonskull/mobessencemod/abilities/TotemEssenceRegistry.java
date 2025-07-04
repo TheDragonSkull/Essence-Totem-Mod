@@ -280,6 +280,13 @@ public class TotemEssenceRegistry {
                 new BrownMooshroomAbility(),
                 TotemMobCategory.SPECIAL
         );
+
+        register("minecraft:mule", "essence_mule",
+                new TotemTooltipData("Leaping Hauler", "Upgraded jump when sprinting for more than 3 seconds without stopping + chests drop themselves with the items inside instead of dropping the contents + chance to donkey kick if melee attacked from behind (1/3)"),
+                SoundEvents.MULE_HURT,
+                new MuleAbility(),
+                TotemMobCategory.SPECIAL
+        );
     }
 
 

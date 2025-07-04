@@ -36,7 +36,8 @@ public class ChestRemoveMixin {
             if (blockEntity instanceof ChestBlockEntity) {
                 ServerPlayer nearbyPlayer = pLevel.getEntitiesOfClass(ServerPlayer.class,
                                 new AABB(pPos).inflate(6),
-                                player -> TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:donkey")))
+                                player -> TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:donkey")) ||
+                                        TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:mule")))
                         .stream().findFirst().orElse(null);
 
                 if (nearbyPlayer != null && !nearbyPlayer.isCreative()) {
