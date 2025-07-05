@@ -183,7 +183,7 @@ public class TotemEssenceRegistry {
 
         // HOSTILE
         register("minecraft:zombie", "essence_zombie",
-                new TotemTooltipData("Zombie Recall", "Revive with half heart (one time use)"),
+                new TotemTooltipData("Zombie Recall", "If killed by an entity, instantly revive with half heart (one time use)"),
                 SoundEvents.ZOMBIE_HURT,
                 new ZombieAbility(),
                 TotemMobCategory.HOSTILE
@@ -247,7 +247,7 @@ public class TotemEssenceRegistry {
 
         // SPECIAL
         register("minecraft:zombie_villager", "essence_zombie_villager",
-                new TotemTooltipData("Undead Scent of the Money", "Grow a big nose to smell nearby emerald ores (~20 blocks) + revive with half heart (one time use)"),
+                new TotemTooltipData("Undead Scent of the Money", "Grow a big nose to smell nearby emerald ores (~20 blocks) + if killed by an entity, instantly revive with half heart (one time use)"),
                 SoundEvents.ZOMBIE_VILLAGER_HURT,
                 new ZombieVillagerAbility(),
                 TotemMobCategory.SPECIAL
@@ -289,7 +289,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:zombie_horse", "essence_zombie_horse",
-                new TotemTooltipData("Undead Power Leap", "Upgraded jump when sprinting for more than 3 seconds without stopping + chance to horse kick if melee attacked from behind (1/3) + revive with half heart (one time use)"),
+                new TotemTooltipData("Undead Power Leap", "Upgraded jump when sprinting for more than 3 seconds without stopping + chance to horse kick if melee attacked from behind (1/3) + if killed by an entity, instantly revive with half heart (one time use)"),
                 SoundEvents.ZOMBIE_HORSE_HURT,
                 new ZombieHorseAbility(),
                 TotemMobCategory.SPECIAL

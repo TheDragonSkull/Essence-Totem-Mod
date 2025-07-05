@@ -11,6 +11,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -113,6 +114,11 @@ public class ZombieHorseAbility implements IMobAbility {
         Optional<SlotResult> zombieTotem = TotemUtils.findTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:zombie_horse"));
 
         if (zombieTotem.isEmpty()) return;
+
+        DamageSource source = event.getSource();
+        Entity attacker = source.getEntity();
+
+        if (!(attacker instanceof LivingEntity)) return;
 
         event.setCanceled(true);
 

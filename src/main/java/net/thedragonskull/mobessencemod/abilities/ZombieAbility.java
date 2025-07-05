@@ -9,6 +9,11 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.world.damagesource.DamageEffects;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
@@ -28,6 +33,11 @@ public class ZombieAbility implements IMobAbility {
         Optional<SlotResult> zombieTotem = TotemUtils.findTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:zombie"));
 
         if (zombieTotem.isEmpty()) return;
+
+        DamageSource source = event.getSource();
+        Entity attacker = source.getEntity();
+
+        if (!(attacker instanceof LivingEntity)) return;
 
         event.setCanceled(true);
 
