@@ -159,6 +159,10 @@
     {
       "predicate": { "essence_skeleton_horse": 1 },
       "model": "mobessencemod:item/totem_of_essence_skeleton_horse"
+    },
+    {
+      "predicate": { "essence_witch": 1 },
+      "model": "mobessencemod:item/totem_of_essence_witch"
     }
   ]
 }

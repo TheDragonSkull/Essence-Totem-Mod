@@ -301,6 +301,13 @@ public class TotemEssenceRegistry {
                 new SkeletonHorseAbility(),
                 TotemMobCategory.SPECIAL
         );
+
+        register("minecraft:witch", "essence_witch",
+                new TotemTooltipData("Coven's Blessing", "Cats no longer run away from the player + some damage types are reduced by 25% + chance to drink a potion depending on the situation"),
+                SoundEvents.WITCH_HURT,
+                new WitchAbility(),
+                TotemMobCategory.SPECIAL
+        );
     }
 
 

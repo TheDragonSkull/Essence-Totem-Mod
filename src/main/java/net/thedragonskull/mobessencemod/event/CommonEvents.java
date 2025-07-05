@@ -66,6 +66,7 @@ public class CommonEvents {
         MuleAbility.muleKick(event);
         ZombieHorseAbility.zombieHorseKick(event);
         SkeletonHorseAbility.skeletonHorseKick(event);
+        WitchAbility.witchPotion(event);
     }
 
     @SubscribeEvent
