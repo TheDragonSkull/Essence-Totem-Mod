@@ -89,7 +89,7 @@ public class TotemOfEssenceItem extends Item implements ICurioItem {
 
             if (!player.level().isClientSide()) {
                 ServerLevel serverLevel = (ServerLevel) player.level();
-                double x = target.getX(); // todo: el ancho tambien
+                double x = target.getX();
                 double y = target.getY() + target.getBbHeight() / 2.0;
                 double z = target.getZ();
 

@@ -287,6 +287,20 @@ public class TotemEssenceRegistry {
                 new MuleAbility(),
                 TotemMobCategory.SPECIAL
         );
+
+        register("minecraft:zombie_horse", "essence_zombie_horse",
+                new TotemTooltipData("Undead Power Leap", "Upgraded jump when sprinting for more than 3 seconds without stopping + chance to horse kick if melee attacked from behind (1/3) + revive with half heart (one time use)"),
+                SoundEvents.ZOMBIE_HORSE_HURT,
+                new ZombieHorseAbility(),
+                TotemMobCategory.SPECIAL
+        );
+
+        register("minecraft:skeleton_horse", "essence_skeleton_horse",
+                new TotemTooltipData("Leaping Bone Quiver", "Upgraded jump when sprinting for more than 3 seconds without stopping + chance to horse kick if melee attacked from behind (1/3) + arrows fired have a chance to not be consumed: 50% for regular arrows, 25% for spectral or tipped arrows"),
+                SoundEvents.SKELETON_HORSE_HURT,
+                new SkeletonHorseAbility(),
+                TotemMobCategory.SPECIAL
+        );
     }
 
 

@@ -64,6 +64,8 @@ public class CommonEvents {
         HorseAbility.horseKick(event);
         DonkeyAbility.donkeyKick(event);
         MuleAbility.muleKick(event);
+        ZombieHorseAbility.zombieHorseKick(event);
+        SkeletonHorseAbility.skeletonHorseKick(event);
     }
 
     @SubscribeEvent
@@ -77,6 +79,7 @@ public class CommonEvents {
     public static void onLivingDeath(LivingDeathEvent event) {
         ZombieAbility.onPlayerDeath(event);
         ZombieVillagerAbility.onPlayerDeath(event);
+        ZombieHorseAbility.onPlayerDeath(event);
     }
 
     @SubscribeEvent
@@ -103,11 +106,14 @@ public class CommonEvents {
         GlowSquidAbility.followGlowSquid(event);
         HorseAbility.horseJump(event);
         MuleAbility.muleJump(event);
+        ZombieHorseAbility.zombieHorseJump(event);
+        SkeletonHorseAbility.skeletonHorseJump(event);
 
         if (event.phase != TickEvent.Phase.END) return;
         if (!(event.player instanceof ServerPlayer serverPlayer)) return;
 
         SkeletonAbility.tryReturnArrow(serverPlayer);
+        SkeletonHorseAbility.tryReturnArrow(serverPlayer);
     }
 
     @SubscribeEvent
@@ -123,6 +129,7 @@ public class CommonEvents {
     @SubscribeEvent
     public static void onArrowLoose(ArrowLooseEvent event) {
         SkeletonAbility.tryPreventArrowConsumption(event);
+        SkeletonHorseAbility.tryPreventArrowConsumption(event);
     }
 
     @SubscribeEvent
@@ -149,7 +156,7 @@ public class CommonEvents {
         if (!(event.getEntity() instanceof AbstractArrow arrow)) return;
         if (!(arrow.getOwner() instanceof Player player)) return;
 
-        if (SkeletonAbility.markedFreeArrow(player)) {
+        if (SkeletonAbility.markedFreeArrow(player) || SkeletonHorseAbility.markedFreeArrow(player)) {
             arrow.pickup = AbstractArrow.Pickup.DISALLOWED;
         }
     }
