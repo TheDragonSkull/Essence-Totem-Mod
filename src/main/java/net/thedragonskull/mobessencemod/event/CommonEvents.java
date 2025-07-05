@@ -81,6 +81,7 @@ public class CommonEvents {
         ZombieAbility.onPlayerDeath(event);
         ZombieVillagerAbility.onPlayerDeath(event);
         ZombieHorseAbility.onPlayerDeath(event);
+        DrownedAbility.onPlayerDeath(event);
     }
 
     @SubscribeEvent
