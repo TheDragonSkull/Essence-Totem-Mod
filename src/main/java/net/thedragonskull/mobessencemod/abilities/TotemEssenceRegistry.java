@@ -246,9 +246,16 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:drowned", "essence_drowned",
-                new TotemTooltipData("Abyssal Salvation", "If killed by drowning, suffocation or freezing, revive with half a heart and get 20s of water breathing (one time use)"),
+                new TotemTooltipData("Abyssal Salvation", "If killed by drowning, revive with half a heart and get 20s of water breathing (one time use)"),
                 SoundEvents.DROWNED_HURT,
                 new DrownedAbility(),
+                TotemMobCategory.HOSTILE
+        );
+
+        register("minecraft:husk", "essence_husk",
+                new TotemTooltipData("Scorched Salvation", "If killed by starving or something fire-related, revive with half a heart and get 20s of fire resistance or refill the hunger bar (one time use) + while in the desert biome, prevent hunger"),
+                SoundEvents.HUSK_HURT,
+                new HuskAbility(),
                 TotemMobCategory.HOSTILE
         );
 

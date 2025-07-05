@@ -167,6 +167,10 @@
     {
       "predicate": { "essence_drowned": 1 },
       "model": "mobessencemod:item/totem_of_essence_drowned"
+    },
+    {
+      "predicate": { "essence_husk": 1 },
+      "model": "mobessencemod:item/totem_of_essence_husk"
     }
   ]
 }

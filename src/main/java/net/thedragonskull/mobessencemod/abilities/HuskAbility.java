@@ -4,6 +4,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -15,13 +16,15 @@ import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
 import top.theillusivec4.curios.api.SlotResult;
 
 import java.util.Optional;
 
-public class DrownedAbility implements IMobAbility {
+public class HuskAbility implements IMobAbility {
 
     @Override
     public void tick(ServerPlayer player, ItemStack totemStack) {
@@ -30,20 +33,26 @@ public class DrownedAbility implements IMobAbility {
     public static void onPlayerDeath(LivingDeathEvent event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
 
-        Optional<SlotResult> zombieTotem = TotemUtils.findTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:drowned"));
+        Optional<SlotResult> zombieTotem = TotemUtils.findTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:husk"));
 
         if (zombieTotem.isEmpty()) return;
 
         DamageSource source = event.getSource();
-        boolean drowning = source.is(DamageTypeTags.IS_DROWNING);
+        boolean isStarve = source.is(DamageTypes.STARVE);
+        boolean isFire = source.is(DamageTypeTags.IS_FIRE);
 
-        if (!(drowning)) return;
+        if (!(isFire || isStarve)) return;
 
         event.setCanceled(true);
 
         player.setHealth(1.0F);
 
-        player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 20 * 20, 0, false, false,false));
+        if (isFire) {
+            player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 20 * 20, 0, false, false, false));
+        } else {
+            player.getFoodData().setFoodLevel(20);
+            player.getFoodData().setSaturation(5.0F);
+        }
 
         ItemStack totemStack = zombieTotem.get().stack();
         CompoundTag tag = totemStack.getTag();
@@ -74,4 +83,19 @@ public class DrownedAbility implements IMobAbility {
 
         player.displayClientMessage(Component.literal("You claw your way back from death...").withStyle(ChatFormatting.DARK_GREEN), true);
     }
+
+    public static void preventHungerInDesert(TickEvent.PlayerTickEvent event) {
+        if (event.phase != TickEvent.Phase.END) return;
+        if (!(event.player instanceof ServerPlayer player)) return;
+
+        if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:husk"))) return;
+
+        ResourceKey<Biome> biomeKey = player.level().getBiome(player.blockPosition()).unwrapKey().orElse(null);
+        if (biomeKey == null) return;
+
+        if (biomeKey.location().getPath().contains("desert")) {
+            player.getFoodData().setFoodLevel(20);
+        }
+    }
+
 }

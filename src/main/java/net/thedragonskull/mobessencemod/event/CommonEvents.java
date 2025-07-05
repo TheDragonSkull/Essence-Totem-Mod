@@ -82,6 +82,7 @@ public class CommonEvents {
         ZombieVillagerAbility.onPlayerDeath(event);
         ZombieHorseAbility.onPlayerDeath(event);
         DrownedAbility.onPlayerDeath(event);
+        HuskAbility.onPlayerDeath(event);
     }
 
     @SubscribeEvent
@@ -110,6 +111,7 @@ public class CommonEvents {
         MuleAbility.muleJump(event);
         ZombieHorseAbility.zombieHorseJump(event);
         SkeletonHorseAbility.skeletonHorseJump(event);
+        HuskAbility.preventHungerInDesert(event);
 
         if (event.phase != TickEvent.Phase.END) return;
         if (!(event.player instanceof ServerPlayer serverPlayer)) return;
