@@ -18,11 +18,15 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
 import top.theillusivec4.curios.api.SlotResult;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
 
 public class HuskAbility implements IMobAbility {
 
@@ -38,21 +42,14 @@ public class HuskAbility implements IMobAbility {
         if (zombieTotem.isEmpty()) return;
 
         DamageSource source = event.getSource();
-        boolean isStarve = source.is(DamageTypes.STARVE);
         boolean isFire = source.is(DamageTypeTags.IS_FIRE);
 
-        if (!(isFire || isStarve)) return;
+        if (!(isFire)) return;
 
         event.setCanceled(true);
 
         player.setHealth(1.0F);
-
-        if (isFire) {
-            player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 20 * 20, 0, false, false, false));
-        } else {
-            player.getFoodData().setFoodLevel(20);
-            player.getFoodData().setSaturation(5.0F);
-        }
+        player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 20 * 20, 0, false, false, false));
 
         ItemStack totemStack = zombieTotem.get().stack();
         CompoundTag tag = totemStack.getTag();
@@ -84,18 +81,17 @@ public class HuskAbility implements IMobAbility {
         player.displayClientMessage(Component.literal("You claw your way back from death...").withStyle(ChatFormatting.DARK_GREEN), true);
     }
 
-    public static void preventHungerInDesert(TickEvent.PlayerTickEvent event) {
+    public static void preventStarvation(TickEvent.PlayerTickEvent event) {
         if (event.phase != TickEvent.Phase.END) return;
         if (!(event.player instanceof ServerPlayer player)) return;
 
         if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:husk"))) return;
 
-        ResourceKey<Biome> biomeKey = player.level().getBiome(player.blockPosition()).unwrapKey().orElse(null);
-        if (biomeKey == null) return;
-
-        if (biomeKey.location().getPath().contains("desert")) {
-            player.getFoodData().setFoodLevel(20);
+        int current = player.getFoodData().getFoodLevel();
+        if (current < 1) {
+            player.getFoodData().setFoodLevel(1);
         }
     }
+
 
 }
