@@ -273,6 +273,12 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.HOSTILE
         );
 
+        register("minecraft:guardian", "essence_guardian",
+                new TotemTooltipData("Murderous Look", "Reduce incoming damage when looking at the attacker (25% on land, 50% underwater)"),
+                SoundEvents.GUARDIAN_HURT,
+                new GuardianAbility(),
+                TotemMobCategory.HOSTILE
+        );
 
         // SPECIAL
         register("minecraft:zombie_villager", "essence_zombie_villager",
@@ -336,6 +342,13 @@ public class TotemEssenceRegistry {
                 SoundEvents.WITCH_HURT,
                 new WitchAbility(),
                 TotemMobCategory.SPECIAL
+        );
+
+        register("minecraft:guardian", "essence_guardian",
+                new TotemTooltipData("Ominous Murderous Look", "Reduce incoming damage when looking at the attacker (25% on land, 50% underwater) + no mining speed decrease underwater"),
+                SoundEvents.ELDER_GUARDIAN_HURT,
+                new ElderGuardianAbility(),
+                TotemMobCategory.HOSTILE
         );
     }
 
