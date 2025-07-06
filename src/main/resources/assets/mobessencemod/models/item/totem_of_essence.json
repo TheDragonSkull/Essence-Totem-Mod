@@ -171,6 +171,10 @@
     {
       "predicate": { "essence_husk": 1 },
       "model": "mobessencemod:item/totem_of_essence_husk"
+    },
+    {
+      "predicate": { "essence_turtle": 1 },
+      "model": "mobessencemod:item/totem_of_essence_turtle"
     }
   ]
 }

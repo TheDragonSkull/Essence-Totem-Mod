@@ -117,9 +117,16 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.PASSIVE
         );
 
+        register("minecraft:turtle", "essence_turtle",
+                new TotemTooltipData("Rear shield", "Block all incoming damage from behind"),
+                SoundEvents.TURTLE_HURT,
+                new TurtleAbility(),
+                TotemMobCategory.PASSIVE
+        );
+
         // NEUTRAL
         register("minecraft:bee", "essence_bee",
-                new TotemTooltipData("Stinger Reflex", "Stings and poisons enemies when hit from behind"),
+                new TotemTooltipData("Stinger Reflex", "Stings and poisons enemies when hit from behind + bees will no longer target the player"),
                 SoundEvents.BEE_HURT,
                 new BeeAbility(),
                 TotemMobCategory.NEUTRAL

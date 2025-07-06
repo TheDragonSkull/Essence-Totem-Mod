@@ -67,6 +67,7 @@ public class CommonEvents {
         ZombieHorseAbility.zombieHorseKick(event);
         SkeletonHorseAbility.skeletonHorseKick(event);
         WitchAbility.witchPotion(event);
+        TurtleAbility.turtleBlock(event);
     }
 
     @SubscribeEvent
@@ -149,6 +150,7 @@ public class CommonEvents {
 
     @SubscribeEvent
     public static void onLivingChangeTarget(LivingChangeTargetEvent event) {
+        BeeAbility.onBeeTarget(event);
         WanderingTraderAbility.onLlamaTarget(event);
         PhantomAbility.onPhantomTarget(event);
         SilverfishAbility.onSilverfishTarget(event);
