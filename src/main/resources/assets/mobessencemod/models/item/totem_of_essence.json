@@ -175,6 +175,10 @@
     {
       "predicate": { "essence_turtle": 1 },
       "model": "mobessencemod:item/totem_of_essence_turtle"
+    },
+    {
+      "predicate": { "essence_axolotl": 1 },
+      "model": "mobessencemod:item/totem_of_essence_axolotl"
     }
   ]
 }

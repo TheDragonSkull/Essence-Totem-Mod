@@ -124,6 +124,13 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.PASSIVE
         );
 
+        register("minecraft:axolotl", "essence_axolotl",
+                new TotemTooltipData("PTSD Therapy", "After killing a mob that's trying to fight, gain regeneration I for 5 seconds (regen II if underwater)"),
+                SoundEvents.AXOLOTL_HURT,
+                new AxolotlAbility(),
+                TotemMobCategory.PASSIVE
+        );
+
         // NEUTRAL
         register("minecraft:bee", "essence_bee",
                 new TotemTooltipData("Stinger Reflex", "Stings and poisons enemies when hit from behind + bees will no longer target the player"),
