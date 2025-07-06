@@ -2,12 +2,18 @@ package net.thedragonskull.mobessencemod.abilities;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.animal.Bee;
+import net.minecraft.world.entity.monster.Phantom;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
 import top.theillusivec4.curios.api.SlotResult;
@@ -37,6 +43,17 @@ public class BeeAbility implements IMobAbility{
         if (dot < -0.5) {
             attacker.hurt(attacker.level().damageSources().sting(player), 1);
             attacker.addEffect(new MobEffectInstance(MobEffects.POISON, 60, 0));
+
+            player.level().playSound(null, player.blockPosition(), SoundEvents.BEE_STING, SoundSource.PLAYERS, 2.0f, 1.0f);
+        }
+    }
+
+    public static void onBeeTarget(LivingChangeTargetEvent event) {
+        if (!(event.getEntity() instanceof Bee)) return;
+        if (!(event.getNewTarget() instanceof Player player)) return;
+
+        if (TotemUtils.hasTotemWithEssenceServer((ServerPlayer) player, ResourceLocation.parse("minecraft:bee"))) {
+            event.setCanceled(true);
         }
     }
 }
