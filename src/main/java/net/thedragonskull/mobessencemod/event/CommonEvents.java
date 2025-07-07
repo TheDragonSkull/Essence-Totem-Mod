@@ -30,6 +30,7 @@ import net.thedragonskull.mobessencemod.network.C2SSwapTotemPacket;
 import net.thedragonskull.mobessencemod.network.PacketHandler;
 import net.thedragonskull.mobessencemod.util.KeyBindings;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
+import org.stringtemplate.v4.ST;
 
 @Mod.EventBusSubscriber(modid = MobEssenceMod.MOD_ID)
 public class CommonEvents {
@@ -71,6 +72,7 @@ public class CommonEvents {
         TurtleAbility.turtleBlock(event);
         GuardianAbility.guardianDamageReduction(event);
         ElderGuardianAbility.elderGuardianDamageReduction(event);
+        StriderAbility.onFireHurt(event);
     }
 
     @SubscribeEvent
@@ -130,6 +132,7 @@ public class CommonEvents {
     @SubscribeEvent
     public static void onRenderFog(ViewportEvent.RenderFog event) {
         TropicalFishAbility.onRenderFog(event);
+        StriderAbility.onRenderFog(event);
     }
 
     @SubscribeEvent

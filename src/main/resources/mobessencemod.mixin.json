@@ -10,6 +10,7 @@
     "AvoidEntityGoalMixin",
     "CancelEffectMixin",
     "ChestRemoveMixin",
+    "LavaFlowMixin",
     "LlamaControlMixin",
     "NoUnderwaterMiningPenaltyMixin",
     "PhantomElytraMixin",

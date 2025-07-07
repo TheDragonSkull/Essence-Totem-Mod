@@ -191,6 +191,10 @@
     {
       "predicate": { "essence_bat": 1 },
       "model": "mobessencemod:item/totem_of_essence_bat"
+    },
+    {
+      "predicate": { "essence_strider": 1 },
+      "model": "mobessencemod:item/totem_of_essence_strider"
     }
   ]
 }
