@@ -183,6 +183,10 @@
     {
       "predicate": { "essence_guardian": 1 },
       "model": "mobessencemod:item/totem_of_essence_guardian"
+    },
+    {
+      "predicate": { "essence_elder_guardian": 1 },
+      "model": "mobessencemod:item/totem_of_essence_elder_guardian"
     }
   ]
 }

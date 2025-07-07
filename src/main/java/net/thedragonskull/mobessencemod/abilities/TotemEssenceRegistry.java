@@ -344,11 +344,11 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.SPECIAL
         );
 
-        register("minecraft:guardian", "essence_guardian",
+        register("minecraft:elder_guardian", "essence_elder_guardian",
                 new TotemTooltipData("Ominous Murderous Look", "Reduce incoming damage when looking at the attacker (25% on land, 50% underwater) + no mining speed decrease underwater"),
                 SoundEvents.ELDER_GUARDIAN_HURT,
                 new ElderGuardianAbility(),
-                TotemMobCategory.HOSTILE
+                TotemMobCategory.SPECIAL
         );
     }
 

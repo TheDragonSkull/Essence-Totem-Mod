@@ -11,6 +11,7 @@
     "CancelEffectMixin",
     "ChestRemoveMixin",
     "LlamaControlMixin",
+    "NoUnderwaterMiningPenaltyMixin",
     "PhantomElytraMixin",
     "PlayerDestroyChestMixin",
     "PressurePlateMixin",
