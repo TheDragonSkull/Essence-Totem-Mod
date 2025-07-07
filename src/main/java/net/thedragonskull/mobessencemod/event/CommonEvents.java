@@ -70,6 +70,7 @@ public class CommonEvents {
         WitchAbility.witchPotion(event);
         TurtleAbility.turtleBlock(event);
         GuardianAbility.guardianDamageReduction(event);
+        ElderGuardianAbility.elderGuardianDamageReduction(event);
     }
 
     @SubscribeEvent
@@ -117,6 +118,7 @@ public class CommonEvents {
         SkeletonHorseAbility.skeletonHorseJump(event);
         HuskAbility.preventStarvation(event);
         GuardianAbility.guardianFocusTick(event);
+        ElderGuardianAbility.elderGuardianFocusTick(event);
 
         if (event.phase != TickEvent.Phase.END) return;
         if (!(event.player instanceof ServerPlayer serverPlayer)) return;

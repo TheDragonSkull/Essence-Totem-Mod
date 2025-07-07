@@ -75,4 +75,5 @@ public class GuardianAbility implements IMobAbility {
         event.setAmount(event.getAmount() * reduction);
     }
 
+    //NoUnderwaterMiningPenaltyMixin
 }
