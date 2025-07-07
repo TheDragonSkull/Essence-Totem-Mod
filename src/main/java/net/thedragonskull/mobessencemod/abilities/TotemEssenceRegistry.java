@@ -131,6 +131,13 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.PASSIVE
         );
 
+        register("minecraft:bat", "essence_bat",
+                new TotemTooltipData("Shadow Pulse", "While pressing Shift, apply glowing to any mob within a 15 block radius + at night, also become invisible"),
+                SoundEvents.BAT_HURT,
+                new BatAbility(),
+                TotemMobCategory.PASSIVE
+        );
+
         // NEUTRAL
         register("minecraft:bee", "essence_bee",
                 new TotemTooltipData("Stinger Reflex", "Stings and poisons enemies when hit from behind + bees will no longer target the player"),
