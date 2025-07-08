@@ -199,6 +199,10 @@
     {
       "predicate": { "essence_allay": 1 },
       "model": "mobessencemod:item/totem_of_essence_allay"
+    },
+    {
+      "predicate": { "essence_camel": 1 },
+      "model": "mobessencemod:item/totem_of_essence_camel"
     }
   ]
 }

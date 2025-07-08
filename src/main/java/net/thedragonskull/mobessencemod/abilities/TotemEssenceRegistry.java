@@ -152,6 +152,13 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.PASSIVE
         );
 
+        register("minecraft:camel", "essence_camel",
+                new TotemTooltipData("Sandskipper", "Immunity to cactus damage + step over blocks up to 1.5 height without jumping (like fences) + dash by using sprint key while already sprinting (5s cooldown)"),
+                SoundEvents.CAMEL_HURT,
+                new CamelAbility(),
+                TotemMobCategory.PASSIVE
+        );
+
         // NEUTRAL
         register("minecraft:bee", "essence_bee",
                 new TotemTooltipData("Stinger Reflex", "Stings and poisons enemies when hit from behind + bees will no longer target the player"),
@@ -371,6 +378,8 @@ public class TotemEssenceRegistry {
                 new ElderGuardianAbility(),
                 TotemMobCategory.SPECIAL
         );
+
+        // NON MOB
     }
 
 

@@ -100,6 +100,7 @@ public class CommonEvents {
         EndermanAbility.teleport(event);
         BlazeAbility.blazeSetOnFire(event);
         DrownedAbility.preventLethalDrowningDamage(event);
+        CamelAbility.onCactusHurt(event);
     }
 
     @SubscribeEvent
@@ -124,6 +125,7 @@ public class CommonEvents {
         HuskAbility.preventStarvation(event);
         GuardianAbility.guardianFocusTick(event);
         ElderGuardianAbility.elderGuardianFocusTick(event);
+        CamelAbility.camelStep(event);
 
         if (event.phase != TickEvent.Phase.END) return;
         if (!(event.player instanceof ServerPlayer serverPlayer)) return;
@@ -182,6 +184,7 @@ public class CommonEvents {
     @SubscribeEvent
     public static void onInputKeyEvent(InputEvent.Key event) {
         ParrotAbility.flap(event);
+        CamelAbility.camelDash(event);
 
         if (KeyBindings.INSTANCE.SWAP_TOTEM.consumeClick()) {
             Player player = Minecraft.getInstance().player;

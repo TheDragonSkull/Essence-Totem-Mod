@@ -36,8 +36,7 @@ public class ParrotAbility implements IMobAbility {
         Player player = mc.player;
         if (player == null || mc.level == null) return;
 
-        if (!TotemUtils.hasTotemWithEssenceClient(player, ResourceLocation.parse("minecraft:parrot")))
-            return;
+        if (!TotemUtils.hasTotemWithEssenceClient(player, ResourceLocation.parse("minecraft:parrot"))) return;
 
         UUID uuid = player.getUUID();
         boolean alreadyJumped = hasDoubleJumped.getOrDefault(uuid, false);

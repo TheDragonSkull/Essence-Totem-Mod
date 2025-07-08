@@ -32,6 +32,12 @@ public class PacketHandler {
                 .consumerMainThread(C2SSwapTotemPacket::handle)
                 .add();
 
+        INSTANCE.messageBuilder(C2SCamelDashPacket.class, id++, NetworkDirection.PLAY_TO_SERVER)
+                .encoder(C2SCamelDashPacket::encode)
+                .decoder(C2SCamelDashPacket::new)
+                .consumerMainThread(C2SCamelDashPacket::handle)
+                .add();
+
     }
 
     public static void sendToServer(Object msg) {
