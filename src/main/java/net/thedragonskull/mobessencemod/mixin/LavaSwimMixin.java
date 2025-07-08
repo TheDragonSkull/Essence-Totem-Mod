@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(LivingEntity.class)
-public abstract class LavaFlowMixin {
+public abstract class LavaSwimMixin {
 
     @Inject(method = "travel", at = @At("TAIL"))
     private void applyLavaSwimming(Vec3 travelVector, CallbackInfo ci) {

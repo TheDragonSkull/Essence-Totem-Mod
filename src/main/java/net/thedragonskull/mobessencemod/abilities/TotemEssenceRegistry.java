@@ -145,6 +145,13 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.PASSIVE
         );
 
+        register("minecraft:allay", "essence_allay",
+                new TotemTooltipData("Selective Retrieval", "Expands the pickup range for the same type of item that is in the offhand (15 block radius) + get speed II if close to a playing jukebox + ALL the items surrounding a noteblock will be pulled when interacted with"),
+                SoundEvents.ALLAY_HURT,
+                new AllayAbility(),
+                TotemMobCategory.PASSIVE
+        );
+
         // NEUTRAL
         register("minecraft:bee", "essence_bee",
                 new TotemTooltipData("Stinger Reflex", "Stings and poisons enemies when hit from behind + bees will no longer target the player"),

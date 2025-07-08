@@ -195,6 +195,10 @@
     {
       "predicate": { "essence_strider": 1 },
       "model": "mobessencemod:item/totem_of_essence_strider"
+    },
+    {
+      "predicate": { "essence_allay": 1 },
+      "model": "mobessencemod:item/totem_of_essence_allay"
     }
   ]
 }

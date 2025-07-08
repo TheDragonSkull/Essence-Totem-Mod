@@ -1,14 +1,11 @@
 package net.thedragonskull.mobessencemod.abilities;
 
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.item.ItemStack;
-import net.thedragonskull.mobessencemod.util.TotemUtils;
 
 import java.util.List;
 
@@ -17,8 +14,6 @@ public class BatAbility implements IMobAbility {
     @Override
     public void tick(ServerPlayer player, ItemStack stack) {
         if (player == null) return;
-
-        if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:bat"))) return;
 
         if (!player.isShiftKeyDown()) return;
 
