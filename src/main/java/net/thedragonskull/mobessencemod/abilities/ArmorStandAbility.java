@@ -41,13 +41,18 @@ public class ArmorStandAbility implements IMobAbility {
             mc.options.keyJump.setDown(false);
             mc.options.keySprint.setDown(false);
             mc.options.keyShift.setDown(false);
+            mc.options.keyUse.setDown(false);
+            mc.options.keyAttack.setDown(false);
+            mc.options.keyDrop.setDown(false);
+            mc.options.keyPickItem.setDown(false);
 
-            accessor.mobessencemod_setAccumulatedDX(0);
-            accessor.mobessencemod_setAccumulatedDY(0);
-        } else {
-            accessor.mobessencemod_setAccumulatedDX(0);
-            accessor.mobessencemod_setAccumulatedDY(0);
+            while (mc.options.keyAttack.consumeClick()) {}
+            while (mc.options.keyUse.consumeClick()) {}
+
         }
+
+        accessor.mobessencemod_setAccumulatedDX(0);
+        accessor.mobessencemod_setAccumulatedDY(0);
     }
 
     public static void onMobTarget(LivingChangeTargetEvent event) {

@@ -19,6 +19,7 @@
     "TripWireMixin"
   ],
   "client": [
-    "MouseHandlerMixin"
+    "MouseHandlerMixin",
+    "PlayerModelMixin"
   ]
 }

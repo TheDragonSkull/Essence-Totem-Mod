@@ -381,7 +381,7 @@ public class TotemEssenceRegistry {
 
         // NON MOB
         register("minecraft:armor_stand", "essence_armor_stand",
-                new TotemTooltipData("Soulless Entity", "???"),
+                new TotemTooltipData("Soulless Entity", "Become as still as stone. In absolute immobility, even danger forgets you exist"),
                 SoundEvents.ARMOR_STAND_HIT,
                 new ArmorStandAbility(),
                 TotemMobCategory.NON_MOB
