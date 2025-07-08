@@ -16,6 +16,7 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.MushroomCow;
 import net.minecraft.world.entity.animal.Wolf;
+import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -83,6 +84,8 @@ public class TotemOfEssenceItem extends Item implements ICurioItem {
                 player.playSound(data.sound(), 1.0F, 1.0F);
             }
 
+            if (target instanceof ArmorStand) return InteractionResult.SUCCESS;
+
             for (int i = 0; i < 3; i++) {
                 player.level().playSound(null, target.getX(), target.getY(), target.getZ(), SoundEvents.SOUL_ESCAPE, SoundSource.PLAYERS, 10.0F, 1.0F);
             }
@@ -123,22 +126,26 @@ public class TotemOfEssenceItem extends Item implements ICurioItem {
                 player.setItemInHand(hand, stack);
                 player.getCooldowns().addCooldown(this, 20);
 
-                for (int i = 0; i < 3; i++) {
-                    level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.SOUL_ESCAPE, SoundSource.PLAYERS, 10.0F, 1.0F);
+                if (!essenceId.equals("minecraft:armor_stand")) {
+                    for (int i = 0; i < 3; i++) {
+                        level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.SOUL_ESCAPE, SoundSource.PLAYERS, 10.0F, 1.0F);
+                    }
+
+                    ServerLevel serverLevel = (ServerLevel) player.level();
+                    double x = player.getX();
+                    double y = player.getY() + player.getBbHeight() / 2.0;
+                    double z = player.getZ();
+
+                    serverLevel.sendParticles(
+                            ParticleTypes.SOUL,
+                            x, y, z,
+                            20,
+                            0.3, 0.5, 0.3,
+                            0.01
+                    );
+                } else {
+                    level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ARMOR_STAND_BREAK, SoundSource.PLAYERS, 10.0F, 1.0F);
                 }
-
-                ServerLevel serverLevel = (ServerLevel) player.level();
-                double x = player.getX();
-                double y = player.getY() + player.getBbHeight() / 2.0;
-                double z = player.getZ();
-
-                serverLevel.sendParticles(
-                        ParticleTypes.SOUL,
-                        x, y, z,
-                        20,
-                        0.3, 0.5, 0.3,
-                        0.01
-                );
 
                 player.displayClientMessage(Component.literal("Essence removed"), true);
                 return InteractionResultHolder.success(stack);

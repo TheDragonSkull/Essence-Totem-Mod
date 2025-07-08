@@ -19,5 +19,6 @@
     "TripWireMixin"
   ],
   "client": [
+    "MouseHandlerMixin"
   ]
 }

@@ -33,6 +33,10 @@ import net.thedragonskull.mobessencemod.util.TotemUtils;
 @Mod.EventBusSubscriber(modid = MobEssenceMod.MOD_ID)
 public class CommonEvents {
 
+    @SubscribeEvent
+    public static void onClientTick(TickEvent.ClientTickEvent event) {
+        ArmorStandAbility.stillPlayer(event);
+    }
 
     @SubscribeEvent
     public static void onPlayerEntityInteract(PlayerInteractEvent.EntityInteractSpecific event) {
@@ -169,6 +173,7 @@ public class CommonEvents {
         PhantomAbility.onPhantomTarget(event);
         SilverfishAbility.onSilverfishTarget(event);
         EndermiteAbility.onEndermiteTarget(event);
+        ArmorStandAbility.onMobTarget(event);
     }
 
     @SubscribeEvent

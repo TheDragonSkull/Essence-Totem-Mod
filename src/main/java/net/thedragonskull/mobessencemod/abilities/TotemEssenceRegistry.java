@@ -380,6 +380,12 @@ public class TotemEssenceRegistry {
         );
 
         // NON MOB
+        register("minecraft:armor_stand", "essence_armor_stand",
+                new TotemTooltipData("Soulless Entity", "???"),
+                SoundEvents.ARMOR_STAND_HIT,
+                new ArmorStandAbility(),
+                TotemMobCategory.NON_MOB
+        );
     }
 
 
