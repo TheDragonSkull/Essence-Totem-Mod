@@ -42,4 +42,5 @@ public class SpiderAbility implements IMobAbility {
         player.fallDistance = 0.0F;
     }
 
+    // CobWebBlockMixin
 }

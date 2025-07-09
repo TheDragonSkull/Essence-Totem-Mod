@@ -57,4 +57,5 @@ public class CaveSpiderAbility implements IMobAbility {
         player.fallDistance = 0.0F;
     }
 
+    // CobWebBlockMixin
 }
