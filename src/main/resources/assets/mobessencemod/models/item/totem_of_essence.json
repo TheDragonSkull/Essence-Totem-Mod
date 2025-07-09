@@ -207,6 +207,14 @@
     {
       "predicate": { "essence_armor_stand": 1 },
       "model": "mobessencemod:item/totem_of_essence_armor_stand"
+    },
+    {
+      "predicate": { "essence_ocelot": 1 },
+      "model": "mobessencemod:item/totem_of_essence_ocelot"
+    },
+    {
+      "predicate": { "essence_cat": 1 },
+      "model": "mobessencemod:item/totem_of_essence_cat"
     }
   ]
 }

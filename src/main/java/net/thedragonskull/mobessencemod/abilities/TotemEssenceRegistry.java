@@ -159,6 +159,20 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.PASSIVE
         );
 
+        register("minecraft:ocelot", "essence_ocelot",
+                new TotemTooltipData("Feline Graces", "Halved fall damage when crouching + scare creepers away"),
+                SoundEvents.OCELOT_HURT,
+                new OcelotAbility(),
+                TotemMobCategory.PASSIVE
+        );
+
+        register("minecraft:cat", "essence_cat",
+                new TotemTooltipData("Feline Graces", "Halved fall damage when crouching + scare creepers away + random positive effect when waking up from sleeping"),
+                SoundEvents.CAT_HURT,
+                new CatAbility(),
+                TotemMobCategory.PASSIVE
+        );
+
         // NEUTRAL
         register("minecraft:bee", "essence_bee",
                 new TotemTooltipData("Stinger Reflex", "Stings and poisons enemies when hit from behind + bees will no longer target the player"),
