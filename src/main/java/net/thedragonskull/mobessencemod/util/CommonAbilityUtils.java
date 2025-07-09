@@ -10,9 +10,12 @@ import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+
+import static net.thedragonskull.mobessencemod.util.TotemUtils.hasTotemWithEssenceServer;
 
 public class CommonAbilityUtils {
 
@@ -59,4 +62,16 @@ public class CommonAbilityUtils {
         }
     }
 
+    // POLAR BEAR & STRAY
+    public static void onFreezingHurt(LivingAttackEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+
+        if (!hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:polar_bear"))) return;
+
+        DamageSource source = event.getSource();
+
+        if (source.is(DamageTypes.FREEZE)) {
+            event.setCanceled(true);
+        }
+    }
 }

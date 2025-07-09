@@ -108,6 +108,8 @@ public class CommonEvents {
         BlazeAbility.blazeSetOnFire(event);
         DrownedAbility.preventLethalDrowningDamage(event);
         CamelAbility.onCactusHurt(event);
+        PolarBearAbility.bearKnockback(event);
+        CommonAbilityUtils.onFreezingHurt(event);
     }
 
     @SubscribeEvent
@@ -133,6 +135,7 @@ public class CommonEvents {
         GuardianAbility.guardianFocusTick(event);
         ElderGuardianAbility.elderGuardianFocusTick(event);
         CamelAbility.camelStep(event);
+        PolarBearAbility.bearResistance(event);
 
         if (event.phase != TickEvent.Phase.END) return;
         if (!(event.player instanceof ServerPlayer serverPlayer)) return;

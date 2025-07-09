@@ -251,6 +251,13 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.NEUTRAL
         );
 
+        register("minecraft:polar_bear", "essence_polar_bear",
+                new TotemTooltipData("Arctic Endurance", "Immunity to freezing + damage resistance I while on any snow/ice biome + chance of inflicting knockback when melee attacking (25%)"),
+                SoundEvents.POLAR_BEAR_HURT,
+                new PolarBearAbility(),
+                TotemMobCategory.NEUTRAL
+        );
+
         // HOSTILE
         register("minecraft:zombie", "essence_zombie",
                 new TotemTooltipData("Zombie Recall", "If killed by an entity, instantly revive with half a heart (one time use)"),

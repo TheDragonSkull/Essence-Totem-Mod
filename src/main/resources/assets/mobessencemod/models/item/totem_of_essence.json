@@ -223,6 +223,10 @@
     {
       "predicate": { "essence_snow_fox": 1 },
       "model": "mobessencemod:item/totem_of_essence_snow_fox"
+    },
+    {
+      "predicate": { "essence_polar_bear": 1 },
+      "model": "mobessencemod:item/totem_of_essence_polar_bear"
     }
   ]
 }
