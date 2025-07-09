@@ -173,6 +173,20 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.PASSIVE
         );
 
+        register("minecraft:fox", "essence_fox",
+                new TotemTooltipData("Twilight Scavenger", "No slowdown or damage when inside cobwebs or sweet berry bushes + at night, 25% chance to duplicate loot from mobs when killing"),
+                SoundEvents.FOX_HURT,
+                new FoxAbility(),
+                TotemMobCategory.PASSIVE
+        );
+
+        register("minecraft:snow_fox", "essence_snow_fox",
+                new TotemTooltipData("Snow Twilight Scavenger", "No slowdown or damage when inside cobwebs or sweet berry bushes + at night, 25% chance to duplicate loot from mobs when killing + walk over powder snow blocks"),
+                SoundEvents.FOX_HURT,
+                new SnowFoxAbility(),
+                TotemMobCategory.PASSIVE
+        );
+
         // NEUTRAL
         register("minecraft:bee", "essence_bee",
                 new TotemTooltipData("Stinger Reflex", "Stings and poisons enemies when hit from behind + bees will no longer target the player"),
@@ -189,14 +203,14 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:spider", "essence_spider",
-                new TotemTooltipData("Wall-Crawler", "Slowly climb vertical surfaces"),
+                new TotemTooltipData("Wall-Crawler", "Slowly climb vertical surfaces + cobweb doesn't slow"),
                 SoundEvents.SPIDER_HURT,
                 new SpiderAbility(),
                 TotemMobCategory.NEUTRAL
         );
 
         register("minecraft:cave_spider", "essence_cave_spider",
-                new TotemTooltipData("Poisonous Wall-Crawler", "Slowly climb walls + poison enemies when unarmed (20%)"),
+                new TotemTooltipData("Poisonous Wall-Crawler", "Slowly climb walls + poison enemies when unarmed (20%) + cobweb doesn't slow"),
                 SoundEvents.SPIDER_HURT,
                 new CaveSpiderAbility(),
                 TotemMobCategory.NEUTRAL

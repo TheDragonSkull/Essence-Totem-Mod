@@ -10,13 +10,16 @@
     "AvoidEntityGoalMixin",
     "CancelEffectMixin",
     "ChestRemoveMixin",
+    "CobWebBlockMixin",
     "CreeperMixin",
     "LavaSwimMixin",
     "LlamaControlMixin",
     "NoUnderwaterMiningPenaltyMixin",
     "PhantomElytraMixin",
     "PlayerDestroyChestMixin",
+    "PowderSnowBlockMixin",
     "PressurePlateMixin",
+    "SweetBerryBushBlockMixin",
     "TripWireMixin"
   ],
   "client": [

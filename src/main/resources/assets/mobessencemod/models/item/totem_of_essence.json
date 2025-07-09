@@ -215,6 +215,14 @@
     {
       "predicate": { "essence_cat": 1 },
       "model": "mobessencemod:item/totem_of_essence_cat"
+    },
+    {
+      "predicate": { "essence_fox": 1 },
+      "model": "mobessencemod:item/totem_of_essence_fox"
+    },
+    {
+      "predicate": { "essence_snow_fox": 1 },
+      "model": "mobessencemod:item/totem_of_essence_snow_fox"
     }
   ]
 }

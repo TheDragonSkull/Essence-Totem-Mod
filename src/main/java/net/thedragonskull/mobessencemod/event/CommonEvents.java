@@ -169,6 +169,11 @@ public class CommonEvents {
         CatAbility.onPlayerWakeUp(event);
     }
 
+    @SubscribeEvent
+    public static void onFoxLoot(LivingDropsEvent event) {
+        CommonAbilityUtils.onFoxLoot(event);
+    }
+
         @SubscribeEvent
     public static void onServerTick(TickEvent.ServerTickEvent event) {
         WolfAbility.onServerTick(event);

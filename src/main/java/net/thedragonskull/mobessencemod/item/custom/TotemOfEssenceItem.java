@@ -7,15 +7,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.animal.Fox;
 import net.minecraft.world.entity.animal.MushroomCow;
-import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -23,7 +22,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.thedragonskull.mobessencemod.abilities.IMobAbility;
 import net.thedragonskull.mobessencemod.abilities.TotemEssenceRegistry;
 import net.thedragonskull.mobessencemod.util.TotemMobCategory;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
@@ -48,11 +46,19 @@ public class TotemOfEssenceItem extends Item implements ICurioItem {
         ResourceLocation mobId;
 
         if (target instanceof MushroomCow mooshroom) {
-            MushroomCow.MushroomType variant = mooshroom.getVariant();
+            MushroomCow.MushroomType cowVariant = mooshroom.getVariant();
 
-            mobId = switch (variant) {
+            mobId = switch (cowVariant) {
                 case RED -> ResourceLocation.parse("minecraft:red_mooshroom");
                 case BROWN -> ResourceLocation.parse("minecraft:brown_mooshroom");
+            };
+
+        } else if (target instanceof Fox fox) {
+            Fox.Type foxVariant = fox.getVariant();
+
+            mobId = switch (foxVariant) {
+                case RED -> ResourceLocation.parse("minecraft:fox");
+                case SNOW -> ResourceLocation.parse("minecraft:snow_fox");
             };
         } else {
             mobId = ForgeRegistries.ENTITY_TYPES.getKey(target.getType());
