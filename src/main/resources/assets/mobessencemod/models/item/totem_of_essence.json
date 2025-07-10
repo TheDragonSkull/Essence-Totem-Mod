@@ -227,6 +227,10 @@
     {
       "predicate": { "essence_polar_bear": 1 },
       "model": "mobessencemod:item/totem_of_essence_polar_bear"
+    },
+    {
+      "predicate": { "essence_vex": 1 },
+      "model": "mobessencemod:item/totem_of_essence_vex"
     }
   ]
 }

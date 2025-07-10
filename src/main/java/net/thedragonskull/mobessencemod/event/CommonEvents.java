@@ -19,6 +19,7 @@ import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -113,6 +114,11 @@ public class CommonEvents {
     }
 
     @SubscribeEvent
+    public static void onAttackEntity(AttackEntityEvent event) {
+        VexAbility.onVexAttack(event);
+    }
+
+    @SubscribeEvent
     public static void onPlayerTickEvent(TickEvent.PlayerTickEvent event) {
         SpiderAbility.climb(event);
         CaveSpiderAbility.climb(event);
@@ -136,6 +142,7 @@ public class CommonEvents {
         ElderGuardianAbility.elderGuardianFocusTick(event);
         CamelAbility.camelStep(event);
         PolarBearAbility.bearResistance(event);
+        VexAbility.onTraverseBlock(event);
 
         if (event.phase != TickEvent.Phase.END) return;
         if (!(event.player instanceof ServerPlayer serverPlayer)) return;

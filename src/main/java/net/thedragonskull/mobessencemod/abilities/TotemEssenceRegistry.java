@@ -414,6 +414,13 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.SPECIAL
         );
 
+        register("minecraft:vex", "essence_vex",
+                new TotemTooltipData("Spectral Stride", "While sprinting, dash through walls that are one block thick while sprinting and chance of dealing a critical blow (1/3)"),
+                SoundEvents.VEX_HURT,
+                new VexAbility(),
+                TotemMobCategory.SPECIAL
+        );
+
         // NON MOB
         register("minecraft:armor_stand", "essence_armor_stand",
                 new TotemTooltipData("Soulless Entity", "Become as still as stone. In absolute immobility, even danger forgets you exist"),
