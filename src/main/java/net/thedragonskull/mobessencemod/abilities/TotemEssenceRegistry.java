@@ -274,7 +274,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:skeleton", "essence_skeleton",
-                new TotemTooltipData("Bone Quiver", "Arrows fired have a chance to not be consumed: 50% for regular arrows, 25% for spectral or tipped arrows"),
+                new TotemTooltipData("Bone Quiver", "Less arrow charge time on a bow"),
                 SoundEvents.SKELETON_HURT,
                 new SkeletonAbility(),
                 TotemMobCategory.HOSTILE
@@ -343,6 +343,13 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.HOSTILE
         );
 
+        register("minecraft:stray", "essence_stray",
+                new TotemTooltipData("???", "Less arrow charge time on a bow + chance to replace a normal arrow with a slowness arrow (1/3)"),
+                SoundEvents.STRAY_HURT,
+                new StrayAbility(),
+                TotemMobCategory.HOSTILE
+        );
+
         // SPECIAL
         register("minecraft:zombie_villager", "essence_zombie_villager",
                 new TotemTooltipData("Undead Scent of the Money", "Grow a big nose to smell nearby emerald ores (~20 blocks) + if killed by an entity, instantly revive with half a heart (one time use)"),
@@ -394,7 +401,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:skeleton_horse", "essence_skeleton_horse",
-                new TotemTooltipData("Leaping Bone Quiver", "Upgraded jump when sprinting for more than 3 seconds without stopping + chance to horse kick if melee attacked from behind (1/3) + arrows fired have a chance to not be consumed: 50% for regular arrows, 25% for spectral or tipped arrows"),
+                new TotemTooltipData("Leaping Bone Quiver", "Upgraded jump when sprinting for more than 3 seconds without stopping + chance to horse kick if melee attacked from behind (1/3) + less arrow charge time on a bow"),
                 SoundEvents.SKELETON_HORSE_HURT,
                 new SkeletonHorseAbility(),
                 TotemMobCategory.SPECIAL

@@ -150,12 +150,6 @@ public class CommonEvents {
         PolarBearAbility.bearResistance(event);
         VexAbility.onTraverseBlock(event);
         RavagerAbility.applyRavagerRamAttack(event);
-
-        if (event.phase != TickEvent.Phase.END) return;
-        if (!(event.player instanceof ServerPlayer serverPlayer)) return;
-
-        SkeletonAbility.tryReturnArrow(serverPlayer);
-        SkeletonHorseAbility.tryReturnArrow(serverPlayer);
     }
 
     @SubscribeEvent
@@ -171,8 +165,8 @@ public class CommonEvents {
 
     @SubscribeEvent
     public static void onArrowLoose(ArrowLooseEvent event) {
-        SkeletonAbility.tryPreventArrowConsumption(event);
-        SkeletonHorseAbility.tryPreventArrowConsumption(event);
+        StrayAbility.straySlowArrow(event);
+        CommonAbilityUtils.onArrowLoose(event);
     }
 
     @SubscribeEvent
@@ -205,16 +199,6 @@ public class CommonEvents {
         EndermiteAbility.onEndermiteTarget(event);
         ArmorStandAbility.onMobTarget(event);
         CommonAbilityUtils.onCreeperTarget(event);
-    }
-
-    @SubscribeEvent
-    public static void onArrowSpawn(EntityJoinLevelEvent event) {
-        if (!(event.getEntity() instanceof AbstractArrow arrow)) return;
-        if (!(arrow.getOwner() instanceof Player player)) return;
-
-        if (SkeletonAbility.markedFreeArrow(player) || SkeletonHorseAbility.markedFreeArrow(player)) {
-            arrow.pickup = AbstractArrow.Pickup.DISALLOWED;
-        }
     }
 
     @SubscribeEvent

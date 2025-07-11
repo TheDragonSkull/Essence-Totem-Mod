@@ -79,4 +79,6 @@ public class PolarBearAbility implements IMobAbility {
             }
         }
     }
+
+    // CommonAbilityUtils.onFreezingHurt
 }

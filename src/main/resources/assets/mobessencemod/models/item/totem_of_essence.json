@@ -235,6 +235,10 @@
     {
       "predicate": { "essence_ravager": 1 },
       "model": "mobessencemod:item/totem_of_essence_ravager"
+    },
+    {
+      "predicate": { "essence_stray": 1 },
+      "model": "mobessencemod:item/totem_of_essence_stray"
     }
   ]
 }
