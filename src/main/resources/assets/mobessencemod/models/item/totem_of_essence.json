@@ -239,6 +239,10 @@
     {
       "predicate": { "essence_stray": 1 },
       "model": "mobessencemod:item/totem_of_essence_stray"
+    },
+    {
+      "predicate": { "essence_evoker": 1 },
+      "model": "mobessencemod:item/totem_of_essence_evoker"
     }
   ]
 }

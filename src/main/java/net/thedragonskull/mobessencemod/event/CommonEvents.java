@@ -85,6 +85,7 @@ public class CommonEvents {
         StriderAbility.onFireHurt(event);
         CommonAbilityUtils.onCatLand(event);
         RavagerAbility.onRavagerRoar(event);
+        EvokerAbility.onPlayerHurt(event);
     }
 
     @SubscribeEvent
@@ -199,6 +200,7 @@ public class CommonEvents {
         EndermiteAbility.onEndermiteTarget(event);
         ArmorStandAbility.onMobTarget(event);
         CommonAbilityUtils.onCreeperTarget(event);
+        EvokerAbility.onVexTarget(event);
     }
 
     @SubscribeEvent

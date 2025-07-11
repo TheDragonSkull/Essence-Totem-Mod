@@ -344,9 +344,16 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:stray", "essence_stray",
-                new TotemTooltipData("???", "Less arrow charge time on a bow + chance to replace a normal arrow with a slowness arrow (1/3)"),
+                new TotemTooltipData("Freezing Bone Quiver", "Less arrow charge time on a bow + chance to replace a normal arrow with a slowness arrow (1/3)"),
                 SoundEvents.STRAY_HURT,
                 new StrayAbility(),
+                TotemMobCategory.HOSTILE
+        );
+
+        register("minecraft:evoker", "essence_evoker",
+                new TotemTooltipData("Wicked Covenant", "Vexes ignore the player + when melee attacked, chance of summoning a vex targeting the attacker (1/6) + when attacked by a projectile, chance to summon an evoker fang underneath the attacker (1/3)"),
+                SoundEvents.EVOKER_HURT,
+                new EvokerAbility(),
                 TotemMobCategory.HOSTILE
         );
 
