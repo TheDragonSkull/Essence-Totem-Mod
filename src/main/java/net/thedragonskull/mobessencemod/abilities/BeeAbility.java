@@ -53,7 +53,7 @@ public class BeeAbility implements IMobAbility{
         if (!(event.getNewTarget() instanceof Player player)) return;
 
         if (TotemUtils.hasTotemWithEssenceServer((ServerPlayer) player, ResourceLocation.parse("minecraft:bee"))) {
-            event.setCanceled(true);
+            event.setNewTarget(null);
         }
     }
 }

@@ -33,7 +33,7 @@ public class PhantomAbility implements IMobAbility {
         if (!(event.getNewTarget() instanceof Player player)) return;
 
         if (TotemUtils.hasTotemWithEssenceServer((ServerPlayer) player, ResourceLocation.parse("minecraft:phantom"))) {
-            event.setCanceled(true);
+            event.setNewTarget(null);
         }
     }
 

@@ -48,7 +48,7 @@ public class CommonAbilityUtils {
 
         if (TotemUtils.hasTotemWithEssenceServer((ServerPlayer) player, ResourceLocation.parse("minecraft:ocelot")) ||
                 TotemUtils.hasTotemWithEssenceServer((ServerPlayer) player, ResourceLocation.parse("minecraft:cat"))) {
-            event.setCanceled(true);
+            event.setNewTarget(null);
         }
     }
 

@@ -16,13 +16,6 @@ public class ArmorStandAbility implements IMobAbility {
 
     @Override
     public void tick(ServerPlayer player, ItemStack totemStack) {
-        List<Mob> mobs = player.level().getEntitiesOfClass(Mob.class, player.getBoundingBox().inflate(32), mob ->
-                mob.getTarget() == player
-        );
-
-        for (Mob mob : mobs) {
-            mob.setTarget(null);
-        }
     }
 
     public static void stillPlayer(TickEvent.ClientTickEvent event) {
@@ -58,7 +51,7 @@ public class ArmorStandAbility implements IMobAbility {
     public static void onMobTarget(LivingChangeTargetEvent event) {
         if (event.getNewTarget() instanceof ServerPlayer player) {
             if (TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:armor_stand"))) {
-                event.setCanceled(true);
+                event.setNewTarget(null);
             }
         }
     }

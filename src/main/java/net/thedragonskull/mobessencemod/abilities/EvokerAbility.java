@@ -81,7 +81,7 @@ public class EvokerAbility implements IMobAbility {
         if (!(event.getNewTarget() instanceof Player player)) return;
 
         if (TotemUtils.hasTotemWithEssenceServer((ServerPlayer) player, ResourceLocation.parse("minecraft:evoker"))) {
-            event.setCanceled(true);
+            event.setNewTarget(null);
         }
     }
 

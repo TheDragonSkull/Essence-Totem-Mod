@@ -85,7 +85,7 @@ public class SilverfishAbility implements IMobAbility {
         if (!(event.getNewTarget() instanceof Player player)) return;
 
         if (TotemUtils.hasTotemWithEssenceServer((ServerPlayer) player, ResourceLocation.parse("minecraft:silverfish"))) {
-            event.setCanceled(true);
+            event.setNewTarget(null);
         }
     }
 }

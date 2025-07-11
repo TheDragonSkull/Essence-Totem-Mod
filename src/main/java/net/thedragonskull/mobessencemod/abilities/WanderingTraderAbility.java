@@ -20,7 +20,7 @@ public class WanderingTraderAbility implements IMobAbility {
         if (!(event.getNewTarget() instanceof Player player)) return;
 
         if (TotemUtils.hasTotemWithEssenceServer((ServerPlayer) player, ResourceLocation.parse("minecraft:wandering_trader"))) {
-            event.setCanceled(true);
+            event.setNewTarget(null);
         }
     }
 }

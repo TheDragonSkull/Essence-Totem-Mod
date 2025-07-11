@@ -70,7 +70,7 @@ public class EndermiteAbility implements IMobAbility {
         if (!(event.getNewTarget() instanceof Player player)) return;
 
         if (TotemUtils.hasTotemWithEssenceServer((ServerPlayer) player, ResourceLocation.parse("minecraft:endermite"))) {
-            event.setCanceled(true);
+            event.setNewTarget(null);
         }
     }
 }
