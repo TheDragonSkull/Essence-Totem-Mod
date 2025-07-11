@@ -421,6 +421,13 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.SPECIAL
         );
 
+        register("minecraft:ravager", "essence_ravager",
+                new TotemTooltipData("Sturdy Beast", "Tackle any mob in your way while running + 50% less knockback received + when melee attacked, chance to roar and make any mob in the surroundings take damage and knockback"),
+                SoundEvents.RAVAGER_HURT,
+                new RavagerAbility(),
+                TotemMobCategory.SPECIAL
+        );
+
         // NON MOB
         register("minecraft:armor_stand", "essence_armor_stand",
                 new TotemTooltipData("Soulless Entity", "Become as still as stone. In absolute immobility, even danger forgets you exist"),

@@ -84,6 +84,7 @@ public class CommonEvents {
         ElderGuardianAbility.elderGuardianDamageReduction(event);
         StriderAbility.onFireHurt(event);
         CommonAbilityUtils.onCatLand(event);
+        RavagerAbility.onRavagerRoar(event);
     }
 
     @SubscribeEvent
@@ -111,6 +112,11 @@ public class CommonEvents {
         CamelAbility.onCactusHurt(event);
         PolarBearAbility.bearKnockback(event);
         CommonAbilityUtils.onFreezingHurt(event);
+    }
+
+    @SubscribeEvent
+    public static void onLivingKnockback(LivingKnockBackEvent event) {
+        RavagerAbility.onRavagerKnockback(event);
     }
 
     @SubscribeEvent
@@ -143,6 +149,7 @@ public class CommonEvents {
         CamelAbility.camelStep(event);
         PolarBearAbility.bearResistance(event);
         VexAbility.onTraverseBlock(event);
+        RavagerAbility.applyRavagerRamAttack(event);
 
         if (event.phase != TickEvent.Phase.END) return;
         if (!(event.player instanceof ServerPlayer serverPlayer)) return;

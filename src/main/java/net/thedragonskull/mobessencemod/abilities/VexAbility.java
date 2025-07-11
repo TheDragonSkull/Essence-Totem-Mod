@@ -77,8 +77,6 @@ public class VexAbility implements IMobAbility {
 
                 event.setCanceled(true);
 
-                System.out.println(event);
-
                 ((ServerLevel)player.level()).sendParticles(
                         ParticleTypes.CRIT,
                         target.getX(), target.getY() + target.getBbHeight() * 0.5, target.getZ(),
