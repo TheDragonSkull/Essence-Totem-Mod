@@ -13,7 +13,6 @@
     "CobWebBlockMixin",
     "CreeperMixin",
     "LavaSwimMixin",
-    "LlamaControlMixin",
     "NoUnderwaterMiningPenaltyMixin",
     "PhantomElytraMixin",
     "PlayerDestroyChestMixin",

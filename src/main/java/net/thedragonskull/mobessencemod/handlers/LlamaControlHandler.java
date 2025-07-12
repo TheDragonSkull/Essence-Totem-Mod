@@ -24,6 +24,7 @@ public class LlamaControlHandler {
         Player player = event.player;
 
         if (!(player.getVehicle() instanceof Llama llama)) return;
+        if (!llama.isTamed()) return;
 
         if (!TotemUtils.hasTotemWithEssenceServer((ServerPlayer) player, ResourceLocation.parse("minecraft:wandering_trader")) &&
                 !TotemUtils.hasTotemWithEssenceServer((ServerPlayer) player, ResourceLocation.parse("minecraft:trader_llama"))) return;

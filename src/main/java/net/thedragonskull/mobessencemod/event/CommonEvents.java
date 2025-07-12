@@ -4,18 +4,15 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.event.ViewportEvent;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
@@ -57,6 +54,11 @@ public class CommonEvents {
     }
 
     @SubscribeEvent
+    public static void onEntityInteract(PlayerInteractEvent.EntityInteract event) {
+        PillagerAbility.onRideRavager(event);
+    }
+
+    @SubscribeEvent
     public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
         AllayAbility.onNoteblockUsed(event);
     }
@@ -86,6 +88,7 @@ public class CommonEvents {
         CommonAbilityUtils.onCatLand(event);
         RavagerAbility.onRavagerRoar(event);
         EvokerAbility.onPlayerHurt(event);
+        PillagerAbility.onPillagerShoot(event);
     }
 
     @SubscribeEvent
@@ -201,6 +204,7 @@ public class CommonEvents {
         ArmorStandAbility.onMobTarget(event);
         CommonAbilityUtils.onCreeperTarget(event);
         EvokerAbility.onVexTarget(event);
+        PillagerAbility.onRavagerTarget(event);
     }
 
     @SubscribeEvent

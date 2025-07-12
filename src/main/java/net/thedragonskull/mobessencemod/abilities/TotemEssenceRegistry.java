@@ -357,6 +357,13 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.HOSTILE
         );
 
+        register("minecraft:pillager", "essence_pillager",
+                new TotemTooltipData("Beastmaster's Wrath", "???"),
+                SoundEvents.PILLAGER_HURT,
+                new PillagerAbility(),
+                TotemMobCategory.HOSTILE
+        );
+
         // SPECIAL
         register("minecraft:zombie_villager", "essence_zombie_villager",
                 new TotemTooltipData("Undead Scent of the Money", "Grow a big nose to smell nearby emerald ores (~20 blocks) + if killed by an entity, instantly revive with half a heart (one time use)"),
