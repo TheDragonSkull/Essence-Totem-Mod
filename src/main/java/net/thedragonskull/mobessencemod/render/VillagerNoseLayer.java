@@ -14,14 +14,34 @@ import net.minecraft.resources.ResourceLocation;
 import net.thedragonskull.mobessencemod.MobEssenceMod;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
 
+import java.util.Map;
+
 public class VillagerNoseLayer extends RenderLayer<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> {
     private final VillagerNoseModel villagerNoseModel;
-    private static final ResourceLocation NOSE_TEXTURE = ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "textures/misc/villager_nose.png");
-    private static final ResourceLocation ZOMBIE_NOSE_TEXTURE = ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "textures/misc/zombie_villager_nose.png");
+    private final WitchNoseModel witchNoseModel;
 
-    public VillagerNoseLayer(RenderLayerParent<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> pRenderer, ModelPart villagerNosePart) {
+    private static final ResourceLocation VILLAGER_NOSE_TEXTURE =
+            ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "textures/misc/villager_nose.png");
+    private static final ResourceLocation ZOMBIE_NOSE_TEXTURE =
+            ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "textures/misc/zombie_villager_nose.png");
+    private static final ResourceLocation ILLAGER_NOSE_TEXTURE =
+            ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "textures/misc/illager_nose.png");
+    private static final ResourceLocation WITCH_NOSE_TEXTURE =
+            ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "textures/misc/witch_nose.png");
+
+    private static final Map<ResourceLocation, ResourceLocation> NOSE_TEXTURES = Map.ofEntries(
+            Map.entry(ResourceLocation.parse("minecraft:villager"), VILLAGER_NOSE_TEXTURE),
+            Map.entry(ResourceLocation.parse("minecraft:wandering_trader"), VILLAGER_NOSE_TEXTURE),
+            Map.entry(ResourceLocation.parse("minecraft:zombie_villager"), ZOMBIE_NOSE_TEXTURE),
+            Map.entry(ResourceLocation.parse("minecraft:evoker"), ILLAGER_NOSE_TEXTURE),
+            Map.entry(ResourceLocation.parse("minecraft:pillager"), ILLAGER_NOSE_TEXTURE),
+            Map.entry(ResourceLocation.parse("minecraft:vindicator"), ILLAGER_NOSE_TEXTURE)
+    );
+
+    public VillagerNoseLayer(RenderLayerParent<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> pRenderer, ModelPart villagerNosePart, ModelPart witchNosePart) {
         super(pRenderer);
         this.villagerNoseModel = new VillagerNoseModel(villagerNosePart);
+        this.witchNoseModel = new WitchNoseModel(witchNosePart);
     }
 
     @Override
@@ -29,13 +49,32 @@ public class VillagerNoseLayer extends RenderLayer<AbstractClientPlayer, PlayerM
                        AbstractClientPlayer player, float pLimbSwing, float pLimbSwingAmount,
                        float pPartialTick, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
 
-        boolean hasVillager = TotemUtils.hasTotemWithEssenceClient(player, ResourceLocation.parse("minecraft:villager"));
-        boolean hasZombie = TotemUtils.hasTotemWithEssenceClient(player, ResourceLocation.parse("minecraft:zombie_villager"));
-
-        if (!hasVillager && !hasZombie) return;
         if (player.isInvisible()) return;
 
-        ResourceLocation texture = hasVillager ? NOSE_TEXTURE : ZOMBIE_NOSE_TEXTURE;
+        if (TotemUtils.hasTotemWithEssenceClient(player, ResourceLocation.parse("minecraft:witch"))) {
+            VertexConsumer vertexConsumer = pBuffer.getBuffer(RenderType.entityCutoutNoCull(WITCH_NOSE_TEXTURE));
+
+            poseStack.pushPose();
+            this.getParentModel().head.translateAndRotate(poseStack);
+            this.witchNoseModel.setupAnim(player, pLimbSwing, pLimbSwingAmount, pAgeInTicks, pNetHeadYaw, pHeadPitch);
+            poseStack.translate(0.0F, -1.42F, -0.3F);
+            this.witchNoseModel.renderToBuffer(poseStack, vertexConsumer, pPackedLight,
+                    LivingEntityRenderer.getOverlayCoords(player, 0.0F), 1.0F, 1.0F, 1.0F, 1.0F);
+            poseStack.popPose();
+            return;
+        }
+
+        ResourceLocation texture = null;
+
+        for (Map.Entry<ResourceLocation, ResourceLocation> entry : NOSE_TEXTURES.entrySet()) {
+            if (TotemUtils.hasTotemWithEssenceClient(player, entry.getKey())) {
+                texture = entry.getValue();
+                break;
+            }
+        }
+
+        if (texture == null) return;
+
         VertexConsumer vertexconsumer = pBuffer.getBuffer(RenderType.entityCutoutNoCull(texture));
 
         poseStack.pushPose();

@@ -7,6 +7,8 @@ import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.monster.Ravager;
+import net.minecraft.world.entity.monster.Vex;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -97,6 +99,18 @@ public class CommonAbilityUtils {
             int charge = event.getCharge();
             int boostedCharge = (int)(charge * 1.75F);
             event.setCharge(boostedCharge);
+        }
+    }
+
+    // PILLAGER, EVOKER, & VINDICATOR
+    public static void onRavagerTarget(LivingChangeTargetEvent event) {
+        if (!(event.getEntity() instanceof Ravager)) return;
+        if (!(event.getNewTarget() instanceof Player player)) return;
+
+        if (TotemUtils.hasTotemWithEssenceServer((ServerPlayer) player, ResourceLocation.parse("minecraft:pillager")) ||
+                TotemUtils.hasTotemWithEssenceServer((ServerPlayer) player, ResourceLocation.parse("minecraft:evoker")) ||
+                TotemUtils.hasTotemWithEssenceServer((ServerPlayer) player, ResourceLocation.parse("minecraft:vindicator"))) {
+            event.setNewTarget(null);
         }
     }
 

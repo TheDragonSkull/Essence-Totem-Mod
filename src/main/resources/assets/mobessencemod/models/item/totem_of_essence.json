@@ -247,6 +247,10 @@
     {
       "predicate": { "essence_pillager": 1 },
       "model": "mobessencemod:item/totem_of_essence_pillager"
+    },
+    {
+      "predicate": { "essence_vindicator": 1 },
+      "model": "mobessencemod:item/totem_of_essence_vindicator"
     }
   ]
 }

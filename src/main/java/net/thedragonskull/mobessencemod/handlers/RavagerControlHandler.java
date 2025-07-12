@@ -26,7 +26,8 @@ public class RavagerControlHandler {
         ServerPlayer player = (ServerPlayer) event.player;
 
         if (player.getVehicle() instanceof Ravager ravager) {
-            if (TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:pillager"))) {
+            if (TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:pillager")) ||
+                    TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:vindicator"))) {
 
                 CompoundTag data = ravager.getPersistentData();
 

@@ -9,7 +9,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
@@ -18,15 +17,6 @@ public class PillagerAbility implements IMobAbility {
 
     @Override
     public void tick(ServerPlayer player, ItemStack totemStack) {
-    }
-
-    public static void onRavagerTarget(LivingChangeTargetEvent event) {
-        if (!(event.getEntity() instanceof Ravager)) return;
-        if (!(event.getNewTarget() instanceof Player player)) return;
-
-        if (TotemUtils.hasTotemWithEssenceServer((ServerPlayer) player, ResourceLocation.parse("minecraft:pillager"))) {
-            event.setNewTarget(null);
-        }
     }
 
     public static void onRideRavager(PlayerInteractEvent.EntityInteract event) {

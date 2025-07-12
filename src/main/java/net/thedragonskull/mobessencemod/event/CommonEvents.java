@@ -56,6 +56,7 @@ public class CommonEvents {
     @SubscribeEvent
     public static void onEntityInteract(PlayerInteractEvent.EntityInteract event) {
         PillagerAbility.onRideRavager(event);
+        VindicatorAbility.onRideRavager(event);
     }
 
     @SubscribeEvent
@@ -89,6 +90,7 @@ public class CommonEvents {
         RavagerAbility.onRavagerRoar(event);
         EvokerAbility.onPlayerHurt(event);
         PillagerAbility.onPillagerShoot(event);
+        VindicatorAbility.onVindicatorAttack(event);
     }
 
     @SubscribeEvent
@@ -154,6 +156,7 @@ public class CommonEvents {
         PolarBearAbility.bearResistance(event);
         VexAbility.onTraverseBlock(event);
         RavagerAbility.applyRavagerRamAttack(event);
+        VindicatorAbility.vindicatorAxeSpeed(event);
     }
 
     @SubscribeEvent
@@ -204,7 +207,7 @@ public class CommonEvents {
         ArmorStandAbility.onMobTarget(event);
         CommonAbilityUtils.onCreeperTarget(event);
         EvokerAbility.onVexTarget(event);
-        PillagerAbility.onRavagerTarget(event);
+        CommonAbilityUtils.onRavagerTarget(event);
     }
 
     @SubscribeEvent

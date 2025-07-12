@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.thedragonskull.mobessencemod.MobEssenceMod;
 import net.thedragonskull.mobessencemod.render.VillagerNoseLayer;
 import net.thedragonskull.mobessencemod.render.VillagerNoseModel;
+import net.thedragonskull.mobessencemod.render.WitchNoseModel;
 import net.thedragonskull.mobessencemod.util.KeyBindings;
 
 @Mod.EventBusSubscriber(modid = MobEssenceMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -26,7 +27,8 @@ public class ModEvents {
 
             if (renderer instanceof PlayerRenderer playerRenderer) {
                 ModelPart villagerNosePart = event.getEntityModels().bakeLayer(VillagerNoseModel.LAYER_LOCATION);
-                playerRenderer.addLayer(new VillagerNoseLayer(renderer, villagerNosePart));
+                ModelPart witchNosePart = event.getEntityModels().bakeLayer(WitchNoseModel.LAYER_LOCATION);
+                playerRenderer.addLayer(new VillagerNoseLayer(renderer, villagerNosePart, witchNosePart));
             }
         }
     }
@@ -34,6 +36,7 @@ public class ModEvents {
     @SubscribeEvent
     public static void onRegisterLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(VillagerNoseModel.LAYER_LOCATION, VillagerNoseModel::createBodyLayer);
+        event.registerLayerDefinition(WitchNoseModel.LAYER_LOCATION, WitchNoseModel::createBodyLayer);
     }
 
     @SubscribeEvent

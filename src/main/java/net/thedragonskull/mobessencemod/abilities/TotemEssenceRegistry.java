@@ -351,16 +351,23 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:evoker", "essence_evoker",
-                new TotemTooltipData("Wicked Covenant", "Vexes ignore the player + when melee attacked, chance of summoning a vex targeting the attacker (1/6) + when attacked by a projectile, chance to summon an evoker fang underneath the attacker (1/3)"),
+                new TotemTooltipData("Wicked Covenant", "Vexes and Ravagers ignore the player + when melee attacked, chance of summoning a vex targeting the attacker (1/6) + when attacked by a projectile, chance to summon an evoker fang underneath the attacker (1/3)"),
                 SoundEvents.EVOKER_HURT,
                 new EvokerAbility(),
                 TotemMobCategory.HOSTILE
         );
 
         register("minecraft:pillager", "essence_pillager",
-                new TotemTooltipData("Beastmaster's Wrath", "???"),
+                new TotemTooltipData("Beastmaster's Wrath", "Ravagers ignore the player + ride and control ravagers + more damage with the crossbow if riding a ravager"),
                 SoundEvents.PILLAGER_HURT,
                 new PillagerAbility(),
+                TotemMobCategory.HOSTILE
+        );
+
+        register("minecraft:vindicator", "essence_vindicator",
+                new TotemTooltipData("Ravaging Axe", "Ravagers ignore the player + ride and control ravagers + more damage with axes if riding a ravager + speed boost if holding an axe in the main hand while there's an entity close to the player"),
+                SoundEvents.VINDICATOR_HURT,
+                new VindicatorAbility(),
                 TotemMobCategory.HOSTILE
         );
 
