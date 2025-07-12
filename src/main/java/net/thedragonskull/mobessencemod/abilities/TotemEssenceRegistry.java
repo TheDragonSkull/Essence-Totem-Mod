@@ -187,6 +187,13 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.PASSIVE
         );
 
+        register("minecraft:tadpole", "essence_tadpole",
+                new TotemTooltipData("Slimy Snack", "Consume a slimeball to get a random positive effect based if the player is on land or water (20s)"),
+                SoundEvents.TADPOLE_HURT,
+                new TadpoleAbility(),
+                TotemMobCategory.PASSIVE
+        );
+
         // NEUTRAL
         register("minecraft:bee", "essence_bee",
                 new TotemTooltipData("Stinger Reflex", "Stings and poisons enemies when hit from behind + bees will no longer target the player"),
