@@ -371,6 +371,13 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.HOSTILE
         );
 
+        register("minecraft:ghast", "essence_ghast",
+                new TotemTooltipData("Sorrow Flame", "When hurt by a projectile fired from a mob, chance of shooting a Fireball facing its direction and gain regen for 10 seconds (1/3)"),
+                SoundEvents.GHAST_HURT,
+                new GhastAbility(),
+                TotemMobCategory.HOSTILE
+        );
+
         // SPECIAL
         register("minecraft:zombie_villager", "essence_zombie_villager",
                 new TotemTooltipData("Undead Scent of the Money", "Grow a big nose to smell nearby emerald ores (~20 blocks) + if killed by an entity, instantly revive with half a heart (one time use)"),

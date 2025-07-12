@@ -251,6 +251,10 @@
     {
       "predicate": { "essence_vindicator": 1 },
       "model": "mobessencemod:item/totem_of_essence_vindicator"
+    },
+    {
+      "predicate": { "essence_ghast": 1 },
+      "model": "mobessencemod:item/totem_of_essence_ghast"
     }
   ]
 }

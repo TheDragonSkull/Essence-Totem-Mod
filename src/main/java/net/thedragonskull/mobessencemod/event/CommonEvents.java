@@ -91,6 +91,7 @@ public class CommonEvents {
         EvokerAbility.onPlayerHurt(event);
         PillagerAbility.onPillagerShoot(event);
         VindicatorAbility.onVindicatorAttack(event);
+        GhastAbility.onGhastFireball(event);
     }
 
     @SubscribeEvent
