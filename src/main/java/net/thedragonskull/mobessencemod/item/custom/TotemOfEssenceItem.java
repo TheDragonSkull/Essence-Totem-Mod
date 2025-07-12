@@ -14,7 +14,9 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Fox;
+import net.minecraft.world.entity.animal.FrogVariant;
 import net.minecraft.world.entity.animal.MushroomCow;
+import net.minecraft.world.entity.animal.frog.Frog;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -60,6 +62,18 @@ public class TotemOfEssenceItem extends Item implements ICurioItem {
                 case RED -> ResourceLocation.parse("minecraft:fox");
                 case SNOW -> ResourceLocation.parse("minecraft:snow_fox");
             };
+        } else if (target instanceof Frog frog) {
+            FrogVariant frogVariant = frog.getVariant();
+
+            if (frogVariant == FrogVariant.TEMPERATE) {
+                mobId = ResourceLocation.parse("minecraft:temperate_frog");
+            } else if (frogVariant == FrogVariant.WARM) {
+                mobId = ResourceLocation.parse("minecraft:warm_frog");
+            } else if (frogVariant == FrogVariant.COLD) {
+                mobId = ResourceLocation.parse("minecraft:cold_frog");
+            } else {
+                mobId = ResourceLocation.parse("minecraft:frog");
+            }
         } else {
             mobId = ForgeRegistries.ENTITY_TYPES.getKey(target.getType());
         }

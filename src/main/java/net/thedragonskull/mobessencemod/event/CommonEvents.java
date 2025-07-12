@@ -124,6 +124,7 @@ public class CommonEvents {
         CamelAbility.onCactusHurt(event);
         PolarBearAbility.bearKnockback(event);
         CommonAbilityUtils.onFreezingHurt(event);
+        FrogAbility.onFrogFreeze(event);
     }
 
     @SubscribeEvent
@@ -163,6 +164,7 @@ public class CommonEvents {
         VexAbility.onTraverseBlock(event);
         RavagerAbility.applyRavagerRamAttack(event);
         VindicatorAbility.vindicatorAxeSpeed(event);
+        FrogAbility.onFrogSlownessTick(event);
     }
 
     @SubscribeEvent
@@ -174,6 +176,16 @@ public class CommonEvents {
     @SubscribeEvent
     public static void onFogColor(ViewportEvent.ComputeFogColor event) {
         TropicalFishAbility.onFogColor(event);
+    }
+
+    @SubscribeEvent
+    public static void onLivingFall(LivingFallEvent event) {
+        FrogAbility.onFrogFallDamage(event);
+    }
+
+    @SubscribeEvent
+    public static void onLivingJump(LivingEvent.LivingJumpEvent event) {
+        FrogAbility.onFrogJump(event);
     }
 
     @SubscribeEvent

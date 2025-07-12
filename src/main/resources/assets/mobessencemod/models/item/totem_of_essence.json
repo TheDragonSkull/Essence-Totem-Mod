@@ -259,6 +259,18 @@
     {
       "predicate": { "essence_tadpole": 1 },
       "model": "mobessencemod:item/totem_of_essence_tadpole"
+    },
+    {
+      "predicate": { "essence_temperate_frog": 1 },
+      "model": "mobessencemod:item/totem_of_essence_temperate_frog"
+    },
+    {
+      "predicate": { "essence_cold_frog": 1 },
+      "model": "mobessencemod:item/totem_of_essence_cold_frog"
+    },
+    {
+      "predicate": { "essence_warm_frog": 1 },
+      "model": "mobessencemod:item/totem_of_essence_warm_frog"
     }
   ]
 }

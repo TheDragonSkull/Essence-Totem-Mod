@@ -194,6 +194,34 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.PASSIVE
         );
 
+        register("minecraft:tadpole", "essence_tadpole",
+                new TotemTooltipData("Slimy Snack", "Consume a slimeball to get a random positive effect based if the player is on land or water (20s)"),
+                SoundEvents.TADPOLE_HURT,
+                new TadpoleAbility(),
+                TotemMobCategory.PASSIVE
+        );
+
+        register("minecraft:temperate_frog", "essence_temperate_frog",
+                new TotemTooltipData("???", "???"),
+                SoundEvents.FROG_HURT,
+                new FrogAbility(),
+                TotemMobCategory.PASSIVE
+        );
+
+        register("minecraft:cold_frog", "essence_cold_frog",
+                new TotemTooltipData("???", "???"),
+                SoundEvents.FROG_HURT,
+                new FrogAbility(),
+                TotemMobCategory.PASSIVE
+        );
+
+        register("minecraft:warm_frog", "essence_warm_frog",
+                new TotemTooltipData("???", "???"),
+                SoundEvents.FROG_HURT,
+                new FrogAbility(),
+                TotemMobCategory.PASSIVE
+        );
+
         // NEUTRAL
         register("minecraft:bee", "essence_bee",
                 new TotemTooltipData("Stinger Reflex", "Stings and poisons enemies when hit from behind + bees will no longer target the player"),

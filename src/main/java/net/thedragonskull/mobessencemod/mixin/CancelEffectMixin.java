@@ -66,5 +66,26 @@ public abstract class CancelEffectMixin {
             }
         }
     }
+
+    @Inject(method = "addEffect(Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)Z",
+            at = @At("HEAD"), cancellable = true)
+    private void mobessence$preventSlownessIfWarmFrog(MobEffectInstance pEffectInstance, Entity pSource, CallbackInfoReturnable<Boolean> cir) {
+        Entity self = (Entity) (Object) this;
+
+        if (!(self instanceof ServerPlayer player)) return;
+
+        MobEffect type = pEffectInstance.getEffect();
+
+        if (type == MobEffects.MOVEMENT_SLOWDOWN &&
+                TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:warm_frog"))) {
+
+            cir.setReturnValue(false);
+
+            if (player.hasEffect(type)) {
+                player.removeEffect(type);
+                player.connection.send(new ClientboundRemoveMobEffectPacket(player.getId(), type));
+            }
+        }
+    }
 }
 
