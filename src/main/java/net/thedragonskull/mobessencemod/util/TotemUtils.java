@@ -121,5 +121,18 @@ public class TotemUtils {
         ).contains(item);
     }
 
+    public static boolean isVegetable(Item item) { //todo: comprobar y añadir o quitar
+        return Set.of(
+                Items.POTATO,
+                Items.BAKED_POTATO,
+                Items.BEETROOT,
+                Items.BEETROOT_SOUP,
+                Items.CARROT,
+                Items.GOLDEN_CARROT,
+                Items.MELON_SLICE,
+                Items.KELP
+        ).contains(item);
+    }
+
 
 }

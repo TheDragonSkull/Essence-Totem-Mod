@@ -67,6 +67,7 @@ public class CommonEvents {
     @SubscribeEvent
     public static void onRightClickItem(PlayerInteractEvent.RightClickItem event) {
         TadpoleAbility.onTadpoleSlimeSnack(event);
+        PandaAbility.onPandaEat(event);
     }
 
     @SubscribeEvent
@@ -97,6 +98,7 @@ public class CommonEvents {
         PillagerAbility.onPillagerShoot(event);
         VindicatorAbility.onVindicatorAttack(event);
         GhastAbility.onGhastFireball(event);
+        PandaAbility.onPandaHit(event);
     }
 
     @SubscribeEvent
@@ -104,6 +106,7 @@ public class CommonEvents {
         PigAbility.onItemEaten(event);
         RedMooshroomAbility.onEat(event);
         BrownMooshroomAbility.onEat(event);
+        PandaAbility.onPandaEatVegetable(event);
     }
 
     @SubscribeEvent
@@ -124,7 +127,7 @@ public class CommonEvents {
         CamelAbility.onCactusHurt(event);
         PolarBearAbility.bearKnockback(event);
         CommonAbilityUtils.onFreezingHurt(event);
-        FrogAbility.onFrogFreeze(event);
+        FrogAbility.onFrogImmunity(event);
     }
 
     @SubscribeEvent
@@ -164,7 +167,6 @@ public class CommonEvents {
         VexAbility.onTraverseBlock(event);
         RavagerAbility.applyRavagerRamAttack(event);
         VindicatorAbility.vindicatorAxeSpeed(event);
-        FrogAbility.onFrogSlownessTick(event);
     }
 
     @SubscribeEvent

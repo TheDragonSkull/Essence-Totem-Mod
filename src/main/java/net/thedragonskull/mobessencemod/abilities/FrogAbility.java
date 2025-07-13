@@ -2,12 +2,12 @@ package net.thedragonskull.mobessencemod.abilities;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
@@ -41,10 +41,12 @@ public class FrogAbility implements IMobAbility {
         if (!player.isSprinting()) {
             player.push(0, 0.4, 0);
             player.hurtMarked = true;
+
+            player.level().playSound(null, player.blockPosition(), SoundEvents.FROG_LONG_JUMP, SoundSource.PLAYERS, 2.0f, 1.0f);
         }
     }
 
-    public static void onFrogFreeze(LivingAttackEvent event) {
+    public static void onFrogImmunity(LivingAttackEvent event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
 
         DamageSource source = event.getSource();
@@ -59,19 +61,6 @@ public class FrogAbility implements IMobAbility {
                 player.hasEffect(MobEffects.POISON)) {
 
             event.setCanceled(true);
-        }
-    }
-
-    public static void onFrogSlownessTick(TickEvent.PlayerTickEvent event) {
-        if (event.phase != TickEvent.Phase.END) return;
-        if (event.player.level().isClientSide()) return;
-
-        ServerPlayer player = (ServerPlayer) event.player;
-
-        if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:warm_frog"))) return;
-
-        if (player.hasEffect(MobEffects.MOVEMENT_SLOWDOWN)) {
-            player.removeEffect(MobEffects.MOVEMENT_SLOWDOWN);
         }
     }
 

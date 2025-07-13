@@ -202,21 +202,21 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:temperate_frog", "essence_temperate_frog",
-                new TotemTooltipData("???", "???"),
+                new TotemTooltipData("Amphibian Spirit of Resilience", "No fall damage from 5 blocks or less + long jump while not sprinting + immunity to poison"),
                 SoundEvents.FROG_HURT,
                 new FrogAbility(),
                 TotemMobCategory.PASSIVE
         );
 
         register("minecraft:cold_frog", "essence_cold_frog",
-                new TotemTooltipData("???", "???"),
+                new TotemTooltipData("Amphibian Spirit of the Tundra", "No fall damage from 5 blocks or less + long jump while not sprinting + immunity to freezing"),
                 SoundEvents.FROG_HURT,
                 new FrogAbility(),
                 TotemMobCategory.PASSIVE
         );
 
         register("minecraft:warm_frog", "essence_warm_frog",
-                new TotemTooltipData("???", "???"),
+                new TotemTooltipData("Amphibian Spirit of the Dunes", "No fall damage from 5 blocks or less + long jump while not sprinting + immunity to slowness"),
                 SoundEvents.FROG_HURT,
                 new FrogAbility(),
                 TotemMobCategory.PASSIVE
@@ -290,6 +290,13 @@ public class TotemEssenceRegistry {
                 new TotemTooltipData("Arctic Endurance", "Immunity to freezing + damage resistance I while on any snow/ice biome + chance of inflicting knockback when melee attacking (25%)"),
                 SoundEvents.POLAR_BEAR_HURT,
                 new PolarBearAbility(),
+                TotemMobCategory.NEUTRAL
+        );
+
+        register("minecraft:panda", "essence_panda",
+                new TotemTooltipData("Temperamental Behavior", "When hit by a mob, chance to get Strength I for 5s (1/3) + gain regeneration II for 5s if standing still for 3 seconds (30s cooldown) + gain absorption I for 5s when eating vegetables"),
+                SoundEvents.PANDA_HURT,
+                new PandaAbility(),
                 TotemMobCategory.NEUTRAL
         );
 

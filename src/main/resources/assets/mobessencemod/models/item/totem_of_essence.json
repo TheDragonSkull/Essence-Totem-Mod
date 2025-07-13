@@ -271,6 +271,10 @@
     {
       "predicate": { "essence_warm_frog": 1 },
       "model": "mobessencemod:item/totem_of_essence_warm_frog"
+    },
+    {
+      "predicate": { "essence_panda": 1 },
+      "model": "mobessencemod:item/totem_of_essence_panda"
     }
   ]
 }
