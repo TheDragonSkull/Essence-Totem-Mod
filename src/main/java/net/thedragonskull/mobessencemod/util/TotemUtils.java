@@ -1,5 +1,7 @@
 package net.thedragonskull.mobessencemod.util;
 
+import com.mojang.blaze3d.platform.InputConstants;
+import net.minecraft.client.KeyMapping;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -133,5 +135,10 @@ public class TotemUtils {
         ).contains(item);
     }
 
+    public static void restoreIfPressed(KeyMapping mapping, long window) {
+        if (InputConstants.isKeyDown(window, mapping.getKey().getValue())) {
+            mapping.setDown(true);
+        }
+    }
 
 }

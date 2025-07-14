@@ -36,6 +36,7 @@ public class CommonEvents {
     @SubscribeEvent
     public static void onClientTick(TickEvent.ClientTickEvent event) {
         ArmorStandAbility.stillPlayer(event);
+        ShulkerAbility.onShulkerStill(event);
     }
 
     @SubscribeEvent
@@ -99,6 +100,7 @@ public class CommonEvents {
         VindicatorAbility.onVindicatorAttack(event);
         GhastAbility.onGhastFireball(event);
         PandaAbility.onPandaHit(event);
+        ShulkerAbility.onShulkerTank(event);
     }
 
     @SubscribeEvent
@@ -129,6 +131,7 @@ public class CommonEvents {
         PolarBearAbility.bearKnockback(event);
         CommonAbilityUtils.onFreezingHurt(event);
         FrogAbility.onFrogImmunity(event);
+        ShulkerAbility.shulkerHurt(event);
     }
 
     @SubscribeEvent

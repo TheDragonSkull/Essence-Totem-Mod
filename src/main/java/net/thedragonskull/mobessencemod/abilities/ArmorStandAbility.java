@@ -3,16 +3,17 @@ package net.thedragonskull.mobessencemod.abilities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
 import net.thedragonskull.mobessencemod.handlers.MouseHandlerAccessor;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
 
-import java.util.List;
+import static net.thedragonskull.mobessencemod.util.TotemUtils.restoreIfPressed;
 
 public class ArmorStandAbility implements IMobAbility {
+
+    private static boolean wasInArmorStandMode = false;
 
     @Override
     public void tick(ServerPlayer player, ItemStack totemStack) {
@@ -24,9 +25,12 @@ public class ArmorStandAbility implements IMobAbility {
 
         MouseHandlerAccessor accessor = (MouseHandlerAccessor) mc.mouseHandler;
 
-        if (TotemUtils.hasTotemWithEssenceClient(mc.player, ResourceLocation.parse("minecraft:armor_stand"))) {
+        boolean isArmorStandMode = TotemUtils.hasTotemWithEssenceClient(mc.player, ResourceLocation.parse("minecraft:armor_stand"));
+
+        if (isArmorStandMode) {
             mc.player.input.leftImpulse = 0;
             mc.player.input.forwardImpulse = 0;
+
             mc.options.keyUp.setDown(false);
             mc.options.keyDown.setDown(false);
             mc.options.keyLeft.setDown(false);
@@ -42,10 +46,26 @@ public class ArmorStandAbility implements IMobAbility {
             while (mc.options.keyAttack.consumeClick()) {}
             while (mc.options.keyUse.consumeClick()) {}
 
+            accessor.mobessencemod_setAccumulatedDX(0);
+            accessor.mobessencemod_setAccumulatedDY(0);
+
+        } else if (wasInArmorStandMode) {
+            long window = mc.getWindow().getWindow();
+
+            restoreIfPressed(mc.options.keyUp, window);
+            restoreIfPressed(mc.options.keyDown, window);
+            restoreIfPressed(mc.options.keyLeft, window);
+            restoreIfPressed(mc.options.keyRight, window);
+            restoreIfPressed(mc.options.keyJump, window);
+            restoreIfPressed(mc.options.keySprint, window);
+            restoreIfPressed(mc.options.keyShift, window);
+            restoreIfPressed(mc.options.keyUse, window);
+            restoreIfPressed(mc.options.keyAttack, window);
+            restoreIfPressed(mc.options.keyDrop, window);
+            restoreIfPressed(mc.options.keyPickItem, window);
         }
 
-        accessor.mobessencemod_setAccumulatedDX(0);
-        accessor.mobessencemod_setAccumulatedDY(0);
+        wasInArmorStandMode = isArmorStandMode;
     }
 
     public static void onMobTarget(LivingChangeTargetEvent event) {

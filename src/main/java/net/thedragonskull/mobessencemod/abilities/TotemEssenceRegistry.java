@@ -427,6 +427,13 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.HOSTILE
         );
 
+        register("minecraft:shulker", "essence_shulker",
+                new TotemTooltipData("Armored Skin", "50% chance of deflecting arrows + if pressing shift, gain super armor but cannot move + in super armor state, chance of shooting a shulker bullet to the attacker (1/5)"),
+                SoundEvents.SHULKER_HURT,
+                new ShulkerAbility(),
+                TotemMobCategory.HOSTILE
+        );
+
         // SPECIAL
         register("minecraft:zombie_villager", "essence_zombie_villager",
                 new TotemTooltipData("Undead Scent of the Money", "Grow a big nose to smell nearby emerald ores (~20 blocks) + if killed by an entity, instantly revive with half a heart (one time use)"),

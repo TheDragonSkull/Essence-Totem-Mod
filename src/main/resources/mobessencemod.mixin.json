@@ -19,6 +19,7 @@
     "PowderSnowBlockMixin",
     "PressurePlateMixin",
     "RabbitJumpMixin",
+    "ShulkerArmorMixin",
     "SweetBerryBushBlockMixin",
     "TripWireMixin"
   ],

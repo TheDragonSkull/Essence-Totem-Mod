@@ -279,6 +279,10 @@
     {
       "predicate": { "essence_rabbit": 1 },
       "model": "mobessencemod:item/totem_of_essence_rabbit"
+    },
+    {
+      "predicate": { "essence_shulker": 1 },
+      "model": "mobessencemod:item/totem_of_essence_shulker"
     }
   ]
 }
