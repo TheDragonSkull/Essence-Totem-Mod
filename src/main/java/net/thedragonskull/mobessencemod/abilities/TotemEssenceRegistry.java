@@ -294,7 +294,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:panda", "essence_panda",
-                new TotemTooltipData("Temperamental Behavior", "When hit by a mob, chance to get Strength I for 5s (1/3) + gain regeneration II for 5s if standing still for 3 seconds (30s cooldown) + gain absorption I for 5s when eating vegetables"),
+                new TotemTooltipData("Temperamental Behavior", "When hit by a mob, chance to get Strength I for 5s (1/3) + recover half a heart by consuming bamboo + gain absorption I for 5s when eating vegetables such as potatoes, beetroots, carrots, etc..."),
                 SoundEvents.PANDA_HURT,
                 new PandaAbility(),
                 TotemMobCategory.NEUTRAL

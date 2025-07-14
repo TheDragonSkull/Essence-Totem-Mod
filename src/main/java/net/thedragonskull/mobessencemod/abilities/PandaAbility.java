@@ -1,7 +1,7 @@
 package net.thedragonskull.mobessencemod.abilities;
 
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -17,7 +17,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -40,8 +39,13 @@ public class PandaAbility implements IMobAbility {
 
         if (!item.is(Items.BAMBOO)) return;
 
-        if (serverPlayer.getHealth() < serverPlayer.getMaxHealth()) { // TODO: testear esto
-            serverPlayer.heal(0.5F);
+        if (serverPlayer.getHealth() < serverPlayer.getMaxHealth()) {
+            serverPlayer.heal(1.0F);
+
+            player.getCooldowns().addCooldown(Items.BAMBOO, 30);
+            item.shrink(1);
+
+            player.displayClientMessage(Component.literal(String.valueOf(player.getHealth())), true);
 
             level.playSound(null, serverPlayer.blockPosition(), SoundEvents.PANDA_EAT, SoundSource.PLAYERS, 1.0F, 1.0F);
             ((ServerLevel) level).sendParticles(ParticleTypes.HEART,
@@ -49,9 +53,7 @@ public class PandaAbility implements IMobAbility {
                     15, 0.2, 0.3, 0.2, 0.01);
         }
 
-        player.getCooldowns().addCooldown(Items.BAMBOO, 30);
         event.setCanceled(true);
-
     }
 
     public static void onPandaHit(LivingHurtEvent event) {
