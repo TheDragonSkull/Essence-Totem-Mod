@@ -229,6 +229,13 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.PASSIVE
         );
 
+        register("minecraft:sniffer", "essence_sniffer",
+                new TotemTooltipData("Scent Tracking", "Sniff for nearby matching blocks based on what you hold.\\nCloser means stronger scent... and faster digging!"),
+                SoundEvents.SNIFFER_HURT,
+                new SnifferAbility(),
+                TotemMobCategory.PASSIVE
+        );
+
         // NEUTRAL
         register("minecraft:bee", "essence_bee",
                 new TotemTooltipData("Stinger Reflex", "Stings and poisons enemies when hit from behind + bees will no longer target the player"),

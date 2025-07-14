@@ -283,6 +283,10 @@
     {
       "predicate": { "essence_shulker": 1 },
       "model": "mobessencemod:item/totem_of_essence_shulker"
+    },
+    {
+      "predicate": { "essence_sniffer": 1 },
+      "model": "mobessencemod:item/totem_of_essence_sniffer"
     }
   ]
 }
