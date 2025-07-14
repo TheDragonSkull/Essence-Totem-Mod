@@ -23,6 +23,7 @@ import static net.thedragonskull.mobessencemod.util.TotemUtils.restoreIfPressed;
 public class ShulkerAbility implements IMobAbility {
 
     private static boolean wasInShulkerMode = false;
+    private static boolean isInShulkerMode = false;
 
     @Override
     public void tick(ServerPlayer player, ItemStack totemStack) {
@@ -44,6 +45,13 @@ public class ShulkerAbility implements IMobAbility {
             mc.options.keyLeft.setDown(false);
             mc.options.keyRight.setDown(false);
             mc.options.keyJump.setDown(false);
+
+            if (mc.level != null && !isInShulkerMode) {
+                isInShulkerMode = true;
+                mc.level.playLocalSound(mc.player.getX(), mc.player.getY(), mc.player.getZ(),
+                        SoundEvents.SHULKER_CLOSE, SoundSource.PLAYERS, 2.0F, 1.0F, false);
+            }
+
         } else if (wasInShulkerMode) {
             long window = mc.getWindow().getWindow();
 
@@ -52,6 +60,8 @@ public class ShulkerAbility implements IMobAbility {
             restoreIfPressed(mc.options.keyLeft, window);
             restoreIfPressed(mc.options.keyRight, window);
             restoreIfPressed(mc.options.keyJump, window);
+
+            isInShulkerMode = false;
         }
 
         wasInShulkerMode = isShulkerMode;
