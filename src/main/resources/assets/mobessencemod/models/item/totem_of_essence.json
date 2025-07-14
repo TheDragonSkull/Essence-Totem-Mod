@@ -275,6 +275,10 @@
     {
       "predicate": { "essence_panda": 1 },
       "model": "mobessencemod:item/totem_of_essence_panda"
+    },
+    {
+      "predicate": { "essence_rabbit": 1 },
+      "model": "mobessencemod:item/totem_of_essence_rabbit"
     }
   ]
 }

@@ -116,6 +116,7 @@ public class CommonEvents {
         ZombieHorseAbility.onPlayerDeath(event);
         HuskAbility.onPlayerDeath(event);
         AxolotlAbility.onPlayerKill(event);
+        RabbitAbility.onRabbitFrenzy(event);
     }
 
     @SubscribeEvent

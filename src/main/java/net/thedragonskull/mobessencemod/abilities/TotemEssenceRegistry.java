@@ -222,6 +222,13 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.PASSIVE
         );
 
+        register("minecraft:rabbit", "essence_rabbit",
+                new TotemTooltipData("Killing Frenzy", "Permanent jump boost + chance of getting movement speed and strength boost when melee killing (1/4)"),
+                SoundEvents.RABBIT_HURT,
+                new RabbitAbility(),
+                TotemMobCategory.PASSIVE
+        );
+
         // NEUTRAL
         register("minecraft:bee", "essence_bee",
                 new TotemTooltipData("Stinger Reflex", "Stings and poisons enemies when hit from behind + bees will no longer target the player"),

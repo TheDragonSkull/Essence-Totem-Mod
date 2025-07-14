@@ -18,6 +18,7 @@
     "PlayerDestroyChestMixin",
     "PowderSnowBlockMixin",
     "PressurePlateMixin",
+    "RabbitJumpMixin",
     "SweetBerryBushBlockMixin",
     "TripWireMixin"
   ],
