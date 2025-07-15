@@ -1,9 +1,13 @@
 package net.thedragonskull.mobessencemod.abilities;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.ClientboundSoundPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -157,6 +161,18 @@ public class WardenAbility implements IMobAbility {
     public static void onKillEntity(LivingDeathEvent event) {
         if (!(event.getSource().getEntity() instanceof ServerPlayer player)) return;
         if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:warden"))) return;
+
+        if (isAngry(player)) {
+            player.connection.send(new ClientboundSoundPacket(
+                    BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.WARDEN_ATTACK_IMPACT),
+                    SoundSource.PLAYERS,
+                    player.getX(), player.getY(), player.getZ(),
+                    1.0f,
+                    0.4f / (player.getRandom().nextFloat() * 0.4f + 0.8f),
+                    player.level().getRandom().nextLong()
+            ));
+        }
+
         resetAnger(player);
     }
 }

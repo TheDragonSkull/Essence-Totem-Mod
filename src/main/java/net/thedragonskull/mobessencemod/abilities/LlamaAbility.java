@@ -22,14 +22,14 @@ import java.util.UUID;
 public class LlamaAbility implements IMobAbility {
 
     private static final Map<UUID, Long> lastSpitTimes = new HashMap<>();
-    private static final int SPIT_COOLDOWN_MS = 5000;
+    private static final int SPIT_COOLDOWN_TICKS = 1000;
 
     @Override
     public void tick(ServerPlayer player, ItemStack totemStack) {
-        long now = System.currentTimeMillis();
+        long now = player.level().getGameTime();
         UUID uuid = player.getUUID();
 
-        if (now - lastSpitTimes.getOrDefault(uuid, 0L) < SPIT_COOLDOWN_MS) return;
+        if (now - lastSpitTimes.getOrDefault(uuid, 0L) < SPIT_COOLDOWN_TICKS) return;
 
         double range = 10.0;
         Level level = player.level();
