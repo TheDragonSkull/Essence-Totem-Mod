@@ -10,6 +10,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
+import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.client.event.ViewportEvent;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.event.TickEvent;
@@ -174,6 +175,7 @@ public class CommonEvents {
         VexAbility.onTraverseBlock(event);
         RavagerAbility.applyRavagerRamAttack(event);
         VindicatorAbility.vindicatorAxeSpeed(event);
+        IronGolemAbility.onPlayerTick(event);
     }
 
     @SubscribeEvent
@@ -251,6 +253,10 @@ public class CommonEvents {
 
     }
 
+    @SubscribeEvent
+    public static void renderGuiOverlay(RenderGuiOverlayEvent.Post event) {
+        IronGolemAbility.onOverlayRender(event);
+    }
 
     private static final ResourceLocation FRAME = ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "textures/gui/totem_frame.png");
 

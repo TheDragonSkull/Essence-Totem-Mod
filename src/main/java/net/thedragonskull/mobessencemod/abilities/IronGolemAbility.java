@@ -1,5 +1,13 @@
 package net.thedragonskull.mobessencemod.abilities;
 
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.ItemInHandRenderer;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -8,15 +16,21 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.client.event.RenderGuiOverlayEvent;
+import net.minecraftforge.client.event.RenderHandEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.thedragonskull.mobessencemod.MobEssenceMod;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
 
 import java.util.*;
@@ -28,7 +42,9 @@ public class IronGolemAbility implements IMobAbility {
 
     public static void onGolemDefense(LivingHurtEvent event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
-        if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:iron_golem"))) return;
+
+        boolean hasTotem = TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:iron_golem"));
+        if (!hasTotem && !fracturedPlayers.contains(player.getUUID())) return;
 
         UUID id = player.getUUID();
 
@@ -51,9 +67,12 @@ public class IronGolemAbility implements IMobAbility {
         }
     }
 
-    @Override
-    public void tick(ServerPlayer player, ItemStack totemStack) {
+    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+        if (event.phase != TickEvent.Phase.END) return;
+        if (!(event.player instanceof ServerPlayer player)) return;
+
         UUID id = player.getUUID();
+
         if (fractureExpiry.containsKey(id)) {
             if (player.level().getGameTime() >= fractureExpiry.get(id)) {
                 fracturedPlayers.remove(id);
@@ -61,7 +80,6 @@ public class IronGolemAbility implements IMobAbility {
             }
         }
     }
-
 
     public static void onGolemAttack(LivingAttackEvent event) {
         if (!(event.getSource().getEntity() instanceof ServerPlayer player)) return;
@@ -106,4 +124,35 @@ public class IronGolemAbility implements IMobAbility {
             event.setCancellationResult(InteractionResult.SUCCESS);
         }
     }
+
+    public static boolean isFractured(Player player) {
+        return fracturedPlayers.contains(player.getUUID());
+    }
+
+    public static void onOverlayRender(RenderGuiOverlayEvent.Post event) {
+        Minecraft mc = Minecraft.getInstance();
+        LocalPlayer player = mc.player;
+        if (player == null || !IronGolemAbility.isFractured(player)) return;
+        if (!mc.options.getCameraType().isFirstPerson()) return;
+
+        int screenWidth = mc.getWindow().getGuiScaledWidth();
+        int screenHeight = mc.getWindow().getGuiScaledHeight();
+
+        ResourceLocation cracks = ResourceLocation.fromNamespaceAndPath("minecraft", "textures/block/destroy_stage_9.png");
+
+        RenderSystem.enableBlend();
+        RenderSystem.defaultBlendFunc();
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShaderTexture(0, cracks);
+        RenderSystem.setShaderColor(1f, 1f, 1f, 0.05f);
+
+        event.getGuiGraphics().blit(cracks, 0, 0, 0, 0, screenWidth, screenHeight, screenWidth, screenHeight);
+
+        RenderSystem.disableBlend();
+    }
+
+    @Override
+    public void tick(ServerPlayer player, ItemStack totemStack) {
+    }
+
 }

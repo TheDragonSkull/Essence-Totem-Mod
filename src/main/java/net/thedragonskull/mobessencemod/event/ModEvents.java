@@ -11,6 +11,7 @@ import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.thedragonskull.mobessencemod.MobEssenceMod;
+import net.thedragonskull.mobessencemod.render.FractureOverlayLayer;
 import net.thedragonskull.mobessencemod.render.VillagerNoseLayer;
 import net.thedragonskull.mobessencemod.render.VillagerNoseModel;
 import net.thedragonskull.mobessencemod.render.WitchNoseModel;
@@ -29,6 +30,8 @@ public class ModEvents {
                 ModelPart villagerNosePart = event.getEntityModels().bakeLayer(VillagerNoseModel.LAYER_LOCATION);
                 ModelPart witchNosePart = event.getEntityModels().bakeLayer(WitchNoseModel.LAYER_LOCATION);
                 playerRenderer.addLayer(new VillagerNoseLayer(renderer, villagerNosePart, witchNosePart));
+
+                playerRenderer.addLayer(new FractureOverlayLayer(playerRenderer));
             }
         }
     }

@@ -58,5 +58,7 @@ public class MobEssenceMod {
                 event.enqueueWork(PacketHandler::register);
             });
         }
+
+
     }
 }

@@ -28,6 +28,8 @@ public class VillagerNoseLayer extends RenderLayer<AbstractClientPlayer, PlayerM
             ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "textures/misc/illager_nose.png");
     private static final ResourceLocation WITCH_NOSE_TEXTURE =
             ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "textures/misc/witch_nose.png");
+    private static final ResourceLocation GOLEM_NOSE_TEXTURE =
+            ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "textures/misc/iron_golem_nose.png");
 
     private static final Map<ResourceLocation, ResourceLocation> NOSE_TEXTURES = Map.ofEntries(
             Map.entry(ResourceLocation.parse("minecraft:villager"), VILLAGER_NOSE_TEXTURE),
@@ -35,7 +37,8 @@ public class VillagerNoseLayer extends RenderLayer<AbstractClientPlayer, PlayerM
             Map.entry(ResourceLocation.parse("minecraft:zombie_villager"), ZOMBIE_NOSE_TEXTURE),
             Map.entry(ResourceLocation.parse("minecraft:evoker"), ILLAGER_NOSE_TEXTURE),
             Map.entry(ResourceLocation.parse("minecraft:pillager"), ILLAGER_NOSE_TEXTURE),
-            Map.entry(ResourceLocation.parse("minecraft:vindicator"), ILLAGER_NOSE_TEXTURE)
+            Map.entry(ResourceLocation.parse("minecraft:vindicator"), ILLAGER_NOSE_TEXTURE),
+            Map.entry(ResourceLocation.parse("minecraft:iron_golem"), GOLEM_NOSE_TEXTURE)
     );
 
     public VillagerNoseLayer(RenderLayerParent<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> pRenderer, ModelPart villagerNosePart, ModelPart witchNosePart) {

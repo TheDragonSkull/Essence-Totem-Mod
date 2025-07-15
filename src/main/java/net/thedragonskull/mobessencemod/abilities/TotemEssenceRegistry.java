@@ -527,7 +527,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:iron_golem", "essence_iron_golem",
-                new TotemTooltipData("Steelbound", "When melee attacking, chance to launch enemies into the air (1/4) + consume iron ingots to heal half a heart + 1/4 chance to block melee attacks, but for the next 5 seconds any hit deals double"),
+                new TotemTooltipData("Steelbound", "When melee attacking, chance to launch enemies into the air (1/4) + consume iron ingots to heal half a heart + 1/4 chance to block melee attacks, but for the next 5 seconds any hit deals double [this persists even after unequipping the totem]"),
                 SoundEvents.IRON_GOLEM_HURT,
                 new IronGolemAbility(),
                 TotemMobCategory.SPECIAL
