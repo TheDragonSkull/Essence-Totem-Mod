@@ -16,7 +16,8 @@ public class PowderSnowBlockMixin {
     @Inject(method = "canEntityWalkOnPowderSnow", at = @At("HEAD"), cancellable = true)
     private static void allowSnowFoxTotem(Entity entity, CallbackInfoReturnable<Boolean> cir) {
         if (entity instanceof Player player) {
-            if (TotemUtils.hasTotemWithEssenceClient(player, ResourceLocation.parse("minecraft:snow_fox"))) {
+            if (TotemUtils.hasTotemWithEssenceClient(player, ResourceLocation.parse("minecraft:snow_fox")) ||
+                    TotemUtils.hasTotemWithEssenceClient(player, ResourceLocation.parse("minecraft:snow_golem"))) {
                 cir.setReturnValue(true);
             }
         }

@@ -73,12 +73,13 @@ public class CommonAbilityUtils {
         }
     }
 
-    // POLAR BEAR & STRAY
+    // POLAR BEAR, STRAY & SNOW GOLEM
     public static void onFreezingHurt(LivingAttackEvent event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
 
         if (!(hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:polar_bear")) ||
-                hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:stray")))) return;
+                hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:stray")) ||
+                hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:snow_golem")))) return;
 
         DamageSource source = event.getSource();
 

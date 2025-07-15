@@ -533,6 +533,13 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.SPECIAL
         );
 
+        register("minecraft:snow_golem", "essence_snow_golem",
+                new TotemTooltipData("Snowball Fight", "Immunity to freezing + walk over powder snow blocks + automatically shoot snowballs at hostile mobs nearby, dealing knockback (every 2 seconds)"),
+                SoundEvents.SNOW_GOLEM_HURT,
+                new SnowGolemAbility(),
+                TotemMobCategory.SPECIAL
+        );
+
         // NON MOB
         register("minecraft:armor_stand", "essence_armor_stand",
                 new TotemTooltipData("Soulless Entity", "Become as still as stone. In absolute immobility, even danger forgets you exist"),
