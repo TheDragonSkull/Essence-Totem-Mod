@@ -30,8 +30,13 @@ public class SnifferAbility implements IMobAbility {
             Map.entry(Items.DIAMOND, List.of(Blocks.DIAMOND_ORE, Blocks.DEEPSLATE_DIAMOND_ORE)),
             Map.entry(Items.LAPIS_LAZULI, List.of(Blocks.LAPIS_ORE, Blocks.DEEPSLATE_LAPIS_ORE)),
             Map.entry(Items.QUARTZ, List.of(Blocks.NETHER_QUARTZ_ORE)),
-            Map.entry(Items.NETHERITE_INGOT, List.of(Blocks.ANCIENT_DEBRIS)),
-            Map.entry(Items.FLINT, List.of(Blocks.SUSPICIOUS_GRAVEL, Blocks.GRAVEL))
+            Map.entry(Items.NETHERITE_SCRAP, List.of(Blocks.ANCIENT_DEBRIS)),
+            Map.entry(Items.FLINT, List.of(Blocks.SUSPICIOUS_GRAVEL, Blocks.GRAVEL)),
+            Map.entry(Items.CLAY_BALL, List.of(Blocks.CLAY)),
+            Map.entry(Items.GLOWSTONE_DUST, List.of(Blocks.GLOWSTONE)),
+            Map.entry(Items.NETHER_WART, List.of(Blocks.NETHER_WART)),
+            Map.entry(Items.HONEYCOMB, List.of(Blocks.BEE_NEST)),
+            Map.entry(Items.BONE, List.of(Blocks.BONE_BLOCK))
     );
 
     @Override
@@ -63,8 +68,12 @@ public class SnifferAbility implements IMobAbility {
         if (found != null) {
             double dist = player.position().distanceTo(Vec3.atCenterOf(found));
 
-            if (dist <= 30) {
+            if (dist > 20) {
+                player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 2, 0, true, false, true));
+            } else if (dist > 10) {
                 player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 2, 1, true, false, true));
+            } else {
+                player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 2, 2, true, false, true));
             }
 
             if (player.tickCount % 100 == 0) {
