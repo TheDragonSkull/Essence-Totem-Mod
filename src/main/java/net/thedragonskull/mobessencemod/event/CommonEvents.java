@@ -104,6 +104,7 @@ public class CommonEvents {
         PandaAbility.onPandaHit(event);
         ShulkerAbility.onShulkerTank(event);
         IronGolemAbility.onGolemDefense(event);
+        WardenAbility.onPlayerHurt(event);
     }
 
     @SubscribeEvent
@@ -122,6 +123,7 @@ public class CommonEvents {
         HuskAbility.onPlayerDeath(event);
         AxolotlAbility.onPlayerKill(event);
         RabbitAbility.onRabbitFrenzy(event);
+        WardenAbility.onKillEntity(event);
     }
 
     @SubscribeEvent
@@ -176,6 +178,7 @@ public class CommonEvents {
         RavagerAbility.applyRavagerRamAttack(event);
         VindicatorAbility.vindicatorAxeSpeed(event);
         IronGolemAbility.onPlayerTick(event);
+        WardenAbility.onPlayerTick(event);
     }
 
     @SubscribeEvent

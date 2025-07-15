@@ -295,6 +295,10 @@
     {
       "predicate": { "essence_snow_golem": 1 },
       "model": "mobessencemod:item/totem_of_essence_snow_golem"
+    },
+    {
+      "predicate": { "essence_warden": 1 },
+      "model": "mobessencemod:item/totem_of_essence_warden"
     }
   ]
 }

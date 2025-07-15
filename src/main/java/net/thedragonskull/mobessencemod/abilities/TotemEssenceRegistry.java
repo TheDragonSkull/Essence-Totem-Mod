@@ -540,6 +540,13 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.SPECIAL
         );
 
+        register("minecraft:warden", "essence_warden",
+                new TotemTooltipData("Rage Pulse", "With each wound, the fury inside grows. Strike harder, endure longer. \nEmbrace darkness to sense nearby souls"),
+                SoundEvents.WARDEN_HURT,
+                new WardenAbility(),
+                TotemMobCategory.SPECIAL
+        );
+
         // NON MOB
         register("minecraft:armor_stand", "essence_armor_stand",
                 new TotemTooltipData("Soulless Entity", "Become as still as stone. In absolute immobility, even danger forgets you exist"),
