@@ -69,6 +69,7 @@ public class CommonEvents {
     public static void onRightClickItem(PlayerInteractEvent.RightClickItem event) {
         TadpoleAbility.onTadpoleSlimeSnack(event);
         PandaAbility.onPandaEat(event);
+        IronGolemAbility.onUseIron(event);
     }
 
     @SubscribeEvent
@@ -101,6 +102,7 @@ public class CommonEvents {
         GhastAbility.onGhastFireball(event);
         PandaAbility.onPandaHit(event);
         ShulkerAbility.onShulkerTank(event);
+        IronGolemAbility.onGolemDefense(event);
     }
 
     @SubscribeEvent
@@ -132,6 +134,7 @@ public class CommonEvents {
         CommonAbilityUtils.onFreezingHurt(event);
         FrogAbility.onFrogImmunity(event);
         ShulkerAbility.shulkerHurt(event);
+        IronGolemAbility.onGolemAttack(event);
     }
 
     @SubscribeEvent

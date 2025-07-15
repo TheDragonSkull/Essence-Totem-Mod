@@ -230,7 +230,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:sniffer", "essence_sniffer",
-                new TotemTooltipData("Scent Tracking", "Sniff for nearby matching blocks based on what you hold.\\nCloser means stronger scent... and faster digging!"),
+                new TotemTooltipData("Scent Tracking", "Sniff for nearby matching blocks based on what you hold. Closer means stronger scent... and faster digging!"),
                 SoundEvents.SNIFFER_HURT,
                 new SnifferAbility(),
                 TotemMobCategory.PASSIVE
@@ -523,6 +523,13 @@ public class TotemEssenceRegistry {
                 new TotemTooltipData("Sturdy Beast", "Tackle any mob in your way while running + 50% less knockback received + when melee attacked, chance to roar and make any mob in the surroundings take damage and knockback"),
                 SoundEvents.RAVAGER_HURT,
                 new RavagerAbility(),
+                TotemMobCategory.SPECIAL
+        );
+
+        register("minecraft:iron_golem", "essence_iron_golem",
+                new TotemTooltipData("Steelbound", "When melee attacking, chance to launch enemies into the air (1/4) + consume iron ingots to heal half a heart + 1/4 chance to block melee attacks, but for the next 5 seconds any hit deals double"),
+                SoundEvents.IRON_GOLEM_HURT,
+                new IronGolemAbility(),
                 TotemMobCategory.SPECIAL
         );
 

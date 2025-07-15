@@ -287,6 +287,10 @@
     {
       "predicate": { "essence_sniffer": 1 },
       "model": "mobessencemod:item/totem_of_essence_sniffer"
+    },
+    {
+      "predicate": { "essence_iron_golem": 1 },
+      "model": "mobessencemod:item/totem_of_essence_iron_golem"
     }
   ]
 }
