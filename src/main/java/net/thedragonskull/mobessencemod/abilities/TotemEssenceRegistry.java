@@ -314,6 +314,13 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.NEUTRAL
         );
 
+        register("minecraft:piglin", "essence_piglin",
+                new TotemTooltipData("Lust for Gold", "For every unique gold related item in the inventory, multiply the damage 1.1 times, and for every 5 items, get +1 level of luck effect"),
+                SoundEvents.PIGLIN_HURT,
+                new PiglinAbility(),
+                TotemMobCategory.NEUTRAL
+        );
+
         // HOSTILE
         register("minecraft:zombie", "essence_zombie",
                 new TotemTooltipData("Zombie Recall", "If killed by an entity, instantly revive with half a heart (one time use)"),

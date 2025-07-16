@@ -142,6 +142,11 @@ public class CommonEvents {
     }
 
     @SubscribeEvent
+    public static void onDamage(LivingDamageEvent event) {
+        PiglinAbility.onPiglinAttack(event);
+    }
+
+    @SubscribeEvent
     public static void onLivingKnockback(LivingKnockBackEvent event) {
         RavagerAbility.onRavagerKnockback(event);
     }

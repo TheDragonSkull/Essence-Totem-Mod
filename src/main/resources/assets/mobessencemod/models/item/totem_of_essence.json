@@ -303,6 +303,10 @@
     {
       "predicate": { "essence_wither_skeleton": 1 },
       "model": "mobessencemod:item/totem_of_essence_wither_skeleton"
+    },
+    {
+      "predicate": { "essence_piglin": 1 },
+      "model": "mobessencemod:item/totem_of_essence_piglin"
     }
   ]
 }
