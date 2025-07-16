@@ -441,6 +441,13 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.HOSTILE
         );
 
+        register("minecraft:wither_skeleton", "essence_wither_skeleton",
+                new TotemTooltipData("Withering Touch", "Chance of inflicting wither when melee attacking (1/5) + 50% damage reduction from any source of fire and wither effect"),
+                SoundEvents.WITHER_SKELETON_HURT,
+                new WitherSkeletonAbility(),
+                TotemMobCategory.HOSTILE
+        );
+
         // SPECIAL
         register("minecraft:zombie_villager", "essence_zombie_villager",
                 new TotemTooltipData("Undead Scent of the Money", "Grow a big nose to smell nearby emerald ores (~20 blocks) + if killed by an entity, instantly revive with half a heart (one time use)"),
