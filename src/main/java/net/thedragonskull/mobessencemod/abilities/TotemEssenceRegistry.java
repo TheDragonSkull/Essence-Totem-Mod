@@ -455,6 +455,13 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.HOSTILE
         );
 
+        register("minecraft:piglin_brute", "essence_piglin_brute",
+                new TotemTooltipData("Golden Tenacity", "Holding an axe grants a chance to disarm foes. When wounded, your rage quickens your strikes. Your mastery with the golden axe makes you use it more efficiently"),
+                SoundEvents.PIGLIN_BRUTE_HURT,
+                new PiglinBruteAbility(),
+                TotemMobCategory.HOSTILE
+        );
+
         // SPECIAL
         register("minecraft:zombie_villager", "essence_zombie_villager",
                 new TotemTooltipData("Undead Scent of the Money", "Grow a big nose to smell nearby emerald ores (~20 blocks) + if killed by an entity, instantly revive with half a heart (one time use)"),

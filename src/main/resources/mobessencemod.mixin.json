@@ -12,6 +12,7 @@
     "ChestRemoveMixin",
     "CobWebBlockMixin",
     "CreeperMixin",
+    "DiggerItemMixin",
     "LavaSwimMixin",
     "NoUnderwaterMiningPenaltyMixin",
     "PhantomElytraMixin",

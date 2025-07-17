@@ -139,11 +139,13 @@ public class CommonEvents {
         ShulkerAbility.shulkerHurt(event);
         IronGolemAbility.onGolemAttack(event);
         WitherSkeletonAbility.onApplyWither(event);
+        PiglinBruteAbility.onAttack(event);
     }
 
     @SubscribeEvent
     public static void onDamage(LivingDamageEvent event) {
         PiglinAbility.onPiglinAttack(event);
+        PiglinBruteAbility.onBruteDoubleDamage(event);
     }
 
     @SubscribeEvent
