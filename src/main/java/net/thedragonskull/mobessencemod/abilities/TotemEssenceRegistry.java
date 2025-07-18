@@ -469,6 +469,13 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.HOSTILE
         );
 
+        register("minecraft:hoglin", "essence_hoglin",
+                new TotemTooltipData("Savage Slam", "Reduced knockback + chance to launch the target into the air when melee hit (1/3)"),
+                SoundEvents.HOGLIN_HURT,
+                new HoglinAbility(),
+                TotemMobCategory.HOSTILE
+        );
+
         // SPECIAL
         register("minecraft:zombie_villager", "essence_zombie_villager",
                 new TotemTooltipData("Undead Scent of the Money", "Grow a big nose to smell nearby emerald ores (~20 blocks) + if killed by an entity, instantly revive with half a heart (one time use)"),

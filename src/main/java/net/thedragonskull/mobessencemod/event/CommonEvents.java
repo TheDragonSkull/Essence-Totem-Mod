@@ -143,6 +143,7 @@ public class CommonEvents {
         WitherSkeletonAbility.onApplyWither(event);
         PiglinBruteAbility.onAttack(event);
         ZombifiedPiglinAbility.onLightningStrikeHurt(event);
+        CommonAbilityUtils.onHoglinAttack(event);
     }
 
     @SubscribeEvent
@@ -154,6 +155,7 @@ public class CommonEvents {
     @SubscribeEvent
     public static void onLivingKnockback(LivingKnockBackEvent event) {
         RavagerAbility.onRavagerKnockback(event);
+        CommonAbilityUtils.onHoglinKnockback(event);
     }
 
     @SubscribeEvent
