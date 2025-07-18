@@ -13,6 +13,7 @@ import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.event.ViewportEvent;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
@@ -105,6 +106,7 @@ public class CommonEvents {
         IronGolemAbility.onGolemDefense(event);
         WardenAbility.onPlayerHurt(event);
         WitherSkeletonAbility.onWitherAndFireHurt(event);
+        ZombifiedPiglinAbility.onZombifiedPiglinSummon(event);
     }
 
     @SubscribeEvent
@@ -140,6 +142,7 @@ public class CommonEvents {
         IronGolemAbility.onGolemAttack(event);
         WitherSkeletonAbility.onApplyWither(event);
         PiglinBruteAbility.onAttack(event);
+        ZombifiedPiglinAbility.onLightningStrikeHurt(event);
     }
 
     @SubscribeEvent
@@ -230,6 +233,7 @@ public class CommonEvents {
     @SubscribeEvent
     public static void onFoxLoot(LivingDropsEvent event) {
         CommonAbilityUtils.onFoxLoot(event);
+        TotemUtils.onMobDrops(event);
     }
 
         @SubscribeEvent
@@ -269,7 +273,12 @@ public class CommonEvents {
         IronGolemAbility.onOverlayRender(event);
     }
 
-    private static final ResourceLocation FRAME = ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "textures/gui/totem_frame.png");
+    @SubscribeEvent
+    public static void onTotemTransform(EntityStruckByLightningEvent event) {
+        PigAbility.onTotemTransform(event);
+    }
+
+        private static final ResourceLocation FRAME = ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "textures/gui/totem_frame.png");
 
     @SubscribeEvent
     public static void renderTotemIndicator(RenderGuiOverlayEvent.Post event) {

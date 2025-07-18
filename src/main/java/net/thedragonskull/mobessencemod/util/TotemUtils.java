@@ -2,13 +2,16 @@ package net.thedragonskull.mobessencemod.util;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.thedragonskull.mobessencemod.item.ModItems;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
@@ -42,6 +45,11 @@ public class TotemUtils {
 
     public static boolean hasEssence(ItemStack stack) {
         return getEssence(stack) != null;
+    }
+
+    public static void setEssence(ItemStack stack, ResourceLocation essenceId) {
+        CompoundTag tag = stack.getOrCreateTag();
+        tag.putString("Essence", essenceId.toString());
     }
 
     // CLIENT
@@ -138,6 +146,13 @@ public class TotemUtils {
     public static void restoreIfPressed(KeyMapping mapping, long window) {
         if (InputConstants.isKeyDown(window, mapping.getKey().getValue())) {
             mapping.setDown(true);
+        }
+    }
+
+    public static void onMobDrops(LivingDropsEvent event) {
+        LivingEntity entity = event.getEntity();
+        if (entity.getPersistentData().getBoolean("MobEssenceSummoned")) {
+            event.setCanceled(true);
         }
     }
 

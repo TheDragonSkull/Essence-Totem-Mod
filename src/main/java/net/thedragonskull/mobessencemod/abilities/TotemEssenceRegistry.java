@@ -27,7 +27,7 @@ public class TotemEssenceRegistry {
 
         // PASSIVE
         register("minecraft:pig", "essence_pig",
-                new TotemTooltipData("Cast-Iron Stomach", "Immune to negative food effects"),
+                new TotemTooltipData("Cast-Iron Stomach", "Immune to negative food effects +  if struck by lightning bolt, the totem transforms its essence into zombified piglin"),
                 SoundEvents.PIG_HURT,
                 new PigAbility(),
                 TotemMobCategory.PASSIVE
@@ -318,6 +318,13 @@ public class TotemEssenceRegistry {
                 new TotemTooltipData("Lust for Gold", "For every unique gold related item in the inventory, multiply the damage 1.1 times, and for every 5 items, get +1 level of luck effect"),
                 SoundEvents.PIGLIN_HURT,
                 new PiglinAbility(),
+                TotemMobCategory.NEUTRAL
+        );
+
+        register("minecraft:zombified_piglin", "essence_zombified_piglin",
+                new TotemTooltipData("Hell's wrath", "Immunity to lightning strikes + when damaged, chance of summoning zombified piglin targeting the attacker (1/12)"),
+                SoundEvents.ZOMBIFIED_PIGLIN_HURT,
+                new ZombifiedPiglinAbility(),
                 TotemMobCategory.NEUTRAL
         );
 

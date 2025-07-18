@@ -311,6 +311,10 @@
     {
       "predicate": { "essence_piglin_brute": 1 },
       "model": "mobessencemod:item/totem_of_essence_piglin_brute"
+    },
+    {
+      "predicate": { "essence_zombified_piglin": 1 },
+      "model": "mobessencemod:item/totem_of_essence_zombified_piglin"
     }
   ]
 }
