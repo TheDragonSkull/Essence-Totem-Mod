@@ -11,4 +11,5 @@ public class HoglinAbility implements IMobAbility {
 
     // CommonAbilityUtils.onHoglinKnockback
     // CommonAbilityUtils.onHoglinAttack
+    // HoglinMixin
 }

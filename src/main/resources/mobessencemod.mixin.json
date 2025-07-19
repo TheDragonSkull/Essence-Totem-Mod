@@ -13,7 +13,7 @@
     "CobWebBlockMixin",
     "CreeperMixin",
     "DiggerItemMixin",
-    "HoglinMixin",
+    "HoglinAiMixin",
     "LavaSwimMixin",
     "NoUnderwaterMiningPenaltyMixin",
     "PhantomElytraMixin",
