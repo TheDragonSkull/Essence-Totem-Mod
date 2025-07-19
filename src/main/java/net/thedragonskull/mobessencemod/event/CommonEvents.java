@@ -107,6 +107,7 @@ public class CommonEvents {
         WardenAbility.onPlayerHurt(event);
         WitherSkeletonAbility.onWitherAndFireHurt(event);
         ZombifiedPiglinAbility.onZombifiedPiglinSummon(event);
+        ZoglinAbility.onZoglinSummon(event);
     }
 
     @SubscribeEvent

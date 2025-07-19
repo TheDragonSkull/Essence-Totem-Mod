@@ -13,6 +13,7 @@
     "CobWebBlockMixin",
     "CreeperMixin",
     "DiggerItemMixin",
+    "HoglinMixin",
     "LavaSwimMixin",
     "NoUnderwaterMiningPenaltyMixin",
     "PhantomElytraMixin",
@@ -22,7 +23,8 @@
     "RabbitJumpMixin",
     "ShulkerArmorMixin",
     "SweetBerryBushBlockMixin",
-    "TripWireMixin"
+    "TripWireMixin",
+    "ZoglinMixin"
   ],
   "client": [
     "MouseHandlerMixin",

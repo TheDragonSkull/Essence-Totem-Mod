@@ -470,7 +470,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:hoglin", "essence_hoglin",
-                new TotemTooltipData("Savage Slam", "Reduced knockback + chance to launch the target into the air when melee hit (1/3)"),
+                new TotemTooltipData("Savage Slam", "Hoglins ignore the player + reduced knockback + chance to launch the target into the air when melee hit (1/3)"),
                 SoundEvents.HOGLIN_HURT,
                 new HoglinAbility(),
                 TotemMobCategory.HOSTILE
@@ -579,6 +579,13 @@ public class TotemEssenceRegistry {
                 new TotemTooltipData("Rage Pulse", "With each wound, the fury inside grows. Strike harder, endure longer. \nEmbrace darkness to sense nearby souls"),
                 SoundEvents.WARDEN_HURT,
                 new WardenAbility(),
+                TotemMobCategory.SPECIAL
+        );
+
+        register("minecraft:zoglin", "essence_zoglin",
+                new TotemTooltipData("Hell's Savage Slam", "Reduced knockback + zoglins ignore the player + chance to launch the target into the air when melee hit (1/3) + when damaged, chance of summoning a zoglin targeting the attacker (1/12)"),
+                SoundEvents.ZOGLIN_HURT,
+                new ZoglinAbility(),
                 TotemMobCategory.SPECIAL
         );
 

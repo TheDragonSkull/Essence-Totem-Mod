@@ -319,6 +319,10 @@
     {
       "predicate": { "essence_hoglin": 1 },
       "model": "mobessencemod:item/totem_of_essence_hoglin"
+    },
+    {
+      "predicate": { "essence_zoglin": 1 },
+      "model": "mobessencemod:item/totem_of_essence_zoglin"
     }
   ]
 }
