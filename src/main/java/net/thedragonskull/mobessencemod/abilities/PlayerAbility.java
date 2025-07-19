@@ -35,15 +35,11 @@ public class PlayerAbility implements IMobAbility {
     public static void onPlayerClone(PlayerEvent.Clone event) {
         if (!event.isWasDeath()) return;
 
-        System.out.println("was death");
-
         event.getOriginal().reviveCaps();
 
         event.getOriginal().getCapability(MobEssenceCapabilities.MOB_ESSENCE_CAP).ifPresent(oldCap -> {
-            System.out.println("old cap");
 
             event.getEntity().getCapability(MobEssenceCapabilities.MOB_ESSENCE_CAP).ifPresent(newCap -> {
-                System.out.println("new cap");
 
                 CompoundTag tag = new CompoundTag();
                 oldCap.writeToNBT(tag);

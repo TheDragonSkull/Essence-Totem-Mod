@@ -39,7 +39,6 @@ public class MobEssenceData implements IMobEssenceData {
 
         inv.player.getCapability(CuriosCapability.INVENTORY).ifPresent(handler -> {
             curiosData = handler.serializeNBT(); //todo: Cannot resolve method 'deserializeNBT' in 'ICuriosItemHandler' y Cannot resolve method 'serializeNBT' in 'ICuriosItemHandler'
-
         });
     }
 
@@ -56,7 +55,7 @@ public class MobEssenceData implements IMobEssenceData {
 
         if (curiosData != null) {
             inv.player.getCapability(CuriosCapability.INVENTORY).ifPresent(handler -> {
-                CuriosApi.getSlotHelper().readCuriosFromTag(handler, curiosData);
+                handler.deserializeNBT(curiosData);
             });
         }
 
