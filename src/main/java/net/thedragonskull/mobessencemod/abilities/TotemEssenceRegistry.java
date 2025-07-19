@@ -596,6 +596,13 @@ public class TotemEssenceRegistry {
                 new ArmorStandAbility(),
                 TotemMobCategory.NON_MOB
         );
+
+        register("minecraft:player", "essence_player",
+                new TotemTooltipData("/cmd", "You feel like you’re cheating... but are you?"),
+                SoundEvents.PLAYER_HURT,
+                new PlayerAbility(),
+                TotemMobCategory.NON_MOB
+        );
     }
 
 

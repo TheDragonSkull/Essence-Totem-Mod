@@ -5,6 +5,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -12,18 +13,17 @@ import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.event.ViewportEvent;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.*;
-import net.minecraftforge.event.entity.player.ArrowLooseEvent;
-import net.minecraftforge.event.entity.player.AttackEntityEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
+import net.minecraftforge.event.entity.player.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.thedragonskull.mobessencemod.MobEssenceMod;
 import net.thedragonskull.mobessencemod.abilities.*;
+import net.thedragonskull.mobessencemod.capability.MobEssenceCapProvider;
 import net.thedragonskull.mobessencemod.item.custom.TotemOfEssenceItem;
 import net.thedragonskull.mobessencemod.network.C2SSwapTotemPacket;
 import net.thedragonskull.mobessencemod.network.PacketHandler;
@@ -127,6 +127,7 @@ public class CommonEvents {
         AxolotlAbility.onPlayerKill(event);
         RabbitAbility.onRabbitFrenzy(event);
         WardenAbility.onKillEntity(event);
+        PlayerAbility.onPlayerDeath(event);
     }
 
     @SubscribeEvent
@@ -237,6 +238,7 @@ public class CommonEvents {
     public static void onFoxLoot(LivingDropsEvent event) {
         CommonAbilityUtils.onFoxLoot(event);
         TotemUtils.onMobDrops(event);
+        PlayerAbility.onPlayerDrops(event);
     }
 
         @SubscribeEvent
@@ -258,6 +260,16 @@ public class CommonEvents {
     }
 
     @SubscribeEvent
+    public static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
+        //PlayerAbility.onPlayerRespawn(event);
+    }
+
+    @SubscribeEvent
+    public static void onClone(PlayerEvent.Clone event) {
+        PlayerAbility.onPlayerClone(event);
+    }
+
+    @SubscribeEvent
     public static void onInputKeyEvent(InputEvent.Key event) {
         ParrotAbility.flap(event);
         CamelAbility.camelDash(event);
@@ -269,6 +281,14 @@ public class CommonEvents {
             }
         }
 
+    }
+
+    @SubscribeEvent
+    public static void attachCapabilities(AttachCapabilitiesEvent<Entity> event) {
+        if (event.getObject() instanceof Player) {
+            event.addCapability(ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "mob_essence_data"),
+                    new MobEssenceCapProvider());
+        }
     }
 
     @SubscribeEvent

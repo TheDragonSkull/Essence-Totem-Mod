@@ -323,6 +323,10 @@
     {
       "predicate": { "essence_zoglin": 1 },
       "model": "mobessencemod:item/totem_of_essence_zoglin"
+    },
+    {
+      "predicate": { "essence_player": 1 },
+      "model": "mobessencemod:item/totem_of_essence_player"
     }
   ]
 }
