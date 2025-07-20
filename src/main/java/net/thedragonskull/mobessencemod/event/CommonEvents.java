@@ -261,7 +261,7 @@ public class CommonEvents {
 
     @SubscribeEvent
     public static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
-        //PlayerAbility.onPlayerRespawn(event);
+        PlayerAbility.onPlayerRespawn(event);
     }
 
     @SubscribeEvent

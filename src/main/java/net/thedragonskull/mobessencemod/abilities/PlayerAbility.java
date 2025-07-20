@@ -1,13 +1,8 @@
 package net.thedragonskull.mobessencemod.abilities;
 
-import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
@@ -40,15 +35,20 @@ public class PlayerAbility implements IMobAbility {
         event.getOriginal().getCapability(MobEssenceCapabilities.MOB_ESSENCE_CAP).ifPresent(oldCap -> {
 
             event.getEntity().getCapability(MobEssenceCapabilities.MOB_ESSENCE_CAP).ifPresent(newCap -> {
-
                 CompoundTag tag = new CompoundTag();
                 oldCap.writeToNBT(tag);
                 newCap.readFromNBT(tag);
-
-                if (newCap.shouldKeepInventory()) {
-                    newCap.restoreInventory(event.getEntity().getInventory());
-                }
             });
+        });
+    }
+
+    public static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+
+        player.getCapability(MobEssenceCapabilities.MOB_ESSENCE_CAP).ifPresent(cap -> {
+            if (cap.shouldKeepInventory()) {
+                cap.restoreInventory(player.getInventory());
+            }
         });
     }
 
