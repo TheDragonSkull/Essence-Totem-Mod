@@ -274,6 +274,11 @@ public class CommonEvents {
     }
 
     @SubscribeEvent
+    public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
+        PlayerAbility.onPlayerLogin(event);
+    }
+
+    @SubscribeEvent
     public static void onInputKeyEvent(InputEvent.Key event) {
         ParrotAbility.flap(event);
         CamelAbility.camelDash(event);

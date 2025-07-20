@@ -13,6 +13,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.GameRules;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -90,7 +91,7 @@ public class PlayerAbility implements IMobAbility {
         });
     }
 
-    // TP END
+    // TP & LAG
     private static final Map<UUID, BlockPos> lastSafePosition = new HashMap<>();
 
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
@@ -116,8 +117,9 @@ public class PlayerAbility implements IMobAbility {
 
         float damage = event.getAmount();
         float currentHealth = player.getHealth();
+
         if ((isFalling || isFallingVoid) && damage >= currentHealth) {
-            if (player.getRandom().nextInt(1) == 0) {
+            if (player.getRandom().nextInt(6) == 0) {
                 BlockPos safePos = lastSafePosition.get(player.getUUID());
 
                 if (safePos != null) {
@@ -126,12 +128,42 @@ public class PlayerAbility implements IMobAbility {
                     player.teleportTo(safePos.getX() + 0.5, safePos.getY() + 1, safePos.getZ() + 0.5);
                     player.resetFallDistance();
 
-                    player.displayClientMessage(Component.literal(
-                                    player.getName().getString() + " used /tp " + player.getName().getString() + " " + safePos.getX() + " " + safePos.getY() + 1 + " " + safePos.getZ() + "!")
-                            .withStyle(ChatFormatting.GRAY), false);
+                    String message;
+                    if (isFallingVoid) {
+                        message = player.getName().getString() + " used /tp " + player.getName().getString() +
+                                " " + safePos.getX() + " " + (safePos.getY() + 1) + " " + safePos.getZ() + "!";
+                    } else {
+                        message = player.getName().getString() + " has poor connection!";
+                    }
+
+                    player.displayClientMessage(Component.literal(message).withStyle(ChatFormatting.GRAY), false);
                 }
             }
 
+        }
+    }
+
+    public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:player"))) return;
+
+        if (player.getRandom().nextInt(20) == 0) {
+            ItemStack cake = new ItemStack(Items.CAKE);
+
+            boolean added = player.getInventory().add(cake);
+
+            if (!added) {
+                player.drop(cake, false);
+            }
+
+            player.connection.send(new ClientboundSoundPacket(
+                    BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.PLAYER_LEVELUP),
+                    SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0f, 1.0f,
+                    player.level().getRandom().nextLong())
+            );
+
+            String message = player.getName().getString() + " used /give " + player.getName().getString() + " cake";
+            player.displayClientMessage(Component.literal(message).withStyle(ChatFormatting.GRAY), false);
         }
     }
 }
