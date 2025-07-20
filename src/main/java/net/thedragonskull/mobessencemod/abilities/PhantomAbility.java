@@ -44,7 +44,6 @@ public class PhantomAbility implements IMobAbility {
         if (!(event.player instanceof LocalPlayer localPlayer)) return;
 
         if (!TotemUtils.hasTotemWithEssenceClient(localPlayer, ResourceLocation.parse("minecraft:phantom"))) {
-            localPlayer.stopFallFlying();
             return;
         }
 
