@@ -279,6 +279,11 @@ public class CommonEvents {
     }
 
     @SubscribeEvent
+    public static void onItemFished(ItemFishedEvent event) {
+        PlayerAbility.onFish(event);
+    }
+
+    @SubscribeEvent
     public static void onInputKeyEvent(InputEvent.Key event) {
         ParrotAbility.flap(event);
         CamelAbility.camelDash(event);
@@ -293,14 +298,6 @@ public class CommonEvents {
     }
 
     @SubscribeEvent
-    public static void attachCapabilities(AttachCapabilitiesEvent<Entity> event) {
-        if (event.getObject() instanceof Player) {
-            event.addCapability(ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "mob_essence_data"),
-                    new MobEssenceCapProvider());
-        }
-    }
-
-    @SubscribeEvent
     public static void renderGuiOverlay(RenderGuiOverlayEvent.Post event) {
         IronGolemAbility.onOverlayRender(event);
     }
@@ -310,7 +307,16 @@ public class CommonEvents {
         PigAbility.onTotemTransform(event);
     }
 
-        private static final ResourceLocation FRAME = ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "textures/gui/totem_frame.png");
+    @SubscribeEvent
+    public static void attachCapabilities(AttachCapabilitiesEvent<Entity> event) {
+        if (event.getObject() instanceof Player) {
+            event.addCapability(ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "mob_essence_data"),
+                    new MobEssenceCapProvider());
+        }
+    }
+
+    // TOTEM GUI FRAME
+    private static final ResourceLocation FRAME = ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "textures/gui/totem_frame.png");
 
     @SubscribeEvent
     public static void renderTotemIndicator(RenderGuiOverlayEvent.Post event) {

@@ -7,6 +7,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundSoundPacket;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -19,8 +20,10 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.ItemFishedEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.thedragonskull.mobessencemod.capability.MobEssenceCapabilities;
+import net.thedragonskull.mobessencemod.mixin.BedBlockMixin;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
 
 import java.util.HashMap;
@@ -128,6 +131,12 @@ public class PlayerAbility implements IMobAbility {
                     player.teleportTo(safePos.getX() + 0.5, safePos.getY() + 1, safePos.getZ() + 0.5);
                     player.resetFallDistance();
 
+                    player.connection.send(new ClientboundSoundPacket(
+                            BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.PLAYER_LEVELUP),
+                            SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0f, 1.0f,
+                            player.level().getRandom().nextLong())
+                    );
+
                     String message;
                     if (isFallingVoid) {
                         message = player.getName().getString() + " used /tp " + player.getName().getString() +
@@ -143,6 +152,7 @@ public class PlayerAbility implements IMobAbility {
         }
     }
 
+    // GIVE CAKE
     public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
         if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:player"))) return;
@@ -166,4 +176,31 @@ public class PlayerAbility implements IMobAbility {
             player.displayClientMessage(Component.literal(message).withStyle(ChatFormatting.GRAY), false);
         }
     }
+
+    // WEATHER RAIN
+    public static void onFish(ItemFishedEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:player"))) return;
+
+        ServerLevel level = (ServerLevel) player.level();
+
+        if (player.getRandom().nextInt(4) == 0) {
+            if (!level.isRaining() && level.getGameRules().getBoolean(GameRules.RULE_WEATHER_CYCLE)) {
+                level.setWeatherParameters(0, 6000, true, false);
+
+                player.connection.send(new ClientboundSoundPacket(
+                        BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.PLAYER_LEVELUP),
+                        SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0f, 1.0f,
+                        player.level().getRandom().nextLong())
+                );
+
+                player.displayClientMessage(Component.literal(
+                        player.getName().getString() + " used /weather rain"
+                ).withStyle(ChatFormatting.GRAY), false);
+            }
+        }
+    }
+
+    // TIME SET NIGHT
+    //BedBlockMixin
 }
