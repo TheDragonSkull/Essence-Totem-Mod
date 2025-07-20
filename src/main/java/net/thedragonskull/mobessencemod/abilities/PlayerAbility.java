@@ -7,12 +7,15 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundSoundPacket;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.GameRules;
@@ -22,18 +25,55 @@ import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ItemFishedEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.server.ServerLifecycleHooks;
 import net.thedragonskull.mobessencemod.capability.MobEssenceCapabilities;
-import net.thedragonskull.mobessencemod.mixin.BedBlockMixin;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class PlayerAbility implements IMobAbility {
 
+    // EFFECT GIVE NIGHT VISION
+    private static final Set<UUID> givenNightVision = new HashSet<>();
+    private static boolean wasDay = true;
+
     @Override
     public void tick(ServerPlayer player, ItemStack totemStack) {
+        MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+        if (server == null) return;
+
+        ServerLevel level = player.serverLevel();
+        if (!level.dimensionType().natural()) return;
+        if (!level.getGameRules().getBoolean(GameRules.RULE_DAYLIGHT)) return;
+
+        long timeOfDay = level.getDayTime() % 24000;
+        boolean isNowNight = timeOfDay >= 13000 && timeOfDay <= 23000;
+
+        if (wasDay && isNowNight) {
+            wasDay = false;
+
+            if (!givenNightVision.contains(player.getUUID()) && player.getRandom().nextInt(1) == 0) { //todo: 1/10 & test everything
+                player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 20 * 60 * 5, 0)); // 5 minutes
+
+                player.connection.send(new ClientboundSoundPacket(
+                        BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.PLAYER_LEVELUP),
+                        SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0f, 1.0f,
+                        player.level().getRandom().nextLong())
+                );
+
+                player.displayClientMessage(Component.literal(
+                        player.getName().getString() + " used /effect give " + player.getName().getString() + " minecraft:night_vision 300"
+                ).withStyle(ChatFormatting.GRAY), false);
+
+                givenNightVision.add(player.getUUID());
+            }
+
+
+        } else if (!isNowNight) {
+            wasDay = true;
+            givenNightVision.clear();
+        }
+
     }
 
     // KEEP INVENTORY

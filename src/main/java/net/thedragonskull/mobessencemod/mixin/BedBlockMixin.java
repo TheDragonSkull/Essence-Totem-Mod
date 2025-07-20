@@ -46,7 +46,7 @@ public abstract class BedBlockMixin {
         int ticksSinceRest = serverPlayer.getStats().getValue(Stats.CUSTOM.get(Stats.TIME_SINCE_REST));
         boolean isDay = level.getDayTime() % 24000 < 12542;
 
-        if (ticksSinceRest >= 24000 && isDay) {
+        if (ticksSinceRest >= 3 * 24000 && isDay) {
             long day = level.getDayTime() / 24000;
             serverLevel.setDayTime(day * 24000 + 13000); // Night
 
