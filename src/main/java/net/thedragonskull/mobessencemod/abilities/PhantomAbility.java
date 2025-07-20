@@ -2,10 +2,15 @@ package net.thedragonskull.mobessencemod.abilities;
 
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ServerboundPlayerCommandPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageSources;
+import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.monster.Phantom;
@@ -14,6 +19,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
+import net.minecraftforge.event.entity.living.LivingFallEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
 
 import java.util.HashMap;
@@ -99,6 +106,31 @@ public class PhantomAbility implements IMobAbility {
         if (!level.dimension().equals(Level.OVERWORLD)) return false;
         long time = level.getDayTime() % 24000L;
         return time >= 13000L && time <= 23000L;
+    }
+
+    private static final Map<UUID, Boolean> wasFallFlyingLastTick = new HashMap<>();
+
+    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+        if (event.phase != TickEvent.Phase.END) return;
+        Player player = event.player;
+        wasFallFlyingLastTick.put(player.getUUID(), player.isFallFlying());
+    }
+
+    public static void onLivingHurt(LivingHurtEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+
+        boolean wasFlying = wasFallFlyingLastTick.getOrDefault(player.getUUID(), false);
+
+        if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:phantom"))) return;
+
+        if (!wasFlying) return;
+
+        DamageSource source = event.getSource();
+
+        if (source.is(DamageTypes.FALL)) {
+            event.setCanceled(true);
+            player.resetFallDistance();
+        }
     }
 
 

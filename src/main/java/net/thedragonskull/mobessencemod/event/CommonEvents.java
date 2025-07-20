@@ -109,6 +109,7 @@ public class CommonEvents {
         ZombifiedPiglinAbility.onZombifiedPiglinSummon(event);
         ZoglinAbility.onZoglinSummon(event);
         PlayerAbility.onPlayerTp(event);
+        PhantomAbility.onLivingHurt(event);
     }
 
     @SubscribeEvent
@@ -196,6 +197,7 @@ public class CommonEvents {
         IronGolemAbility.onPlayerTick(event);
         WardenAbility.onPlayerTick(event);
         PlayerAbility.onPlayerTick(event);
+        PhantomAbility.onPlayerTick(event);
     }
 
     @SubscribeEvent
