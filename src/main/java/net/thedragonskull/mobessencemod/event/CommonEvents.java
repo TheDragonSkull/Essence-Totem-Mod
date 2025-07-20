@@ -108,6 +108,7 @@ public class CommonEvents {
         WitherSkeletonAbility.onWitherAndFireHurt(event);
         ZombifiedPiglinAbility.onZombifiedPiglinSummon(event);
         ZoglinAbility.onZoglinSummon(event);
+        PlayerAbility.onPlayerTp(event);
     }
 
     @SubscribeEvent
@@ -194,6 +195,7 @@ public class CommonEvents {
         VindicatorAbility.vindicatorAxeSpeed(event);
         IronGolemAbility.onPlayerTick(event);
         WardenAbility.onPlayerTick(event);
+        PlayerAbility.onPlayerTick(event);
     }
 
     @SubscribeEvent

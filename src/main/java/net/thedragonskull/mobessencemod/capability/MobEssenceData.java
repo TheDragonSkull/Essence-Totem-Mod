@@ -41,10 +41,8 @@ public class MobEssenceData implements IMobEssenceData {
 
         curiosItems.clear();
         CuriosApi.getCuriosInventory(inv.player).ifPresent(handler -> {
-            System.out.println("check 1 store");
 
             handler.getCurios().forEach((id, stacksHandler) -> {
-                System.out.println("check 2 store");
 
                 List<ItemStack> list = new ArrayList<>();
                 for (int i = 0; i < stacksHandler.getStacks().getSlots(); i++) {
@@ -68,10 +66,8 @@ public class MobEssenceData implements IMobEssenceData {
         inv.offhand.set(0, storedItems.get(index));
 
         CuriosApi.getCuriosInventory(inv.player).ifPresent(handler -> {
-            System.out.println("check 1 restore");
 
             curiosItems.forEach((id, list) -> {
-                System.out.println("check 2 restore");
 
                 ICurioStacksHandler stacksHandler = handler.getStacksHandler(id).orElse(null);
                 if (stacksHandler != null) {
