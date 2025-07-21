@@ -11,10 +11,7 @@ import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.thedragonskull.mobessencemod.MobEssenceMod;
-import net.thedragonskull.mobessencemod.render.FractureOverlayLayer;
-import net.thedragonskull.mobessencemod.render.VillagerNoseLayer;
-import net.thedragonskull.mobessencemod.render.VillagerNoseModel;
-import net.thedragonskull.mobessencemod.render.WitchNoseModel;
+import net.thedragonskull.mobessencemod.render.*;
 import net.thedragonskull.mobessencemod.util.KeyBindings;
 
 @Mod.EventBusSubscriber(modid = MobEssenceMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -32,6 +29,7 @@ public class ModEvents {
                 playerRenderer.addLayer(new VillagerNoseLayer(renderer, villagerNosePart, witchNosePart));
 
                 playerRenderer.addLayer(new FractureOverlayLayer(playerRenderer));
+                playerRenderer.addLayer(new PlayerEnergyArmorLayer(renderer, event.getEntityModels()));
             }
         }
     }

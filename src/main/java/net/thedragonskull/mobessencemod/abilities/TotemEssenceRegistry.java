@@ -589,6 +589,14 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.SPECIAL
         );
 
+        // BOSS
+        register("minecraft:wither", "essence_wither",
+                new TotemTooltipData("Withering Destruction", "Rot from within. Death shields you and arrows turn"),
+                SoundEvents.WITHER_HURT,
+                new WitherAbility(),
+                TotemMobCategory.BOSS
+        );
+
         // NON MOB
         register("minecraft:armor_stand", "essence_armor_stand",
                 new TotemTooltipData("Soulless Entity", "Become as still as stone. In absolute immobility, even danger forgets you exist"),

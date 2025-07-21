@@ -9,7 +9,7 @@ public enum TotemMobCategory {
     HOSTILE(0xaf3b35),      // dark red
     SPECIAL(0x55c0d9),      // cyan
     NON_MOB(0xFFFFFF),      // white
-    BOSS(0x101010);         // near black
+    BOSS(0xcc5dc4);         // magenta
 
     private final int color;
 

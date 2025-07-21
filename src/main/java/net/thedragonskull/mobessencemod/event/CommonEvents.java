@@ -71,6 +71,7 @@ public class CommonEvents {
         TadpoleAbility.onTadpoleSlimeSnack(event);
         PandaAbility.onPandaEat(event);
         IronGolemAbility.onUseIron(event);
+        WitherAbility.onUseWitherSkull(event);
     }
 
     @SubscribeEvent
@@ -148,6 +149,8 @@ public class CommonEvents {
         PiglinBruteAbility.onAttack(event);
         ZombifiedPiglinAbility.onLightningStrikeHurt(event);
         CommonAbilityUtils.onHoglinAttack(event);
+        WitherAbility.onWitherEffect(event);
+        WitherAbility.onAbstractArrowHurt(event);
     }
 
     @SubscribeEvent
@@ -198,6 +201,7 @@ public class CommonEvents {
         WardenAbility.onPlayerTick(event);
         PlayerAbility.onPlayerTick(event);
         PhantomAbility.onPlayerTick(event);
+        FrogAbility.onRemoveSlowness(event);
     }
 
     @SubscribeEvent
