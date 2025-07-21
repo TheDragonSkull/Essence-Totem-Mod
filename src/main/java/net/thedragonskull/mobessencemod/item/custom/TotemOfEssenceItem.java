@@ -1,6 +1,7 @@
 package net.thedragonskull.mobessencemod.item.custom;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.advancements.Advancement;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
@@ -76,6 +77,20 @@ public class TotemOfEssenceItem extends Item implements ICurioItem {
             }
         } else {
             mobId = ForgeRegistries.ENTITY_TYPES.getKey(target.getType());
+        }
+
+        if (target instanceof Player) {
+            if (player.level().isClientSide()) return InteractionResult.PASS;
+            if (!(player instanceof ServerPlayer serverPlayer)) return InteractionResult.PASS;
+
+            ResourceLocation advId = new ResourceLocation("minecraft:end/enter_end_gateway");
+            Advancement adv = ((ServerPlayer) player).server.getAdvancements().getAdvancement(advId);
+
+            if (adv == null || !serverPlayer.getAdvancements().getOrStartProgress(adv).isDone()) {
+                player.displayClientMessage(Component.literal("First you have to beat the game and escape The End!")
+                        .withStyle(ChatFormatting.RED), true);
+                return InteractionResult.PASS;
+            }
         }
 
         if (mobId == null || !TotemEssenceRegistry.isRegistered(mobId)) {

@@ -52,7 +52,7 @@ public class PlayerAbility implements IMobAbility {
         if (wasDay && isNowNight) {
             wasDay = false;
 
-            if (!givenNightVision.contains(player.getUUID()) && player.getRandom().nextInt(1) == 0) { //todo: 1/10 & test everything
+            if (!givenNightVision.contains(player.getUUID()) && player.getRandom().nextInt(8) == 0) {
                 player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 20 * 60 * 5, 0)); // 5 minutes
 
                 player.connection.send(new ClientboundSoundPacket(
