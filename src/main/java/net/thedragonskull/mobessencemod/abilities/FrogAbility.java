@@ -1,5 +1,6 @@
 package net.thedragonskull.mobessencemod.abilities;
 
+import net.minecraft.network.protocol.game.ClientboundRemoveMobEffectPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -8,6 +9,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
@@ -64,6 +66,20 @@ public class FrogAbility implements IMobAbility {
         }
     }
 
-    // CancelEffectMixin.mobessence$preventSlownessIfWarmFrog
 
+    public static void onRemoveSlowness(TickEvent.PlayerTickEvent event) {
+        if (event.phase != TickEvent.Phase.END || event.player.level().isClientSide) return;
+
+        ServerPlayer player = (ServerPlayer) event.player;
+
+        if (TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:warm_frog"))) {
+
+            if (player.hasEffect(MobEffects.MOVEMENT_SLOWDOWN)) {
+                player.removeEffect(MobEffects.MOVEMENT_SLOWDOWN);
+                player.connection.send(new ClientboundRemoveMobEffectPacket(player.getId(), MobEffects.MOVEMENT_SLOWDOWN));
+            }
+        }
+    }
+
+    // CancelEffectMixin.mobessence$preventSlownessIfWarmFrog
 }
