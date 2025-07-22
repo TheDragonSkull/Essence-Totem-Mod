@@ -598,7 +598,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:ender_dragon", "essence_ender_dragon",
-                new TotemTooltipData("Breath of the Void", "Void rods awaken near you, pulsing with ancient power and restoring your flesh."),
+                new TotemTooltipData("Breath of the Void", "Void rods awaken near you, pulsing with ancient power and restoring your flesh. You rise with wings unseen, then fall—carving the ground with dragon’s breath, untouched by its fire"),
                 SoundEvents.ENDER_DRAGON_HURT,
                 new EnderDragonAbility(),
                 TotemMobCategory.BOSS
