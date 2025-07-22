@@ -1,22 +1,37 @@
 package net.thedragonskull.mobessencemod.util;
 
 import com.mojang.blaze3d.platform.InputConstants;
+import net.minecraft.ChatFormatting;
+import net.minecraft.advancements.Advancement;
 import net.minecraft.client.KeyMapping;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundRemoveMobEffectPacket;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.thedragonskull.mobessencemod.abilities.TotemEssenceRegistry;
 import net.thedragonskull.mobessencemod.item.ModItems;
+import net.thedragonskull.mobessencemod.item.custom.TotemOfEssenceItem;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
@@ -54,6 +69,57 @@ public class TotemUtils {
     public static void setEssence(ItemStack stack, ResourceLocation essenceId) {
         CompoundTag tag = stack.getOrCreateTag();
         tag.putString("Essence", essenceId.toString());
+    }
+
+    public static boolean hasAdvancement(ServerPlayer player, String id) {
+        Advancement adv = player.server.getAdvancements().getAdvancement(ResourceLocation.parse(id));
+        return adv != null && player.getAdvancements().getOrStartProgress(adv).isDone();
+    }
+
+    public static void failMessage(Player player, String msg) {
+        player.displayClientMessage(Component.literal(msg).withStyle(ChatFormatting.RED), true);
+    }
+
+    public static void onDragonEggUse(PlayerInteractEvent.RightClickBlock event) {
+        Player player = event.getEntity();
+        Level level = player.level();
+        BlockPos pos = event.getPos();
+        ItemStack stack = event.getItemStack();
+
+        if (level.isClientSide || !(player instanceof ServerPlayer)) return;
+
+        BlockState state = level.getBlockState(pos);
+        if (!state.is(Blocks.DRAGON_EGG)) return;
+        if (player.isShiftKeyDown()) return;
+
+        //todo: si el totem tiene la misma esencia y no está en CD return con mensaje
+
+        TotemUtils.setEssence(stack, ResourceLocation.parse("minecraft:ender_dragon"));
+
+        level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
+
+        ((ServerLevel) level).sendParticles(
+                ParticleTypes.DRAGON_BREATH,
+                pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                30,
+                0.4, 0.6, 0.4,
+                0.1
+        );
+
+        ((ServerLevel) level).sendParticles(
+                ParticleTypes.PORTAL,
+                pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                20,
+                0.3, 0.5, 0.3,
+                0.1
+        );
+
+        level.playSound(null, pos, SoundEvents.ENDER_DRAGON_GROWL, SoundSource.PLAYERS, 1.2f, 1.0f);
+        player.displayClientMessage(Component.literal("The essence of the End has been absorbed.")
+                .withStyle(ChatFormatting.LIGHT_PURPLE), true);
+
+        event.setCanceled(true);
+        event.setCancellationResult(InteractionResult.SUCCESS);
     }
 
     // CLIENT

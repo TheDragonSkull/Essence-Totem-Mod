@@ -3,7 +3,9 @@ package net.thedragonskull.mobessencemod.item.custom;
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -18,12 +20,17 @@ import net.minecraft.world.entity.animal.Fox;
 import net.minecraft.world.entity.animal.FrogVariant;
 import net.minecraft.world.entity.animal.MushroomCow;
 import net.minecraft.world.entity.animal.frog.Frog;
+import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
+import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.thedragonskull.mobessencemod.abilities.TotemEssenceRegistry;
 import net.thedragonskull.mobessencemod.util.TotemMobCategory;
@@ -32,6 +39,9 @@ import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
+
+import static net.thedragonskull.mobessencemod.util.TotemUtils.failMessage;
+import static net.thedragonskull.mobessencemod.util.TotemUtils.hasAdvancement;
 
 public class TotemOfEssenceItem extends Item implements ICurioItem {
 
@@ -79,21 +89,22 @@ public class TotemOfEssenceItem extends Item implements ICurioItem {
             mobId = ForgeRegistries.ENTITY_TYPES.getKey(target.getType());
         }
 
+        if (player.level().isClientSide() || !(player instanceof ServerPlayer serverPlayer))
+            return InteractionResult.PASS;
+
         if (target instanceof Player) {
-            if (player.level().isClientSide()) return InteractionResult.PASS;
-            if (!(player instanceof ServerPlayer serverPlayer)) return InteractionResult.PASS;
-
-            ResourceLocation advId = new ResourceLocation("minecraft:end/enter_end_gateway");
-            Advancement adv = ((ServerPlayer) player).server.getAdvancements().getAdvancement(advId);
-
-            if (adv == null || !serverPlayer.getAdvancements().getOrStartProgress(adv).isDone()) {
-                player.displayClientMessage(Component.literal("First you have to beat the game and escape The End!")
-                        .withStyle(ChatFormatting.RED), true);
+            if (!hasAdvancement(serverPlayer, "minecraft:end/enter_end_gateway")) {
+                failMessage(player, "You must beat the game for the first time to capture his essence!");
+                return InteractionResult.PASS;
+            }
+        } else if (target instanceof WitherBoss) {
+            if (!player.getPersistentData().getBoolean("mobessence_killed_wither")) {
+                failMessage(player, "You must kill the Wither for the first time to capture his essence!");
                 return InteractionResult.PASS;
             }
         }
 
-        if (mobId == null || !TotemEssenceRegistry.isRegistered(mobId)) {
+        if (mobId == null || !TotemEssenceRegistry.isRegistered(mobId) || player.isShiftKeyDown()) {
             player.displayClientMessage(Component.literal("This creature has no essence to offer.").withStyle(ChatFormatting.RED), true);
             return InteractionResult.PASS;
         }
