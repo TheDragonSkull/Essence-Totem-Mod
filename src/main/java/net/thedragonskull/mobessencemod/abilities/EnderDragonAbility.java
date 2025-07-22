@@ -1,10 +1,14 @@
 package net.thedragonskull.mobessencemod.abilities;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundRemoveMobEffectPacket;
+import net.minecraft.network.protocol.game.ClientboundSoundPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -33,11 +37,9 @@ import net.thedragonskull.mobessencemod.block.ModBlocks;
 import net.thedragonskull.mobessencemod.network.C2SFlapSoundPacket;
 import net.thedragonskull.mobessencemod.network.PacketHandler;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
+import top.theillusivec4.curios.api.SlotResult;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class EnderDragonAbility implements IMobAbility {
 
@@ -45,9 +47,11 @@ public class EnderDragonAbility implements IMobAbility {
     private static boolean wasJumpKeyDown = false;
 
     private static final int MAX_FLAPS = 5;
-
-    private static final Map<UUID, Double> fallStartY = new HashMap<>();
     private static final double MIN_FALL_DISTANCE = 5.0;
+
+    private static final Map<UUID, Long> dragonBreathCooldowns = new HashMap<>();
+    private static final Set<UUID> notifiedReady = new HashSet<>();
+    private static final long DRAGON_BREATH_COOLDOWN_TICKS = 20 * 30;
 
     @Override
     public void tick(ServerPlayer player, ItemStack totemStack) {
@@ -92,9 +96,26 @@ public class EnderDragonAbility implements IMobAbility {
         if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:ender_dragon"))) return;
 
         UUID uuid = player.getUUID();
+        long currentTick = player.level().getGameTime();
+        long lastUse = dragonBreathCooldowns.getOrDefault(uuid, 0L);
+        long timeSince = currentTick - lastUse;
+
+        if (timeSince >= DRAGON_BREATH_COOLDOWN_TICKS && !notifiedReady.contains(uuid)) { // todo test
+            player.connection.send(new ClientboundSoundPacket(
+                    BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.ENDER_DRAGON_GROWL),
+                    SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0f, 1.0f,
+                    player.level().getRandom().nextLong())
+            );
+
+            player.displayClientMessage(
+                    Component.literal("You feel ready to do the Dragon Breath!").withStyle(ChatFormatting.GOLD),
+                    true
+            );
+            notifiedReady.add(uuid);
+        }
 
         if (player.onGround() && flapCount.getOrDefault(uuid, 0) >= MAX_FLAPS) {
-            if (player.fallDistance >= MIN_FALL_DISTANCE) {
+            if (player.fallDistance >= MIN_FALL_DISTANCE && timeSince >= DRAGON_BREATH_COOLDOWN_TICKS) { // todo test
                 player.fallDistance = 0.0F;
 
                 AreaEffectCloud cloud = new AreaEffectCloud(player.level(), player.getX(), player.getY(), player.getZ());
@@ -106,7 +127,7 @@ public class EnderDragonAbility implements IMobAbility {
                 player.level().addFreshEntity(cloud);
 
                 player.level().playSound(null, player.blockPosition(), SoundEvents.ENDER_DRAGON_SHOOT, SoundSource.PLAYERS, 2.0f, 1.0f);
-                player.level().playSound(null, player.blockPosition(), SoundEvents.ENDER_DRAGON_GROWL, SoundSource.PLAYERS, 2.0f, 1.0f);
+                player.level().playSound(null, player.blockPosition(), SoundEvents.ENDER_DRAGON_AMBIENT, SoundSource.PLAYERS, 2.0f, 1.0f);
 
                 BlockPos under = player.blockPosition().below();
                 BlockState blockState = player.level().getBlockState(under);
@@ -118,6 +139,9 @@ public class EnderDragonAbility implements IMobAbility {
                         0.5, 0.5, 0.5,
                         0.1
                 );
+
+                dragonBreathCooldowns.put(uuid, currentTick);
+                notifiedReady.remove(uuid);
             }
 
             flapCount.put(uuid, 0);
@@ -145,12 +169,20 @@ public class EnderDragonAbility implements IMobAbility {
         return cloud.getPotion().getEffects().stream().anyMatch(e -> e.getEffect() == MobEffects.HARM);
     }
 
-    public static void onFall(LivingFallEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player &&
-                TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:ender_dragon")) &&
-                flapCount.getOrDefault(player.getUUID(), 0) >= MAX_FLAPS) {
+    public static void onFall(LivingFallEvent event) { //todo: test
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
 
-            event.setCanceled(true);
+        UUID uuid = player.getUUID();
+
+        if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:ender_dragon"))) return;
+
+        if (flapCount.getOrDefault(uuid, 0) >= MAX_FLAPS) {
+            long currentTick = player.level().getGameTime();
+            long lastUse = EnderDragonAbility.dragonBreathCooldowns.getOrDefault(uuid, 0L);
+
+            if ((currentTick - lastUse) >= EnderDragonAbility.DRAGON_BREATH_COOLDOWN_TICKS) {
+                event.setCanceled(true);
+            }
         }
     }
 

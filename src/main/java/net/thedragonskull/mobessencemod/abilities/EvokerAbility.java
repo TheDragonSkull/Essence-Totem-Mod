@@ -84,7 +84,4 @@ public class EvokerAbility implements IMobAbility {
             event.setNewTarget(null);
         }
     }
-
-
-    //TODO: desc. Let them taste your wrath... Vexes and Fangs shall strike those who dare attack you
 }

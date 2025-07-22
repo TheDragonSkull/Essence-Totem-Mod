@@ -421,7 +421,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:evoker", "essence_evoker",
-                new TotemTooltipData("Wicked Covenant", "Vexes and Ravagers ignore the player + when melee attacked, chance of summoning a vex targeting the attacker (1/6) + when attacked by a projectile, chance to summon an evoker fang underneath the attacker (1/3)"),
+                new TotemTooltipData("Wicked Covenant", "Let them taste your wrath... Devils and Fangs shall strike those who dare attack you"),
                 SoundEvents.EVOKER_HURT,
                 new EvokerAbility(),
                 TotemMobCategory.HOSTILE
