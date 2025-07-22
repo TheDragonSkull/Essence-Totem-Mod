@@ -20,10 +20,10 @@ public class PacketHandler {
 
     public static void register() {
 
-        INSTANCE.messageBuilder(C2SParrotFlapSoundPacket.class, id++, NetworkDirection.PLAY_TO_SERVER)
-                .encoder(C2SParrotFlapSoundPacket::encode)
-                .decoder(C2SParrotFlapSoundPacket::new)
-                .consumerMainThread(C2SParrotFlapSoundPacket::handle)
+        INSTANCE.messageBuilder(C2SFlapSoundPacket.class, id++, NetworkDirection.PLAY_TO_SERVER)
+                .encoder(C2SFlapSoundPacket::encode)
+                .decoder(C2SFlapSoundPacket::new)
+                .consumerMainThread(C2SFlapSoundPacket::handle)
                 .add();
 
         INSTANCE.messageBuilder(C2SSwapTotemPacket.class, id++, NetworkDirection.PLAY_TO_SERVER)

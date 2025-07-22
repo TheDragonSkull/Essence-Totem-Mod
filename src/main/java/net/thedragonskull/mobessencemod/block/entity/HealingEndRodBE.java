@@ -53,7 +53,7 @@ public class HealingEndRodBE extends BlockEntity {
         for (LivingEntity entity : targets) {
             MobEffectInstance current = entity.getEffect(MobEffects.REGENERATION);
             if (current == null || current.getDuration() <= 10) {
-                entity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 20, 0));
+                entity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 60, 0, true, false, true));
             }
         }
 

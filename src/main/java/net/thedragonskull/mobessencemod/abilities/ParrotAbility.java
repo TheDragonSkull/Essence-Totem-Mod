@@ -3,17 +3,13 @@ package net.thedragonskull.mobessencemod.abilities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.event.InputEvent;
-import net.minecraftforge.event.TickEvent;
-import net.thedragonskull.mobessencemod.network.C2SParrotFlapSoundPacket;
+import net.thedragonskull.mobessencemod.network.C2SFlapSoundPacket;
 import net.thedragonskull.mobessencemod.network.PacketHandler;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
-import org.lwjgl.glfw.GLFW;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,7 +45,7 @@ public class ParrotAbility implements IMobAbility {
                     player.setDeltaMovement(motion.x, 0.52, motion.z);
                     player.hasImpulse = true;
 
-                    PacketHandler.sendToServer(new C2SParrotFlapSoundPacket());
+                    PacketHandler.sendToServer(new C2SFlapSoundPacket(ResourceLocation.parse("minecraft:parrot")));
 
                     hasDoubleJumped.put(uuid, true);
                 }

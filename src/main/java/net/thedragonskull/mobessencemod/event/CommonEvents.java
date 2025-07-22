@@ -292,6 +292,7 @@ public class CommonEvents {
     public static void onInputKeyEvent(InputEvent.Key event) {
         ParrotAbility.flap(event);
         CamelAbility.camelDash(event);
+        EnderDragonAbility.flap(event);
 
         if (KeyBindings.INSTANCE.SWAP_TOTEM.consumeClick()) {
             Player player = Minecraft.getInstance().player;
