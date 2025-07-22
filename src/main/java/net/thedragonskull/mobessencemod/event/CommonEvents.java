@@ -163,6 +163,7 @@ public class CommonEvents {
         CommonAbilityUtils.onHoglinAttack(event);
         WitherAbility.onWitherEffect(event);
         WitherAbility.onAbstractArrowHurt(event);
+        EnderDragonAbility.onEffectAdded(event);
     }
 
     @SubscribeEvent
@@ -215,6 +216,7 @@ public class CommonEvents {
         PhantomAbility.onPlayerTick(event);
         FrogAbility.onRemoveSlowness(event);
         EnderDragonAbility.onDragonHeal(event);
+        EnderDragonAbility.onDragonBreath(event);
     }
 
     @SubscribeEvent
@@ -231,6 +233,7 @@ public class CommonEvents {
     @SubscribeEvent
     public static void onLivingFall(LivingFallEvent event) {
         FrogAbility.onFrogFallDamage(event);
+        EnderDragonAbility.onFall(event);
     }
 
     @SubscribeEvent
