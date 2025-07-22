@@ -18,12 +18,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(DragonEggBlock.class)
 public class DragonEggMixin {
 
-    @Inject(method = "use", at = @At(value = "HEAD"))
-    private void mobessence$onUse(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand,
-                                  BlockHitResult hit, CallbackInfoReturnable<InteractionResult> cir) {
-        ItemStack stack = player.getItemInHand(hand);
+    @Inject(method = "use", at = @At("HEAD"), cancellable = true)
+    private void mobessence$onUse(BlockState state, Level level, BlockPos pos,
+                                  Player player, InteractionHand hand, BlockHitResult hit,
+                                  CallbackInfoReturnable<InteractionResult> cir) {
 
-        if (!level.isClientSide() && stack.getItem() instanceof TotemOfEssenceItem && !player.isShiftKeyDown()) {
+        ItemStack stack = player.getItemInHand(hand);
+        if (stack.getItem() instanceof TotemOfEssenceItem && !player.isShiftKeyDown()) {
             cir.setReturnValue(InteractionResult.SUCCESS);
         }
     }

@@ -87,14 +87,26 @@ public class TotemUtils {
         ItemStack stack = event.getItemStack();
 
         if (level.isClientSide || !(player instanceof ServerPlayer)) return;
+        if (player.getCooldowns().isOnCooldown(stack.getItem())) return;
+        if (!stack.is(ModItems.TOTEM_OF_ESSENCE.get())) return;
 
         BlockState state = level.getBlockState(pos);
         if (!state.is(Blocks.DRAGON_EGG)) return;
         if (player.isShiftKeyDown()) return;
 
-        //todo: si el totem tiene la misma esencia y no está en CD return con mensaje
+        ResourceLocation dragonId = ResourceLocation.parse("minecraft:ender_dragon");
 
-        TotemUtils.setEssence(stack, ResourceLocation.parse("minecraft:ender_dragon"));
+        if (TotemUtils.hasEssence(stack)) {
+            ResourceLocation currentEssence = TotemUtils.getEssence(stack);
+            if (dragonId.equals(currentEssence)) {
+                player.displayClientMessage(Component.literal("This totem already contains the essence of the Ender Dragon")
+                        .withStyle(ChatFormatting.GRAY), true);
+                return;
+            }
+        }
+
+        TotemUtils.setEssence(stack, dragonId);
+        player.getCooldowns().addCooldown(stack.getItem(), 20);
 
         level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
 
@@ -102,20 +114,22 @@ public class TotemUtils {
                 ParticleTypes.DRAGON_BREATH,
                 pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
                 30,
-                0.4, 0.6, 0.4,
-                0.1
+                0.1, 0.1, 0.1,
+                .1
         );
 
         ((ServerLevel) level).sendParticles(
-                ParticleTypes.PORTAL,
+                ParticleTypes.REVERSE_PORTAL,
                 pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
-                20,
-                0.3, 0.5, 0.3,
-                0.1
+                30,
+                0.1, 0.1, 0.1,
+                1
         );
 
         level.playSound(null, pos, SoundEvents.ENDER_DRAGON_GROWL, SoundSource.PLAYERS, 1.2f, 1.0f);
-        player.displayClientMessage(Component.literal("The essence of the End has been absorbed.")
+        level.playSound(null, pos, SoundEvents.BEACON_DEACTIVATE, SoundSource.BLOCKS, 1.5f, 0.8f);
+
+        player.displayClientMessage(Component.literal("The essence of the End has been absorbed")
                 .withStyle(ChatFormatting.LIGHT_PURPLE), true);
 
         event.setCanceled(true);
