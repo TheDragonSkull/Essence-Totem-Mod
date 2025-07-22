@@ -591,9 +591,16 @@ public class TotemEssenceRegistry {
 
         // BOSS
         register("minecraft:wither", "essence_wither",
-                new TotemTooltipData("Withering Destruction", "Rot from within. Death shields you and arrows turn"),
+                new TotemTooltipData("Withering Destruction", "You hurl death from its hollow grin. Death shields you and arrows turn"),
                 SoundEvents.WITHER_HURT,
                 new WitherAbility(),
+                TotemMobCategory.BOSS
+        );
+
+        register("minecraft:ender_dragon", "essence_ender_dragon",
+                new TotemTooltipData("Breath of the Void", "Void rods awaken near you, pulsing with ancient power and restoring your flesh."),
+                SoundEvents.ENDER_DRAGON_HURT,
+                new EnderDragonAbility(),
                 TotemMobCategory.BOSS
         );
 

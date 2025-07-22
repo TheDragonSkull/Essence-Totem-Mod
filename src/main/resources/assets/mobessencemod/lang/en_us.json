@@ -84,9 +84,12 @@
   "item.mobessencemod.totem_of_essence.zoglin": "Essence Totem of the Zoglin",
 
   "item.mobessencemod.totem_of_essence.wither": "Essence Totem of the Wither",
+  "item.mobessencemod.totem_of_essence.ender_dragon": "Essence Totem of the Ender Dragon",
 
   "item.mobessencemod.totem_of_essence.armor_stand": "Essence Totem of the Armor Stand",
   "item.mobessencemod.totem_of_essence.player": "Essence Totem of the Player",
+
+  "block.mobessencemod.healing_end_rod": "Healing End Rod",
 
   "key.category.mobessencemod.mob_essence": "Mob Essence Mod",
   "key.category.mobessencemod.totem_swap": "Swap Totem With Hand",

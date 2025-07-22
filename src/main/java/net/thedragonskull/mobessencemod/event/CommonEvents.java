@@ -202,6 +202,7 @@ public class CommonEvents {
         PlayerAbility.onPlayerTick(event);
         PhantomAbility.onPlayerTick(event);
         FrogAbility.onRemoveSlowness(event);
+        EnderDragonAbility.onDragonHeal(event);
     }
 
     @SubscribeEvent

@@ -1,5 +1,6 @@
 package net.thedragonskull.mobessencemod.event;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.player.AbstractClientPlayer;
@@ -8,9 +9,12 @@ import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
+import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.thedragonskull.mobessencemod.MobEssenceMod;
+import net.thedragonskull.mobessencemod.particle.ModParticles;
+import net.thedragonskull.mobessencemod.particle.custom.HealingGlitterParticles;
 import net.thedragonskull.mobessencemod.render.*;
 import net.thedragonskull.mobessencemod.util.KeyBindings;
 
@@ -43,6 +47,11 @@ public class ModEvents {
     @SubscribeEvent
     public static void onKeyRegister(RegisterKeyMappingsEvent event) {
         event.register(KeyBindings.INSTANCE.SWAP_TOTEM);
+    }
+
+    @SubscribeEvent
+    public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
+        event.registerSpriteSet(ModParticles.HEALING_GLITTER.get(), HealingGlitterParticles.Provider::new);
     }
 
 }
