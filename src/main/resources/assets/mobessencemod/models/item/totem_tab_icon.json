@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "mobessencemod:item/totem_tab_icon"
+  }
+}

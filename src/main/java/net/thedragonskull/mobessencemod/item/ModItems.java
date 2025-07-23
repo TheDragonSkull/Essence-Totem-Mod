@@ -16,6 +16,9 @@ public class ModItems {
     public static final RegistryObject<Item> TOTEM_OF_ESSENCE = ITEMS.register("totem_of_essence",
             () -> new TotemOfEssenceItem(new Item.Properties().stacksTo(1).fireResistant()));
 
+    public static final RegistryObject<Item> TOTEM_TAB_ICON = ITEMS.register("totem_tab_icon",
+            () -> new Item(new Item.Properties()));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

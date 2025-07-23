@@ -13,6 +13,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.thedragonskull.mobessencemod.block.ModBlocks;
 import net.thedragonskull.mobessencemod.block.entity.ModBlockEntities;
+import net.thedragonskull.mobessencemod.item.ModCreativeModeTabs;
 import net.thedragonskull.mobessencemod.item.ModItems;
 import net.thedragonskull.mobessencemod.loot.ModLootModifiers;
 import net.thedragonskull.mobessencemod.network.PacketHandler;
@@ -35,6 +36,7 @@ public class MobEssenceMod {
         ModLootModifiers.register(modEventBus);
         ModSounds.register(modEventBus);
         ModParticles.register(modEventBus);
+        ModCreativeModeTabs.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
