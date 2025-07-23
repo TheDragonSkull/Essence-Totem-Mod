@@ -19,7 +19,7 @@
     "description": {
       "text": "Collect the essence of every neutral creature"
     },
-    "frame": "task",
+    "frame": "goal",
     "hidden": false,
     "icon": {
       "item": "minecraft:yellow_concrete_powder"

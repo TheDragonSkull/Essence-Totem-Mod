@@ -19,7 +19,7 @@
     "description": {
       "text": "Collect the essence of every hostile creature"
     },
-    "frame": "task",
+    "frame": "goal",
     "hidden": false,
     "icon": {
       "item": "minecraft:red_concrete_powder"

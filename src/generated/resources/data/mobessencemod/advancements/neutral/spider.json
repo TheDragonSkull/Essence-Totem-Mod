@@ -18,7 +18,8 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "text": "Slowly climb vertical surfaces + cobweb doesn't slow"
+      "color": "#E7CA3A",
+      "text": "[NEUTRAL] Slowly climb vertical surfaces + cobweb doesn't slow"
     },
     "frame": "task",
     "hidden": false,
@@ -28,7 +29,7 @@
     },
     "show_toast": true,
     "title": {
-      "text": "Wall-Crawler"
+      "text": "Essence of the Spider"
     }
   },
   "requirements": [

@@ -1,5 +1,5 @@
 {
-  "parent": "mobessencemod:passive/root",
+  "parent": "mobessencemod:passive/ocelot",
   "criteria": {
     "has_cat": {
       "conditions": {
@@ -18,7 +18,8 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "text": "Halved fall damage when crouching + scare creepers away + random positive effect when waking up from sleeping"
+      "color": "#88CB2C",
+      "text": "[PASSIVE] Halved fall damage when crouching + scare creepers away + random positive effect when waking up from sleeping"
     },
     "frame": "task",
     "hidden": false,
@@ -28,7 +29,7 @@
     },
     "show_toast": true,
     "title": {
-      "text": "Feline Graces"
+      "text": "Essence of the Cat"
     }
   },
   "requirements": [

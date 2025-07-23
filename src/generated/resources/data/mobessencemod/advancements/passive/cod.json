@@ -18,7 +18,8 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "text": "Increases underwater breathing time"
+      "color": "#88CB2C",
+      "text": "[PASSIVE] Increases underwater breathing time"
     },
     "frame": "task",
     "hidden": false,
@@ -28,7 +29,7 @@
     },
     "show_toast": true,
     "title": {
-      "text": "Adaptive Lungs"
+      "text": "Essence of the Cod"
     }
   },
   "requirements": [

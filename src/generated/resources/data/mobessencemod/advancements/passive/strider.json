@@ -18,7 +18,8 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "text": "Reduce fire damage (any) by 50% + improve movement and visibility while in lava"
+      "color": "#88CB2C",
+      "text": "[PASSIVE] Reduce fire damage (any) by 50% + improve movement and visibility while in lava"
     },
     "frame": "task",
     "hidden": false,
@@ -28,7 +29,7 @@
     },
     "show_toast": true,
     "title": {
-      "text": "Lava Core"
+      "text": "Essence of the Strider"
     }
   },
   "requirements": [

@@ -18,7 +18,8 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "text": "Halved fall damage when crouching + scare creepers away"
+      "color": "#88CB2C",
+      "text": "[PASSIVE] Halved fall damage when crouching + scare creepers away"
     },
     "frame": "task",
     "hidden": false,
@@ -28,7 +29,7 @@
     },
     "show_toast": true,
     "title": {
-      "text": "Feline Graces"
+      "text": "Essence of the Ocelot"
     }
   },
   "requirements": [

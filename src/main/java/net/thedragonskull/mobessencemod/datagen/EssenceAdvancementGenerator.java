@@ -1,5 +1,6 @@
 package net.thedragonskull.mobessencemod.datagen;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
@@ -12,14 +13,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.common.data.ForgeAdvancementProvider;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.thedragonskull.mobessencemod.MobEssenceMod;
 import net.thedragonskull.mobessencemod.abilities.TotemEssenceRegistry;
 import net.thedragonskull.mobessencemod.item.ModItems;
 import net.thedragonskull.mobessencemod.util.TotemMobCategory;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
 
-import java.util.Map;
+import java.util.*;
 import java.util.function.Consumer;
 
 public class EssenceAdvancementGenerator implements ForgeAdvancementProvider.AdvancementGenerator {
@@ -50,7 +50,7 @@ public class EssenceAdvancementGenerator implements ForgeAdvancementProvider.Adv
         Advancement neutralRoot = generateCategoryAdvancement(saver, helper, root,
                 "neutral", Items.YELLOW_CONCRETE_POWDER, "Neutral Mob Essences", "Collect the essence of every neutral creature");
 
-        //generateEssenceAdvancementsForCategory(saver, helper, neutralRoot, TotemMobCategory.NEUTRAL, "neutral");
+        generateEssenceAdvancementsForCategory(saver, helper, neutralRoot, TotemMobCategory.NEUTRAL, "neutral");
 
         Advancement hostileRoot = generateCategoryAdvancement(saver, helper, root,
                 "hostile", Items.RED_CONCRETE_POWDER, "Hostile Mob Essences", "Collect the essence of every hostile creature");
@@ -83,60 +83,101 @@ public class EssenceAdvancementGenerator implements ForgeAdvancementProvider.Adv
                         Component.literal(title),
                         Component.literal(description),
                         null,
-                        FrameType.TASK,
-                        true, true, false) //todo hidden true
+                        FrameType.GOAL,
+                        true, true, false)
                 .addCriterion("has_" + id, InventoryChangeTrigger.TriggerInstance.hasItems(icon))
                 .save(saver, ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, id + "/root"), helper);
     }
 
+    Map<String, Advancement> generatedParents = new HashMap<>();
+
     private void generateEssenceAdvancementsForCategory(Consumer<Advancement> saver, ExistingFileHelper helper,
-                                                        Advancement parent, TotemMobCategory category, String categoryId) {
-        for (TotemEssenceRegistry.EssenceData essence : TotemEssenceRegistry.getAll()) {
-            if (essence.category() != category) continue;
+                                                        Advancement root, TotemMobCategory category, String categoryId) {
+        List<TotemEssenceRegistry.EssenceData> all = TotemEssenceRegistry.getAll().stream()
+                .filter(e -> e.category() == category)
+                .toList();
 
+        Set<String> generated = new HashSet<>();
+
+        for (TotemEssenceRegistry.EssenceData essence : all) {
             String mobId = essence.id().getPath();
-            ResourceLocation advancementId = ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, categoryId + "/" + mobId);
+            if (!SUBGROUPS.containsValue(mobId)) continue;
 
-            ResourceLocation itemId = ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, mobId + "_totem");
-            Item item = ForgeRegistries.ITEMS.getValue(itemId);
+            Advancement advancement = generateAdvancement(
+                    saver, helper, essence, categoryId, root, mobId
+            );
+            generatedParents.put(mobId, advancement);
+            generated.add(mobId);
+        }
 
-            if (item == null) {
-                MobEssenceMod.LOGGER.warn("Item not found for essence '{}'", mobId);
-                continue;
-            }
+        for (TotemEssenceRegistry.EssenceData essence : all) {
+            String mobId = essence.id().getPath();
+            if (generated.contains(mobId)) continue;
 
-            ItemStack stack = new ItemStack(ModItems.TOTEM_OF_ESSENCE.get());
-            TotemUtils.setEssence(stack, essence.id());
+            Advancement parentAdv = SUBGROUPS.containsKey(mobId)
+                    ? generatedParents.get(SUBGROUPS.get(mobId))
+                    : root;
 
-            Advancement.Builder.advancement()
-                    .parent(parent)
-                    .display(
-                            stack,
-                            Component.literal(essence.tooltip().getTitle()),
-                            Component.literal(essence.tooltip().getDescription()),
-                            null,
-                            FrameType.GOAL,
-                            true, true, false) //todo hidden true
-                    .addCriterion("has_" + mobId, InventoryChangeTrigger.TriggerInstance.hasItems(
-                            ItemPredicate.Builder.item()
-                                    .of(ModItems.TOTEM_OF_ESSENCE.get())
-                                    .hasNbt(TotemUtils.makeEssenceTag(essence.id()))
-                                    .build()
-                    ))
-                    .save(saver, advancementId, helper);
+            generateAdvancement(saver, helper, essence, categoryId, parentAdv, mobId);
+            generated.add(mobId);
         }
     }
 
-    private static final Map<String, String> PASSIVE_SUBGROUPS = Map.ofEntries(
+    private Advancement generateAdvancement(Consumer<Advancement> saver, ExistingFileHelper helper,
+                                            TotemEssenceRegistry.EssenceData essence,
+                                            String categoryId, Advancement parent, String mobId) {
+
+        ResourceLocation advancementId = ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, categoryId + "/" + mobId);
+
+        ItemStack stack = new ItemStack(ModItems.TOTEM_OF_ESSENCE.get());
+        TotemUtils.setEssence(stack, essence.id());
+
+        Component description = Component.literal("[" + essence.category().toString() + "] " + essence.tooltip().getDescription())
+                .withStyle(essence.category().asStyle());
+
+        return Advancement.Builder.advancement()
+                .parent(parent)
+                .display(
+                        stack,
+                        Component.literal("Essence of the " + formatMobName(essence.id().getPath())),
+                        description,
+                        null,
+                        FrameType.TASK,
+                        true, true, false)
+                .addCriterion("has_" + mobId, InventoryChangeTrigger.TriggerInstance.hasItems(
+                        ItemPredicate.Builder.item()
+                                .of(ModItems.TOTEM_OF_ESSENCE.get())
+                                .hasNbt(TotemUtils.makeEssenceTag(essence.id()))
+                                .build()
+                ))
+                .save(saver, advancementId, helper);
+    }
+
+    private static final Map<String, String> SUBGROUPS = Map.ofEntries(
+            //passive
             Map.entry("salmon", "cod"),
-            Map.entry("tropical_fish", "salmon"),
+            Map.entry("tropical_fish", "cod"),
             Map.entry("glow_squid", "squid"),
             Map.entry("donkey", "horse"),
             Map.entry("cat", "ocelot"),
             Map.entry("snow_fox", "fox"),
-            Map.entry("frog_temperate", "tadpole"),
-            Map.entry("frog_warm", "tadpole"),
-            Map.entry("frog_cold", "tadpole")
+            Map.entry("temperate_frog", "tadpole"),
+            Map.entry("warm_frog", "tadpole"),
+            Map.entry("cold_frog", "tadpole"),
+            Map.entry("parrot", "chicken"),
+
+            //neutral
+            Map.entry("cave_spider", "spider"),
+            Map.entry("zombified_piglin", "piglin")
     );
+
+    private static String formatMobName(String rawId) {
+        return Arrays.stream(rawId.split("_"))
+                .map(word -> word.isEmpty()
+                        ? word
+                        : Character.toUpperCase(word.charAt(0)) + word.substring(1))
+                .reduce((a, b) -> a + " " + b)
+                .orElse(rawId);
+    }
 
 }

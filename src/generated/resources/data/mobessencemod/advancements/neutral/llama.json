@@ -18,7 +18,8 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "text": "Automatically spits at hostile mobs nearby dealing damage and knockback (every 5 seconds)"
+      "color": "#E7CA3A",
+      "text": "[NEUTRAL] Automatically spits at hostile mobs nearby dealing damage and knockback (every 5 seconds)"
     },
     "frame": "task",
     "hidden": false,
@@ -28,7 +29,7 @@
     },
     "show_toast": true,
     "title": {
-      "text": "Spit Happens"
+      "text": "Essence of the Llama"
     }
   },
   "requirements": [

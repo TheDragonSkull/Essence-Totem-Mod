@@ -1,5 +1,5 @@
 {
-  "parent": "mobessencemod:passive/root",
+  "parent": "mobessencemod:passive/tadpole",
   "criteria": {
     "has_cold_frog": {
       "conditions": {
@@ -18,7 +18,8 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "text": "No fall damage from 5 blocks or less + long jump while not sprinting + immunity to freezing"
+      "color": "#88CB2C",
+      "text": "[PASSIVE] No fall damage from 5 blocks or less + long jump while not sprinting + immunity to freezing"
     },
     "frame": "task",
     "hidden": false,
@@ -28,7 +29,7 @@
     },
     "show_toast": true,
     "title": {
-      "text": "Amphibian Spirit of the Tundra"
+      "text": "Essence of the Cold Frog"
     }
   },
   "requirements": [

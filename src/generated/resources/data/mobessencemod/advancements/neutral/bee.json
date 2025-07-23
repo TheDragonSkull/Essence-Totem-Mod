@@ -18,7 +18,8 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "text": "Stings and poisons enemies when hit from behind + bees will no longer target the player"
+      "color": "#E7CA3A",
+      "text": "[NEUTRAL] Stings and poisons enemies when hit from behind + bees will no longer target the player"
     },
     "frame": "task",
     "hidden": false,
@@ -28,7 +29,7 @@
     },
     "show_toast": true,
     "title": {
-      "text": "Stinger Reflex"
+      "text": "Essence of the Bee"
     }
   },
   "requirements": [

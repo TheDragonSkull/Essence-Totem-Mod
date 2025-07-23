@@ -18,7 +18,8 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "text": "When hit by a mob, chance to get Strength I for 5s (1/3) + recover half a heart by consuming bamboo + gain absorption I for 5s when eating vegetables such as potatoes, beetroots, carrots, etc..."
+      "color": "#E7CA3A",
+      "text": "[NEUTRAL] When hit by a mob, chance to get Strength I for 5s (1/3) + recover half a heart by consuming bamboo + gain absorption I for 5s when eating vegetables such as potatoes, beetroots, carrots, etc..."
     },
     "frame": "task",
     "hidden": false,
@@ -28,7 +29,7 @@
     },
     "show_toast": true,
     "title": {
-      "text": "Temperamental Behavior"
+      "text": "Essence of the Panda"
     }
   },
   "requirements": [

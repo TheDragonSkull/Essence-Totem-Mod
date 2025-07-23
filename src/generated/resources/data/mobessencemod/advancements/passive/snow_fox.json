@@ -1,5 +1,5 @@
 {
-  "parent": "mobessencemod:passive/root",
+  "parent": "mobessencemod:passive/fox",
   "criteria": {
     "has_snow_fox": {
       "conditions": {
@@ -18,7 +18,8 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "text": "No slowdown or damage when inside cobwebs or sweet berry bushes + at night, 25% chance to duplicate loot from mobs when killing + walk over powder snow blocks"
+      "color": "#88CB2C",
+      "text": "[PASSIVE] No slowdown or damage when inside cobwebs or sweet berry bushes + at night, 25% chance to duplicate loot from mobs when killing + walk over powder snow blocks"
     },
     "frame": "task",
     "hidden": false,
@@ -28,7 +29,7 @@
     },
     "show_toast": true,
     "title": {
-      "text": "Snow Twilight Scavenger"
+      "text": "Essence of the Snow Fox"
     }
   },
   "requirements": [

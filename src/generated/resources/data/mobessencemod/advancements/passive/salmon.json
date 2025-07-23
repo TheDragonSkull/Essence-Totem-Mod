@@ -1,5 +1,5 @@
 {
-  "parent": "mobessencemod:passive/root",
+  "parent": "mobessencemod:passive/cod",
   "criteria": {
     "has_salmon": {
       "conditions": {
@@ -18,7 +18,8 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "text": "Increased swimming speed"
+      "color": "#88CB2C",
+      "text": "[PASSIVE] Increased swimming speed"
     },
     "frame": "task",
     "hidden": false,
@@ -28,7 +29,7 @@
     },
     "show_toast": true,
     "title": {
-      "text": "Underwater Momentum"
+      "text": "Essence of the Salmon"
     }
   },
   "requirements": [

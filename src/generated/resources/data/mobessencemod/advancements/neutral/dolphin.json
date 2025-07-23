@@ -18,7 +18,8 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "text": "Increased swimming speed + spin boost when swimming near an entity (if the entity is hit, damage is applied but it cancels the boost)"
+      "color": "#E7CA3A",
+      "text": "[NEUTRAL] Increased swimming speed + spin boost when swimming near an entity (if the entity is hit, damage is applied but it cancels the boost)"
     },
     "frame": "task",
     "hidden": false,
@@ -28,7 +29,7 @@
     },
     "show_toast": true,
     "title": {
-      "text": "Wave Rider"
+      "text": "Essence of the Dolphin"
     }
   },
   "requirements": [

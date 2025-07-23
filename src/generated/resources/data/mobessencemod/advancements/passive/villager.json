@@ -18,7 +18,8 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "text": "Grow a big nose to smell nearby emerald ores (~20 blocks)"
+      "color": "#88CB2C",
+      "text": "[PASSIVE] Grow a big nose to smell nearby emerald ores (~20 blocks)"
     },
     "frame": "task",
     "hidden": false,
@@ -28,7 +29,7 @@
     },
     "show_toast": true,
     "title": {
-      "text": "Scent of the Money"
+      "text": "Essence of the Villager"
     }
   },
   "requirements": [

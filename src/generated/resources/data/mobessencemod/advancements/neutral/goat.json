@@ -18,7 +18,8 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "text": "Tackle any mob in your way while running; the faster the player, the more the damage"
+      "color": "#E7CA3A",
+      "text": "[NEUTRAL] Tackle any mob in your way while running; the faster the player, the more the damage"
     },
     "frame": "task",
     "hidden": false,
@@ -28,7 +29,7 @@
     },
     "show_toast": true,
     "title": {
-      "text": "Ram Charge"
+      "text": "Essence of the Goat"
     }
   },
   "requirements": [

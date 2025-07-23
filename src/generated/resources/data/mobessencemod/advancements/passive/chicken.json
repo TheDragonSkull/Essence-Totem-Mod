@@ -18,7 +18,8 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "text": "Basically permanent slow falling"
+      "color": "#88CB2C",
+      "text": "[PASSIVE] Basically permanent slow falling"
     },
     "frame": "task",
     "hidden": false,
@@ -28,7 +29,7 @@
     },
     "show_toast": true,
     "title": {
-      "text": "Feathered Fiend"
+      "text": "Essence of the Chicken"
     }
   },
   "requirements": [

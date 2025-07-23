@@ -1,5 +1,5 @@
 {
-  "parent": "mobessencemod:neutral/root",
+  "parent": "mobessencemod:neutral/spider",
   "criteria": {
     "has_cave_spider": {
       "conditions": {
@@ -18,7 +18,8 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "text": "Slowly climb walls + poison enemies when unarmed (20%) + cobweb doesn't slow"
+      "color": "#E7CA3A",
+      "text": "[NEUTRAL] Slowly climb walls + poison enemies when unarmed (20%) + cobweb doesn't slow"
     },
     "frame": "task",
     "hidden": false,
@@ -28,7 +29,7 @@
     },
     "show_toast": true,
     "title": {
-      "text": "Poisonous Wall-Crawler"
+      "text": "Essence of the Cave Spider"
     }
   },
   "requirements": [

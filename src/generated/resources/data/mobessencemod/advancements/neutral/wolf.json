@@ -18,7 +18,8 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "text": "When injured, there's a chance two wolves will come to your aid and attack your assailant"
+      "color": "#E7CA3A",
+      "text": "[NEUTRAL] When injured, there's a chance two wolves will come to your aid and attack your assailant"
     },
     "frame": "task",
     "hidden": false,
@@ -28,7 +29,7 @@
     },
     "show_toast": true,
     "title": {
-      "text": "Pack Instinct"
+      "text": "Essence of the Wolf"
     }
   },
   "requirements": [

@@ -18,7 +18,8 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "text": "After killing a mob that's trying to fight, gain regeneration I for 5 seconds (regen II if underwater)"
+      "color": "#88CB2C",
+      "text": "[PASSIVE] After killing a mob that's trying to fight, gain regeneration I for 5 seconds (regen II if underwater)"
     },
     "frame": "task",
     "hidden": false,
@@ -28,7 +29,7 @@
     },
     "show_toast": true,
     "title": {
-      "text": "PTSD Therapy"
+      "text": "Essence of the Axolotl"
     }
   },
   "requirements": [

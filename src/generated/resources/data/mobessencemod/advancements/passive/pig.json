@@ -18,7 +18,8 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "text": "Immune to negative food effects +  if struck by lightning bolt, the totem transforms its essence into zombified piglin"
+      "color": "#88CB2C",
+      "text": "[PASSIVE] Immune to negative food effects +  if struck by lightning bolt, the totem transforms its essence into zombified piglin"
     },
     "frame": "task",
     "hidden": false,
@@ -28,7 +29,7 @@
     },
     "show_toast": true,
     "title": {
-      "text": "Cast-Iron Stomach"
+      "text": "Essence of the Pig"
     }
   },
   "requirements": [

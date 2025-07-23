@@ -18,7 +18,8 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "text": "Chance of cleansing a harmful effect (1/3) when applied while the totem is equipped"
+      "color": "#88CB2C",
+      "text": "[PASSIVE] Chance of cleansing a harmful effect (1/3) when applied while the totem is equipped"
     },
     "frame": "task",
     "hidden": false,
@@ -28,7 +29,7 @@
     },
     "show_toast": true,
     "title": {
-      "text": "Cleanse"
+      "text": "Essence of the Cow"
     }
   },
   "requirements": [

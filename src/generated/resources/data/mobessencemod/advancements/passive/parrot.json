@@ -1,5 +1,5 @@
 {
-  "parent": "mobessencemod:passive/root",
+  "parent": "mobessencemod:passive/chicken",
   "criteria": {
     "has_parrot": {
       "conditions": {
@@ -18,7 +18,8 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "text": "Double jump + don't trigger pressure plates or tripwires"
+      "color": "#88CB2C",
+      "text": "[PASSIVE] Double jump + don't trigger pressure plates or tripwires"
     },
     "frame": "task",
     "hidden": false,
@@ -28,7 +29,7 @@
     },
     "show_toast": true,
     "title": {
-      "text": "Featherlight"
+      "text": "Essence of the Parrot"
     }
   },
   "requirements": [

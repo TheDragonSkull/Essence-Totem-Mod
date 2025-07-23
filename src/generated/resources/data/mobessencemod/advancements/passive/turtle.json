@@ -18,7 +18,8 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "text": "Block all incoming damage from behind"
+      "color": "#88CB2C",
+      "text": "[PASSIVE] Block all incoming damage from behind"
     },
     "frame": "task",
     "hidden": false,
@@ -28,7 +29,7 @@
     },
     "show_toast": true,
     "title": {
-      "text": "Rear shield"
+      "text": "Essence of the Turtle"
     }
   },
   "requirements": [

@@ -18,7 +18,8 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "text": "Chance of halving melee and projectile damage (1/3)"
+      "color": "#88CB2C",
+      "text": "[PASSIVE] Chance of halving melee and projectile damage (1/3)"
     },
     "frame": "task",
     "hidden": false,
@@ -28,7 +29,7 @@
     },
     "show_toast": true,
     "title": {
-      "text": "Wooly Shield"
+      "text": "Essence of the Sheep"
     }
   },
   "requirements": [

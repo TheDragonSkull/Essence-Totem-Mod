@@ -18,7 +18,8 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "text": "Sniff for nearby matching blocks based on what you hold. Closer means stronger scent... and faster digging!"
+      "color": "#88CB2C",
+      "text": "[PASSIVE] Sniff for nearby matching blocks based on what you hold. Closer means stronger scent... and faster digging!"
     },
     "frame": "task",
     "hidden": false,
@@ -28,7 +29,7 @@
     },
     "show_toast": true,
     "title": {
-      "text": "Scent Tracking"
+      "text": "Essence of the Sniffer"
     }
   },
   "requirements": [

@@ -18,7 +18,8 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "text": "Chance to inflict knockback + poison on contact (1/3)"
+      "color": "#E7CA3A",
+      "text": "[NEUTRAL] Chance to inflict knockback + poison on contact (1/3)"
     },
     "frame": "task",
     "hidden": false,
@@ -28,7 +29,7 @@
     },
     "show_toast": true,
     "title": {
-      "text": "Toxic Touch"
+      "text": "Essence of the Pufferfish"
     }
   },
   "requirements": [

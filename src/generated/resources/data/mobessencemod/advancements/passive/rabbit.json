@@ -18,7 +18,8 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "text": "Permanent jump boost + chance of getting movement speed and strength boost when melee killing (1/4)"
+      "color": "#88CB2C",
+      "text": "[PASSIVE] Permanent jump boost + chance of getting movement speed and strength boost when melee killing (1/4)"
     },
     "frame": "task",
     "hidden": false,
@@ -28,7 +29,7 @@
     },
     "show_toast": true,
     "title": {
-      "text": "Killing Frenzy"
+      "text": "Essence of the Rabbit"
     }
   },
   "requirements": [

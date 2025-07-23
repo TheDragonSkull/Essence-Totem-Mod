@@ -19,7 +19,7 @@
     "description": {
       "text": "Collect the essence of every boss"
     },
-    "frame": "task",
+    "frame": "goal",
     "hidden": false,
     "icon": {
       "item": "minecraft:magenta_concrete_powder"

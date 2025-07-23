@@ -19,7 +19,7 @@
     "description": {
       "text": "Collect the essence of every passive creature"
     },
-    "frame": "task",
+    "frame": "goal",
     "hidden": false,
     "icon": {
       "item": "minecraft:lime_concrete_powder"

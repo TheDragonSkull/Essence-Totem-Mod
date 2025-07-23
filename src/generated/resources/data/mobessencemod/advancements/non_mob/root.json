@@ -19,7 +19,7 @@
     "description": {
       "text": "Collect the essence of every non mob creature"
     },
-    "frame": "task",
+    "frame": "goal",
     "hidden": false,
     "icon": {
       "item": "minecraft:white_concrete_powder"

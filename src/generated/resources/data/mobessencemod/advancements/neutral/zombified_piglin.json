@@ -1,5 +1,5 @@
 {
-  "parent": "mobessencemod:neutral/root",
+  "parent": "mobessencemod:neutral/piglin",
   "criteria": {
     "has_zombified_piglin": {
       "conditions": {
@@ -18,7 +18,8 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "text": "Immunity to lightning strikes + when damaged, chance of summoning zombified piglin targeting the attacker (1/12)"
+      "color": "#E7CA3A",
+      "text": "[NEUTRAL] Immunity to lightning strikes + when damaged, chance of summoning zombified piglin targeting the attacker (1/12)"
     },
     "frame": "task",
     "hidden": false,
@@ -28,7 +29,7 @@
     },
     "show_toast": true,
     "title": {
-      "text": "Hell's wrath"
+      "text": "Essence of the Zombified Piglin"
     }
   },
   "requirements": [
