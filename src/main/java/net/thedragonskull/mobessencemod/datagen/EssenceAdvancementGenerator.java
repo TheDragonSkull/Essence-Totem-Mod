@@ -19,6 +19,7 @@ import net.thedragonskull.mobessencemod.item.ModItems;
 import net.thedragonskull.mobessencemod.util.TotemMobCategory;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
 
+import java.util.Map;
 import java.util.function.Consumer;
 
 public class EssenceAdvancementGenerator implements ForgeAdvancementProvider.AdvancementGenerator {
@@ -49,19 +50,27 @@ public class EssenceAdvancementGenerator implements ForgeAdvancementProvider.Adv
         Advancement neutralRoot = generateCategoryAdvancement(saver, helper, root,
                 "neutral", Items.YELLOW_CONCRETE_POWDER, "Neutral Mob Essences", "Collect the essence of every neutral creature");
 
-        generateEssenceAdvancementsForCategory(saver, helper, neutralRoot, TotemMobCategory.NEUTRAL, "neutral");
+        //generateEssenceAdvancementsForCategory(saver, helper, neutralRoot, TotemMobCategory.NEUTRAL, "neutral");
 
-        generateCategoryAdvancement(saver, helper, root,
+        Advancement hostileRoot = generateCategoryAdvancement(saver, helper, root,
                 "hostile", Items.RED_CONCRETE_POWDER, "Hostile Mob Essences", "Collect the essence of every hostile creature");
 
-        generateCategoryAdvancement(saver, helper, root,
+        //generateEssenceAdvancementsForCategory(saver, helper, hostileRoot, TotemMobCategory.HOSTILE, "hostile");
+
+        Advancement specialRoot = generateCategoryAdvancement(saver, helper, root,
                 "special", Items.LIGHT_BLUE_CONCRETE_POWDER, "Special Mob Essences", "Collect the essence of every special creature");
 
-        generateCategoryAdvancement(saver, helper, root,
+        //generateEssenceAdvancementsForCategory(saver, helper, specialRoot, TotemMobCategory.SPECIAL, "special");
+
+        Advancement bossRoot = generateCategoryAdvancement(saver, helper, root,
                 "boss", Items.MAGENTA_CONCRETE_POWDER, "Boss Mob Essences", "Collect the essence of every boss");
 
-        generateCategoryAdvancement(saver, helper, root,
+        //generateEssenceAdvancementsForCategory(saver, helper, bossRoot, TotemMobCategory.BOSS, "boss");
+
+        Advancement nonMobRoot = generateCategoryAdvancement(saver, helper, root,
                 "non_mob", Items.WHITE_CONCRETE_POWDER, "Non Mob Mob Essences", "Collect the essence of every non mob creature");
+
+        //generateEssenceAdvancementsForCategory(saver, helper, nonMobRoot, TotemMobCategory.NON_MOB, "non_mob");
     }
 
     private Advancement generateCategoryAdvancement(Consumer<Advancement> saver, ExistingFileHelper helper, Advancement parent,
@@ -106,7 +115,7 @@ public class EssenceAdvancementGenerator implements ForgeAdvancementProvider.Adv
                             Component.literal(essence.tooltip().getTitle()),
                             Component.literal(essence.tooltip().getDescription()),
                             null,
-                            FrameType.TASK,
+                            FrameType.GOAL,
                             true, true, false) //todo hidden true
                     .addCriterion("has_" + mobId, InventoryChangeTrigger.TriggerInstance.hasItems(
                             ItemPredicate.Builder.item()
@@ -117,5 +126,17 @@ public class EssenceAdvancementGenerator implements ForgeAdvancementProvider.Adv
                     .save(saver, advancementId, helper);
         }
     }
+
+    private static final Map<String, String> PASSIVE_SUBGROUPS = Map.ofEntries(
+            Map.entry("salmon", "cod"),
+            Map.entry("tropical_fish", "salmon"),
+            Map.entry("glow_squid", "squid"),
+            Map.entry("donkey", "horse"),
+            Map.entry("cat", "ocelot"),
+            Map.entry("snow_fox", "fox"),
+            Map.entry("frog_temperate", "tadpole"),
+            Map.entry("frog_warm", "tadpole"),
+            Map.entry("frog_cold", "tadpole")
+    );
 
 }
