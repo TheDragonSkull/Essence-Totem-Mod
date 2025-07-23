@@ -19,7 +19,13 @@
     "announce_to_chat": true,
     "description": {
       "color": "#88CB2C",
-      "text": "[PASSIVE] Permanent jump boost + chance of getting movement speed and strength boost when melee killing (1/4)"
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Permanent jump boost + chance of getting movement speed and strength boost when melee killing (1/4)"
+        }
+      ],
+      "text": "[PASSIVE] "
     },
     "frame": "task",
     "hidden": false,

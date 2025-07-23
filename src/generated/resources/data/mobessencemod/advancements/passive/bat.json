@@ -19,7 +19,13 @@
     "announce_to_chat": true,
     "description": {
       "color": "#88CB2C",
-      "text": "[PASSIVE] While pressing Shift, apply glowing to any mob within a 15 block radius + at night, also become invisible"
+      "extra": [
+        {
+          "color": "gray",
+          "text": "While pressing Shift, apply glowing to any mob within a 15 block radius + at night, also become invisible"
+        }
+      ],
+      "text": "[PASSIVE] "
     },
     "frame": "task",
     "hidden": false,

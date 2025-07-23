@@ -19,7 +19,13 @@
     "announce_to_chat": true,
     "description": {
       "color": "#88CB2C",
-      "text": "[PASSIVE] Chests drop themselves with the items inside instead of dropping the contents + chance to donkey kick if melee attacked from behind (1/3)"
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Chests drop themselves with the items inside instead of dropping the contents + chance to donkey kick if melee attacked from behind (1/3)"
+        }
+      ],
+      "text": "[PASSIVE] "
     },
     "frame": "task",
     "hidden": false,

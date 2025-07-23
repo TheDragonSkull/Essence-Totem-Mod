@@ -19,7 +19,13 @@
     "announce_to_chat": true,
     "description": {
       "color": "#88CB2C",
-      "text": "[PASSIVE] Immunity to cactus damage + step over blocks up to 1.5 height without jumping (like fences) + dash by using sprint key while already sprinting (5s cooldown)"
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Immunity to cactus damage + step over blocks up to 1.5 height without jumping (like fences) + dash by using sprint key while already sprinting (5s cooldown)"
+        }
+      ],
+      "text": "[PASSIVE] "
     },
     "frame": "task",
     "hidden": false,

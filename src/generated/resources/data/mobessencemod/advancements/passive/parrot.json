@@ -19,7 +19,13 @@
     "announce_to_chat": true,
     "description": {
       "color": "#88CB2C",
-      "text": "[PASSIVE] Double jump + don't trigger pressure plates or tripwires"
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Double jump + don't trigger pressure plates or tripwires"
+        }
+      ],
+      "text": "[PASSIVE] "
     },
     "frame": "task",
     "hidden": false,

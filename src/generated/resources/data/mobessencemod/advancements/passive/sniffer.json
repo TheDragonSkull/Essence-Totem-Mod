@@ -19,7 +19,13 @@
     "announce_to_chat": true,
     "description": {
       "color": "#88CB2C",
-      "text": "[PASSIVE] Sniff for nearby matching blocks based on what you hold. Closer means stronger scent... and faster digging!"
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Sniff for nearby matching blocks based on what you hold. Closer means stronger scent... and faster digging!"
+        }
+      ],
+      "text": "[PASSIVE] "
     },
     "frame": "task",
     "hidden": false,

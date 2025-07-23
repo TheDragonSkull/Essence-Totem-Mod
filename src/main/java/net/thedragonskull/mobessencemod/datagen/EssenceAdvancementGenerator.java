@@ -22,6 +22,8 @@ import net.thedragonskull.mobessencemod.util.TotemUtils;
 import java.util.*;
 import java.util.function.Consumer;
 
+import static net.thedragonskull.mobessencemod.util.TotemUtils.formatMobName;
+
 public class EssenceAdvancementGenerator implements ForgeAdvancementProvider.AdvancementGenerator {
 
     @Override
@@ -132,8 +134,8 @@ public class EssenceAdvancementGenerator implements ForgeAdvancementProvider.Adv
         ItemStack stack = new ItemStack(ModItems.TOTEM_OF_ESSENCE.get());
         TotemUtils.setEssence(stack, essence.id());
 
-        Component description = Component.literal("[" + essence.category().toString() + "] " + essence.tooltip().getDescription())
-                .withStyle(essence.category().asStyle());
+        Component description = Component.literal("[" + essence.category().toString() + "] ").withStyle(essence.category().asStyle())
+                .append(Component.literal(essence.tooltip().getDescription()).withStyle(ChatFormatting.GRAY));
 
         return Advancement.Builder.advancement()
                 .parent(parent)
@@ -170,14 +172,5 @@ public class EssenceAdvancementGenerator implements ForgeAdvancementProvider.Adv
             Map.entry("cave_spider", "spider"),
             Map.entry("zombified_piglin", "piglin")
     );
-
-    private static String formatMobName(String rawId) {
-        return Arrays.stream(rawId.split("_"))
-                .map(word -> word.isEmpty()
-                        ? word
-                        : Character.toUpperCase(word.charAt(0)) + word.substring(1))
-                .reduce((a, b) -> a + " " + b)
-                .orElse(rawId);
-    }
 
 }

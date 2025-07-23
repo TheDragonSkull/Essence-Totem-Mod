@@ -19,7 +19,13 @@
     "announce_to_chat": true,
     "description": {
       "color": "#E7CA3A",
-      "text": "[NEUTRAL] When injured, there's a chance two wolves will come to your aid and attack your assailant"
+      "extra": [
+        {
+          "color": "gray",
+          "text": "When injured, there's a chance two wolves will come to your aid and attack your assailant"
+        }
+      ],
+      "text": "[NEUTRAL] "
     },
     "frame": "task",
     "hidden": false,

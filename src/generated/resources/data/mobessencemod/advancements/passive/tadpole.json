@@ -19,7 +19,13 @@
     "announce_to_chat": true,
     "description": {
       "color": "#88CB2C",
-      "text": "[PASSIVE] Consume a slimeball to get a random positive effect based if the player is on land or water (20s)"
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Consume a slimeball to get a random positive effect based if the player is on land or water (20s)"
+        }
+      ],
+      "text": "[PASSIVE] "
     },
     "frame": "task",
     "hidden": false,

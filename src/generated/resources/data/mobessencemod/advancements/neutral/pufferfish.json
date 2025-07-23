@@ -19,7 +19,13 @@
     "announce_to_chat": true,
     "description": {
       "color": "#E7CA3A",
-      "text": "[NEUTRAL] Chance to inflict knockback + poison on contact (1/3)"
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Chance to inflict knockback + poison on contact (1/3)"
+        }
+      ],
+      "text": "[NEUTRAL] "
     },
     "frame": "task",
     "hidden": false,

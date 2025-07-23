@@ -19,7 +19,13 @@
     "announce_to_chat": true,
     "description": {
       "color": "#88CB2C",
-      "text": "[PASSIVE] Hypnotize aquatic mobs into following the player (10 blocks radius) + when melee attacked, chance to release glowing ink and put glowing effect to the attacker (1/3). If underwater, it also pushes the player away"
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Hypnotize aquatic mobs into following the player (10 blocks radius) + when melee attacked, chance to release glowing ink and put glowing effect to the attacker (1/3). If underwater, it also pushes the player away"
+        }
+      ],
+      "text": "[PASSIVE] "
     },
     "frame": "task",
     "hidden": false,

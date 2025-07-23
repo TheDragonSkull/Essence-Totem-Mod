@@ -19,7 +19,13 @@
     "announce_to_chat": true,
     "description": {
       "color": "#88CB2C",
-      "text": "[PASSIVE] Immune to negative food effects +  if struck by lightning bolt, the totem transforms its essence into zombified piglin"
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Immune to negative food effects +  if struck by lightning bolt, the totem transforms its essence into zombified piglin"
+        }
+      ],
+      "text": "[PASSIVE] "
     },
     "frame": "task",
     "hidden": false,

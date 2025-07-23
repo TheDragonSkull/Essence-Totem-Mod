@@ -19,7 +19,13 @@
     "announce_to_chat": true,
     "description": {
       "color": "#88CB2C",
-      "text": "[PASSIVE] Grow a big nose to smell nearby emerald ores (~20 blocks)"
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Grow a big nose to smell nearby emerald ores (~20 blocks)"
+        }
+      ],
+      "text": "[PASSIVE] "
     },
     "frame": "task",
     "hidden": false,

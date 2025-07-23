@@ -19,7 +19,13 @@
     "announce_to_chat": true,
     "description": {
       "color": "#88CB2C",
-      "text": "[PASSIVE] Enhanced underwater visibility"
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Enhanced underwater visibility"
+        }
+      ],
+      "text": "[PASSIVE] "
     },
     "frame": "task",
     "hidden": false,

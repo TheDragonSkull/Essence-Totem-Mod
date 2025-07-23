@@ -19,7 +19,13 @@
     "announce_to_chat": true,
     "description": {
       "color": "#88CB2C",
-      "text": "[PASSIVE] Expands the pickup range for the same type of item that is in the offhand (15 block radius) + get speed II if close to a playing jukebox + ALL the items surrounding a noteblock will be pulled when interacted with"
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Expands the pickup range for the same type of item that is in the offhand (15 block radius) + get speed II if close to a playing jukebox + ALL the items surrounding a noteblock will be pulled when interacted with"
+        }
+      ],
+      "text": "[PASSIVE] "
     },
     "frame": "task",
     "hidden": false,

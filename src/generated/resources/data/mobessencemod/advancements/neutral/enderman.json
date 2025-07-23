@@ -19,7 +19,13 @@
     "announce_to_chat": true,
     "description": {
       "color": "#E7CA3A",
-      "text": "[NEUTRAL] Teleport away to evade ranged damage"
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Teleport away to evade ranged damage"
+        }
+      ],
+      "text": "[NEUTRAL] "
     },
     "frame": "task",
     "hidden": false,

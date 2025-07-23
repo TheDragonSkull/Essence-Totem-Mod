@@ -19,7 +19,13 @@
     "announce_to_chat": true,
     "description": {
       "color": "#E7CA3A",
-      "text": "[NEUTRAL] When hit by a mob, chance to get Strength I for 5s (1/3) + recover half a heart by consuming bamboo + gain absorption I for 5s when eating vegetables such as potatoes, beetroots, carrots, etc..."
+      "extra": [
+        {
+          "color": "gray",
+          "text": "When hit by a mob, chance to get Strength I for 5s (1/3) + recover half a heart by consuming bamboo + gain absorption I for 5s when eating vegetables such as potatoes, beetroots, carrots, etc..."
+        }
+      ],
+      "text": "[NEUTRAL] "
     },
     "frame": "task",
     "hidden": false,

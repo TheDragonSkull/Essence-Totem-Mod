@@ -19,7 +19,13 @@
     "announce_to_chat": true,
     "description": {
       "color": "#88CB2C",
-      "text": "[PASSIVE] Block all incoming damage from behind"
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Block all incoming damage from behind"
+        }
+      ],
+      "text": "[PASSIVE] "
     },
     "frame": "task",
     "hidden": false,

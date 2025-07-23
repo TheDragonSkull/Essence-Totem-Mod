@@ -38,6 +38,7 @@ import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.Set;
 
@@ -84,6 +85,15 @@ public class TotemUtils {
 
     public static void failMessage(Player player, String msg) {
         player.displayClientMessage(Component.literal(msg).withStyle(ChatFormatting.RED), true);
+    }
+
+    public static String formatMobName(String rawId) {
+        return Arrays.stream(rawId.split("_"))
+                .map(word -> word.isEmpty()
+                        ? word
+                        : Character.toUpperCase(word.charAt(0)) + word.substring(1))
+                .reduce((a, b) -> a + " " + b)
+                .orElse(rawId);
     }
 
     public static void onDragonEggUse(PlayerInteractEvent.RightClickBlock event) {

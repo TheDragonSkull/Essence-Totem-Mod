@@ -19,7 +19,13 @@
     "announce_to_chat": true,
     "description": {
       "color": "#E7CA3A",
-      "text": "[NEUTRAL] Tackle any mob in your way while running; the faster the player, the more the damage"
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Tackle any mob in your way while running; the faster the player, the more the damage"
+        }
+      ],
+      "text": "[NEUTRAL] "
     },
     "frame": "task",
     "hidden": false,

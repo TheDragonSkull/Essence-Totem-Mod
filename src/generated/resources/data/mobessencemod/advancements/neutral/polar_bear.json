@@ -19,7 +19,13 @@
     "announce_to_chat": true,
     "description": {
       "color": "#E7CA3A",
-      "text": "[NEUTRAL] Immunity to freezing + damage resistance I while on any snow/ice biome + chance of inflicting knockback when melee attacking (25%)"
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Immunity to freezing + damage resistance I while on any snow/ice biome + chance of inflicting knockback when melee attacking (25%)"
+        }
+      ],
+      "text": "[NEUTRAL] "
     },
     "frame": "task",
     "hidden": false,

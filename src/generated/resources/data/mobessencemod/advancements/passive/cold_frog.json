@@ -19,7 +19,13 @@
     "announce_to_chat": true,
     "description": {
       "color": "#88CB2C",
-      "text": "[PASSIVE] No fall damage from 5 blocks or less + long jump while not sprinting + immunity to freezing"
+      "extra": [
+        {
+          "color": "gray",
+          "text": "No fall damage from 5 blocks or less + long jump while not sprinting + immunity to freezing"
+        }
+      ],
+      "text": "[PASSIVE] "
     },
     "frame": "task",
     "hidden": false,

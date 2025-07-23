@@ -123,11 +123,20 @@ public class TotemOfEssenceItem extends Item implements ICurioItem {
             player.setItemInHand(hand, copy);
             player.getCooldowns().addCooldown(this, 20);
 
-            player.displayClientMessage(Component.literal("Stored essence of " + mobId.getPath()), true);
+            player.displayClientMessage(Component.literal("Stored essence of " + TotemUtils.formatMobName(mobId.getPath())), true);
 
             TotemEssenceRegistry.EssenceData data = TotemEssenceRegistry.get(mobId);
             if (data != null) {
-                player.playSound(data.sound(), 1.0F, 1.0F);
+                player.level().playSound(
+                        null,
+                        player.getX(),
+                        player.getY(),
+                        player.getZ(),
+                        data.sound(),
+                        SoundSource.PLAYERS,
+                        1.0F,
+                        1.0F
+                );
             }
 
             if (target instanceof ArmorStand) return InteractionResult.SUCCESS;
@@ -218,7 +227,8 @@ public class TotemOfEssenceItem extends Item implements ICurioItem {
 
         if (data != null && Screen.hasShiftDown()) {
             tooltip.add(Component.literal(data.tooltip().title + ":").withStyle(ChatFormatting.GOLD));
-            tooltip.add(Component.literal(data.tooltip().description).withStyle(ChatFormatting.AQUA));
+            tooltip.add(Component.literal("[" + data.category().toString() + "] ").withStyle(data.category().asStyle())
+                    .append(Component.literal(data.tooltip().description).withStyle(ChatFormatting.AQUA)));
 
         } else {
             tooltip.add(Component.literal("Press Shift for details").withStyle(ChatFormatting.GRAY));

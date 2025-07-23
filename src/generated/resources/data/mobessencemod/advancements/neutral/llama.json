@@ -19,7 +19,13 @@
     "announce_to_chat": true,
     "description": {
       "color": "#E7CA3A",
-      "text": "[NEUTRAL] Automatically spits at hostile mobs nearby dealing damage and knockback (every 5 seconds)"
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Automatically spits at hostile mobs nearby dealing damage and knockback (every 5 seconds)"
+        }
+      ],
+      "text": "[NEUTRAL] "
     },
     "frame": "task",
     "hidden": false,
