@@ -1,0 +1,38 @@
+{
+  "parent": "mobessencemod:root",
+  "criteria": {
+    "has_hostile": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:red_concrete_powder"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Collect the essence of every hostile creature"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:red_concrete_powder"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Hostile Mob Essences"
+    }
+  },
+  "requirements": [
+    [
+      "has_hostile"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

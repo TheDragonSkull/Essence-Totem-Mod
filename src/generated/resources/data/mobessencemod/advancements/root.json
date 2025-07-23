@@ -1,0 +1,38 @@
+{
+  "criteria": {
+    "has_totem": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "minecraft:textures/gui/advancements/backgrounds/adventure.png",
+    "description": {
+      "text": "Unlock the secrets of creature essences"
+    },
+    "frame": "task",
+    "hidden": true,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Mob Essence"
+    }
+  },
+  "requirements": [
+    [
+      "has_totem"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

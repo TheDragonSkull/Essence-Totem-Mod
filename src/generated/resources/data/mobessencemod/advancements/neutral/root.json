@@ -1,0 +1,38 @@
+{
+  "parent": "mobessencemod:root",
+  "criteria": {
+    "has_neutral": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:yellow_concrete_powder"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Collect the essence of every neutral creature"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:yellow_concrete_powder"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Neutral Mob Essences"
+    }
+  },
+  "requirements": [
+    [
+      "has_neutral"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

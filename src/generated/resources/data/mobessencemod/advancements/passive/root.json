@@ -1,0 +1,38 @@
+{
+  "parent": "mobessencemod:root",
+  "criteria": {
+    "has_passive": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:lime_concrete_powder"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Collect the essence of every passive creature"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:lime_concrete_powder"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Passive Mob Essences"
+    }
+  },
+  "requirements": [
+    [
+      "has_passive"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

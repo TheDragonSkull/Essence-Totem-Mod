@@ -1,0 +1,38 @@
+{
+  "parent": "mobessencemod:root",
+  "criteria": {
+    "has_special": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:light_blue_concrete_powder"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Collect the essence of every special creature"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:light_blue_concrete_powder"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Special Mob Essences"
+    }
+  },
+  "requirements": [
+    [
+      "has_special"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,38 @@
+{
+  "parent": "mobessencemod:root",
+  "criteria": {
+    "has_non_mob": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:white_concrete_powder"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Collect the essence of every non mob creature"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:white_concrete_powder"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Non Mob Mob Essences"
+    }
+  },
+  "requirements": [
+    [
+      "has_non_mob"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
