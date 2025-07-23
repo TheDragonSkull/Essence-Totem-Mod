@@ -100,7 +100,7 @@ public class EnderDragonAbility implements IMobAbility {
         long lastUse = dragonBreathCooldowns.getOrDefault(uuid, 0L);
         long timeSince = currentTick - lastUse;
 
-        if (timeSince >= DRAGON_BREATH_COOLDOWN_TICKS && !notifiedReady.contains(uuid)) { // todo test
+        if (timeSince >= DRAGON_BREATH_COOLDOWN_TICKS && !notifiedReady.contains(uuid)) {
             player.connection.send(new ClientboundSoundPacket(
                     BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.ENDER_DRAGON_GROWL),
                     SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0f, 1.0f,
@@ -115,7 +115,7 @@ public class EnderDragonAbility implements IMobAbility {
         }
 
         if (player.onGround() && flapCount.getOrDefault(uuid, 0) >= MAX_FLAPS) {
-            if (player.fallDistance >= MIN_FALL_DISTANCE && timeSince >= DRAGON_BREATH_COOLDOWN_TICKS) { // todo test
+            if (player.fallDistance >= MIN_FALL_DISTANCE && timeSince >= DRAGON_BREATH_COOLDOWN_TICKS) {
                 player.fallDistance = 0.0F;
 
                 AreaEffectCloud cloud = new AreaEffectCloud(player.level(), player.getX(), player.getY(), player.getZ());
@@ -169,7 +169,7 @@ public class EnderDragonAbility implements IMobAbility {
         return cloud.getPotion().getEffects().stream().anyMatch(e -> e.getEffect() == MobEffects.HARM);
     }
 
-    public static void onFall(LivingFallEvent event) { //todo: test
+    public static void onFall(LivingFallEvent event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
 
         UUID uuid = player.getUUID();
