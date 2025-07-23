@@ -1,0 +1,40 @@
+{
+  "parent": "mobessencemod:passive/root",
+  "criteria": {
+    "has_strider": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:strider\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Reduce fire damage (any) by 50% + improve movement and visibility while in lava"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:strider\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Lava Core"
+    }
+  },
+  "requirements": [
+    [
+      "has_strider"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

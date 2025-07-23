@@ -1,0 +1,40 @@
+{
+  "parent": "mobessencemod:neutral/root",
+  "criteria": {
+    "has_bee": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:bee\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Stings and poisons enemies when hit from behind + bees will no longer target the player"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:bee\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Stinger Reflex"
+    }
+  },
+  "requirements": [
+    [
+      "has_bee"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

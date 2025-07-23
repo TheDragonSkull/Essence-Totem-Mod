@@ -1,0 +1,40 @@
+{
+  "parent": "mobessencemod:neutral/root",
+  "criteria": {
+    "has_spider": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:spider\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Slowly climb vertical surfaces + cobweb doesn't slow"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:spider\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Wall-Crawler"
+    }
+  },
+  "requirements": [
+    [
+      "has_spider"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

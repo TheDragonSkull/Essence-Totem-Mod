@@ -1,0 +1,40 @@
+{
+  "parent": "mobessencemod:passive/root",
+  "criteria": {
+    "has_donkey": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:donkey\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Chests drop themselves with the items inside instead of dropping the contents + chance to donkey kick if melee attacked from behind (1/3)"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:donkey\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Burden Bearer"
+    }
+  },
+  "requirements": [
+    [
+      "has_donkey"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

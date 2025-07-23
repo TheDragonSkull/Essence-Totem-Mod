@@ -1,0 +1,40 @@
+{
+  "parent": "mobessencemod:neutral/root",
+  "criteria": {
+    "has_cave_spider": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:cave_spider\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Slowly climb walls + poison enemies when unarmed (20%) + cobweb doesn't slow"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:cave_spider\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Poisonous Wall-Crawler"
+    }
+  },
+  "requirements": [
+    [
+      "has_cave_spider"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

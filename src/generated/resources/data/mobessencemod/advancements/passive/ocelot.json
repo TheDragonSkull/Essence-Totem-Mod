@@ -1,0 +1,40 @@
+{
+  "parent": "mobessencemod:passive/root",
+  "criteria": {
+    "has_ocelot": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:ocelot\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Halved fall damage when crouching + scare creepers away"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:ocelot\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Feline Graces"
+    }
+  },
+  "requirements": [
+    [
+      "has_ocelot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

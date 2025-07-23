@@ -1,0 +1,40 @@
+{
+  "parent": "mobessencemod:passive/root",
+  "criteria": {
+    "has_villager": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:villager\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Grow a big nose to smell nearby emerald ores (~20 blocks)"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:villager\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Scent of the Money"
+    }
+  },
+  "requirements": [
+    [
+      "has_villager"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,40 @@
+{
+  "parent": "mobessencemod:passive/root",
+  "criteria": {
+    "has_salmon": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:salmon\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Increased swimming speed"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:salmon\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Underwater Momentum"
+    }
+  },
+  "requirements": [
+    [
+      "has_salmon"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

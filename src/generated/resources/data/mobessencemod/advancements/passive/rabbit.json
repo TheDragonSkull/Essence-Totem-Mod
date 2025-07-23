@@ -1,0 +1,40 @@
+{
+  "parent": "mobessencemod:passive/root",
+  "criteria": {
+    "has_rabbit": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:rabbit\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Permanent jump boost + chance of getting movement speed and strength boost when melee killing (1/4)"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:rabbit\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Killing Frenzy"
+    }
+  },
+  "requirements": [
+    [
+      "has_rabbit"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

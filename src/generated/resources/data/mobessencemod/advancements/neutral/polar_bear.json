@@ -1,0 +1,40 @@
+{
+  "parent": "mobessencemod:neutral/root",
+  "criteria": {
+    "has_polar_bear": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:polar_bear\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Immunity to freezing + damage resistance I while on any snow/ice biome + chance of inflicting knockback when melee attacking (25%)"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:polar_bear\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Arctic Endurance"
+    }
+  },
+  "requirements": [
+    [
+      "has_polar_bear"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

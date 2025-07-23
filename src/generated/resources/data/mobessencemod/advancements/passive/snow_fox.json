@@ -1,0 +1,40 @@
+{
+  "parent": "mobessencemod:passive/root",
+  "criteria": {
+    "has_snow_fox": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:snow_fox\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "No slowdown or damage when inside cobwebs or sweet berry bushes + at night, 25% chance to duplicate loot from mobs when killing + walk over powder snow blocks"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:snow_fox\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Snow Twilight Scavenger"
+    }
+  },
+  "requirements": [
+    [
+      "has_snow_fox"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

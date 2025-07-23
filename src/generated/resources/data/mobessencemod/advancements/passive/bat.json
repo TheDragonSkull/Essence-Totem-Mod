@@ -1,0 +1,40 @@
+{
+  "parent": "mobessencemod:passive/root",
+  "criteria": {
+    "has_bat": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:bat\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "While pressing Shift, apply glowing to any mob within a 15 block radius + at night, also become invisible"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:bat\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Shadow Pulse"
+    }
+  },
+  "requirements": [
+    [
+      "has_bat"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

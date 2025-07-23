@@ -1,0 +1,40 @@
+{
+  "parent": "mobessencemod:neutral/root",
+  "criteria": {
+    "has_pufferfish": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:pufferfish\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Chance to inflict knockback + poison on contact (1/3)"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:pufferfish\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Toxic Touch"
+    }
+  },
+  "requirements": [
+    [
+      "has_pufferfish"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,40 @@
+{
+  "parent": "mobessencemod:neutral/root",
+  "criteria": {
+    "has_zombified_piglin": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:zombified_piglin\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Immunity to lightning strikes + when damaged, chance of summoning zombified piglin targeting the attacker (1/12)"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:zombified_piglin\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Hell's wrath"
+    }
+  },
+  "requirements": [
+    [
+      "has_zombified_piglin"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,40 @@
+{
+  "parent": "mobessencemod:passive/root",
+  "criteria": {
+    "has_cow": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:cow\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Chance of cleansing a harmful effect (1/3) when applied while the totem is equipped"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:cow\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Cleanse"
+    }
+  },
+  "requirements": [
+    [
+      "has_cow"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,40 @@
+{
+  "parent": "mobessencemod:passive/root",
+  "criteria": {
+    "has_squid": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:squid\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "When melee attacked, chance to release ink and slow the attacker (1/3). If underwater, it also pushes the player away"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:squid\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Ink Escape"
+    }
+  },
+  "requirements": [
+    [
+      "has_squid"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

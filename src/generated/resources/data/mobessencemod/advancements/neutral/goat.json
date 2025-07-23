@@ -1,0 +1,40 @@
+{
+  "parent": "mobessencemod:neutral/root",
+  "criteria": {
+    "has_goat": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:goat\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Tackle any mob in your way while running; the faster the player, the more the damage"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:goat\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Ram Charge"
+    }
+  },
+  "requirements": [
+    [
+      "has_goat"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

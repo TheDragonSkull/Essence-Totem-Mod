@@ -1,0 +1,40 @@
+{
+  "parent": "mobessencemod:neutral/root",
+  "criteria": {
+    "has_llama": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:llama\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Automatically spits at hostile mobs nearby dealing damage and knockback (every 5 seconds)"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:llama\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Spit Happens"
+    }
+  },
+  "requirements": [
+    [
+      "has_llama"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

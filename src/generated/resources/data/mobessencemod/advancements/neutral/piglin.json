@@ -1,0 +1,40 @@
+{
+  "parent": "mobessencemod:neutral/root",
+  "criteria": {
+    "has_piglin": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:piglin\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "For every unique gold related item in the inventory, multiply the damage 1.1 times, and for every 5 items, get +1 level of luck effect"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:piglin\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Lust for Gold"
+    }
+  },
+  "requirements": [
+    [
+      "has_piglin"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,40 @@
+{
+  "parent": "mobessencemod:passive/root",
+  "criteria": {
+    "has_cat": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:cat\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Halved fall damage when crouching + scare creepers away + random positive effect when waking up from sleeping"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:cat\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Feline Graces"
+    }
+  },
+  "requirements": [
+    [
+      "has_cat"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

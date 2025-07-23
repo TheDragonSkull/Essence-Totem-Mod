@@ -1,0 +1,40 @@
+{
+  "parent": "mobessencemod:neutral/root",
+  "criteria": {
+    "has_wolf": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:wolf\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "When injured, there's a chance two wolves will come to your aid and attack your assailant"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:wolf\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Pack Instinct"
+    }
+  },
+  "requirements": [
+    [
+      "has_wolf"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

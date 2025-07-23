@@ -1,0 +1,40 @@
+{
+  "parent": "mobessencemod:passive/root",
+  "criteria": {
+    "has_axolotl": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:axolotl\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "After killing a mob that's trying to fight, gain regeneration I for 5 seconds (regen II if underwater)"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:axolotl\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "PTSD Therapy"
+    }
+  },
+  "requirements": [
+    [
+      "has_axolotl"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

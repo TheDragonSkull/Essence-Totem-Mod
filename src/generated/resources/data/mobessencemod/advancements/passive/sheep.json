@@ -1,0 +1,40 @@
+{
+  "parent": "mobessencemod:passive/root",
+  "criteria": {
+    "has_sheep": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:sheep\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Chance of halving melee and projectile damage (1/3)"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:sheep\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Wooly Shield"
+    }
+  },
+  "requirements": [
+    [
+      "has_sheep"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

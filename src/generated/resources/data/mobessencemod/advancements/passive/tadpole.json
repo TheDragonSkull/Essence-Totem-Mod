@@ -1,0 +1,40 @@
+{
+  "parent": "mobessencemod:passive/root",
+  "criteria": {
+    "has_tadpole": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:tadpole\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Consume a slimeball to get a random positive effect based if the player is on land or water (20s)"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:tadpole\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Slimy Snack"
+    }
+  },
+  "requirements": [
+    [
+      "has_tadpole"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

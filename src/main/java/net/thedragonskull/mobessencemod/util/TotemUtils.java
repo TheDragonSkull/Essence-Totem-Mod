@@ -71,6 +71,12 @@ public class TotemUtils {
         tag.putString("Essence", essenceId.toString());
     }
 
+    public static CompoundTag makeEssenceTag(ResourceLocation essenceId) {
+        CompoundTag tag = new CompoundTag();
+        tag.putString("Essence", essenceId.toString());
+        return tag;
+    }
+
     public static boolean hasAdvancement(ServerPlayer player, String id) {
         Advancement adv = player.server.getAdvancements().getAdvancement(ResourceLocation.parse(id));
         return adv != null && player.getAdvancements().getOrStartProgress(adv).isDone();

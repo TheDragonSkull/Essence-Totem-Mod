@@ -25,7 +25,7 @@ import org.slf4j.Logger;
 @Mod(MobEssenceMod.MOD_ID)
 public class MobEssenceMod {
     public static final String MOD_ID = "mobessencemod";
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public MobEssenceMod(FMLJavaModLoadingContext context) {
         IEventBus modEventBus = context.getModEventBus();

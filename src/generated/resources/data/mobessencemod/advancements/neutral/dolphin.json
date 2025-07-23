@@ -1,0 +1,40 @@
+{
+  "parent": "mobessencemod:neutral/root",
+  "criteria": {
+    "has_dolphin": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:dolphin\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Increased swimming speed + spin boost when swimming near an entity (if the entity is hit, damage is applied but it cancels the boost)"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:dolphin\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Wave Rider"
+    }
+  },
+  "requirements": [
+    [
+      "has_dolphin"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

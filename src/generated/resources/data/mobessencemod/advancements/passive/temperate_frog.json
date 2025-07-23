@@ -1,0 +1,40 @@
+{
+  "parent": "mobessencemod:passive/root",
+  "criteria": {
+    "has_temperate_frog": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:temperate_frog\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "No fall damage from 5 blocks or less + long jump while not sprinting + immunity to poison"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:temperate_frog\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Amphibian Spirit of Resilience"
+    }
+  },
+  "requirements": [
+    [
+      "has_temperate_frog"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

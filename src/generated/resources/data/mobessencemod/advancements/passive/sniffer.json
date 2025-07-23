@@ -1,0 +1,40 @@
+{
+  "parent": "mobessencemod:passive/root",
+  "criteria": {
+    "has_sniffer": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:sniffer\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Sniff for nearby matching blocks based on what you hold. Closer means stronger scent... and faster digging!"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:sniffer\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Scent Tracking"
+    }
+  },
+  "requirements": [
+    [
+      "has_sniffer"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
