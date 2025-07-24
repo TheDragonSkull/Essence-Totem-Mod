@@ -1,0 +1,47 @@
+{
+  "parent": "mobessencemod:passive/donkey",
+  "criteria": {
+    "has_mule": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:mule\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "#55C0D9",
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Upgraded jump when sprinting for more than 3 seconds without stopping + chests drop themselves with the items inside instead of dropping the contents + chance to donkey kick if melee attacked from behind (1/3)"
+        }
+      ],
+      "text": "[SPECIAL] "
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:mule\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Essence of the Mule"
+    }
+  },
+  "requirements": [
+    [
+      "has_mule"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

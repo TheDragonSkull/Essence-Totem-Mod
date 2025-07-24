@@ -1,0 +1,47 @@
+{
+  "parent": "mobessencemod:hostile/root",
+  "criteria": {
+    "has_phantom": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:phantom\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "#AF3B35",
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Phantoms will no longer bother the player + gliding (only at night)"
+        }
+      ],
+      "text": "[HOSTILE] "
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:phantom\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Essence of the Phantom"
+    }
+  },
+  "requirements": [
+    [
+      "has_phantom"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,47 @@
+{
+  "parent": "mobessencemod:hostile/root",
+  "criteria": {
+    "has_guardian": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:guardian\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "#AF3B35",
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Reduce incoming damage when looking at the attacker (25% on land, 50% underwater)"
+        }
+      ],
+      "text": "[HOSTILE] "
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:guardian\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Essence of the Guardian"
+    }
+  },
+  "requirements": [
+    [
+      "has_guardian"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

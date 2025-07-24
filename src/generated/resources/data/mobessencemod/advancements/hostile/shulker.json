@@ -1,0 +1,47 @@
+{
+  "parent": "mobessencemod:hostile/root",
+  "criteria": {
+    "has_shulker": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:shulker\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "#AF3B35",
+      "extra": [
+        {
+          "color": "gray",
+          "text": "50% chance of deflecting arrows + if pressing shift, gain super armor but cannot move + in super armor state, chance of shooting a shulker bullet to the attacker (1/5)"
+        }
+      ],
+      "text": "[HOSTILE] "
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:shulker\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Essence of the Shulker"
+    }
+  },
+  "requirements": [
+    [
+      "has_shulker"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,47 @@
+{
+  "parent": "mobessencemod:special/root",
+  "criteria": {
+    "has_wandering_trader": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:wandering_trader\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "#55C0D9",
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Llamas won't spit at the player + control llamas while riding"
+        }
+      ],
+      "text": "[SPECIAL] "
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:wandering_trader\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Essence of the Wandering Trader"
+    }
+  },
+  "requirements": [
+    [
+      "has_wandering_trader"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,47 @@
+{
+  "parent": "mobessencemod:hostile/root",
+  "criteria": {
+    "has_skeleton": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:skeleton\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "#AF3B35",
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Less arrow charge time on a bow"
+        }
+      ],
+      "text": "[HOSTILE] "
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:skeleton\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Essence of the Skeleton"
+    }
+  },
+  "requirements": [
+    [
+      "has_skeleton"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -3,6 +3,7 @@ package net.thedragonskull.mobessencemod.datagen;
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
+import net.minecraft.advancements.RequirementsStrategy;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.core.HolderLookup;
@@ -44,6 +45,30 @@ public class EssenceAdvancementGenerator implements ForgeAdvancementProvider.Adv
                 ))
                 .save(saver, ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "root"), helper);
 
+        Advancement.Builder allTotems = Advancement.Builder.advancement()
+                .parent(root)
+                .display(
+                        ModItems.TOTEM_TAB_ICON.get(),
+                        Component.literal("Collect 'em all!"),
+                        Component.literal("Capture the essence of every creature"),
+                        null,
+                        FrameType.CHALLENGE,
+                        true, true, false)
+                .requirements(RequirementsStrategy.AND);
+
+        for (TotemEssenceRegistry.EssenceData essence : TotemEssenceRegistry.getAll()) {
+            String id = essence.id().getPath();
+
+            allTotems.addCriterion("has_" + id, InventoryChangeTrigger.TriggerInstance.hasItems(
+                    ItemPredicate.Builder.item()
+                            .of(ModItems.TOTEM_OF_ESSENCE.get())
+                            .hasNbt(TotemUtils.makeEssenceTag(essence.id()))
+                            .build()
+            ));
+        }
+
+        allTotems.save(saver, ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "all_totems"), helper);
+
         Advancement passiveRoot = generateCategoryAdvancement(saver, helper, root,
                 "passive", Items.LIME_CONCRETE_POWDER, "Passive Mob Essences", "Collect the essence of every passive creature");
 
@@ -57,22 +82,22 @@ public class EssenceAdvancementGenerator implements ForgeAdvancementProvider.Adv
         Advancement hostileRoot = generateCategoryAdvancement(saver, helper, root,
                 "hostile", Items.RED_CONCRETE_POWDER, "Hostile Mob Essences", "Collect the essence of every hostile creature");
 
-        //generateEssenceAdvancementsForCategory(saver, helper, hostileRoot, TotemMobCategory.HOSTILE, "hostile");
+        generateEssenceAdvancementsForCategory(saver, helper, hostileRoot, TotemMobCategory.HOSTILE, "hostile");
 
         Advancement specialRoot = generateCategoryAdvancement(saver, helper, root,
                 "special", Items.LIGHT_BLUE_CONCRETE_POWDER, "Special Mob Essences", "Collect the essence of every special creature");
 
-        //generateEssenceAdvancementsForCategory(saver, helper, specialRoot, TotemMobCategory.SPECIAL, "special");
+        generateEssenceAdvancementsForCategory(saver, helper, specialRoot, TotemMobCategory.SPECIAL, "special");
 
         Advancement bossRoot = generateCategoryAdvancement(saver, helper, root,
                 "boss", Items.MAGENTA_CONCRETE_POWDER, "Boss Mob Essences", "Collect the essence of every boss");
 
-        //generateEssenceAdvancementsForCategory(saver, helper, bossRoot, TotemMobCategory.BOSS, "boss");
+        generateEssenceAdvancementsForCategory(saver, helper, bossRoot, TotemMobCategory.BOSS, "boss");
 
         Advancement nonMobRoot = generateCategoryAdvancement(saver, helper, root,
                 "non_mob", Items.WHITE_CONCRETE_POWDER, "Non Mob Mob Essences", "Collect the essence of every non mob creature");
 
-        //generateEssenceAdvancementsForCategory(saver, helper, nonMobRoot, TotemMobCategory.NON_MOB, "non_mob");
+        generateEssenceAdvancementsForCategory(saver, helper, nonMobRoot, TotemMobCategory.NON_MOB, "non_mob");
     }
 
     private Advancement generateCategoryAdvancement(Consumer<Advancement> saver, ExistingFileHelper helper, Advancement parent,
@@ -161,15 +186,18 @@ public class EssenceAdvancementGenerator implements ForgeAdvancementProvider.Adv
             Map.entry("tropical_fish", "cod"),
             Map.entry("glow_squid", "squid"),
             Map.entry("donkey", "horse"),
+            Map.entry("mule", "donkey"),
             Map.entry("cat", "ocelot"),
             Map.entry("snow_fox", "fox"),
             Map.entry("temperate_frog", "tadpole"),
             Map.entry("warm_frog", "tadpole"),
             Map.entry("cold_frog", "tadpole"),
             Map.entry("parrot", "chicken"),
-
-            //neutral
             Map.entry("cave_spider", "spider"),
+            Map.entry("red_mooshroom", "cow"),
+            Map.entry("brown_mooshroom", "red_mooshroom"),
+
+
             Map.entry("zombified_piglin", "piglin")
     );
 

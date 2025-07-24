@@ -1,0 +1,47 @@
+{
+  "parent": "mobessencemod:hostile/root",
+  "criteria": {
+    "has_creeper": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:creeper\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "#AF3B35",
+      "extra": [
+        {
+          "color": "gray",
+          "text": "When taking melee damage, there's a chance to trigger a small explosion that doesn't affect blocks"
+        }
+      ],
+      "text": "[HOSTILE] "
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:creeper\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Essence of the Creeper"
+    }
+  },
+  "requirements": [
+    [
+      "has_creeper"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

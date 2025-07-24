@@ -1,0 +1,47 @@
+{
+  "parent": "mobessencemod:boss/root",
+  "criteria": {
+    "has_wither": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:wither\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "#CC5DC4",
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Hurl death from its hollow grin. Death protects, and arrows turn"
+        }
+      ],
+      "text": "[BOSS] "
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:wither\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Essence of the Wither"
+    }
+  },
+  "requirements": [
+    [
+      "has_wither"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

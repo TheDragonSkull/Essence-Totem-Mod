@@ -1,0 +1,47 @@
+{
+  "parent": "mobessencemod:non_mob/root",
+  "criteria": {
+    "has_player": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:player\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "#FFFFFF",
+      "extra": [
+        {
+          "color": "gray",
+          "text": "You feel like you’re cheating... but are you?"
+        }
+      ],
+      "text": "[NON_MOB] "
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:player\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Essence of the Player"
+    }
+  },
+  "requirements": [
+    [
+      "has_player"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

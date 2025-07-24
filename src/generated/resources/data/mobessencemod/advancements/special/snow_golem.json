@@ -1,0 +1,47 @@
+{
+  "parent": "mobessencemod:special/root",
+  "criteria": {
+    "has_snow_golem": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:snow_golem\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "#55C0D9",
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Immunity to freezing + walk over powder snow blocks + automatically shoot snowballs at hostile mobs nearby, dealing knockback (every 2 seconds)"
+        }
+      ],
+      "text": "[SPECIAL] "
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:snow_golem\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Essence of the Snow Golem"
+    }
+  },
+  "requirements": [
+    [
+      "has_snow_golem"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

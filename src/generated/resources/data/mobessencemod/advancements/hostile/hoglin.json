@@ -1,0 +1,47 @@
+{
+  "parent": "mobessencemod:hostile/root",
+  "criteria": {
+    "has_hoglin": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:hoglin\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "#AF3B35",
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Hoglins ignore the player + reduced knockback + chance to launch the target into the air when melee hit (1/3)"
+        }
+      ],
+      "text": "[HOSTILE] "
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:hoglin\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Essence of the Hoglin"
+    }
+  },
+  "requirements": [
+    [
+      "has_hoglin"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

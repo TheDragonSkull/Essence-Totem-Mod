@@ -1,0 +1,47 @@
+{
+  "parent": "mobessencemod:hostile/root",
+  "criteria": {
+    "has_ghast": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:ghast\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "#AF3B35",
+      "extra": [
+        {
+          "color": "gray",
+          "text": "When hurt by a projectile fired from a mob, chance of shooting a Fireball facing its direction and gain regen for 10 seconds (1/3)"
+        }
+      ],
+      "text": "[HOSTILE] "
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:ghast\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Essence of the Ghast"
+    }
+  },
+  "requirements": [
+    [
+      "has_ghast"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

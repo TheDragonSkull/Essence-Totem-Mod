@@ -1,0 +1,47 @@
+{
+  "parent": "mobessencemod:special/root",
+  "criteria": {
+    "has_witch": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:witch\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "#55C0D9",
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Cats no longer run away from the player + some damage types are reduced by 25% + chance to drink a potion depending on the situation"
+        }
+      ],
+      "text": "[SPECIAL] "
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:witch\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Essence of the Witch"
+    }
+  },
+  "requirements": [
+    [
+      "has_witch"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,47 @@
+{
+  "parent": "mobessencemod:hostile/root",
+  "criteria": {
+    "has_vindicator": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:vindicator\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "#AF3B35",
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Ravagers ignore the player + ride and control ravagers + more damage with axes if riding a ravager + speed boost if holding an axe in the main hand while there's an entity close to the player"
+        }
+      ],
+      "text": "[HOSTILE] "
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:vindicator\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Essence of the Vindicator"
+    }
+  },
+  "requirements": [
+    [
+      "has_vindicator"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

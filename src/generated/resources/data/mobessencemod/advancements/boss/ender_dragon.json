@@ -1,0 +1,47 @@
+{
+  "parent": "mobessencemod:boss/root",
+  "criteria": {
+    "has_ender_dragon": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:ender_dragon\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "#CC5DC4",
+      "extra": [
+        {
+          "color": "gray",
+          "text": "The rods of the void awaken near the dragon, pulsing with ancient power and restoring the flesh. Rise with wings unseen, then fall—carving the ground with dragon’s breath, untouched by its fire"
+        }
+      ],
+      "text": "[BOSS] "
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:ender_dragon\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Essence of the Ender Dragon"
+    }
+  },
+  "requirements": [
+    [
+      "has_ender_dragon"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

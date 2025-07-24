@@ -1,0 +1,47 @@
+{
+  "parent": "mobessencemod:special/root",
+  "criteria": {
+    "has_iron_golem": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:iron_golem\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "#55C0D9",
+      "extra": [
+        {
+          "color": "gray",
+          "text": "When melee attacking, chance to launch enemies into the air (1/4) + consume iron ingots to heal half a heart + 1/4 chance to block melee attacks, but for the next 5 seconds any hit deals double [this persists even after unequipping the totem]"
+        }
+      ],
+      "text": "[SPECIAL] "
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:iron_golem\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Essence of the Iron Golem"
+    }
+  },
+  "requirements": [
+    [
+      "has_iron_golem"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

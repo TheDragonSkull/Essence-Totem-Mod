@@ -1,0 +1,47 @@
+{
+  "parent": "mobessencemod:special/root",
+  "criteria": {
+    "has_ravager": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:ravager\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "#55C0D9",
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Tackle any mob in your way while running + 50% less knockback received + when melee attacked, chance to roar and make any mob in the surroundings take damage and knockback"
+        }
+      ],
+      "text": "[SPECIAL] "
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:ravager\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Essence of the Ravager"
+    }
+  },
+  "requirements": [
+    [
+      "has_ravager"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

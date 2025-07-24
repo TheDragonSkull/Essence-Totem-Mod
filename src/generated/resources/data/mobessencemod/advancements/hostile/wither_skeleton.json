@@ -1,0 +1,47 @@
+{
+  "parent": "mobessencemod:hostile/root",
+  "criteria": {
+    "has_wither_skeleton": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:wither_skeleton\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "#AF3B35",
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Chance of inflicting wither when melee attacking (1/5) + 50% damage reduction from any source of fire and wither effect"
+        }
+      ],
+      "text": "[HOSTILE] "
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:wither_skeleton\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Essence of the Wither Skeleton"
+    }
+  },
+  "requirements": [
+    [
+      "has_wither_skeleton"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

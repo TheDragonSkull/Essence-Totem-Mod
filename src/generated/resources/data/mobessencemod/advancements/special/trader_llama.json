@@ -1,0 +1,47 @@
+{
+  "parent": "mobessencemod:special/root",
+  "criteria": {
+    "has_trader_llama": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:trader_llama\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "#55C0D9",
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Automatically spits at hostile mobs nearby dealing damage and knockback (every 5 seconds) + nearby creatures follow the player (5 blocks radius)"
+        }
+      ],
+      "text": "[SPECIAL] "
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:trader_llama\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Essence of the Trader Llama"
+    }
+  },
+  "requirements": [
+    [
+      "has_trader_llama"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

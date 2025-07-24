@@ -1,0 +1,47 @@
+{
+  "parent": "mobessencemod:special/root",
+  "criteria": {
+    "has_zoglin": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:zoglin\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "#55C0D9",
+      "extra": [
+        {
+          "color": "gray",
+          "text": "Reduced knockback + zoglins ignore the player + chance to launch the target into the air when melee hit (1/3) + when damaged, chance of summoning a zoglin targeting the attacker (1/12)"
+        }
+      ],
+      "text": "[SPECIAL] "
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "mobessencemod:totem_of_essence",
+      "nbt": "{Essence:\"minecraft:zoglin\"}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Essence of the Zoglin"
+    }
+  },
+  "requirements": [
+    [
+      "has_zoglin"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
