@@ -38,7 +38,7 @@ public class EssenceAdvancementGenerator implements ForgeAdvancementProvider.Adv
                         icon,
                         Component.literal("Mob Essence"),
                         Component.literal("Unlock the secrets of creature essences"),
-                        ResourceLocation.parse("minecraft:textures/gui/advancements/backgrounds/adventure.png"),
+                        ResourceLocation.parse("minecraft:textures/block/deepslate_tiles.png"),
                         FrameType.TASK,
                         true, true, true)
                 .addCriterion("has_totem", InventoryChangeTrigger.TriggerInstance.hasItems(
