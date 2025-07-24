@@ -227,5 +227,8 @@
       "has_zombified_piglin"
     ]
   ],
+  "rewards": {
+    "experience": 100
+  },
   "sends_telemetry_event": true
 }

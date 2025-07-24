@@ -43,5 +43,8 @@
       "has_warm_frog"
     ]
   ],
+  "rewards": {
+    "experience": 10
+  },
   "sends_telemetry_event": true
 }

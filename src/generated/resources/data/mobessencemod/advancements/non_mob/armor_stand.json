@@ -43,5 +43,8 @@
       "has_armor_stand"
     ]
   ],
+  "rewards": {
+    "experience": 10
+  },
   "sends_telemetry_event": true
 }

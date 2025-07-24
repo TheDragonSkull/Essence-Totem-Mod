@@ -2,6 +2,7 @@ package net.thedragonskull.mobessencemod.datagen;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.advancements.RequirementsStrategy;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
@@ -55,6 +56,7 @@ public class EssenceAdvancementGenerator implements ForgeAdvancementProvider.Adv
                         null,
                         FrameType.CHALLENGE,
                         true, true, false)
+                .rewards(AdvancementRewards.Builder.experience(1000))
                 .requirements(RequirementsStrategy.AND);
 
         for (TotemEssenceRegistry.EssenceData essence : TotemEssenceRegistry.getAll()) {
@@ -163,6 +165,14 @@ public class EssenceAdvancementGenerator implements ForgeAdvancementProvider.Adv
                                                     String id, Item icon, String title, String description,
                                                     List<TotemEssenceRegistry.EssenceData> categoryTotems) {
 
+        TotemMobCategory category = categoryTotems.get(0).category();
+
+        int expReward = switch (category) {
+            case PASSIVE, HOSTILE, NEUTRAL -> 100;
+            case SPECIAL -> 200;
+            case BOSS, NON_MOB -> 300;
+        };
+
         Advancement.Builder builder = Advancement.Builder.advancement()
                 .parent(parent)
                 .display(
@@ -172,6 +182,7 @@ public class EssenceAdvancementGenerator implements ForgeAdvancementProvider.Adv
                         null,
                         FrameType.GOAL,
                         true, true, false)
+                .rewards(AdvancementRewards.Builder.experience(expReward)) // todo: add loot rewards
                 .requirements(RequirementsStrategy.AND);
 
         for (TotemEssenceRegistry.EssenceData essence : categoryTotems) {
@@ -226,6 +237,12 @@ public class EssenceAdvancementGenerator implements ForgeAdvancementProvider.Adv
         Component description = Component.literal("[" + essence.category().toString() + "] ").withStyle(essence.category().asStyle())
                 .append(Component.literal(essence.tooltip().getDescription()).withStyle(ChatFormatting.GRAY));
 
+        int expReward = switch (essence.category()) {
+            case HOSTILE, PASSIVE, NEUTRAL, NON_MOB -> 10;
+            case SPECIAL -> 20;
+            case BOSS -> 50;
+        };
+
         return Advancement.Builder.advancement()
                 .parent(parent)
                 .display(
@@ -234,7 +251,8 @@ public class EssenceAdvancementGenerator implements ForgeAdvancementProvider.Adv
                         description,
                         null,
                         FrameType.TASK,
-                        true, true, false)
+                        true, true, false) //todo: hidden true
+                .rewards(AdvancementRewards.Builder.experience(expReward))
                 .addCriterion("has_" + mobId, InventoryChangeTrigger.TriggerInstance.hasItems(
                         ItemPredicate.Builder.item()
                                 .of(ModItems.TOTEM_OF_ESSENCE.get())
