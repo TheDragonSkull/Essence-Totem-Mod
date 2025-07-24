@@ -1,5 +1,5 @@
 {
-  "parent": "mobessencemod:special/red_mooshroom",
+  "parent": "mobessencemod:passive/cow",
   "criteria": {
     "has_brown_mooshroom": {
       "conditions": {

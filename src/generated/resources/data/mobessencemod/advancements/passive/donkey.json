@@ -1,5 +1,5 @@
 {
-  "parent": "mobessencemod:passive/root",
+  "parent": "mobessencemod:passive/horse",
   "criteria": {
     "has_donkey": {
       "conditions": {

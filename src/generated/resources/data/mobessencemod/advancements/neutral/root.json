@@ -1,13 +1,170 @@
 {
   "parent": "mobessencemod:root",
   "criteria": {
-    "has_neutral": {
+    "has_bee": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:yellow_concrete_powder"
-            ]
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:bee\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_cave_spider": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:cave_spider\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_dolphin": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:dolphin\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_enderman": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:enderman\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_goat": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:goat\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_llama": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:llama\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_panda": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:panda\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_piglin": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:piglin\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_polar_bear": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:polar_bear\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_pufferfish": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:pufferfish\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_spider": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:spider\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_wolf": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:wolf\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_zombified_piglin": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:zombified_piglin\"}"
           }
         ]
       },
@@ -31,7 +188,43 @@
   },
   "requirements": [
     [
-      "has_neutral"
+      "has_bee"
+    ],
+    [
+      "has_pufferfish"
+    ],
+    [
+      "has_spider"
+    ],
+    [
+      "has_cave_spider"
+    ],
+    [
+      "has_enderman"
+    ],
+    [
+      "has_goat"
+    ],
+    [
+      "has_llama"
+    ],
+    [
+      "has_wolf"
+    ],
+    [
+      "has_dolphin"
+    ],
+    [
+      "has_polar_bear"
+    ],
+    [
+      "has_panda"
+    ],
+    [
+      "has_piglin"
+    ],
+    [
+      "has_zombified_piglin"
     ]
   ],
   "sends_telemetry_event": true

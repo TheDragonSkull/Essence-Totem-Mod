@@ -1,5 +1,5 @@
 {
-  "parent": "mobessencemod:special/root",
+  "parent": "mobessencemod:hostile/guardian",
   "criteria": {
     "has_elder_guardian": {
       "conditions": {

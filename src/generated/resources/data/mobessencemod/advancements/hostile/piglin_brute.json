@@ -1,5 +1,5 @@
 {
-  "parent": "mobessencemod:hostile/root",
+  "parent": "mobessencemod:neutral/piglin",
   "criteria": {
     "has_piglin_brute": {
       "conditions": {

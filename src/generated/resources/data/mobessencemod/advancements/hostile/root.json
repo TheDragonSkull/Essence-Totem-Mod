@@ -1,13 +1,274 @@
 {
   "parent": "mobessencemod:root",
   "criteria": {
-    "has_hostile": {
+    "has_blaze": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:red_concrete_powder"
-            ]
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:blaze\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_creeper": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:creeper\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_drowned": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:drowned\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_endermite": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:endermite\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_evoker": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:evoker\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_ghast": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:ghast\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_guardian": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:guardian\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_hoglin": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:hoglin\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_husk": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:husk\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_magma_cube": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:magma_cube\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_phantom": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:phantom\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_piglin_brute": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:piglin_brute\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_pillager": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:pillager\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_shulker": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:shulker\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_silverfish": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:silverfish\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_skeleton": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:skeleton\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_slime": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:slime\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_stray": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:stray\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_vindicator": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:vindicator\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_wither_skeleton": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:wither_skeleton\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_zombie": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:zombie\"}"
           }
         ]
       },
@@ -31,7 +292,67 @@
   },
   "requirements": [
     [
-      "has_hostile"
+      "has_zombie"
+    ],
+    [
+      "has_creeper"
+    ],
+    [
+      "has_skeleton"
+    ],
+    [
+      "has_slime"
+    ],
+    [
+      "has_magma_cube"
+    ],
+    [
+      "has_blaze"
+    ],
+    [
+      "has_phantom"
+    ],
+    [
+      "has_silverfish"
+    ],
+    [
+      "has_endermite"
+    ],
+    [
+      "has_drowned"
+    ],
+    [
+      "has_husk"
+    ],
+    [
+      "has_guardian"
+    ],
+    [
+      "has_stray"
+    ],
+    [
+      "has_evoker"
+    ],
+    [
+      "has_pillager"
+    ],
+    [
+      "has_vindicator"
+    ],
+    [
+      "has_ghast"
+    ],
+    [
+      "has_shulker"
+    ],
+    [
+      "has_wither_skeleton"
+    ],
+    [
+      "has_piglin_brute"
+    ],
+    [
+      "has_hoglin"
     ]
   ],
   "sends_telemetry_event": true

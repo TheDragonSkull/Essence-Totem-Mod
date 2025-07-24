@@ -1,5 +1,5 @@
 {
-  "parent": "mobessencemod:neutral/root",
+  "parent": "mobessencemod:passive/pig",
   "criteria": {
     "has_piglin": {
       "conditions": {

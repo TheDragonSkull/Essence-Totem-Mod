@@ -1,13 +1,27 @@
 {
   "parent": "mobessencemod:root",
   "criteria": {
-    "has_non_mob": {
+    "has_armor_stand": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:white_concrete_powder"
-            ]
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:armor_stand\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_player": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:player\"}"
           }
         ]
       },
@@ -31,7 +45,10 @@
   },
   "requirements": [
     [
-      "has_non_mob"
+      "has_armor_stand"
+    ],
+    [
+      "has_player"
     ]
   ],
   "sends_telemetry_event": true

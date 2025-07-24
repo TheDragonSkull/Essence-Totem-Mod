@@ -1,13 +1,27 @@
 {
   "parent": "mobessencemod:root",
   "criteria": {
-    "has_boss": {
+    "has_ender_dragon": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:magenta_concrete_powder"
-            ]
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:ender_dragon\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_wither": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:wither\"}"
           }
         ]
       },
@@ -31,7 +45,10 @@
   },
   "requirements": [
     [
-      "has_boss"
+      "has_wither"
+    ],
+    [
+      "has_ender_dragon"
     ]
   ],
   "sends_telemetry_event": true

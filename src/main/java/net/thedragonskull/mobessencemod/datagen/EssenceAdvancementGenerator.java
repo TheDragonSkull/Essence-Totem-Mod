@@ -22,6 +22,7 @@ import net.thedragonskull.mobessencemod.util.TotemUtils;
 
 import java.util.*;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 import static net.thedragonskull.mobessencemod.util.TotemUtils.formatMobName;
 
@@ -45,7 +46,7 @@ public class EssenceAdvancementGenerator implements ForgeAdvancementProvider.Adv
                 ))
                 .save(saver, ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "root"), helper);
 
-        Advancement.Builder allTotems = Advancement.Builder.advancement()
+        Advancement.Builder allTotemsBuilder = Advancement.Builder.advancement()
                 .parent(root)
                 .display(
                         ModItems.TOTEM_TAB_ICON.get(),
@@ -59,7 +60,7 @@ public class EssenceAdvancementGenerator implements ForgeAdvancementProvider.Adv
         for (TotemEssenceRegistry.EssenceData essence : TotemEssenceRegistry.getAll()) {
             String id = essence.id().getPath();
 
-            allTotems.addCriterion("has_" + id, InventoryChangeTrigger.TriggerInstance.hasItems(
+            allTotemsBuilder.addCriterion("has_" + id, InventoryChangeTrigger.TriggerInstance.hasItems(
                     ItemPredicate.Builder.item()
                             .of(ModItems.TOTEM_OF_ESSENCE.get())
                             .hasNbt(TotemUtils.makeEssenceTag(essence.id()))
@@ -67,43 +68,102 @@ public class EssenceAdvancementGenerator implements ForgeAdvancementProvider.Adv
             ));
         }
 
-        allTotems.save(saver, ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "all_totems"), helper);
+        Advancement allTotems = allTotemsBuilder.save(
+                saver,
+                ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "all_totems"),
+                helper
+        );
 
-        Advancement passiveRoot = generateCategoryAdvancement(saver, helper, root,
-                "passive", Items.LIME_CONCRETE_POWDER, "Passive Mob Essences", "Collect the essence of every passive creature");
+        // PASSIVE
+        List<TotemEssenceRegistry.EssenceData> passiveEssences = TotemEssenceRegistry.getAll().stream()
+                .filter(e -> e.category() == TotemMobCategory.PASSIVE)
+                .toList();
 
-        generateEssenceAdvancementsForCategory(saver, helper, passiveRoot, TotemMobCategory.PASSIVE, "passive");
+        Advancement passiveRoot = generateCategoryAdvancement(
+                saver, helper, root,
+                "passive", Items.LIME_CONCRETE_POWDER,
+                "Passive Mob Essences", "Collect the essence of every passive creature",
+                passiveEssences
+        );
 
-        Advancement neutralRoot = generateCategoryAdvancement(saver, helper, root,
-                "neutral", Items.YELLOW_CONCRETE_POWDER, "Neutral Mob Essences", "Collect the essence of every neutral creature");
+        generateEssenceAdvancementsForCategory(saver, helper, allTotems, TotemMobCategory.PASSIVE, "passive");
 
-        generateEssenceAdvancementsForCategory(saver, helper, neutralRoot, TotemMobCategory.NEUTRAL, "neutral");
+        // NEUTRAL
+        List<TotemEssenceRegistry.EssenceData> neutralEssences = TotemEssenceRegistry.getAll().stream()
+                .filter(e -> e.category() == TotemMobCategory.NEUTRAL)
+                .toList();
 
-        Advancement hostileRoot = generateCategoryAdvancement(saver, helper, root,
-                "hostile", Items.RED_CONCRETE_POWDER, "Hostile Mob Essences", "Collect the essence of every hostile creature");
+        Advancement neutralRoot = generateCategoryAdvancement(
+                saver, helper, root,
+                "neutral", Items.YELLOW_CONCRETE_POWDER,
+                "Neutral Mob Essences", "Collect the essence of every neutral creature",
+                neutralEssences
+        );
 
-        generateEssenceAdvancementsForCategory(saver, helper, hostileRoot, TotemMobCategory.HOSTILE, "hostile");
+        generateEssenceAdvancementsForCategory(saver, helper, allTotems, TotemMobCategory.NEUTRAL, "neutral");
 
-        Advancement specialRoot = generateCategoryAdvancement(saver, helper, root,
-                "special", Items.LIGHT_BLUE_CONCRETE_POWDER, "Special Mob Essences", "Collect the essence of every special creature");
+        // HOSTILE
+        List<TotemEssenceRegistry.EssenceData> hostileEssences = TotemEssenceRegistry.getAll().stream()
+                .filter(e -> e.category() == TotemMobCategory.HOSTILE)
+                .toList();
 
-        generateEssenceAdvancementsForCategory(saver, helper, specialRoot, TotemMobCategory.SPECIAL, "special");
+        Advancement hostileRoot = generateCategoryAdvancement(
+                saver, helper, root,
+                "hostile", Items.RED_CONCRETE_POWDER,
+                "Hostile Mob Essences", "Collect the essence of every hostile creature",
+                hostileEssences
+        );
 
-        Advancement bossRoot = generateCategoryAdvancement(saver, helper, root,
-                "boss", Items.MAGENTA_CONCRETE_POWDER, "Boss Mob Essences", "Collect the essence of every boss");
+        generateEssenceAdvancementsForCategory(saver, helper, allTotems, TotemMobCategory.HOSTILE, "hostile");
 
-        generateEssenceAdvancementsForCategory(saver, helper, bossRoot, TotemMobCategory.BOSS, "boss");
+        // SPECIAL
+        List<TotemEssenceRegistry.EssenceData> specialEssences = TotemEssenceRegistry.getAll().stream()
+                .filter(e -> e.category() == TotemMobCategory.SPECIAL)
+                .toList();
 
-        Advancement nonMobRoot = generateCategoryAdvancement(saver, helper, root,
-                "non_mob", Items.WHITE_CONCRETE_POWDER, "Non Mob Mob Essences", "Collect the essence of every non mob creature");
+        Advancement specialRoot = generateCategoryAdvancement(
+                saver, helper, root,
+                "special", Items.LIGHT_BLUE_CONCRETE_POWDER,
+                "Special Mob Essences", "Collect the essence of every special creature",
+                specialEssences
+        );
 
-        generateEssenceAdvancementsForCategory(saver, helper, nonMobRoot, TotemMobCategory.NON_MOB, "non_mob");
+        generateEssenceAdvancementsForCategory(saver, helper, allTotems, TotemMobCategory.SPECIAL, "special");
+
+        // BOSS
+        List<TotemEssenceRegistry.EssenceData> bossEssences = TotemEssenceRegistry.getAll().stream()
+                .filter(e -> e.category() == TotemMobCategory.BOSS)
+                .toList();
+
+        Advancement bossRoot = generateCategoryAdvancement(
+                saver, helper, root,
+                "boss", Items.MAGENTA_CONCRETE_POWDER,
+                "Boss Mob Essences", "Collect the essence of every boss",
+                bossEssences
+        );
+
+        generateEssenceAdvancementsForCategory(saver, helper, allTotems, TotemMobCategory.BOSS, "boss");
+
+        // NON_MOB
+        List<TotemEssenceRegistry.EssenceData> nonMobEssences = TotemEssenceRegistry.getAll().stream()
+                .filter(e -> e.category() == TotemMobCategory.NON_MOB)
+                .toList();
+
+        Advancement nonMobRoot = generateCategoryAdvancement(
+                saver, helper, root,
+                "non_mob", Items.WHITE_CONCRETE_POWDER,
+                "Non Mob Mob Essences", "Collect the essence of every non mob creature",
+                nonMobEssences
+        );
+
+        generateEssenceAdvancementsForCategory(saver, helper, allTotems, TotemMobCategory.NON_MOB, "non_mob");
     }
 
     private Advancement generateCategoryAdvancement(Consumer<Advancement> saver, ExistingFileHelper helper, Advancement parent,
-                                                    String id, Item icon, String title, String description) {
+                                                    String id, Item icon, String title, String description,
+                                                    List<TotemEssenceRegistry.EssenceData> categoryTotems) {
 
-        return Advancement.Builder.advancement()
+        Advancement.Builder builder = Advancement.Builder.advancement()
                 .parent(parent)
                 .display(
                         icon,
@@ -112,41 +172,45 @@ public class EssenceAdvancementGenerator implements ForgeAdvancementProvider.Adv
                         null,
                         FrameType.GOAL,
                         true, true, false)
-                .addCriterion("has_" + id, InventoryChangeTrigger.TriggerInstance.hasItems(icon))
-                .save(saver, ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, id + "/root"), helper);
+                .requirements(RequirementsStrategy.AND);
+
+        for (TotemEssenceRegistry.EssenceData essence : categoryTotems) {
+            String mobId = essence.id().getPath();
+            builder.addCriterion("has_" + mobId, InventoryChangeTrigger.TriggerInstance.hasItems(
+                    ItemPredicate.Builder.item()
+                            .of(ModItems.TOTEM_OF_ESSENCE.get())
+                            .hasNbt(TotemUtils.makeEssenceTag(essence.id()))
+                            .build()
+            ));
+        }
+
+        return builder.save(saver, ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, id + "/root"), helper);
     }
 
     Map<String, Advancement> generatedParents = new HashMap<>();
 
     private void generateEssenceAdvancementsForCategory(Consumer<Advancement> saver, ExistingFileHelper helper,
                                                         Advancement root, TotemMobCategory category, String categoryId) {
-        List<TotemEssenceRegistry.EssenceData> all = TotemEssenceRegistry.getAll().stream()
+        Map<String, TotemEssenceRegistry.EssenceData> mobMap = TotemEssenceRegistry.getAll().stream()
                 .filter(e -> e.category() == category)
-                .toList();
+                .collect(Collectors.toMap(e -> e.id().getPath(), e -> e));
 
-        Set<String> generated = new HashSet<>();
+        List<String> sortedMobIds = topologicalSort(mobMap.keySet());
 
-        for (TotemEssenceRegistry.EssenceData essence : all) {
-            String mobId = essence.id().getPath();
-            if (!SUBGROUPS.containsValue(mobId)) continue;
+        for (String mobId : sortedMobIds) {
+            TotemEssenceRegistry.EssenceData essence = mobMap.get(mobId);
+            if (essence == null) continue;
 
-            Advancement advancement = generateAdvancement(
-                    saver, helper, essence, categoryId, root, mobId
-            );
-            generatedParents.put(mobId, advancement);
-            generated.add(mobId);
-        }
-
-        for (TotemEssenceRegistry.EssenceData essence : all) {
-            String mobId = essence.id().getPath();
-            if (generated.contains(mobId)) continue;
-
-            Advancement parentAdv = SUBGROUPS.containsKey(mobId)
-                    ? generatedParents.get(SUBGROUPS.get(mobId))
+            Advancement parent = SUBGROUPS.containsKey(mobId)
+                    ? generatedParents.getOrDefault(SUBGROUPS.get(mobId), root)
                     : root;
 
-            generateAdvancement(saver, helper, essence, categoryId, parentAdv, mobId);
-            generated.add(mobId);
+            if (parent.getId().getPath().matches(".*/root$")) {
+                parent = root;
+            }
+
+            Advancement adv = generateAdvancement(saver, helper, essence, categoryId, parent, mobId);
+            generatedParents.put(mobId, adv);
         }
     }
 
@@ -180,25 +244,74 @@ public class EssenceAdvancementGenerator implements ForgeAdvancementProvider.Adv
                 .save(saver, advancementId, helper);
     }
 
-    private static final Map<String, String> SUBGROUPS = Map.ofEntries(
-            //passive
-            Map.entry("salmon", "cod"),
-            Map.entry("tropical_fish", "cod"),
-            Map.entry("glow_squid", "squid"),
-            Map.entry("donkey", "horse"),
-            Map.entry("mule", "donkey"),
-            Map.entry("cat", "ocelot"),
-            Map.entry("snow_fox", "fox"),
-            Map.entry("temperate_frog", "tadpole"),
-            Map.entry("warm_frog", "tadpole"),
-            Map.entry("cold_frog", "tadpole"),
-            Map.entry("parrot", "chicken"),
-            Map.entry("cave_spider", "spider"),
-            Map.entry("red_mooshroom", "cow"),
-            Map.entry("brown_mooshroom", "red_mooshroom"),
+    private List<String> topologicalSort(Set<String> nodes) {
+        List<String> sorted = new ArrayList<>();
+        Set<String> visited = new HashSet<>();
 
+        for (String node : nodes) {
+            visit(node, visited, sorted, nodes);
+        }
+        return sorted;
+    }
 
-            Map.entry("zombified_piglin", "piglin")
-    );
+    private void visit(String node, Set<String> visited, List<String> sorted, Set<String> validNodes) {
+        if (visited.contains(node)) return;
+        visited.add(node);
+
+        String parent = SUBGROUPS.get(node);
+        if (parent != null && validNodes.contains(parent)) {
+            visit(parent, visited, sorted, validNodes);
+        }
+
+        sorted.add(node);
+    }
+
+    private static final Map<String, String> SUBGROUPS = new HashMap<>();
+
+    static {
+            SUBGROUPS.put("salmon", "cod");
+            SUBGROUPS.put("tropical_fish", "cod");
+            SUBGROUPS.put("pufferfish", "cod");
+            SUBGROUPS.put("glow_squid", "squid");
+            SUBGROUPS.put("donkey", "horse");
+            SUBGROUPS.put("mule", "donkey");
+            SUBGROUPS.put("cat", "ocelot");
+            SUBGROUPS.put("snow_fox", "fox");
+            SUBGROUPS.put("temperate_frog", "tadpole");
+            SUBGROUPS.put("warm_frog", "tadpole");
+            SUBGROUPS.put("cold_frog", "tadpole");
+            SUBGROUPS.put("parrot", "chicken");
+            SUBGROUPS.put("cave_spider", "spider");
+            SUBGROUPS.put("brown_mooshroom", "cow");
+            SUBGROUPS.put("red_mooshroom", "cow");
+            SUBGROUPS.put("elder_guardian", "guardian");
+            SUBGROUPS.put("trader_llama", "llama");
+            SUBGROUPS.put("endermite", "silverfish");
+
+            SUBGROUPS.put("wandering_trader", "villager");
+            SUBGROUPS.put("iron_golem", "villager");
+            SUBGROUPS.put("witch", "villager");
+
+            SUBGROUPS.put("piglin", "pig");
+            SUBGROUPS.put("hoglin", "pig");
+            SUBGROUPS.put("zoglin", "hoglin");
+            SUBGROUPS.put("piglin_brute", "piglin");
+            SUBGROUPS.put("zombified_piglin", "piglin");
+
+            SUBGROUPS.put("zombie_villager", "zombie");
+            SUBGROUPS.put("zombie_horse", "zombie");
+            SUBGROUPS.put("drowned", "zombie");
+            SUBGROUPS.put("husk", "zombie");
+
+            SUBGROUPS.put("allay", "pillager");
+            SUBGROUPS.put("vex", "pillager");
+            SUBGROUPS.put("vindicator", "pillager");
+            SUBGROUPS.put("ravager", "pillager");
+            SUBGROUPS.put("evoker", "pillager");
+
+            SUBGROUPS.put("skeleton_horse", "skeleton");
+            SUBGROUPS.put("stray", "skeleton");
+            SUBGROUPS.put("wither_skeleton", "skeleton");
+    }
 
 }

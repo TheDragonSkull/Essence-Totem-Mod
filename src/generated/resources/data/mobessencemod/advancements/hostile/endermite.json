@@ -1,5 +1,5 @@
 {
-  "parent": "mobessencemod:hostile/root",
+  "parent": "mobessencemod:hostile/silverfish",
   "criteria": {
     "has_endermite": {
       "conditions": {

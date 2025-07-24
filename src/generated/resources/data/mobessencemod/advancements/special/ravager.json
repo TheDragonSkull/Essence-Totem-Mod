@@ -1,5 +1,5 @@
 {
-  "parent": "mobessencemod:special/root",
+  "parent": "mobessencemod:hostile/pillager",
   "criteria": {
     "has_ravager": {
       "conditions": {

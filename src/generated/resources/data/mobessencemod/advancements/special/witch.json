@@ -1,5 +1,5 @@
 {
-  "parent": "mobessencemod:special/root",
+  "parent": "mobessencemod:passive/villager",
   "criteria": {
     "has_witch": {
       "conditions": {

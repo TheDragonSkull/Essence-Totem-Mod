@@ -1,5 +1,5 @@
 {
-  "parent": "mobessencemod:hostile/root",
+  "parent": "mobessencemod:all_totems",
   "criteria": {
     "has_shulker": {
       "conditions": {

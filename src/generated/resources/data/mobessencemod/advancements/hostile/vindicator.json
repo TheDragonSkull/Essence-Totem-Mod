@@ -1,5 +1,5 @@
 {
-  "parent": "mobessencemod:hostile/root",
+  "parent": "mobessencemod:hostile/pillager",
   "criteria": {
     "has_vindicator": {
       "conditions": {

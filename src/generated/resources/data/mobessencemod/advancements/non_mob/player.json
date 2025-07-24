@@ -1,5 +1,5 @@
 {
-  "parent": "mobessencemod:non_mob/root",
+  "parent": "mobessencemod:all_totems",
   "criteria": {
     "has_player": {
       "conditions": {

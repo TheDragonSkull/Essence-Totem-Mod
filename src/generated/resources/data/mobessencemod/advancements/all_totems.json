@@ -1084,7 +1084,7 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "text": "Collect 'em all!"
+      "text": "Capture the essence of every creature"
     },
     "frame": "challenge",
     "hidden": false,
@@ -1093,7 +1093,7 @@
     },
     "show_toast": true,
     "title": {
-      "text": "Collect the essence of every creature"
+      "text": "Collect 'em all!"
     }
   },
   "requirements": [

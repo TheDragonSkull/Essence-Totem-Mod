@@ -1,5 +1,5 @@
 {
-  "parent": "mobessencemod:boss/root",
+  "parent": "mobessencemod:all_totems",
   "criteria": {
     "has_wither": {
       "conditions": {
