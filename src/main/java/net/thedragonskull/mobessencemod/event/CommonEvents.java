@@ -3,6 +3,7 @@ package net.thedragonskull.mobessencemod.event;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
@@ -27,12 +28,15 @@ import net.minecraftforge.fml.common.Mod;
 import net.thedragonskull.mobessencemod.MobEssenceMod;
 import net.thedragonskull.mobessencemod.abilities.*;
 import net.thedragonskull.mobessencemod.capability.MobEssenceCapProvider;
+import net.thedragonskull.mobessencemod.item.ModItems;
 import net.thedragonskull.mobessencemod.item.custom.TotemOfEssenceItem;
 import net.thedragonskull.mobessencemod.network.C2SSwapTotemPacket;
 import net.thedragonskull.mobessencemod.network.PacketHandler;
 import net.thedragonskull.mobessencemod.util.CommonAbilityUtils;
 import net.thedragonskull.mobessencemod.util.KeyBindings;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
+
+import java.util.List;
 
 @Mod.EventBusSubscriber(modid = MobEssenceMod.MOD_ID)
 public class CommonEvents {
@@ -334,6 +338,16 @@ public class CommonEvents {
             event.addCapability(ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "mob_essence_data"),
                     new MobEssenceCapProvider());
         }
+    }
+
+    @SubscribeEvent
+    public static void syncCrownAdvancements(AdvancementEvent.AdvancementEarnEvent event) {
+        TotemUtils.addCrownAdvancements(event);
+    }
+
+    @SubscribeEvent
+    public static void syncCrownAdvancements(AdvancementEvent.AdvancementProgressEvent event) {
+        TotemUtils.revokeCrownAdvancements(event);
     }
 
     // TOTEM GUI FRAME

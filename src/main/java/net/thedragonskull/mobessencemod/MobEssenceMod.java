@@ -11,16 +11,20 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.RegistryObject;
 import net.thedragonskull.mobessencemod.block.ModBlocks;
 import net.thedragonskull.mobessencemod.block.entity.ModBlockEntities;
 import net.thedragonskull.mobessencemod.item.ModCreativeModeTabs;
 import net.thedragonskull.mobessencemod.item.ModItems;
+import net.thedragonskull.mobessencemod.item.custom.TotemOfEssenceItem;
 import net.thedragonskull.mobessencemod.loot.ModLootModifiers;
 import net.thedragonskull.mobessencemod.network.PacketHandler;
 import net.thedragonskull.mobessencemod.particle.ModParticles;
+import net.thedragonskull.mobessencemod.render.CrownRenderer;
 import net.thedragonskull.mobessencemod.sound.ModSounds;
 import net.thedragonskull.mobessencemod.util.ModItemProperties;
 import org.slf4j.Logger;
+import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
 @Mod(MobEssenceMod.MOD_ID)
 public class MobEssenceMod {
@@ -64,6 +68,12 @@ public class MobEssenceMod {
             event.enqueueWork(() -> {
                 event.enqueueWork(ModItemProperties::addCustomItemProperties);
                 event.enqueueWork(PacketHandler::register);
+
+                // Curios
+                ModItems.ITEMS.getEntries().stream()
+                        .map(RegistryObject::get)
+                        .filter(item -> item instanceof TotemOfEssenceItem)
+                        .forEach(item -> CuriosRendererRegistry.register(item, CrownRenderer::new));
             });
         }
 

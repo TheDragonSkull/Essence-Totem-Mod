@@ -38,6 +38,17 @@ public class PacketHandler {
                 .consumerMainThread(C2SCamelDashPacket::handle)
                 .add();
 
+        INSTANCE.messageBuilder(S2CUpdateCrownAdvancementsPacket.class, id++, NetworkDirection.PLAY_TO_CLIENT)
+                .encoder(S2CUpdateCrownAdvancementsPacket::encode)
+                .decoder(S2CUpdateCrownAdvancementsPacket::new)
+                .consumerMainThread(S2CUpdateCrownAdvancementsPacket::handle)
+                .add();
+
+        INSTANCE.messageBuilder(S2CRevokeCrownAdvancementsPacket.class, id++, NetworkDirection.PLAY_TO_CLIENT)
+                .encoder(S2CRevokeCrownAdvancementsPacket::encode)
+                .decoder(S2CRevokeCrownAdvancementsPacket::new)
+                .consumerMainThread(S2CRevokeCrownAdvancementsPacket::handle)
+                .add();
     }
 
     public static void sendToServer(Object msg) {

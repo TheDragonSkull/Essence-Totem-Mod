@@ -8,7 +8,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.protocol.game.ClientboundRemoveMobEffectPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -16,7 +15,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -25,13 +23,14 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
-import net.minecraftforge.event.entity.living.MobEffectEvent;
+import net.minecraftforge.event.entity.player.AdvancementEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.thedragonskull.mobessencemod.abilities.TotemEssenceRegistry;
+import net.minecraftforge.network.PacketDistributor;
 import net.thedragonskull.mobessencemod.item.ModItems;
-import net.thedragonskull.mobessencemod.item.custom.TotemOfEssenceItem;
+import net.thedragonskull.mobessencemod.network.PacketHandler;
+import net.thedragonskull.mobessencemod.network.S2CRevokeCrownAdvancementsPacket;
+import net.thedragonskull.mobessencemod.network.S2CUpdateCrownAdvancementsPacket;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
@@ -48,7 +47,6 @@ public class TotemUtils {
     public static @Nullable ItemStack getVisibleTotemStack(Player player) {
         return CuriosApi.getCuriosHelper()
                 .findFirstCurio(player, stack -> stack.getItem() == ModItems.TOTEM_OF_ESSENCE.get())
-                .filter(result -> result.slotContext().visible())
                 .map(SlotResult::stack)
                 .orElse(null);
     }
@@ -94,6 +92,55 @@ public class TotemUtils {
                         : Character.toUpperCase(word.charAt(0)) + word.substring(1))
                 .reduce((a, b) -> a + " " + b)
                 .orElse(rawId);
+    }
+
+    public static void addCrownAdvancements(AdvancementEvent.AdvancementEarnEvent event) {
+        Player player = event.getEntity();
+
+        String key = switch (event.getAdvancement().getId().toString()) {
+            case "mobessencemod:passive/root" -> "adv_passive";
+            case "mobessencemod:hostile/root" -> "adv_hostile";
+            case "mobessencemod:neutral/root" -> "adv_neutral";
+            case "mobessencemod:special/root" -> "adv_special";
+            case "mobessencemod:boss/root" -> "adv_boss";
+            case "mobessencemod:non_mob/root" -> "adv_non_mob";
+            default -> null;
+        };
+
+        if (key != null) {
+            CompoundTag tag = new CompoundTag();
+            tag.putBoolean(key, true);
+
+            //Server
+            player.getPersistentData().putBoolean(key, true);
+
+            //Client
+            PacketHandler.sendToPlayer(new S2CUpdateCrownAdvancementsPacket(tag), (ServerPlayer) player);
+        }
+    }
+
+    public static void revokeCrownAdvancements(AdvancementEvent.AdvancementProgressEvent event) {
+        Player player = event.getEntity();
+
+        if (!event.getProgressType().equals(AdvancementEvent.AdvancementProgressEvent.ProgressType.REVOKE)) return;
+
+        String key = switch (event.getAdvancement().getId().toString()) {
+            case "mobessencemod:passive/root" -> "adv_passive";
+            case "mobessencemod:hostile/root" -> "adv_hostile";
+            case "mobessencemod:neutral/root" -> "adv_neutral";
+            case "mobessencemod:special/root" -> "adv_special";
+            case "mobessencemod:boss/root" -> "adv_boss";
+            case "mobessencemod:non_mob/root" -> "adv_non_mob";
+            default -> null;
+        };
+
+        if (key != null) {
+            //Server
+            player.getPersistentData().remove(key);
+
+            //Client
+            PacketHandler.sendToPlayer(new S2CRevokeCrownAdvancementsPacket(key), (ServerPlayer) player);
+        }
     }
 
     public static void onDragonEggUse(PlayerInteractEvent.RightClickBlock event) {

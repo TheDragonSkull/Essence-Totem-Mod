@@ -172,7 +172,7 @@ public class TotemOfEssenceItem extends Item implements ICurioItem {
             if (stack.hasTag() && stack.getTag().contains("Essence")) {
 
                 String essenceId = stack.getTag().getString("Essence");
-                if (!TotemEssenceRegistry.isRegistered(new ResourceLocation(essenceId))) {
+                if (!TotemEssenceRegistry.isRegistered(ResourceLocation.parse(essenceId))) {
                     player.displayClientMessage(Component.literal("This essence is invalid").withStyle(ChatFormatting.RED), true);
                     return InteractionResultHolder.pass(stack);
                 }

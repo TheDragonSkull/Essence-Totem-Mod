@@ -1,6 +1,5 @@
 package net.thedragonskull.mobessencemod.event;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.player.AbstractClientPlayer;
@@ -12,11 +11,15 @@ import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.RegistryObject;
 import net.thedragonskull.mobessencemod.MobEssenceMod;
+import net.thedragonskull.mobessencemod.item.ModItems;
+import net.thedragonskull.mobessencemod.item.custom.TotemOfEssenceItem;
 import net.thedragonskull.mobessencemod.particle.ModParticles;
 import net.thedragonskull.mobessencemod.particle.custom.HealingGlitterParticles;
 import net.thedragonskull.mobessencemod.render.*;
 import net.thedragonskull.mobessencemod.util.KeyBindings;
+import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
 @Mod.EventBusSubscriber(modid = MobEssenceMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ModEvents {
@@ -42,6 +45,8 @@ public class ModEvents {
     public static void onRegisterLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(VillagerNoseModel.LAYER_LOCATION, VillagerNoseModel::createBodyLayer);
         event.registerLayerDefinition(WitchNoseModel.LAYER_LOCATION, WitchNoseModel::createBodyLayer);
+
+        event.registerLayerDefinition(CrownModel.LAYER_LOCATION, CrownModel::createBodyLayer);
     }
 
     @SubscribeEvent
