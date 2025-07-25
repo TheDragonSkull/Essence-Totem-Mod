@@ -13,7 +13,9 @@ import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.thedragonskull.mobessencemod.MobEssenceMod;
@@ -48,7 +50,10 @@ public class CrownRenderer implements ICurioRenderer {
         matrixStack.pushPose();
         if (renderLayerParent.getModel() instanceof HumanoidModel<?> humanoidModel) {
             humanoidModel.head.translateAndRotate(matrixStack);
-            matrixStack.translate(0.0D, -2.0D, 0.0D);
+
+            boolean hasHelmet = !player.getItemBySlot(EquipmentSlot.HEAD).isEmpty();
+            double yTranslate = hasHelmet ? -2.05D : -2.0D;
+            matrixStack.translate(0.0D, yTranslate, 0.0D);
         }
 
         VertexConsumer vertex = renderTypeBuffer.getBuffer(RenderType.entityCutoutNoCull(CROWN_TEXTURE));

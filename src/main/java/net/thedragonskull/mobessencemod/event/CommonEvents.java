@@ -32,6 +32,7 @@ import net.thedragonskull.mobessencemod.item.ModItems;
 import net.thedragonskull.mobessencemod.item.custom.TotemOfEssenceItem;
 import net.thedragonskull.mobessencemod.network.C2SSwapTotemPacket;
 import net.thedragonskull.mobessencemod.network.PacketHandler;
+import net.thedragonskull.mobessencemod.network.S2CUpdateCrownAdvancementsPacket;
 import net.thedragonskull.mobessencemod.util.CommonAbilityUtils;
 import net.thedragonskull.mobessencemod.util.KeyBindings;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
@@ -300,6 +301,21 @@ public class CommonEvents {
     @SubscribeEvent
     public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
         PlayerAbility.onPlayerLogin(event);
+
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+
+        CompoundTag tag = new CompoundTag();
+
+        // Replicar todos los flags desde el servidor
+        CompoundTag data = player.getPersistentData();
+        if (data.getBoolean("adv_hostile")) tag.putBoolean("adv_hostile", true);
+        if (data.getBoolean("adv_passive")) tag.putBoolean("adv_passive", true);
+        if (data.getBoolean("adv_neutral")) tag.putBoolean("adv_neutral", true);
+        if (data.getBoolean("adv_special")) tag.putBoolean("adv_special", true);
+        if (data.getBoolean("adv_boss")) tag.putBoolean("adv_boss", true);
+        if (data.getBoolean("adv_non_mob")) tag.putBoolean("adv_non_mob", true);
+
+        PacketHandler.sendToPlayer(new S2CUpdateCrownAdvancementsPacket(tag), player);
     }
 
     @SubscribeEvent

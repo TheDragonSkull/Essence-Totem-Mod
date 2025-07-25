@@ -31,9 +31,7 @@ public class CrownModel extends EntityModel<LivingEntity> {
 	public CrownModel(ModelPart root) {
 		this.gems = root.getChild("gems");
 
-
-		this.hostile_gem = this.gems;
-
+		this.hostile_gem = this.gems.getChild("hostile_gem_r1");
 		this.passive_gem = this.gems.getChild("passive_gem_r1");
 		this.boss_gem = this.gems.getChild("boss_gem_r1");
 		this.non_mob_gem = this.gems.getChild("non_mob_gem_r1");
@@ -51,9 +49,14 @@ public class CrownModel extends EntityModel<LivingEntity> {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition gems = partdefinition.addOrReplaceChild("gems", CubeListBuilder.create().texOffs(21, 0).addBox(2.9625F, 4.6F, -0.3625F, 0.275F, 0.8F, 0.7F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 16.0F, 0.0F));
+		PartDefinition gems = partdefinition.addOrReplaceChild("gems",
+				CubeListBuilder.create(),
+				PartPose.offset(0.0F, 16.0F, 0.0F)
+		);
 
 		PartDefinition non_mob_gem_r1 = gems.addOrReplaceChild("non_mob_gem_r1", CubeListBuilder.create().texOffs(29, 0).addBox(-0.1375F, -0.4F, -0.35F, 0.275F, 0.8F, 0.7F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -1.4F, -0.3125F, 0.0F, 1.5708F, 0.0F));
+
+		PartDefinition hostile_gem_r1 = gems.addOrReplaceChild("hostile_gem_r1", CubeListBuilder.create().texOffs(21, 0).addBox(2.9625F, 4.6F, -0.3625F, 0.275F, 0.8F, 0.7F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
 		PartDefinition boss_gem_r1 = gems.addOrReplaceChild("boss_gem_r1", CubeListBuilder.create().texOffs(25, 0).addBox(-0.1375F, -0.4F, -0.35F, 0.275F, 0.8F, 0.7F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -1.4F, 0.3875F, 0.0F, -1.5708F, 0.0F));
 

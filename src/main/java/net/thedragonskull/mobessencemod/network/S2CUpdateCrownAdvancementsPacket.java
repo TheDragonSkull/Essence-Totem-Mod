@@ -28,7 +28,6 @@ public class S2CUpdateCrownAdvancementsPacket {
             Player player = Minecraft.getInstance().player;
             if (player != null) {
                 player.getPersistentData().merge(data);
-                System.out.println(data);
             }
         });
         ctx.get().setPacketHandled(true);
