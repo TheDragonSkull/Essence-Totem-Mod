@@ -66,14 +66,14 @@ public class CrownModel extends EntityModel<LivingEntity> {
 
 		PartDefinition passive_gem_r1 = gems.addOrReplaceChild("passive_gem_r1", CubeListBuilder.create().texOffs(25, 3).addBox(-0.1375F, -0.4F, -0.35F, 0.275F, 0.8F, 0.7F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 5.0F, -3.1125F, 0.0F, 1.5708F, 0.0F));
 
-		PartDefinition archs = partdefinition.addOrReplaceChild("archs", CubeListBuilder.create().texOffs(24, 12).addBox(0.5F, 4.5F, -0.5F, 1.0F, 2.5F, 0.0F, new CubeDeformation(0.0F))
-				.texOffs(29, 12).addBox(0.5F, 4.5F, 5.5F, 1.0F, 2.5F, 0.0F, new CubeDeformation(0.0F))
-				.texOffs(19, 11).addBox(-2.0F, 4.5F, 2.0F, 0.0F, 2.5F, 1.0F, new CubeDeformation(0.0F))
-				.texOffs(16, 10).addBox(-2.0F, 4.5F, 2.0F, 3.0F, 0.0F, 1.0F, new CubeDeformation(0.0F))
-				.texOffs(23, 10).addBox(1.0F, 4.5F, 2.0F, 3.0F, 0.0F, 1.0F, new CubeDeformation(0.0F))
-				.texOffs(19, 12).addBox(0.5F, 4.5F, -0.5F, 1.0F, 0.0F, 2.5F, new CubeDeformation(0.0F))
-				.texOffs(14, 12).addBox(0.5F, 4.5F, 3.0F, 1.0F, 0.0F, 2.5F, new CubeDeformation(0.0F))
-				.texOffs(27, 11).addBox(4.0F, 4.5F, 2.0F, 0.0F, 2.5F, 1.0F, new CubeDeformation(0.0F))
+		PartDefinition archs = partdefinition.addOrReplaceChild("archs", CubeListBuilder.create().texOffs(24, 12).addBox(0.5F, 4.5F, -0.5F, 1.0F, 2.5F, 0.001F, new CubeDeformation(0.0F))
+				.texOffs(29, 12).addBox(0.5F, 4.5F, 5.5F, 1.0F, 2.5F, 0.001F, new CubeDeformation(0.0F))
+				.texOffs(19, 11).addBox(-2.0F, 4.5F, 2.0F, 0.001F, 2.5F, 1.0F, new CubeDeformation(0.0F))
+				.texOffs(16, 10).addBox(-2.0F, 4.5F, 2.0F, 3.0F, 0.001F, 1.0F, new CubeDeformation(0.0F))
+				.texOffs(23, 10).addBox(1.0F, 4.5F, 2.0F, 3.0F, 0.001F, 1.0F, new CubeDeformation(0.0F))
+				.texOffs(19, 12).addBox(0.5F, 4.5F, -0.5F, 1.0F, 0.001F, 2.5F, new CubeDeformation(0.0F))
+				.texOffs(14, 12).addBox(0.5F, 4.5F, 3.0F, 1.0F, 0.001F, 2.5F, new CubeDeformation(0.0F))
+				.texOffs(27, 11).addBox(4.0F, 4.5F, 2.0F, 0.001F, 2.5F, 1.0F, new CubeDeformation(0.0F))
 				.texOffs(9, 18).addBox(0.3F, 3.1F, 1.8F, 1.4F, 1.375F, 1.4F, new CubeDeformation(0.0F)), PartPose.offset(-1.0F, 12.5F, -2.5F));
 
 		PartDefinition top_cross = archs.addOrReplaceChild("top_cross", CubeListBuilder.create().texOffs(9, 28).addBox(-0.5F, 4.8F, -0.25F, 1.0F, 1.0F, 0.5F, new CubeDeformation(0.0F))

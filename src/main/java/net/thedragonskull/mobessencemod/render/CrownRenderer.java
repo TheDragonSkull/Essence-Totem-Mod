@@ -47,6 +47,8 @@ public class CrownRenderer implements ICurioRenderer {
         model.boss_gem.visible = player.getPersistentData().getBoolean("adv_boss");
         model.non_mob_gem.visible = player.getPersistentData().getBoolean("adv_non_mob");
 
+        //todo: all totems
+
         matrixStack.pushPose();
         if (renderLayerParent.getModel() instanceof HumanoidModel<?> humanoidModel) {
             humanoidModel.head.translateAndRotate(matrixStack);

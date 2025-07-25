@@ -306,7 +306,6 @@ public class CommonEvents {
 
         CompoundTag tag = new CompoundTag();
 
-        // Replicar todos los flags desde el servidor
         CompoundTag data = player.getPersistentData();
         if (data.getBoolean("adv_hostile")) tag.putBoolean("adv_hostile", true);
         if (data.getBoolean("adv_passive")) tag.putBoolean("adv_passive", true);
@@ -314,6 +313,7 @@ public class CommonEvents {
         if (data.getBoolean("adv_special")) tag.putBoolean("adv_special", true);
         if (data.getBoolean("adv_boss")) tag.putBoolean("adv_boss", true);
         if (data.getBoolean("adv_non_mob")) tag.putBoolean("adv_non_mob", true);
+        //todo: all totems
 
         PacketHandler.sendToPlayer(new S2CUpdateCrownAdvancementsPacket(tag), player);
     }
