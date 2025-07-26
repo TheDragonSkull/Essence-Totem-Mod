@@ -104,7 +104,7 @@ public class TotemUtils {
             case "mobessencemod:special/root" -> "adv_special";
             case "mobessencemod:boss/root" -> "adv_boss";
             case "mobessencemod:non_mob/root" -> "adv_non_mob";
-            //todo: all totems
+            case "mobessencemod:all_totems" -> "adv_all_totems";
             default -> null;
         };
 
@@ -132,7 +132,7 @@ public class TotemUtils {
             case "mobessencemod:special/root" -> "adv_special";
             case "mobessencemod:boss/root" -> "adv_boss";
             case "mobessencemod:non_mob/root" -> "adv_non_mob";
-            //todo: all totems
+            case "mobessencemod:all_totems" -> "adv_all_totems";
             default -> null;
         };
 

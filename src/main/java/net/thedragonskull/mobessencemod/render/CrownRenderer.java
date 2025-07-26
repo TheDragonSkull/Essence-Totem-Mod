@@ -2,20 +2,16 @@ package net.thedragonskull.mobessencemod.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.advancements.Advancement;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.thedragonskull.mobessencemod.MobEssenceMod;
@@ -24,6 +20,7 @@ import top.theillusivec4.curios.api.client.ICurioRenderer;
 
 public class CrownRenderer implements ICurioRenderer {
     private final ResourceLocation CROWN_TEXTURE = ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "textures/entity/crown.png");
+    private final ResourceLocation DIAMOND_CROWN_TEXTURE = ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "textures/entity/diamond_crown.png");
     private final CrownModel model;
 
     public CrownRenderer() {
@@ -47,8 +44,6 @@ public class CrownRenderer implements ICurioRenderer {
         model.boss_gem.visible = player.getPersistentData().getBoolean("adv_boss");
         model.non_mob_gem.visible = player.getPersistentData().getBoolean("adv_non_mob");
 
-        //todo: all totems
-
         matrixStack.pushPose();
         if (renderLayerParent.getModel() instanceof HumanoidModel<?> humanoidModel) {
             humanoidModel.head.translateAndRotate(matrixStack);
@@ -58,7 +53,9 @@ public class CrownRenderer implements ICurioRenderer {
             matrixStack.translate(0.0D, yTranslate, 0.0D);
         }
 
-        VertexConsumer vertex = renderTypeBuffer.getBuffer(RenderType.entityCutoutNoCull(CROWN_TEXTURE));
+        ResourceLocation texture = player.getPersistentData().getBoolean("adv_all_totems") ? DIAMOND_CROWN_TEXTURE : CROWN_TEXTURE;
+
+        VertexConsumer vertex = renderTypeBuffer.getBuffer(RenderType.entityCutoutNoCull(texture));
         model.renderToBuffer(matrixStack, vertex, light, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1);
         matrixStack.popPose();
     }

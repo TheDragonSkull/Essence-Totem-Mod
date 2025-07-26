@@ -313,7 +313,7 @@ public class CommonEvents {
         if (data.getBoolean("adv_special")) tag.putBoolean("adv_special", true);
         if (data.getBoolean("adv_boss")) tag.putBoolean("adv_boss", true);
         if (data.getBoolean("adv_non_mob")) tag.putBoolean("adv_non_mob", true);
-        //todo: all totems
+        if (data.getBoolean("adv_all_totems")) tag.putBoolean("adv_all_totems", true);
 
         PacketHandler.sendToPlayer(new S2CUpdateCrownAdvancementsPacket(tag), player);
     }
