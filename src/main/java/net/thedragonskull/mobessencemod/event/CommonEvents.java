@@ -1,9 +1,11 @@
 package net.thedragonskull.mobessencemod.event;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
@@ -13,6 +15,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.event.ViewportEvent;
@@ -128,6 +131,21 @@ public class CommonEvents {
     }
 
     @SubscribeEvent
+    public static void onLivingUseTotem(LivingUseTotemEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        ItemStack undyingTotem = event.getTotem();
+
+        if (undyingTotem != null) {
+            ItemStack totem = TotemUtils.getTotemStack(player);
+            if (totem != null && !TotemUtils.hasEssence(totem)) {
+                TotemUtils.setEssence(totem, ResourceLocation.parse("minecraft:player"));
+                player.displayClientMessage(Component.literal("The totem captured your essence as it tried to leave this world!")
+                        .withStyle(ChatFormatting.GOLD), true);
+            }
+        }
+    }
+
+    @SubscribeEvent
     public static void onLivingDeath(LivingDeathEvent event) {
         ZombieAbility.onPlayerDeath(event);
         ZombieVillagerAbility.onPlayerDeath(event);
@@ -138,12 +156,13 @@ public class CommonEvents {
         WardenAbility.onKillEntity(event);
         PlayerAbility.onPlayerDeath(event);
 
-        if (!(event.getEntity() instanceof WitherBoss)) return;
-        DamageSource source = event.getSource();
-        Entity attacker = source.getEntity();
+        if (event.getEntity() instanceof WitherBoss) {
+            DamageSource source = event.getSource();
+            Entity attacker = source.getEntity();
 
-        if (attacker instanceof ServerPlayer player) {
-            player.getPersistentData().putBoolean("mobessence_killed_wither", true);
+            if (attacker instanceof ServerPlayer player) {
+                player.getPersistentData().putBoolean("mobessence_killed_wither", true);
+            }
         }
     }
 
