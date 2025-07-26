@@ -52,7 +52,10 @@
     ]
   ],
   "rewards": {
-    "experience": 300
+    "experience": 300,
+    "loot": [
+      "mobessencemod:advancements/boss"
+    ]
   },
   "sends_telemetry_event": true
 }

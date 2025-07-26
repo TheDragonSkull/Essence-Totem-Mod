@@ -484,7 +484,10 @@
     ]
   ],
   "rewards": {
-    "experience": 100
+    "experience": 100,
+    "loot": [
+      "mobessencemod:advancements/passive"
+    ]
   },
   "sends_telemetry_event": true
 }

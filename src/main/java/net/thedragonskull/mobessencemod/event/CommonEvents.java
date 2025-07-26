@@ -15,7 +15,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.event.ViewportEvent;
@@ -128,21 +127,6 @@ public class CommonEvents {
         RedMooshroomAbility.onEat(event);
         BrownMooshroomAbility.onEat(event);
         PandaAbility.onPandaEatVegetable(event);
-    }
-
-    @SubscribeEvent
-    public static void onLivingUseTotem(LivingUseTotemEvent event) {
-        if (!(event.getEntity() instanceof ServerPlayer player)) return;
-        ItemStack undyingTotem = event.getTotem();
-
-        if (undyingTotem != null) {
-            ItemStack totem = TotemUtils.getTotemStack(player);
-            if (totem != null && !TotemUtils.hasEssence(totem)) {
-                TotemUtils.setEssence(totem, ResourceLocation.parse("minecraft:player"));
-                player.displayClientMessage(Component.literal("The totem captured your essence as it tried to leave this world!")
-                        .withStyle(ChatFormatting.GOLD), true);
-            }
-        }
     }
 
     @SubscribeEvent
@@ -391,6 +375,21 @@ public class CommonEvents {
             int originalXp = event.getAmount();
             int boostedXp = originalXp * 2;
             event.setAmount(boostedXp);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLivingUseTotem(LivingUseTotemEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        ItemStack undyingTotem = event.getTotem();
+
+        if (undyingTotem != null) {
+            ItemStack totem = TotemUtils.getTotemStack(player);
+            if (totem != null && !TotemUtils.hasEssence(totem)) {
+                TotemUtils.setEssence(totem, ResourceLocation.parse("minecraft:player"));
+                player.displayClientMessage(Component.literal("The totem captured your essence as it tried to leave this world!")
+                        .withStyle(ChatFormatting.GOLD), true);
+            }
         }
     }
 

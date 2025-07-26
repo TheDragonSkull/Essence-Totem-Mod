@@ -356,7 +356,10 @@
     ]
   ],
   "rewards": {
-    "experience": 100
+    "experience": 100,
+    "loot": [
+      "mobessencemod:advancements/hostile"
+    ]
   },
   "sends_telemetry_event": true
 }

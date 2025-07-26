@@ -173,6 +173,15 @@ public class EssenceAdvancementGenerator implements ForgeAdvancementProvider.Adv
             case BOSS, NON_MOB -> 300;
         };
 
+        ResourceLocation lootTable = switch (category) {
+            case PASSIVE -> ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "advancements/passive");
+            case NEUTRAL -> ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "advancements/neutral");
+            case HOSTILE -> ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "advancements/hostile");
+            case SPECIAL -> ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "advancements/special");
+            case BOSS -> ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "advancements/boss");
+            case NON_MOB -> ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "advancements/non_mob");
+        };
+
         Advancement.Builder builder = Advancement.Builder.advancement()
                 .parent(parent)
                 .display(
@@ -182,7 +191,7 @@ public class EssenceAdvancementGenerator implements ForgeAdvancementProvider.Adv
                         null,
                         FrameType.GOAL,
                         true, true, false)
-                .rewards(AdvancementRewards.Builder.experience(expReward)) // todo: add loot rewards
+                .rewards(AdvancementRewards.Builder.experience(expReward).addLootTable(lootTable))
                 .requirements(RequirementsStrategy.AND);
 
         for (TotemEssenceRegistry.EssenceData essence : categoryTotems) {

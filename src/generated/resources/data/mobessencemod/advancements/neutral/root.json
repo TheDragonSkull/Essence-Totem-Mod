@@ -228,7 +228,10 @@
     ]
   ],
   "rewards": {
-    "experience": 100
+    "experience": 100,
+    "loot": [
+      "mobessencemod:advancements/neutral"
+    ]
   },
   "sends_telemetry_event": true
 }
