@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:advancement_reward",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "enchantments": {
+                "minecraft:sharpness": 5.0
+              },
+              "function": "minecraft:set_enchantments"
+            }
+          ],
+          "name": "minecraft:diamond_sword"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "mobessencemod:advancements/hostile"
+}

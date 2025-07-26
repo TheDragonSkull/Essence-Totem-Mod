@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:advancement_reward",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:conduit"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_instrument",
+              "options": "#minecraft:screaming_goat_horns"
+            }
+          ],
+          "name": "minecraft:goat_horn"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "mobessencemod:advancements/neutral"
+}
