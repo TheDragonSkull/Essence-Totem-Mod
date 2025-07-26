@@ -5,6 +5,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.thedragonskull.mobessencemod.util.TotemMobCategory;
 import net.thedragonskull.mobessencemod.util.TotemTooltipData;
+
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -27,14 +28,14 @@ public class TotemEssenceRegistry {
 
         // PASSIVE
         register("minecraft:pig", "essence_pig",
-                new TotemTooltipData("Cast-Iron Stomach", "Immune to negative food effects +  if struck by lightning bolt, the totem transforms its essence into zombified piglin"),
+                new TotemTooltipData("Cast-Iron Stomach", "The glutton fears no poison. And should the storm choose thee, a new form walks: horned, golden, and wrathful"),
                 SoundEvents.PIG_HURT,
                 new PigAbility(),
                 TotemMobCategory.PASSIVE
         );
 
         register("minecraft:parrot", "essence_parrot",
-                new TotemTooltipData("Featherlight", "Double jump + don't trigger pressure plates or tripwires"),
+                new TotemTooltipData("Featherlight", "Woven of whisper and wind, its bearer dances above danger. Traps lie still, and air yields twice to your command"),
                 SoundEvents.PARROT_HURT,
                 new ParrotAbility(),
                 TotemMobCategory.PASSIVE
