@@ -85,7 +85,6 @@ public class AllayAbility implements IMobAbility {
                 if (event.getLevel().getBlockState(targetPos).isAir()) {
                     spawnItem(event.getLevel(), targetPos, stack);
                 } else {
-                    // Buscar alrededor (4 direcciones cardinales)
                     boolean placed = false;
                     for (Direction dir : Direction.Plane.HORIZONTAL) {
                         BlockPos adjacent = pos.relative(dir);

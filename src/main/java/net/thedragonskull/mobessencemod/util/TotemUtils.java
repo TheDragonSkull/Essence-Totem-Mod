@@ -26,7 +26,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.AdvancementEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.network.PacketDistributor;
 import net.thedragonskull.mobessencemod.item.ModItems;
 import net.thedragonskull.mobessencemod.network.PacketHandler;
 import net.thedragonskull.mobessencemod.network.S2CRevokeCrownAdvancementsPacket;
@@ -44,7 +43,7 @@ import java.util.Set;
 public class TotemUtils {
 
     // TOTEM RELATED
-    public static @Nullable ItemStack getVisibleTotemStack(Player player) {
+    public static @Nullable ItemStack getTotemStack(Player player) {
         return CuriosApi.getCuriosHelper()
                 .findFirstCurio(player, stack -> stack.getItem() == ModItems.TOTEM_OF_ESSENCE.get())
                 .map(SlotResult::stack)

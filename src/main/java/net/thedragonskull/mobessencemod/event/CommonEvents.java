@@ -28,7 +28,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.thedragonskull.mobessencemod.MobEssenceMod;
 import net.thedragonskull.mobessencemod.abilities.*;
 import net.thedragonskull.mobessencemod.capability.MobEssenceCapProvider;
-import net.thedragonskull.mobessencemod.item.ModItems;
 import net.thedragonskull.mobessencemod.item.custom.TotemOfEssenceItem;
 import net.thedragonskull.mobessencemod.network.C2SSwapTotemPacket;
 import net.thedragonskull.mobessencemod.network.PacketHandler;
@@ -36,8 +35,6 @@ import net.thedragonskull.mobessencemod.network.S2CUpdateCrownAdvancementsPacket
 import net.thedragonskull.mobessencemod.util.CommonAbilityUtils;
 import net.thedragonskull.mobessencemod.util.KeyBindings;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
-
-import java.util.List;
 
 @Mod.EventBusSubscriber(modid = MobEssenceMod.MOD_ID)
 public class CommonEvents {
@@ -366,6 +363,18 @@ public class CommonEvents {
         TotemUtils.revokeCrownAdvancements(event);
     }
 
+    @SubscribeEvent
+    public static void onLivingExpDrop(PlayerXpEvent.XpChange event) {
+        Player player = event.getEntity();
+        ItemStack totem = TotemUtils.getTotemStack(player);
+
+        if (player.getPersistentData().getBoolean("adv_all_totems") && totem != null) {
+            int originalXp = event.getAmount();
+            int boostedXp = originalXp * 2;
+            event.setAmount(boostedXp);
+        }
+    }
+
     // TOTEM GUI FRAME
     private static final ResourceLocation FRAME = ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "textures/gui/totem_frame.png");
 
@@ -379,7 +388,7 @@ public class CommonEvents {
 
         if (player == null) return;
 
-        ItemStack totem = TotemUtils.getVisibleTotemStack(player);
+        ItemStack totem = TotemUtils.getTotemStack(player);
         if (totem == null) return;
 
         int screenWidth = event.getWindow().getGuiScaledWidth();
