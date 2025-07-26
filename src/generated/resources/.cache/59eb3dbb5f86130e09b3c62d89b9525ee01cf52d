@@ -1,5 +1,9 @@
-// 1.20.1	2025-07-26T14:45:12.1439124	Loot Tables
-6d06be1aec31718605b53418c8e0a65bd5df1c69 data/mobessencemod/loot_tables/advancements/hostile.json
+// 1.20.1	2025-07-26T17:45:02.8450337	Loot Tables
+92e7d9096d1ae3fbea3c6decf331b0b816c2a734 data/mobessencemod/loot_tables/advancements/all_totems.json
+9e022fafef471187c01d76658ca4cb0015dadfbf data/mobessencemod/loot_tables/advancements/boss.json
+50ef5038baaf564af9b6204bbf25be369204aeff data/mobessencemod/loot_tables/advancements/hostile.json
 737219b0b2675d5e26172c1a9d69945055bfa51d data/mobessencemod/loot_tables/advancements/neutral.json
+c19e94485de1bee02b975a1cd9178736746f779a data/mobessencemod/loot_tables/advancements/non_mob.json
 39b56c7753562b4c5c2cceb4419ed57249570a33 data/mobessencemod/loot_tables/advancements/passive.json
+de741484938ad1af48b917c9e452f993aa09eb40 data/mobessencemod/loot_tables/advancements/special.json
 9e08e04bf579c1d7195ed9f9658c4cb9d7e18c8b data/mobessencemod/loot_tables/blocks/healing_end_rod.json

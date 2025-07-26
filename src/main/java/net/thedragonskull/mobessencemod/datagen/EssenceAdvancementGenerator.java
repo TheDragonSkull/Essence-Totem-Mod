@@ -56,7 +56,8 @@ public class EssenceAdvancementGenerator implements ForgeAdvancementProvider.Adv
                         null,
                         FrameType.CHALLENGE,
                         true, true, false)
-                .rewards(AdvancementRewards.Builder.experience(1000))  // todo: add loot rewards
+                .rewards(AdvancementRewards.Builder.experience(1000)
+                        .addLootTable(ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "advancements/all_totems")))  // todo: add loot rewards
                 .requirements(RequirementsStrategy.AND);
 
         for (TotemEssenceRegistry.EssenceData essence : TotemEssenceRegistry.getAll()) {

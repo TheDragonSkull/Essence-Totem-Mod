@@ -9,17 +9,15 @@
           "functions": [
             {
               "add": false,
-              "enchantments": {
-                "minecraft:sharpness": 5.0
-              },
-              "function": "minecraft:set_enchantments"
+              "count": 10.0,
+              "function": "minecraft:set_count"
             }
           ],
-          "name": "minecraft:netherite_sword"
+          "name": "minecraft:enchanted_golden_apple"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "mobessencemod:advancements/hostile"
+  "random_sequence": "mobessencemod:advancements/boss"
 }

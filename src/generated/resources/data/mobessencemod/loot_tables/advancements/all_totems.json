@@ -1,0 +1,40 @@
+{
+  "type": "minecraft:advancement_reward",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 64.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:bedrock"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 12.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:end_portal_frame"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "mobessencemod:advancements/all_totems"
+}

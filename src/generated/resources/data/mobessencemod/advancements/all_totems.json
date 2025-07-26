@@ -1348,7 +1348,10 @@
     ]
   ],
   "rewards": {
-    "experience": 1000
+    "experience": 1000,
+    "loot": [
+      "mobessencemod:advancements/all_totems"
+    ]
   },
   "sends_telemetry_event": true
 }

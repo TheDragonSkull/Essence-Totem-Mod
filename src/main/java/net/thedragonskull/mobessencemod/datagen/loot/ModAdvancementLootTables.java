@@ -68,6 +68,60 @@ public class ModAdvancementLootTables implements LootTableSubProvider {
                         )
         );
 
+        consumer.accept(ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "advancements/special"),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .setRolls(ConstantValue.exactly(1))
+                                .add(LootItem.lootTableItem(Items.PIGLIN_BANNER_PATTERN)
+                                        .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
+                        )
+
+                        .withPool(LootPool.lootPool()
+                                .setRolls(ConstantValue.exactly(1))
+                                .add(LootItem.lootTableItem(Items.SILENCE_ARMOR_TRIM_SMITHING_TEMPLATE)
+                                        .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
+                        )
+        );
+
+        consumer.accept(ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "advancements/boss"),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .setRolls(ConstantValue.exactly(1))
+                                .add(LootItem.lootTableItem(Items.ENCHANTED_GOLDEN_APPLE)
+                                        .apply(SetItemCountFunction.setCount(ConstantValue.exactly(5))))
+                        )
+        );
+
+        consumer.accept(ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "advancements/non_mob"),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .setRolls(ConstantValue.exactly(1))
+                                .add(LootItem.lootTableItem(Items.PLAYER_HEAD)
+                                        .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
+                        )
+
+                        .withPool(LootPool.lootPool()
+                                .setRolls(ConstantValue.exactly(1))
+                                .add(LootItem.lootTableItem(Items.EXPERIENCE_BOTTLE)
+                                        .apply(SetItemCountFunction.setCount(ConstantValue.exactly(5))))
+                        )
+        );
+
+        consumer.accept(ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "advancements/all_totems"),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .setRolls(ConstantValue.exactly(1))
+                                .add(LootItem.lootTableItem(Items.BEDROCK)
+                                        .apply(SetItemCountFunction.setCount(ConstantValue.exactly(64))))
+                        )
+
+                        .withPool(LootPool.lootPool()
+                                .setRolls(ConstantValue.exactly(1))
+                                .add(LootItem.lootTableItem(Items.END_PORTAL_FRAME)
+                                        .apply(SetItemCountFunction.setCount(ConstantValue.exactly(12))))
+                        )
+        );
+
 
     }
 }
