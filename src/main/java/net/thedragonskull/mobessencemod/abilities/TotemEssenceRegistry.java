@@ -105,35 +105,35 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:horse", "essence_horse",
-                new TotemTooltipData("Power Leap", "Upgraded jump when sprinting for more than 3 seconds without stopping + chance to horse kick if melee attacked from behind (1/3)"),
+                new TotemTooltipData("Power Leap", "Momentum becomes flight. Let none stand behind you, lest they taste your fury"),
                 SoundEvents.HORSE_HURT,
                 new HorseAbility(),
                 TotemMobCategory.PASSIVE
         );
 
         register("minecraft:donkey", "essence_donkey",
-                new TotemTooltipData("Burden Bearer", "Chests drop themselves with the items inside instead of dropping the contents + chance to donkey kick if melee attacked from behind (1/3)"),
+                new TotemTooltipData("Burden Bearer", "The burden remains whole. What is carried shall not scatter, and betrayal meets a hindleg’s truth"),
                 SoundEvents.DONKEY_HURT,
                 new DonkeyAbility(),
                 TotemMobCategory.PASSIVE
         );
 
         register("minecraft:turtle", "essence_turtle",
-                new TotemTooltipData("Rear shield", "Block all incoming damage from behind"),
+                new TotemTooltipData("Rear shield", "Turn your back without fear. The world may strike, but never from behind"),
                 SoundEvents.TURTLE_HURT,
                 new TurtleAbility(),
                 TotemMobCategory.PASSIVE
         );
 
         register("minecraft:axolotl", "essence_axolotl",
-                new TotemTooltipData("PTSD Therapy", "After killing a mob that's trying to fight, gain regeneration I for 5 seconds (regen II if underwater)"),
+                new TotemTooltipData("PTSD Therapy", "The wound of the moment fades swiftly. Pain lingers, but so does the will to heal"),
                 SoundEvents.AXOLOTL_HURT,
                 new AxolotlAbility(),
                 TotemMobCategory.PASSIVE
         );
 
         register("minecraft:bat", "essence_bat",
-                new TotemTooltipData("Shadow Pulse", "While pressing Shift, apply glowing to any mob within a 15 block radius + at night, also become invisible"),
+                new TotemTooltipData("Shadow Pulse", "You see what others miss. They, in turn, see nothing at all"),
                 SoundEvents.BAT_HURT,
                 new BatAbility(),
                 TotemMobCategory.PASSIVE
