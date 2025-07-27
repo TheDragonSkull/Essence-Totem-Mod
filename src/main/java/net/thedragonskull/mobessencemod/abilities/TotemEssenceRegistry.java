@@ -189,49 +189,42 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:tadpole", "essence_tadpole",
-                new TotemTooltipData("Slimy Snack", "Consume a slimeball to get a random positive effect based if the player is on land or water (20s)"),
-                SoundEvents.TADPOLE_HURT,
-                new TadpoleAbility(),
-                TotemMobCategory.PASSIVE
-        );
-
-        register("minecraft:tadpole", "essence_tadpole",
-                new TotemTooltipData("Slimy Snack", "Consume a slimeball to get a random positive effect based if the player is on land or water (20s)"),
+                new TotemTooltipData("Slimy Snack", "What is bitter to the tongue may yet sweeten your spirit, and the ground or water shall whisper what strength you deserve"),
                 SoundEvents.TADPOLE_HURT,
                 new TadpoleAbility(),
                 TotemMobCategory.PASSIVE
         );
 
         register("minecraft:temperate_frog", "essence_temperate_frog",
-                new TotemTooltipData("Amphibian Spirit of Resilience", "No fall damage from 5 blocks or less + long jump while not sprinting + immunity to poison"),
+                new TotemTooltipData("Amphibian Spirit of Resilience", "Spring-bound legs reward the still, and short descents bring no harm. No venom dares linger beneath your skin"),
                 SoundEvents.FROG_HURT,
                 new FrogAbility(),
                 TotemMobCategory.PASSIVE
         );
 
         register("minecraft:cold_frog", "essence_cold_frog",
-                new TotemTooltipData("Amphibian Spirit of the Tundra", "No fall damage from 5 blocks or less + long jump while not sprinting + immunity to freezing"),
+                new TotemTooltipData("Amphibian Spirit of the Tundra", "Leaping limbs bless the patient, while gentle falls leaves no scar. Winter’s bite passes you by"),
                 SoundEvents.FROG_HURT,
                 new FrogAbility(),
                 TotemMobCategory.PASSIVE
         );
 
         register("minecraft:warm_frog", "essence_warm_frog",
-                new TotemTooltipData("Amphibian Spirit of the Dunes", "No fall damage from 5 blocks or less + long jump while not sprinting + immunity to slowness"),
+                new TotemTooltipData("Amphibian Spirit of the Dunes", "Legs coiled in patience grant grace, and soft landings bear no wound. Your pace defies all that would delay it"),
                 SoundEvents.FROG_HURT,
                 new FrogAbility(),
                 TotemMobCategory.PASSIVE
         );
 
         register("minecraft:rabbit", "essence_rabbit",
-                new TotemTooltipData("Killing Frenzy", "Permanent jump boost + chance of getting movement speed and strength boost when melee killing (1/4)"),
+                new TotemTooltipData("Killing Frenzy", "Bound by restless leaps, each fallen shadow fuels a sudden spark within"),
                 SoundEvents.RABBIT_HURT,
                 new RabbitAbility(),
                 TotemMobCategory.PASSIVE
         );
 
         register("minecraft:sniffer", "essence_sniffer",
-                new TotemTooltipData("Scent Tracking", "Sniff for nearby matching blocks based on what you hold. Closer means stronger scent... and faster digging!"),
+                new TotemTooltipData("Scent Tracking", "A subtle scent arising from your grasp draws close the echoes of what you seek. The closer you draw, the louder the earth’s murmur becomes, speeding your quest"),
                 SoundEvents.SNIFFER_HURT,
                 new SnifferAbility(),
                 TotemMobCategory.PASSIVE
