@@ -9,6 +9,7 @@ public class OcelotAbility implements IMobAbility {
     public void tick(ServerPlayer player, ItemStack totemStack) {
     }
 
-    //AbilityUtils.onCatLand;
-    //AbilityUtils.onCreeperTarget;
+    //CommonAbilityUtils.onCatLand;
+    //CommonAbilityUtils.onCreeperTarget;
+    //CreeperMixin
 }

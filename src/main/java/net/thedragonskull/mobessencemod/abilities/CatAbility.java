@@ -24,7 +24,7 @@ public class CatAbility implements IMobAbility {
 
         if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:cat"))) return;
 
-        if (event.updateLevel()) return; // todo: test multiplayer
+        if (event.updateLevel()) return;
 
         List<MobEffect> effects = BuiltInRegistries.MOB_EFFECT.stream()
                 .filter(effect -> effect.isBeneficial() && !effect.isInstantenous() && effect != MobEffects.HERO_OF_THE_VILLAGE)
@@ -37,6 +37,7 @@ public class CatAbility implements IMobAbility {
     }
 
 
-    //AbilityUtils.onCatLand;
-    //AbilityUtils.onCreeperTarget;
+    //CommonAbilityUtils.onCatLand;
+    //CommonAbilityUtils.onCreeperTarget;
+    //CreeperMixin
 }

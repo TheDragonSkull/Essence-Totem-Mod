@@ -104,7 +104,7 @@ public class TotemOfEssenceItem extends Item implements ICurioItem {
             }
         }
 
-        if (mobId == null || !TotemEssenceRegistry.isRegistered(mobId) || player.isShiftKeyDown()) {
+        if (mobId == null || !TotemEssenceRegistry.isRegistered(mobId)) { //todo: test without [player.isShiftKeyDown()] with dragon egg and armor stand, wither etc
             player.displayClientMessage(Component.literal("This creature has no essence to offer.").withStyle(ChatFormatting.RED), true);
             return InteractionResult.PASS;
         }

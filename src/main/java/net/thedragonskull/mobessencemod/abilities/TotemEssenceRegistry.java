@@ -133,56 +133,56 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:bat", "essence_bat",
-                new TotemTooltipData("Shadow Pulse", "You see what others miss. They, in turn, see nothing at all"),
+                new TotemTooltipData("Shadow Pulse", "You and your companions see what others miss. They, in turn, see nothing at all"),
                 SoundEvents.BAT_HURT,
                 new BatAbility(),
                 TotemMobCategory.PASSIVE
         );
 
         register("minecraft:strider", "essence_strider",
-                new TotemTooltipData("Lava Core", "Reduce fire damage (any) by 50% + improve movement and visibility while in lava"),
+                new TotemTooltipData("Lava Core", "The flame no longer bites. You move through molten depths as if born from them"),
                 SoundEvents.STRIDER_HURT,
                 new StriderAbility(),
                 TotemMobCategory.PASSIVE
         );
 
         register("minecraft:allay", "essence_allay",
-                new TotemTooltipData("Selective Retrieval", "Expands the pickup range for the same type of item that is in the offhand (15 block radius) + get speed II if close to a playing jukebox + ALL the items surrounding a noteblock will be pulled when interacted with"),
+                new TotemTooltipData("Selective Retrieval", "A quiet bond draws the familiar near, as if the world remembers what belongs to you. Let melody guide your feet, and rhythm gather what lies forgotten"),
                 SoundEvents.ALLAY_HURT,
                 new AllayAbility(),
                 TotemMobCategory.PASSIVE
         );
 
         register("minecraft:camel", "essence_camel",
-                new TotemTooltipData("Sandskipper", "Immunity to cactus damage + step over blocks up to 1.5 height without jumping (like fences) + dash by using sprint key while already sprinting (5s cooldown)"),
+                new TotemTooltipData("Sandskipper", "No green thorn may wound you, and no rise slows your gait. The impulse bursts into motion, swift as a desert gale"),
                 SoundEvents.CAMEL_HURT,
                 new CamelAbility(),
                 TotemMobCategory.PASSIVE
         );
 
         register("minecraft:ocelot", "essence_ocelot",
-                new TotemTooltipData("Feline Graces", "Halved fall damage when crouching + scare creepers away"),
+                new TotemTooltipData("Feline Grace", "You land with grace, while the hissing stalker flee from your gaze"),
                 SoundEvents.OCELOT_HURT,
                 new OcelotAbility(),
                 TotemMobCategory.PASSIVE
         );
 
         register("minecraft:cat", "essence_cat",
-                new TotemTooltipData("Feline Graces", "Halved fall damage when crouching + scare creepers away + random positive effect when waking up from sleeping"),
+                new TotemTooltipData("Feline Blessing", "Grace steadies your fall, the hissing dread keeps its distance, and the dreams whisper their gift"),
                 SoundEvents.CAT_HURT,
                 new CatAbility(),
                 TotemMobCategory.PASSIVE
         );
 
         register("minecraft:fox", "essence_fox",
-                new TotemTooltipData("Twilight Scavenger", "No slowdown or damage when inside cobwebs or sweet berry bushes + at night, 25% chance to duplicate loot from mobs when killing"),
+                new TotemTooltipData("Twilight Scavenger", "Nature’s grasp cannot bind you and when the stars look kindly, prey may fall in generous echo"),
                 SoundEvents.FOX_HURT,
                 new FoxAbility(),
                 TotemMobCategory.PASSIVE
         );
 
         register("minecraft:snow_fox", "essence_snow_fox",
-                new TotemTooltipData("Snow Twilight Scavenger", "No slowdown or damage when inside cobwebs or sweet berry bushes + at night, 25% chance to duplicate loot from mobs when killing + walk over powder snow blocks"),
+                new TotemTooltipData("Snow Twilight Scavenger", "Nature’s traps loosen their hold and fortune dances in the night. You trace no weight upon the icy powder of the earth"),
                 SoundEvents.FOX_HURT,
                 new SnowFoxAbility(),
                 TotemMobCategory.PASSIVE
