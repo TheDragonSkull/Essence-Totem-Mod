@@ -30,6 +30,7 @@
   ],
   "client": [
     "MouseHandlerMixin",
+    "NameplateMixin",
     "PlayerModelMixin"
   ]
 }

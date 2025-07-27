@@ -37,6 +37,10 @@ public class CrownRenderer implements ICurioRenderer {
         if (!(living instanceof Player player)) return;
         if (player.isInvisible()) return;
 
+        if (slotContext.visible()) {
+            NameplateAdjustHelper.mark(player);
+        }
+
         model.passive_gem.visible = player.getPersistentData().getBoolean("adv_passive");
         model.hostile_gem.visible = player.getPersistentData().getBoolean("adv_hostile");
         model.neutral_gem.visible = player.getPersistentData().getBoolean("adv_neutral");

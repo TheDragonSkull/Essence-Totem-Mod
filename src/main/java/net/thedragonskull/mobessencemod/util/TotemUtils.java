@@ -50,6 +50,11 @@ public class TotemUtils {
                 .orElse(null);
     }
 
+    public static Optional<SlotResult> getTotemSlot(Player player) {
+        return CuriosApi.getCuriosHelper()
+                .findFirstCurio(player, stack -> stack.getItem() == ModItems.TOTEM_OF_ESSENCE.get());
+    }
+
     public static @Nullable ResourceLocation getEssence(ItemStack stack) {
         if (!stack.hasTag() || !stack.getTag().contains("Essence")) return null;
 
