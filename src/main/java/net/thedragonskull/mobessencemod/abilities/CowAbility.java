@@ -9,4 +9,5 @@ public class CowAbility implements IMobAbility {
     public void tick(ServerPlayer player, ItemStack totemStack) {
     }
 
+    //CancelEffectMixin
 }

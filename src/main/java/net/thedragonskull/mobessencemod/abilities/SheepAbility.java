@@ -54,6 +54,6 @@ public class SheepAbility implements IMobAbility {
             );
         }
 
-        player.displayClientMessage(Component.literal(String.valueOf(event.getAmount())), false);
+        //player.displayClientMessage(Component.literal(String.valueOf(event.getAmount())), false);
     }
 }

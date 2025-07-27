@@ -63,42 +63,42 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:chicken", "essence_chicken",
-                new TotemTooltipData("Feathered Fiend", "Basically permanent slow falling"),
+                new TotemTooltipData("Feathered Fiend", "No fall can claim you. Gravity whispers, but your feathers answer with defiance"),
                 SoundEvents.CHICKEN_HURT,
                 new ChickenAbility(),
                 TotemMobCategory.PASSIVE
         );
 
         register("minecraft:villager", "essence_villager",
-                new TotemTooltipData("Scent of the Money", "Grow a big nose to smell nearby emerald ores (~20 blocks)"),
+                new TotemTooltipData("Scent of the Money", "Once you smell it, you’ll never forget. The earth cannot hide its riches from your developed nostrils"),
                 SoundEvents.VILLAGER_HURT,
                 new VillagerAbility(),
                 TotemMobCategory.PASSIVE
         );
 
         register("minecraft:cow", "essence_cow",
-                new TotemTooltipData("Cleanse", "Chance of cleansing a harmful effect (1/3) when applied while the totem is equipped"),
+                new TotemTooltipData("Cleanse", "The unshaken spirit repels all foulness. Illness falters, and poison forgets its path"),
                 SoundEvents.COW_HURT,
                 new CowAbility(),
                 TotemMobCategory.PASSIVE
         );
 
         register("minecraft:sheep", "essence_sheep",
-                new TotemTooltipData("Wooly Shield", "Chance of halving melee and projectile damage (1/3)"),
+                new TotemTooltipData("Wooly Shield", "Softness is not weakness. What strikes the wool may not strike the flesh"),
                 SoundEvents.SHEEP_HURT,
                 new SheepAbility(),
                 TotemMobCategory.PASSIVE
         );
 
         register("minecraft:squid", "essence_squid",
-                new TotemTooltipData("Ink Escape", "When melee attacked, chance to release ink and slow the attacker (1/3). If underwater, it also pushes the player away"),
+                new TotemTooltipData("Ink Escape", "Your fear stains the world black. Let them grope in blindness while the tide carries you away"),
                 SoundEvents.SQUID_HURT,
                 new SquidAbility(),
                 TotemMobCategory.PASSIVE
         );
 
         register("minecraft:glow_squid", "essence_glow_squid",
-                new TotemTooltipData("Hypnotic Glowing", "Hypnotize aquatic mobs into following the player (10 blocks radius) + when melee attacked, chance to release glowing ink and put glowing effect to the attacker (1/3). If underwater, it also pushes the player away"),
+                new TotemTooltipData("Hypnotic Glowing", "From the deep, a light that bends wills. The sea obeys, and your enemies shine before they fall"),
                 SoundEvents.GLOW_SQUID_HURT,
                 new GlowSquidAbility(),
                 TotemMobCategory.PASSIVE

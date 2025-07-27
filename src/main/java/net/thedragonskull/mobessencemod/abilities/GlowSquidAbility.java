@@ -27,7 +27,9 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class GlowSquidAbility implements IMobAbility {
 
@@ -65,9 +67,15 @@ public class GlowSquidAbility implements IMobAbility {
         }
     }
 
+    private static final Set<Integer> processedMobs = new HashSet<>();
+
     public static void followGlowSquid(TickEvent.PlayerTickEvent event) {
         if (event.phase != TickEvent.Phase.END) return;
         if (!(event.player instanceof ServerPlayer player)) return;
+
+        if (event.side.isServer() && event.player.tickCount % 2 == 0) {
+            processedMobs.clear();
+        }
 
         if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:glow_squid"))) return;
 
@@ -83,6 +91,7 @@ public class GlowSquidAbility implements IMobAbility {
         if (!player.isUnderWater()) return;
 
         List<Mob> nearbyMobs = level.getEntitiesOfClass(Mob.class, area, mob -> {
+            if (processedMobs.contains(mob.getId())) return false;
             if (mob.isDeadOrDying()) return false;
 
             MobCategory mobCategory = mob.getType().getCategory();
@@ -102,6 +111,8 @@ public class GlowSquidAbility implements IMobAbility {
         });
 
         for (Mob mob : nearbyMobs) {
+            processedMobs.add(mob.getId());
+
             double distance = mob.distanceTo(player);
 
             if (distance > AURA_RADIUS) {
