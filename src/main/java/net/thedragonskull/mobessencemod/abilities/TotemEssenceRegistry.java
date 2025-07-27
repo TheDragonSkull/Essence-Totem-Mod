@@ -42,21 +42,21 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:cod", "essence_cod",
-                new TotemTooltipData("Adaptive Lungs", "Increases underwater breathing time"),
+                new TotemTooltipData("Adaptive Lungs", "Your chest swells not in desperation, but in quiet rhythm. With every heartbeat below the waves, breath becomes patience"),
                 SoundEvents.COD_HURT,
                 new CodAbility(),
                 TotemMobCategory.PASSIVE
         );
 
         register("minecraft:salmon", "essence_salmon",
-                new TotemTooltipData("Underwater Momentum", "Increased swimming speed"),
+                new TotemTooltipData("Underwater Momentum", "The current is no foe, but a path. Momentum is your nature, and rivers yield to your rhythm"),
                 SoundEvents.SALMON_HURT,
                 new SalmonAbility(),
                 TotemMobCategory.PASSIVE
         );
 
         register("minecraft:tropical_fish", "essence_tropical_fish",
-                new TotemTooltipData("Clear Waters", "Enhanced underwater visibility"),
+                new TotemTooltipData("Clear Waters", "The veil lifts beneath the tide. The sea, once secretive, now gleams in full truth beneath your gaze"),
                 SoundEvents.TROPICAL_FISH_HURT,
                 new TropicalFishAbility(),
                 TotemMobCategory.PASSIVE

@@ -34,9 +34,15 @@ import net.thedragonskull.mobessencemod.item.custom.TotemOfEssenceItem;
 import net.thedragonskull.mobessencemod.network.C2SSwapTotemPacket;
 import net.thedragonskull.mobessencemod.network.PacketHandler;
 import net.thedragonskull.mobessencemod.network.S2CUpdateCrownAdvancementsPacket;
+import net.thedragonskull.mobessencemod.render.NameplateAdjustHelper;
 import net.thedragonskull.mobessencemod.util.CommonAbilityUtils;
 import net.thedragonskull.mobessencemod.util.KeyBindings;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
+import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.SlotContext;
+import top.theillusivec4.curios.api.SlotResult;
+
+import java.util.Optional;
 
 @Mod.EventBusSubscriber(modid = MobEssenceMod.MOD_ID)
 public class CommonEvents {
@@ -222,6 +228,21 @@ public class CommonEvents {
         FrogAbility.onRemoveSlowness(event);
         EnderDragonAbility.onDragonHeal(event);
         EnderDragonAbility.onDragonBreath(event);
+
+        if (event.phase == TickEvent.Phase.END) {
+            Player player = event.player;
+
+            Optional<SlotResult> result = TotemUtils.getTotemSlot(player);
+
+            boolean shouldRender = result
+                    .map(SlotResult::slotContext)
+                    .map(SlotContext::visible)
+                    .orElse(false);
+
+            if (!shouldRender) {
+                NameplateAdjustHelper.unmark(player);
+            }
+        }
     }
 
     @SubscribeEvent
