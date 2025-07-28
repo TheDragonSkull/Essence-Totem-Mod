@@ -65,8 +65,10 @@ public class PufferfishAbility implements IMobAbility {
                     }
 
                     target.hurt(target.level().damageSources().sting(player), 0);
+
                     player.level().playSound(null, target.getX(), target.getY(), target.getZ(),
                             SoundEvents.PUFFER_FISH_STING, SoundSource.PLAYERS, 1.0F, 1.0F);
+
                     target.addEffect(new MobEffectInstance(MobEffects.POISON, POISON_DURATION_TICKS, 0));
                 }
             }

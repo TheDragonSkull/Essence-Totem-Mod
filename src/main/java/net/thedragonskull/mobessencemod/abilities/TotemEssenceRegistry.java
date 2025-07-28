@@ -77,7 +77,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:cow", "essence_cow",
-                new TotemTooltipData("Cleanse", "The unshaken spirit repels all foulness. Illness falters, and poison forgets its path"),
+                new TotemTooltipData("Cleanse", "The unshaken spirit repels all foulness. Illness falters, and poison may forget its path"),
                 SoundEvents.COW_HURT,
                 new CowAbility(),
                 TotemMobCategory.PASSIVE
@@ -91,14 +91,14 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:squid", "essence_squid",
-                new TotemTooltipData("Ink Escape", "Your fear stains the world black. Let them grope in blindness while the tide carries you away"),
+                new TotemTooltipData("Ink Escape", "Your fear may stain the world black. Let them grope in blindness while the tide carries you away"),
                 SoundEvents.SQUID_HURT,
                 new SquidAbility(),
                 TotemMobCategory.PASSIVE
         );
 
         register("minecraft:glow_squid", "essence_glow_squid",
-                new TotemTooltipData("Hypnotic Glowing", "From the deep, a light that bends wills. The sea obeys, and your enemies shine before they fall"),
+                new TotemTooltipData("Hypnotic Glowing", "From the deep, a light that bends wills. The sea obeys, and your enemies may shine before they fall"),
                 SoundEvents.GLOW_SQUID_HURT,
                 new GlowSquidAbility(),
                 TotemMobCategory.PASSIVE
@@ -182,7 +182,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:snow_fox", "essence_snow_fox",
-                new TotemTooltipData("Snow Twilight Scavenger", "Nature’s traps loosen their hold and fortune dances in the night. You trace no weight upon the icy powder of the earth"),
+                new TotemTooltipData("Snow Twilight Scavenger", "Nature’s traps loosen their hold and fortune may dance in the night. You trace no weight upon the icy powder of the earth"),
                 SoundEvents.FOX_HURT,
                 new SnowFoxAbility(),
                 TotemMobCategory.PASSIVE
@@ -217,7 +217,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:rabbit", "essence_rabbit",
-                new TotemTooltipData("Killing Frenzy", "Bound by restless leaps, each fallen shadow fuels a sudden spark within"),
+                new TotemTooltipData("Killing Frenzy", "Bound by restless leaps, each fallen shadow may fuel a sudden spark within"),
                 SoundEvents.RABBIT_HURT,
                 new RabbitAbility(),
                 TotemMobCategory.PASSIVE
@@ -232,49 +232,49 @@ public class TotemEssenceRegistry {
 
         // NEUTRAL
         register("minecraft:bee", "essence_bee",
-                new TotemTooltipData("Stinger Reflex", "Stings and poisons enemies when hit from behind + bees will no longer target the player"),
+                new TotemTooltipData("Stinger Reflex", "No sting finds you guilty, yet betrayal draws the poison forth"),
                 SoundEvents.BEE_HURT,
                 new BeeAbility(),
                 TotemMobCategory.NEUTRAL
         );
 
         register("minecraft:pufferfish", "essence_pufferfish",
-                new TotemTooltipData("Toxic Touch", "Chance to inflict knockback + poison on contact (1/3)"),
+                new TotemTooltipData("Toxic Touch", "Your presence invites approach, but your touch may ensure regret"),
                 SoundEvents.PUFFER_FISH_HURT,
                 new PufferfishAbility(),
                 TotemMobCategory.NEUTRAL
         );
 
         register("minecraft:spider", "essence_spider",
-                new TotemTooltipData("Wall-Crawler", "Slowly climb vertical surfaces + cobweb doesn't slow"),
+                new TotemTooltipData("Wall-Crawler", "Clutching strands lose their grip, no wall denies your ascent"),
                 SoundEvents.SPIDER_HURT,
                 new SpiderAbility(),
                 TotemMobCategory.NEUTRAL
         );
 
         register("minecraft:cave_spider", "essence_cave_spider",
-                new TotemTooltipData("Poisonous Wall-Crawler", "Slowly climb walls + poison enemies when unarmed (20%) + cobweb doesn't slow"),
+                new TotemTooltipData("Poisonous Wall-Crawler", "No thread ensnares you, no surface hinders, and and venom clings to gestures unarmed"),
                 SoundEvents.SPIDER_HURT,
                 new CaveSpiderAbility(),
                 TotemMobCategory.NEUTRAL
         );
 
         register("minecraft:enderman", "essence_enderman",
-                new TotemTooltipData("Blink Instinct", "Teleport away to evade ranged damage"),
+                new TotemTooltipData("Blink Instinct", "To be struck from afar is a choice you never make; the world must catch you first"),
                 SoundEvents.ENDERMAN_HURT,
                 new EndermanAbility(),
                 TotemMobCategory.NEUTRAL
         );
 
         register("minecraft:goat", "essence_goat",
-                new TotemTooltipData("Ram Charge", "Tackle any mob in your way while running; the faster the player, the more the damage"),
+                new TotemTooltipData("Ram Charge", "With each stride, the air grows sharper, and nothing standing still remains whole"),
                 SoundEvents.GOAT_HURT,
                 new GoatAbility(),
                 TotemMobCategory.NEUTRAL
         );
 
         register("minecraft:llama", "essence_llama",
-                new TotemTooltipData("Spit Happens", "Automatically spits at hostile mobs nearby dealing damage and knockback (every 5 seconds)"),
+                new TotemTooltipData("Spit Happens", "Hostility finds itself met with swift disdain, hurled from deep within"),
                 SoundEvents.LLAMA_HURT,
                 new LlamaAbility(),
                 TotemMobCategory.NEUTRAL
