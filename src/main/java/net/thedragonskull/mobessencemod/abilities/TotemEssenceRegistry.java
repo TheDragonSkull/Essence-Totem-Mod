@@ -281,28 +281,28 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:wolf", "essence_wolf",
-                new TotemTooltipData("Pack Instinct", "When injured, there's a chance two wolves will come to your aid and attack your assailant"),
+                new TotemTooltipData("Pack Instinct", "Pain may awaken the ancient bond, then the fangs rush from the mist to defend their own. The marrow-born know this fear well"),
                 SoundEvents.WOLF_HURT,
                 new WolfAbility(),
                 TotemMobCategory.NEUTRAL
         );
 
         register("minecraft:dolphin", "essence_dolphin",
-                new TotemTooltipData("Wave Rider", "Increased swimming speed + spin boost when swimming near an entity (if the entity is hit, damage is applied but it cancels the boost)"),
+                new TotemTooltipData("Wave Rider", "Carried by the ocean’s breath, your rush becomes a spiral of motion none should obstruct"),
                 SoundEvents.DOLPHIN_HURT,
                 new DolphinAbility(),
                 TotemMobCategory.NEUTRAL
         );
 
         register("minecraft:polar_bear", "essence_polar_bear",
-                new TotemTooltipData("Arctic Endurance", "Immunity to freezing + damage resistance I while on any snow/ice biome + chance of inflicting knockback when melee attacking (25%)"),
+                new TotemTooltipData("Arctic Endurance", "The tundra lends its strength, snow welcomes your tread and your strikes may send tremors through the frost"),
                 SoundEvents.POLAR_BEAR_HURT,
                 new PolarBearAbility(),
                 TotemMobCategory.NEUTRAL
         );
 
         register("minecraft:panda", "essence_panda",
-                new TotemTooltipData("Temperamental Behavior", "When hit by a mob, chance to get Strength I for 5s (1/3) + recover half a heart by consuming bamboo + gain absorption I for 5s when eating vegetables such as potatoes, beetroots, carrots, etc..."),
+                new TotemTooltipData("Temperamental Behavior", "Gentle by nature, fierce in defense. Soft stalks soothes the ache, and humble greens fortify the soul"),
                 SoundEvents.PANDA_HURT,
                 new PandaAbility(),
                 TotemMobCategory.NEUTRAL

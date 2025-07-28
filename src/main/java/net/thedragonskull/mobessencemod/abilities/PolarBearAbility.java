@@ -43,7 +43,7 @@ public class PolarBearAbility implements IMobAbility {
 
         DamageSource source = event.getSource();
 
-        if (!(source.getEntity() instanceof Player)) return;
+        if (!(source.getEntity() instanceof Player)) return; //todo funciona contra players?
         if (source.is(DamageTypeTags.IS_PROJECTILE)) return;
 
         if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:polar_bear"))) return;

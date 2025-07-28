@@ -72,7 +72,7 @@ public class DolphinAbility implements IMobAbility {
                 6, 0.3, 0.3, 0.3, 0.02);
 
 
-        boolean nearbyEntity = !player.level().getEntities(player, player.getBoundingBox().inflate(1.0),
+        boolean nearbyEntity = !player.level().getEntities(player, player.getBoundingBox().inflate(1.5),
                 e -> e != player && e.isAlive() && e instanceof net.minecraft.world.entity.LivingEntity).isEmpty();
 
         if (nearbyEntity) {

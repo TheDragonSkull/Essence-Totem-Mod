@@ -102,5 +102,6 @@ public class WolfAbility implements IMobAbility {
 
     }
 
+    //SkeletonMixin
 }
 

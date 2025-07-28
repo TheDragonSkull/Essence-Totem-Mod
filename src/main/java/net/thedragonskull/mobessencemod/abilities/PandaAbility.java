@@ -45,7 +45,7 @@ public class PandaAbility implements IMobAbility {
             player.getCooldowns().addCooldown(Items.BAMBOO, 30);
             item.shrink(1);
 
-            player.displayClientMessage(Component.literal(String.valueOf(player.getHealth())), true);
+            //player.displayClientMessage(Component.literal(String.valueOf(player.getHealth())), true);
 
             level.playSound(null, serverPlayer.blockPosition(), SoundEvents.PANDA_EAT, SoundSource.PLAYERS, 1.0F, 1.0F);
             ((ServerLevel) level).sendParticles(ParticleTypes.HEART,

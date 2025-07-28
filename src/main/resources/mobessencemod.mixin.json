@@ -24,6 +24,7 @@
     "PressurePlateMixin",
     "RabbitJumpMixin",
     "ShulkerArmorMixin",
+    "SkeletonMixin",
     "SweetBerryBushBlockMixin",
     "TripWireMixin",
     "ZoglinMixin"

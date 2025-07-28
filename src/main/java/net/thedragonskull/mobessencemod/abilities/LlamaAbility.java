@@ -22,7 +22,7 @@ import java.util.UUID;
 public class LlamaAbility implements IMobAbility {
 
     private static final Map<UUID, Long> lastSpitTimes = new HashMap<>();
-    private static final int SPIT_COOLDOWN_TICKS = 1000;
+    private static final int SPIT_COOLDOWN_TICKS = 100;
 
     @Override
     public void tick(ServerPlayer player, ItemStack totemStack) {
@@ -78,7 +78,7 @@ public class LlamaAbility implements IMobAbility {
         // Custom dmg
         target.hurt(target.damageSources().mobProjectile(spit, thrower), 2.0F);
 
-        System.out.println(target.getHealth());
+        //System.out.println(target.getHealth());
 
         // Cancel dmg
         event.setImpactResult(ProjectileImpactEvent.ImpactResult.STOP_AT_CURRENT_NO_DAMAGE);
