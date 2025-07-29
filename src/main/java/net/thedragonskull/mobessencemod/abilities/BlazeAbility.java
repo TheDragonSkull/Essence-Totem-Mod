@@ -51,7 +51,7 @@ public class BlazeAbility implements IMobAbility {
 
         LivingEntity target = event.getEntity();
 
-        if (player.getRandom().nextInt(4) == 0 && !target.isOnFire()) {
+        if (player.getRandom().nextInt(5) == 0 && !target.isOnFire()) {
             target.setSecondsOnFire(5);
         }
     }

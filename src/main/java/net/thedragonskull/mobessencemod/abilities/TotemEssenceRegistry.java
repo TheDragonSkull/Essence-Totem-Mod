@@ -324,42 +324,42 @@ public class TotemEssenceRegistry {
 
         // HOSTILE
         register("minecraft:zombie", "essence_zombie",
-                new TotemTooltipData("Zombie Recall", "If killed by an entity, instantly revive with half a heart (one time use)"),
+                new TotemTooltipData("Zombie Recall", "The grave does not yet hold your name; should a blow strike true, the husk stirs once more"),
                 SoundEvents.ZOMBIE_HURT,
                 new ZombieAbility(),
                 TotemMobCategory.HOSTILE
         );
 
         register("minecraft:creeper", "essence_creeper",
-                new TotemTooltipData("Explosive Retaliation", "When taking melee damage, there's a chance to trigger a small explosion that doesn't affect blocks"),
+                new TotemTooltipData("Explosive Retaliation", "Strike too close, and the air turns hostile. What lies dormant within may burst when stirred"),
                 SoundEvents.CREEPER_HURT,
                 new CreeperAbility(),
                 TotemMobCategory.HOSTILE
         );
 
         register("minecraft:skeleton", "essence_skeleton",
-                new TotemTooltipData("Bone Quiver", "Less arrow charge time on a bow"),
+                new TotemTooltipData("Bone Quiver", "The string bends to your will with unnatural haste"),
                 SoundEvents.SKELETON_HURT,
                 new SkeletonAbility(),
                 TotemMobCategory.HOSTILE
         );
 
         register("minecraft:slime", "essence_slime",
-                new TotemTooltipData("Elastic Body", "Bounce on the ground when falling + chance to absorbe melee damage"),
+                new TotemTooltipData("Elastic Body", "The earth repels you like a heartbeat, while the blow sinks deep and fades into you"),
                 SoundEvents.SLIME_HURT,
                 new SlimeAbility(),
                 TotemMobCategory.HOSTILE
         );
 
         register("minecraft:magma_cube", "essence_magma_cube",
-                new TotemTooltipData("Igneous Elastic Body", "Bounce on the ground when falling + chance to set any mob on fire on contact (1/3)"),
+                new TotemTooltipData("Igneous Elastic Body", "The ground beats back against your landing, and the careless find their courage kissed by flame"),
                 SoundEvents.MAGMA_CUBE_HURT,
                 new MagmaCubeAbility(),
                 TotemMobCategory.HOSTILE
         );
 
         register("minecraft:blaze", "essence_blaze",
-                new TotemTooltipData("Infernal Drift", "Shift while on air to levitate + chance to set any mob on fire (1/4) on hit (melee)"),
+                new TotemTooltipData("Infernal Drift", "When shadows fall beneath your feet, step softly to ascend the breeze, while flames awaken where your fingers met"),
                 SoundEvents.BLAZE_HURT,
                 new BlazeAbility(),
                 TotemMobCategory.HOSTILE
