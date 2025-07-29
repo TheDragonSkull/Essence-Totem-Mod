@@ -29,20 +29,25 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.thedragonskull.mobessencemod.MobEssenceMod;
 import net.thedragonskull.mobessencemod.abilities.*;
+import net.thedragonskull.mobessencemod.capability.CrownGemCapProvider;
 import net.thedragonskull.mobessencemod.capability.MobEssenceCapProvider;
+import net.thedragonskull.mobessencemod.capability.MobEssenceCapabilities;
 import net.thedragonskull.mobessencemod.item.custom.TotemOfEssenceItem;
 import net.thedragonskull.mobessencemod.network.C2SSwapTotemPacket;
 import net.thedragonskull.mobessencemod.network.PacketHandler;
+import net.thedragonskull.mobessencemod.network.S2CCrownGemSyncPacket;
 import net.thedragonskull.mobessencemod.network.S2CUpdateCrownAdvancementsPacket;
 import net.thedragonskull.mobessencemod.render.NameplateAdjustHelper;
 import net.thedragonskull.mobessencemod.util.CommonAbilityUtils;
 import net.thedragonskull.mobessencemod.util.KeyBindings;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
-import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.SlotResult;
 
+import java.util.Objects;
 import java.util.Optional;
+
+import static net.thedragonskull.mobessencemod.util.TotemUtils.syncAdvancementsToCrownGems;
 
 @Mod.EventBusSubscriber(modid = MobEssenceMod.MOD_ID)
 public class CommonEvents {
@@ -322,21 +327,6 @@ public class CommonEvents {
     @SubscribeEvent
     public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
         PlayerAbility.onPlayerLogin(event);
-
-        if (!(event.getEntity() instanceof ServerPlayer player)) return;
-
-        CompoundTag tag = new CompoundTag();
-
-        CompoundTag data = player.getPersistentData();
-        if (data.getBoolean("adv_hostile")) tag.putBoolean("adv_hostile", true);
-        if (data.getBoolean("adv_passive")) tag.putBoolean("adv_passive", true);
-        if (data.getBoolean("adv_neutral")) tag.putBoolean("adv_neutral", true);
-        if (data.getBoolean("adv_special")) tag.putBoolean("adv_special", true);
-        if (data.getBoolean("adv_boss")) tag.putBoolean("adv_boss", true);
-        if (data.getBoolean("adv_non_mob")) tag.putBoolean("adv_non_mob", true);
-        if (data.getBoolean("adv_all_totems")) tag.putBoolean("adv_all_totems", true);
-
-        PacketHandler.sendToPlayer(new S2CUpdateCrownAdvancementsPacket(tag), player);
     }
 
     @SubscribeEvent
@@ -374,6 +364,8 @@ public class CommonEvents {
         if (event.getObject() instanceof Player) {
             event.addCapability(ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "mob_essence_data"),
                     new MobEssenceCapProvider());
+            event.addCapability(ResourceLocation.fromNamespaceAndPath(MobEssenceMod.MOD_ID, "mob_essence_crown_gem_data"),
+                    new CrownGemCapProvider());
         }
     }
 
@@ -388,11 +380,43 @@ public class CommonEvents {
     }
 
     @SubscribeEvent
+    public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+        ServerPlayer joiningPlayer = (ServerPlayer) event.getEntity();
+
+        syncAdvancementsToCrownGems(joiningPlayer);
+
+        joiningPlayer.getCapability(MobEssenceCapabilities.MOB_ESSENCE_CROWN_GEM_CAP).ifPresent(cap -> {
+            CompoundTag nbt = cap.serializeNBT();
+            PacketHandler.sendToAllPlayer(new S2CCrownGemSyncPacket(joiningPlayer.getUUID(), nbt));
+        });
+
+        for (ServerPlayer other : Objects.requireNonNull(joiningPlayer.getServer()).getPlayerList().getPlayers()) {
+            if (other == joiningPlayer) continue;
+
+            other.getCapability(MobEssenceCapabilities.MOB_ESSENCE_CROWN_GEM_CAP).ifPresent(cap -> {
+                CompoundTag nbt = cap.serializeNBT();
+                PacketHandler.sendToPlayer(new S2CCrownGemSyncPacket(other.getUUID(), nbt), joiningPlayer);
+            });
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerClone(PlayerEvent.Clone event) {
+        if (!event.isWasDeath()) return;
+
+        event.getOriginal().getCapability(MobEssenceCapabilities.MOB_ESSENCE_CROWN_GEM_CAP).ifPresent(oldCap ->
+                event.getEntity().getCapability(MobEssenceCapabilities.MOB_ESSENCE_CROWN_GEM_CAP).ifPresent(newCap -> {
+                    newCap.deserializeNBT(oldCap.serializeNBT());
+                })
+        );
+    }
+
+    @SubscribeEvent
     public static void onLivingExpDrop(PlayerXpEvent.XpChange event) {
         Player player = event.getEntity();
         ItemStack totem = TotemUtils.getTotemStack(player);
 
-        if (player.getPersistentData().getBoolean("adv_all_totems") && totem != null) {
+        if (TotemUtils.hasCrownGem(player, "adv_all_totems") && totem != null) {
             int originalXp = event.getAmount();
             int boostedXp = originalXp * 2;
             event.setAmount(boostedXp);

@@ -55,6 +55,12 @@ public class PacketHandler {
                 .decoder(S2CRevokeCrownAdvancementsPacket::new)
                 .consumerMainThread(S2CRevokeCrownAdvancementsPacket::handle)
                 .add();
+
+        INSTANCE.messageBuilder(S2CCrownGemSyncPacket.class, id++, NetworkDirection.PLAY_TO_CLIENT)
+                .encoder(S2CCrownGemSyncPacket::encode)
+                .decoder(S2CCrownGemSyncPacket::new)
+                .consumerMainThread(S2CCrownGemSyncPacket::handle)
+                .add();
     }
 
     public static void sendToServer(Object msg) {

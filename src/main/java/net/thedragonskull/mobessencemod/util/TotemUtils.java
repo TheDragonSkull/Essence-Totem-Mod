@@ -26,8 +26,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.AdvancementEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.thedragonskull.mobessencemod.capability.ClientGemDataStorage;
+import net.thedragonskull.mobessencemod.capability.MobEssenceCapabilities;
 import net.thedragonskull.mobessencemod.item.ModItems;
 import net.thedragonskull.mobessencemod.network.PacketHandler;
+import net.thedragonskull.mobessencemod.network.S2CCrownGemSyncPacket;
 import net.thedragonskull.mobessencemod.network.S2CRevokeCrownAdvancementsPacket;
 import net.thedragonskull.mobessencemod.network.S2CUpdateCrownAdvancementsPacket;
 import top.theillusivec4.curios.api.CuriosApi;
@@ -99,7 +102,7 @@ public class TotemUtils {
     }
 
     public static void addCrownAdvancements(AdvancementEvent.AdvancementEarnEvent event) {
-        Player player = event.getEntity();
+        ServerPlayer player = (ServerPlayer) event.getEntity();
 
         String key = switch (event.getAdvancement().getId().toString()) {
             case "mobessencemod:passive/root" -> "adv_passive";
@@ -113,19 +116,15 @@ public class TotemUtils {
         };
 
         if (key != null) {
-            CompoundTag tag = new CompoundTag();
-            tag.putBoolean(key, true);
-
-            //Server
-            player.getPersistentData().putBoolean(key, true);
-
-            //Client
-            PacketHandler.sendToPlayer(new S2CUpdateCrownAdvancementsPacket(tag), (ServerPlayer) player);
+            player.getCapability(MobEssenceCapabilities.MOB_ESSENCE_CROWN_GEM_CAP).ifPresent(cap -> {
+                cap.setGem(key, true);
+                PacketHandler.sendToAllPlayer(new S2CCrownGemSyncPacket(player.getUUID(), cap.serializeNBT()));
+            });
         }
     }
 
     public static void revokeCrownAdvancements(AdvancementEvent.AdvancementProgressEvent event) {
-        Player player = event.getEntity();
+        ServerPlayer player = (ServerPlayer) event.getEntity();
 
         if (!event.getProgressType().equals(AdvancementEvent.AdvancementProgressEvent.ProgressType.REVOKE)) return;
 
@@ -141,12 +140,46 @@ public class TotemUtils {
         };
 
         if (key != null) {
-            //Server
-            player.getPersistentData().remove(key);
-
-            //Client
-            PacketHandler.sendToPlayer(new S2CRevokeCrownAdvancementsPacket(key), (ServerPlayer) player);
+            player.getCapability(MobEssenceCapabilities.MOB_ESSENCE_CROWN_GEM_CAP).ifPresent(cap -> {
+                cap.setGem(key, false);
+                PacketHandler.sendToAllPlayer(new S2CCrownGemSyncPacket(player.getUUID(), cap.serializeNBT()));
+            });
         }
+    }
+
+    public static void syncAdvancementsToCrownGems(ServerPlayer player) {
+        player.getCapability(MobEssenceCapabilities.MOB_ESSENCE_CROWN_GEM_CAP).ifPresent(cap -> {
+            Advancement[] advancements = {
+                    player.server.getAdvancements().getAdvancement(ResourceLocation.parse("mobessencemod:passive/root")),
+                    player.server.getAdvancements().getAdvancement(ResourceLocation.parse("mobessencemod:hostile/root")),
+                    player.server.getAdvancements().getAdvancement(ResourceLocation.parse("mobessencemod:neutral/root")),
+                    player.server.getAdvancements().getAdvancement(ResourceLocation.parse("mobessencemod:special/root")),
+                    player.server.getAdvancements().getAdvancement(ResourceLocation.parse("mobessencemod:boss/root")),
+                    player.server.getAdvancements().getAdvancement(ResourceLocation.parse("mobessencemod:non_mob/root")),
+                    player.server.getAdvancements().getAdvancement(ResourceLocation.parse("mobessencemod:all_totems"))
+            };
+
+            String[] keys = {
+                    "adv_passive", "adv_hostile", "adv_neutral", "adv_special", "adv_boss", "adv_non_mob", "adv_all_totems"
+            };
+
+            for (int i = 0; i < advancements.length; i++) {
+                Advancement adv = advancements[i];
+                if (adv != null && player.getAdvancements().getOrStartProgress(adv).isDone()) {
+                    cap.setGem(keys[i], true);
+                }
+            }
+        });
+    }
+
+    public static boolean hasCrownGem(Player player, String key) {
+        if (player.level().isClientSide) {
+            return ClientGemDataStorage.hasGem(player.getUUID(), key);
+        }
+
+        return player.getCapability(MobEssenceCapabilities.MOB_ESSENCE_CROWN_GEM_CAP)
+                .map(cap -> cap.hasGem(key))
+                .orElse(false);
     }
 
     public static void onDragonEggUse(PlayerInteractEvent.RightClickBlock event) {

@@ -42,7 +42,7 @@ public class PiglinAbility implements IMobAbility {
         float original = event.getAmount();
         event.setAmount(original * multiplier);
 
-        player.displayClientMessage(Component.literal(String.valueOf(event.getAmount())), true);
+        //player.displayClientMessage(Component.literal(String.valueOf(event.getAmount())), true);
     }
 
     private static Set<Item> getUniqueGoldItems(ServerPlayer player) {

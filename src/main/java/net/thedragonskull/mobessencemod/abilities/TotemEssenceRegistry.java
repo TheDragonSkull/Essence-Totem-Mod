@@ -309,14 +309,14 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:piglin", "essence_piglin",
-                new TotemTooltipData("Lust for Gold", "For every unique gold related item in the inventory, multiply the damage 1.1 times, and for every 5 items, get +1 level of luck effect"),
+                new TotemTooltipData("Lust for Gold", "What shines in your satchel stirs both blade and fate; gold answers greed with power"),
                 SoundEvents.PIGLIN_HURT,
                 new PiglinAbility(),
                 TotemMobCategory.NEUTRAL
         );
 
-        register("minecraft:zombified_piglin", "essence_zombified_piglin",
-                new TotemTooltipData("Hell's wrath", "Immunity to lightning strikes + when damaged, chance of summoning zombified piglin targeting the attacker (1/12)"),
+        register("minecraft:zombified_piglin", "essence_zombified_piglin",  //todo usar "and pain may rouse the wrath of the rotting tusk" para el Zoglin
+                new TotemTooltipData("Hell's wrath", "The sky holds no sway over you, and pain may rouse the wrath of the rotting death"),
                 SoundEvents.ZOMBIFIED_PIGLIN_HURT,
                 new ZombifiedPiglinAbility(),
                 TotemMobCategory.NEUTRAL
@@ -576,7 +576,7 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.SPECIAL
         );
 
-        register("minecraft:zoglin", "essence_zoglin",
+        register("minecraft:zoglin", "essence_zoglin",  //todo usar "and pain may rouse the wrath of the rotting tusk" para el Zoglin
                 new TotemTooltipData("Hell's Savage Slam", "Reduced knockback + zoglins ignore the player + chance to launch the target into the air when melee hit (1/3) + when damaged, chance of summoning a zoglin targeting the attacker (1/12)"),
                 SoundEvents.ZOGLIN_HURT,
                 new ZoglinAbility(),

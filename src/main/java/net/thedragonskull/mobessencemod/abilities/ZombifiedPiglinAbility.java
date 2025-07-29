@@ -33,7 +33,7 @@ public class ZombifiedPiglinAbility implements IMobAbility {
         Entity source = event.getSource().getEntity();
         if (!(source instanceof LivingEntity attacker)) return;
 
-        if (player.level().random.nextInt(12) != 0) return;
+        if (player.level().random.nextInt(10) != 0) return;
 
         ServerLevel level = (ServerLevel) player.level();
         ZombifiedPiglin piglin = EntityType.ZOMBIFIED_PIGLIN.create(level);
