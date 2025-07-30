@@ -18,7 +18,6 @@
     "HoglinAiMixin",
     "LavaSwimMixin",
     "NoUnderwaterMiningPenaltyMixin",
-    "PhantomElytraMixin",
     "PlayerDestroyChestMixin",
     "PowderSnowBlockMixin",
     "PressurePlateMixin",

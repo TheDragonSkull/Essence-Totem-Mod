@@ -36,7 +36,6 @@ import net.thedragonskull.mobessencemod.item.custom.TotemOfEssenceItem;
 import net.thedragonskull.mobessencemod.network.C2SSwapTotemPacket;
 import net.thedragonskull.mobessencemod.network.PacketHandler;
 import net.thedragonskull.mobessencemod.network.S2CCrownGemSyncPacket;
-import net.thedragonskull.mobessencemod.network.S2CUpdateCrownAdvancementsPacket;
 import net.thedragonskull.mobessencemod.render.NameplateAdjustHelper;
 import net.thedragonskull.mobessencemod.util.CommonAbilityUtils;
 import net.thedragonskull.mobessencemod.util.KeyBindings;
@@ -129,7 +128,6 @@ public class CommonEvents {
         ZombifiedPiglinAbility.onZombifiedPiglinSummon(event);
         ZoglinAbility.onZoglinSummon(event);
         PlayerAbility.onPlayerTp(event);
-        PhantomAbility.onLivingHurt(event);
     }
 
     @SubscribeEvent
@@ -209,7 +207,6 @@ public class CommonEvents {
         GoatAbility.applyRamAttack(event);
         BlazeAbility.blazeLevitate(event);
         MagmaCubeAbility.setOnFireOnContact(event);
-        PhantomAbility.onPlayerPhantomFly(event);
         TraderLlamaAbility.onPlayerTick(event);
         DolphinAbility.swimBoost(event);
         DolphinAbility.dolphinAutoSpinDash(event);

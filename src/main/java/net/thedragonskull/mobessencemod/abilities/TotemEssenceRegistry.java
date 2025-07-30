@@ -366,7 +366,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:phantom", "essence_phantom",
-                new TotemTooltipData("Night Glider", "Phantoms will no longer bother the player + gliding (only at night)"),
+                new TotemTooltipData("Phantom Surge", "Cursed wings no longer haunt your nights, ???"),
                 SoundEvents.PHANTOM_HURT,
                 new PhantomAbility(),
                 TotemMobCategory.HOSTILE

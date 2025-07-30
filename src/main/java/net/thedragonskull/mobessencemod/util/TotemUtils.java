@@ -31,8 +31,6 @@ import net.thedragonskull.mobessencemod.capability.MobEssenceCapabilities;
 import net.thedragonskull.mobessencemod.item.ModItems;
 import net.thedragonskull.mobessencemod.network.PacketHandler;
 import net.thedragonskull.mobessencemod.network.S2CCrownGemSyncPacket;
-import net.thedragonskull.mobessencemod.network.S2CRevokeCrownAdvancementsPacket;
-import net.thedragonskull.mobessencemod.network.S2CUpdateCrownAdvancementsPacket;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
