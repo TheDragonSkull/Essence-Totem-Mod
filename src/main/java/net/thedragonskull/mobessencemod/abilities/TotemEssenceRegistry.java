@@ -366,7 +366,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:phantom", "essence_phantom",
-                new TotemTooltipData("Phantom Surge", "Cursed wings no longer haunt your nights, ???"),
+                new TotemTooltipData("Twilight Spiral Drifting", "Cursed wings no longer haunt your nights, and the wind coils ‘round your form in sudden burst"),
                 SoundEvents.PHANTOM_HURT,
                 new PhantomAbility(),
                 TotemMobCategory.HOSTILE
