@@ -7,9 +7,12 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Endermite;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -25,16 +28,17 @@ public class EndermiteAbility implements IMobAbility {
     }
 
     public static void onPlayerHurt(LivingHurtEvent event) {
-        if (!(event.getSource().getEntity() instanceof ServerPlayer player)) return;
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
 
         if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:endermite"))) return;
 
-        if (player.getRandom().nextInt(12) != 0) return;
+        DamageSource source = event.getSource();
+        if (!(source.getEntity() instanceof LivingEntity attacker)) return;
 
-        LivingEntity target = event.getEntity();
+        if (player.getRandom().nextInt(8) != 0) return;
 
-        spawnEndermite(player, target);
-        spawnEndermite(player, target);
+        spawnEndermite(player, attacker);
+        spawnEndermite(player, attacker);
     }
 
     private static void spawnEndermite(ServerPlayer player, LivingEntity target) {
@@ -53,7 +57,13 @@ public class EndermiteAbility implements IMobAbility {
                 null
         );
 
+        endermite.goalSelector.addGoal(1, new MeleeAttackGoal(endermite, 1.0D, true));
+        endermite.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(endermite, LivingEntity.class, 10, true, false,
+                entity -> entity == target));
+
         endermite.setTarget(target);
+        endermite.setAggressive(true);
+        endermite.setPersistenceRequired();
         level.addFreshEntity(endermite);
 
         player.displayClientMessage(Component.literal("Space folded... and something slipped through..."), true);

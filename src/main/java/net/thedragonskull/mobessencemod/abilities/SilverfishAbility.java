@@ -1,6 +1,5 @@
 package net.thedragonskull.mobessencemod.abilities;
 
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -8,12 +7,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.monster.Phantom;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Silverfish;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -30,16 +31,16 @@ public class SilverfishAbility implements IMobAbility {
     }
 
     public static void onPlayerHurt(LivingHurtEvent event) {
-        if (!(event.getSource().getEntity() instanceof ServerPlayer player)) return;
-
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
         if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:silverfish"))) return;
 
-        if (player.getRandom().nextInt(8) != 0) return;
+        DamageSource source = event.getSource();
+        if (!(source.getEntity() instanceof LivingEntity attacker)) return;
 
-        LivingEntity target = event.getEntity();
+        if (player.getRandom().nextInt(5) != 0) return;
 
-        spawnInfestedSilverfish(player, target);
-        spawnInfestedSilverfish(player, target);
+        spawnInfestedSilverfish(player, attacker);
+        spawnInfestedSilverfish(player, attacker);
     }
 
     private static void spawnInfestedSilverfish(ServerPlayer player, LivingEntity target) {
@@ -59,7 +60,13 @@ public class SilverfishAbility implements IMobAbility {
                 null
         );
 
+        silverfish.goalSelector.addGoal(1, new MeleeAttackGoal(silverfish, 1.0D, true));
+        silverfish.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(silverfish, LivingEntity.class, 10, true, false,
+                entity -> entity == target));
+
         silverfish.setTarget(target);
+        silverfish.setAggressive(true);
+        silverfish.setPersistenceRequired();
         level.addFreshEntity(silverfish);
 
         player.displayClientMessage(Component.literal("Something crawls out of the cracks..."), true);

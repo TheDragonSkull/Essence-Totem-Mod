@@ -373,14 +373,14 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:silverfish", "essence_silverfish",
-                new TotemTooltipData("Infested Strike", "Silverfish will ignore the player + chance for two silverfish to emerge from the target's feet and attack it (1/8)"),
+                new TotemTooltipData("Infested Strike", "The soil remembers your enemies' steps, causing the silver plague to unearth itself"),
                 SoundEvents.SILVERFISH_HURT,
                 new SilverfishAbility(),
                 TotemMobCategory.HOSTILE
         );
 
-        register("minecraft:endermite", "essence_endermite",
-                new TotemTooltipData("Dimensional Call", "Endermite will ignore the player + chance for two endermite to teleport straight to the target and attack it (1/12)"),
+        register("minecraft:endermite", "essence_endermite", // todo: test
+                new TotemTooltipData("Dimensional Call", "The faintest tear in the fabric of being calls forth the void plague’s embrace"),
                 SoundEvents.ENDERMITE_HURT,
                 new EndermiteAbility(),
                 TotemMobCategory.HOSTILE
