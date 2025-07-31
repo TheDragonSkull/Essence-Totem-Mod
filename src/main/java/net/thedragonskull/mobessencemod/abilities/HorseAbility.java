@@ -10,19 +10,26 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.thedragonskull.mobessencemod.item.ModItems;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
+import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.SlotResult;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 public class HorseAbility implements IMobAbility {
@@ -100,6 +107,68 @@ public class HorseAbility implements IMobAbility {
                     0.25, 0.25, 0.25,
                     0.05
             );
+        }
+    }
+
+    public static void onSkeletonHorseTransform(EntityStruckByLightningEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+
+        ResourceLocation horseId = ResourceLocation.parse("minecraft:horse");
+        ResourceLocation skeletonHorseId = ResourceLocation.parse("minecraft:skeleton_horse");
+
+        Optional<SlotResult> slotOpt = TotemUtils.findTotemWithEssenceServer(player, horseId);
+        if (slotOpt.isEmpty()) return;
+
+        ItemStack newStack = new ItemStack(ModItems.TOTEM_OF_ESSENCE.get());
+        TotemUtils.setEssence(newStack, skeletonHorseId);
+
+        SlotResult result = slotOpt.get();
+        String slotId = result.slotContext().identifier();
+        int index = result.slotContext().index();
+
+        CuriosApi.getCuriosInventory(player).ifPresent(inv -> {
+            inv.setEquippedCurio(slotId, index, newStack);
+        });
+
+        ServerLevel level = (ServerLevel) player.level();
+        level.playSound(null, player.blockPosition(), SoundEvents.SKELETON_HORSE_AMBIENT, SoundSource.PLAYERS, 1.5f, 0.9f);
+        level.sendParticles(ParticleTypes.FLAME, player.getX(), player.getY() + 1.0, player.getZ(), 20, 0.4, 0.5, 0.4, 0.01);
+
+        player.displayClientMessage(Component.literal("Your totem trembles as it twists into something... darker")
+                .withStyle(ChatFormatting.DARK_PURPLE), true);
+
+    }
+
+    public static void onZombieHorseTransform(LivingHurtEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+
+        DamageSource source = event.getSource();
+        if (!(source.getEntity() instanceof Zombie)) return;
+
+        if (player.getRandom().nextFloat() < 0.05f) {
+            ResourceLocation zombieHorseId = ResourceLocation.parse("minecraft:zombie_horse");
+            ResourceLocation horseId = ResourceLocation.parse("minecraft:horse");
+
+            Optional<SlotResult> slotOpt = TotemUtils.findTotemWithEssenceServer(player, horseId);
+            if (slotOpt.isEmpty()) return;
+
+            ItemStack newStack = new ItemStack(ModItems.TOTEM_OF_ESSENCE.get());
+            TotemUtils.setEssence(newStack, zombieHorseId);
+
+            SlotResult result = slotOpt.get();
+            String slotId = result.slotContext().identifier();
+            int index = result.slotContext().index();
+
+            CuriosApi.getCuriosInventory(player).ifPresent(inv -> {
+                inv.setEquippedCurio(slotId, index, newStack);
+            });
+
+            ServerLevel level = (ServerLevel) player.level();
+            level.playSound(null, player.blockPosition(), SoundEvents.ZOMBIE_HORSE_AMBIENT, SoundSource.PLAYERS, 1.5f, 0.9f);
+            level.sendParticles(ParticleTypes.FLAME, player.getX(), player.getY() + 1.0, player.getZ(), 20, 0.4, 0.5, 0.4, 0.01);
+
+            player.displayClientMessage(Component.literal("Your totem trembles as it twists into something... darker")
+                    .withStyle(ChatFormatting.DARK_PURPLE), true);
         }
     }
 }

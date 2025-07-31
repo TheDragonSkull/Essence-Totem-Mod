@@ -128,6 +128,7 @@ public class CommonEvents {
         ZombifiedPiglinAbility.onZombifiedPiglinSummon(event);
         ZoglinAbility.onZoglinSummon(event);
         PlayerAbility.onPlayerTp(event);
+        HorseAbility.onZombieHorseTransform(event);
     }
 
     @SubscribeEvent
@@ -354,6 +355,7 @@ public class CommonEvents {
     @SubscribeEvent
     public static void onTotemTransform(EntityStruckByLightningEvent event) {
         PigAbility.onTotemTransform(event);
+        HorseAbility.onSkeletonHorseTransform(event);
     }
 
     @SubscribeEvent
