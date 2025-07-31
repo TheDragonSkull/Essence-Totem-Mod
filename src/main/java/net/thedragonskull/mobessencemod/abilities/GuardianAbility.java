@@ -1,5 +1,6 @@
 package net.thedragonskull.mobessencemod.abilities;
 
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
@@ -71,9 +72,11 @@ public class GuardianAbility implements IMobAbility {
 
         if (!mob.getUUID().equals(focusedMobId)) return;
 
+        player.displayClientMessage(Component.literal("Before reduction: " + event.getAmount()), false);
+
         float reduction = player.isUnderWater() ? 0.5f : 0.75f;
         event.setAmount(event.getAmount() * reduction);
-    }
 
-    //NoUnderwaterMiningPenaltyMixin
+        player.displayClientMessage(Component.literal("After reduction: " + event.getAmount()), false);
+    }
 }

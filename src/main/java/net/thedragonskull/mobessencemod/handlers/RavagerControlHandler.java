@@ -52,6 +52,9 @@ public class RavagerControlHandler {
                 ravager.moveRelative(speed, motion);
                 ravager.move(MoverType.SELF, ravager.getDeltaMovement());
                 ravager.setDeltaMovement(Vec3.ZERO);
+
+                ravager.setPos(ravager.getX(), ravager.getY(), ravager.getZ());
+                ravager.hasImpulse = true;
             } else {
                 CompoundTag data = ravager.getPersistentData();
                 if (ravager.isNoAi() && data.getBoolean(MOUNTED_TAG)) {

@@ -76,5 +76,4 @@ public class ElderGuardianAbility implements IMobAbility {
     }
 
     //NoUnderwaterMiningPenaltyMixin
-
 }

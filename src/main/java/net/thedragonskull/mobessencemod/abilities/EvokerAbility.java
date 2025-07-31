@@ -1,6 +1,8 @@
 package net.thedragonskull.mobessencemod.abilities;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -11,6 +13,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Evoker;
 import net.minecraft.world.entity.monster.Vex;
 import net.minecraft.world.entity.player.Player;
@@ -45,11 +49,13 @@ public class EvokerAbility implements IMobAbility {
         if (directEntity instanceof Projectile) {
             if (random.nextInt(3) == 0) {
                 player.level().playSound(null, player.blockPosition(), SoundEvents.EVOKER_CAST_SPELL, SoundSource.PLAYERS, 1.0f, 1.0f);
+                player.displayClientMessage(Component.literal("The ground cracks with arcane wrath!").withStyle(ChatFormatting.DARK_PURPLE), true);
                 summonEvokerFangs(player, attacker);
             }
         } else if (attacker instanceof LivingEntity) {
             if (random.nextInt(6) == 0) {
                 player.level().playSound(null, player.blockPosition(), SoundEvents.EVOKER_PREPARE_SUMMON, SoundSource.PLAYERS, 1.0f, 1.0f);
+                player.displayClientMessage(Component.literal("Phantom blades heed your pain, screaming for vengeance.").withStyle(ChatFormatting.DARK_AQUA), true);
                 summonVex(player, attacker);
             }
         }
@@ -60,8 +66,15 @@ public class EvokerAbility implements IMobAbility {
         Vex vex = EntityType.VEX.create(player.level());
         if (vex != null) {
             vex.moveTo(blockpos, 0,0);
+
+            vex.goalSelector.addGoal(1, new MeleeAttackGoal(vex, 1.0D, true));
+            vex.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(vex, LivingEntity.class, 10, true, false,
+                    entity -> entity == target));
+            
             vex.setLimitedLife(600);
             vex.setTarget(target);
+            vex.setAggressive(true);
+            vex.setPersistenceRequired();
             vex.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
             player.level().addFreshEntity(vex);
         }

@@ -401,14 +401,14 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:guardian", "essence_guardian",
-                new TotemTooltipData("Murderous Look", "Reduce incoming damage when looking at the attacker (25% on land, 50% underwater)"),
+                new TotemTooltipData("Gaze of the Deep", "The stare of the deep draws strength away from the bold"),
                 SoundEvents.GUARDIAN_HURT,
                 new GuardianAbility(),
                 TotemMobCategory.HOSTILE
         );
 
         register("minecraft:stray", "essence_stray",
-                new TotemTooltipData("Freezing Bone Quiver", "Less arrow charge time on a bow + chance to replace a normal arrow with a slowness arrow (1/3)"),
+                new TotemTooltipData("Winter's Draw", "Cold sinews hasten the pull, and frost may ride silently upon the string"),
                 SoundEvents.STRAY_HURT,
                 new StrayAbility(),
                 TotemMobCategory.HOSTILE
@@ -422,14 +422,14 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:pillager", "essence_pillager",
-                new TotemTooltipData("Beastmaster's Wrath", "Ravagers ignore the player + ride and control ravagers + more damage with the crossbow if riding a ravager"),
+                new TotemTooltipData("Beastmaster's Wrath", "The colossal beasts heed your command, and perched atop, the locked tension sings, delivering thunderous strikes with unerring force"),
                 SoundEvents.PILLAGER_HURT,
                 new PillagerAbility(),
                 TotemMobCategory.HOSTILE
         );
 
         register("minecraft:vindicator", "essence_vindicator",
-                new TotemTooltipData("Ravaging Axe", "Ravagers ignore the player + ride and control ravagers + more damage with axes if riding a ravager + speed boost if holding an axe in the main hand while there's an entity close to the player"),
+                new TotemTooltipData("Ravaging Axe", "The beast does not question your grip on the reins and the cleaving strike rings truer from its throne. Blood quickens when prey draws near, iron hungers, and your step grows swift"),
                 SoundEvents.VINDICATOR_HURT,
                 new VindicatorAbility(),
                 TotemMobCategory.HOSTILE
@@ -535,7 +535,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:elder_guardian", "essence_elder_guardian",
-                new TotemTooltipData("Ominous Murderous Look", "Reduce incoming damage when looking at the attacker (25% on land, 50% underwater) + no mining speed decrease underwater"),
+                new TotemTooltipData("Ominous Look", "Reduce incoming damage when looking at the attacker (25% on land, 50% underwater) + no mining speed decrease underwater"),
                 SoundEvents.ELDER_GUARDIAN_HURT,
                 new ElderGuardianAbility(),
                 TotemMobCategory.SPECIAL
