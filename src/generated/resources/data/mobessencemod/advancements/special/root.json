@@ -40,6 +40,19 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "has_killer_bunny": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:killer_bunny\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_mule": {
       "conditions": {
         "items": [
@@ -273,6 +286,9 @@
     ],
     [
       "has_zoglin"
+    ],
+    [
+      "has_killer_bunny"
     ]
   ],
   "rewards": {

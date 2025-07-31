@@ -335,6 +335,10 @@
     {
       "predicate": { "essence_ender_dragon": 1 },
       "model": "mobessencemod:item/totem_of_essence_ender_dragon"
+    },
+    {
+      "predicate": { "essence_killer_bunny": 1 },
+      "model": "mobessencemod:item/totem_of_essence_killer_bunny"
     }
   ]
 }

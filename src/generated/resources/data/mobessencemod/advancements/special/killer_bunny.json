@@ -1,14 +1,14 @@
 {
-  "parent": "mobessencemod:hostile/zombie",
+  "parent": "mobessencemod:passive/rabbit",
   "criteria": {
-    "has_husk": {
+    "has_killer_bunny": {
       "conditions": {
         "items": [
           {
             "items": [
               "mobessencemod:totem_of_essence"
             ],
-            "nbt": "{Essence:\"minecraft:husk\"}"
+            "nbt": "{Essence:\"minecraft:killer_bunny\"}"
           }
         ]
       },
@@ -18,33 +18,33 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "color": "#AF3B35",
+      "color": "#55C0D9",
       "extra": [
         {
           "color": "gray",
-          "text": "Fire may take you, but ash will not hold you. Hunger gnaws in vain at what refuses to wither"
+          "text": "Bound by restless leaps, each fallen shadow may fuel a sudden spark within"
         }
       ],
-      "text": "[HOSTILE] "
+      "text": "[SPECIAL] "
     },
     "frame": "task",
     "hidden": false,
     "icon": {
       "item": "mobessencemod:totem_of_essence",
-      "nbt": "{Essence:\"minecraft:husk\"}"
+      "nbt": "{Essence:\"minecraft:killer_bunny\"}"
     },
     "show_toast": true,
     "title": {
-      "text": "Essence of the Husk"
+      "text": "Essence of the Killer Bunny"
     }
   },
   "requirements": [
     [
-      "has_husk"
+      "has_killer_bunny"
     ]
   ],
   "rewards": {
-    "experience": 10
+    "experience": 20
   },
   "sends_telemetry_event": true
 }

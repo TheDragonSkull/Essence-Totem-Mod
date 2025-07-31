@@ -19,6 +19,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Fox;
 import net.minecraft.world.entity.animal.FrogVariant;
 import net.minecraft.world.entity.animal.MushroomCow;
+import net.minecraft.world.entity.animal.Rabbit;
 import net.minecraft.world.entity.animal.frog.Frog;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
@@ -85,6 +86,13 @@ public class TotemOfEssenceItem extends Item implements ICurioItem {
             } else {
                 mobId = ResourceLocation.parse("minecraft:frog");
             }
+        } else if (target instanceof Rabbit rabbit) {
+            Rabbit.Variant rabbitVariant = rabbit.getVariant();
+
+            mobId = switch (rabbitVariant) {
+                case BLACK,BROWN,GOLD,SALT,WHITE,WHITE_SPLOTCHED -> ResourceLocation.parse("minecraft:rabbit");
+                case EVIL -> ResourceLocation.parse("minecraft:killer_bunny");
+            };
         } else {
             mobId = ForgeRegistries.ENTITY_TYPES.getKey(target.getType());
         }

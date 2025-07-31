@@ -65,6 +65,7 @@ public class PigAbility implements IMobAbility {
 
         ServerLevel level = (ServerLevel) player.level();
         level.playSound(null, player.blockPosition(), SoundEvents.ZOMBIFIED_PIGLIN_ANGRY, SoundSource.PLAYERS, 1.5f, 0.9f);
+        level.playSound(null, player.blockPosition(), SoundEvents.TOTEM_USE, SoundSource.PLAYERS, 1.5f, 0.9f);
         level.sendParticles(ParticleTypes.FLAME, player.getX(), player.getY() + 1.0, player.getZ(), 20, 0.4, 0.5, 0.4, 0.01);
 
         player.displayClientMessage(Component.literal("Your totem trembles as it twists into something... darker")

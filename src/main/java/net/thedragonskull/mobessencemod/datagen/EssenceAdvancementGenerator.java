@@ -315,6 +315,7 @@ public class EssenceAdvancementGenerator implements ForgeAdvancementProvider.Adv
             SUBGROUPS.put("elder_guardian", "guardian");
             SUBGROUPS.put("trader_llama", "llama");
             SUBGROUPS.put("endermite", "silverfish");
+            SUBGROUPS.put("killer_bunny", "rabbit");
 
             SUBGROUPS.put("wandering_trader", "villager");
             SUBGROUPS.put("iron_golem", "villager");

@@ -45,6 +45,7 @@ public class ModCreativeModeTabs {
         if (path.endsWith("_frog")) return "frog";
         if (path.endsWith("_fox")) return "fox";
         if (path.endsWith("_mooshroom")) return "mooshroom";
+        if (path.endsWith("_bunny")) return "rabbit";
 
         return path;
     }

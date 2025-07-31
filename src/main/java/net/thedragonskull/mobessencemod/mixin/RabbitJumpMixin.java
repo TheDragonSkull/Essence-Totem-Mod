@@ -18,7 +18,8 @@ public class RabbitJumpMixin {
         LivingEntity entity = (LivingEntity) (Object) this;
 
         if (!(entity instanceof Player player)) return;
-        if (!TotemUtils.hasTotemWithEssenceClient(player, ResourceLocation.parse("minecraft:rabbit"))) return;
+        if (!(TotemUtils.hasTotemWithEssenceClient(player, ResourceLocation.parse("minecraft:rabbit")) ||
+                TotemUtils.hasTotemWithEssenceClient(player, ResourceLocation.parse("minecraft:killer_bunny")))) return;
 
         Vec3 current = player.getDeltaMovement();
 

@@ -25,6 +25,7 @@ import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.*;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.thedragonskull.mobessencemod.MobEssenceMod;
@@ -146,9 +147,10 @@ public class CommonEvents {
         ZombieHorseAbility.onPlayerDeath(event);
         HuskAbility.onPlayerDeath(event);
         AxolotlAbility.onPlayerKill(event);
-        RabbitAbility.onRabbitFrenzy(event);
+        RabbitAbility.onBunnyFrenzy(event);
         WardenAbility.onKillEntity(event);
         PlayerAbility.onPlayerDeath(event);
+        RabbitAbility.onKillerBunnyTransform(event);
 
         if (event.getEntity() instanceof WitherBoss) {
             DamageSource source = event.getSource();
@@ -350,6 +352,11 @@ public class CommonEvents {
     @SubscribeEvent
     public static void renderGuiOverlay(RenderGuiOverlayEvent.Post event) {
         IronGolemAbility.onOverlayRender(event);
+    }
+
+    @SubscribeEvent
+    public static void onBlockBreak(BlockEvent.BreakEvent event) {
+        RabbitAbility.onTuberFind(event);
     }
 
     @SubscribeEvent

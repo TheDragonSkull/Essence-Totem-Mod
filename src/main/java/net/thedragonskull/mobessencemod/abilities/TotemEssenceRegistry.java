@@ -217,7 +217,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:rabbit", "essence_rabbit",
-                new TotemTooltipData("Killing Frenzy", "Bound by restless leaps, each fallen shadow may fuel a sudden spark within"),
+                new TotemTooltipData("Forager's Spring", "With nimble bounds and forager’s scent, what lies beneath the overgrowth is not always weeds"),
                 SoundEvents.RABBIT_HURT,
                 new RabbitAbility(),
                 TotemMobCategory.PASSIVE
@@ -379,7 +379,7 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.HOSTILE
         );
 
-        register("minecraft:endermite", "essence_endermite", // todo: test
+        register("minecraft:endermite", "essence_endermite",
                 new TotemTooltipData("Dimensional Call", "The faintest tear in the fabric of being calls forth the void plague’s embrace"),
                 SoundEvents.ENDERMITE_HURT,
                 new EndermiteAbility(),
@@ -387,14 +387,14 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:drowned", "essence_drowned",
-                new TotemTooltipData("Abyssal Salvation", "Prevent death from drowning or suffocating"),
+                new TotemTooltipData("Abyssal Salvation", "When breath fails and stone presses close, the deep grants mercy"),
                 SoundEvents.DROWNED_HURT,
                 new DrownedAbility(),
                 TotemMobCategory.HOSTILE
         );
 
         register("minecraft:husk", "essence_husk",
-                new TotemTooltipData("Scorched Salvation", "If killed by starving or something fire-related, revive with half a heart and get 20s of fire resistance + prevent starvation"),
+                new TotemTooltipData("Scorched Salvation", "Fire may take you, but ash will not hold you. Hunger gnaws in vain at what refuses to wither"),
                 SoundEvents.HUSK_HURT,
                 new HuskAbility(),
                 TotemMobCategory.HOSTILE
@@ -580,6 +580,13 @@ public class TotemEssenceRegistry {
                 new TotemTooltipData("Hell's Savage Slam", "Reduced knockback + zoglins ignore the player + chance to launch the target into the air when melee hit (1/3) + when damaged, chance of summoning a zoglin targeting the attacker (1/12)"),
                 SoundEvents.ZOGLIN_HURT,
                 new ZoglinAbility(),
+                TotemMobCategory.SPECIAL
+        );
+
+        register("minecraft:killer_bunny", "essence_killer_bunny",
+                new TotemTooltipData("Killing Frenzy", "Bound by restless leaps, each fallen shadow may fuel a sudden spark within"),
+                SoundEvents.RABBIT_HURT,
+                new RabbitAbility(),
                 TotemMobCategory.SPECIAL
         );
 
