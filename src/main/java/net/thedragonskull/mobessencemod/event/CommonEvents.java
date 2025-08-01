@@ -233,6 +233,7 @@ public class CommonEvents {
         FrogAbility.onRemoveSlowness(event);
         EnderDragonAbility.onDragonHeal(event);
         EnderDragonAbility.onDragonBreath(event);
+        PiglinBruteAbility.onBruteSpeedHandler(event);
 
         if (event.phase == TickEvent.Phase.END) {
             Player player = event.player;

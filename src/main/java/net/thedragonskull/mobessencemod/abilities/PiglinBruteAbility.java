@@ -1,6 +1,5 @@
 package net.thedragonskull.mobessencemod.abilities;
 
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -11,9 +10,9 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
 
 import java.util.UUID;
@@ -24,19 +23,28 @@ public class PiglinBruteAbility implements IMobAbility {
 
     @Override
     public void tick(ServerPlayer player, ItemStack totemStack) {
-        ItemStack held = player.getMainHandItem();
-        if (!(held.getItem() instanceof AxeItem)) return;
+    }
 
+    public static void onBruteSpeedHandler(TickEvent.PlayerTickEvent event) {
+        if (event.phase != TickEvent.Phase.END) return;
+        if (!(event.player instanceof ServerPlayer player)) return;
+        if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:piglin_brute"))) return;
+
+        ItemStack held = player.getMainHandItem();
         AttributeInstance attr = player.getAttribute(Attributes.ATTACK_SPEED);
         if (attr == null) return;
 
-        attr.removeModifier(PIGLIN_BRUTE_ATTACK_SPEED_UUID);
-        boolean halfHP = player.getHealth() < player.getMaxHealth() / 2.0;
+        if (attr.getModifier(PIGLIN_BRUTE_ATTACK_SPEED_UUID) != null) {
+            attr.removeModifier(PIGLIN_BRUTE_ATTACK_SPEED_UUID);
+        }
 
-        // ATK SPEED
-        double multiplier = halfHP ? (held.is(Items.GOLDEN_AXE) ? 1.5 : 1.2) : 1.0;
-        if (multiplier > 1.0) {
+        boolean halfHP = player.getHealth() < player.getMaxHealth() / 2.0;
+        boolean isAxe = held.getItem() instanceof AxeItem;
+
+        if (isAxe && halfHP) {
             double base = attr.getBaseValue();
+            double multiplier = held.is(Items.GOLDEN_AXE) ? 1.5 : 1.2;
+
             AttributeModifier mod = new AttributeModifier(
                     PIGLIN_BRUTE_ATTACK_SPEED_UUID,
                     "BruteSpeedBoost",
@@ -45,7 +53,6 @@ public class PiglinBruteAbility implements IMobAbility {
             );
             attr.addTransientModifier(mod);
         }
-
     }
 
     public static void onAttack(LivingAttackEvent event) {

@@ -3,6 +3,7 @@ package net.thedragonskull.mobessencemod.abilities;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -26,6 +27,10 @@ public class WitherSkeletonAbility implements IMobAbility {
         if (event.getSource().is(DamageTypeTags.IS_PROJECTILE)) return;
 
         LivingEntity target = event.getEntity();
+        if (player.getAttackStrengthScale(0.0F) < 1.0F) return;
+
+        ItemStack main = player.getMainHandItem();
+        if (!main.is(ItemTags.SWORDS)) return;
 
         if (player.getRandom().nextInt(5) == 0) {
             MobEffectInstance current = target.getEffect(MobEffects.WITHER);

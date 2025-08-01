@@ -450,21 +450,21 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:wither_skeleton", "essence_wither_skeleton",
-                new TotemTooltipData("Withering Touch", "Chance of inflicting wither when melee attacking (1/5) + 50% damage reduction from any source of fire and wither effect"),
+                new TotemTooltipData("Withering Touch", "Decay may cling to your blows, and searing flames bend before the mark of the withered"),
                 SoundEvents.WITHER_SKELETON_HURT,
                 new WitherSkeletonAbility(),
                 TotemMobCategory.HOSTILE
         );
 
         register("minecraft:piglin_brute", "essence_piglin_brute",
-                new TotemTooltipData("Golden Tenacity", "Holding an axe grants a chance to disarm foes. When wounded, your rage quickens your strikes. Your mastery with the golden axe makes you use it more efficiently"),
+                new TotemTooltipData("Golden Tenacity", "When the cleaver finds its mark, hands grow uncertain, and below half blood, the rhythm of the swing hastens. Gold, obeying only its chosen, strikes with uncanny ease, and when resolve wanes, it answers with cruel brilliance"),
                 SoundEvents.PIGLIN_BRUTE_HURT,
                 new PiglinBruteAbility(),
                 TotemMobCategory.HOSTILE
         );
 
         register("minecraft:hoglin", "essence_hoglin",
-                new TotemTooltipData("Savage Slam", "Hoglins ignore the player + reduced knockback + chance to launch the target into the air when melee hit (1/3)"),
+                new TotemTooltipData("Savage Slam", "The wild kin sense no threat in your scent. Your footing holds firm through the storm and when fury surges, foes rise like leaves on the wind"),
                 SoundEvents.HOGLIN_HURT,
                 new HoglinAbility(),
                 TotemMobCategory.HOSTILE
