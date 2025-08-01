@@ -436,14 +436,14 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:ghast", "essence_ghast",
-                new TotemTooltipData("Sorrow Flame", "When hurt by a projectile fired from a mob, chance of shooting a Fireball facing its direction and gain regen for 10 seconds (1/3)"),
+                new TotemTooltipData("Sorrow Flame", "Pain echoes through the air; the lament may return in flame, and the soul mend quietly in its wake"),
                 SoundEvents.GHAST_HURT,
                 new GhastAbility(),
                 TotemMobCategory.HOSTILE
         );
 
         register("minecraft:shulker", "essence_shulker",
-                new TotemTooltipData("Armored Skin", "50% chance of deflecting arrows + if pressing shift, gain super armor but cannot move + in super armor state, chance of shooting a shulker bullet to the attacker (1/5)"),
+                new TotemTooltipData("Armored Skin", "Shell like stone, castings turned away; stillness becomes bastion, and defiance may answer in drifting wrath"),
                 SoundEvents.SHULKER_HURT,
                 new ShulkerAbility(),
                 TotemMobCategory.HOSTILE

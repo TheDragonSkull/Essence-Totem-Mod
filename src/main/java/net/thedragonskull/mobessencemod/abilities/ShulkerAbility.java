@@ -6,7 +6,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -78,12 +82,10 @@ public class ShulkerAbility implements IMobAbility {
 
         if (!(attacker instanceof LivingEntity)) return;
 
-        if (player.getRandom().nextInt(5) == 0) {
-            Vec3 eyes = player.getEyePosition();
-            ShulkerBullet bullet = new ShulkerBullet(player.level(), player, attacker, Direction.Axis.Y);
-            bullet.setPos(eyes.x, eyes.y, eyes.z);
-            player.level().addFreshEntity(bullet);
-            player.playSound(SoundEvents.SHULKER_SHOOT, 2.0F, (player.getRandom().nextFloat() - player.getRandom().nextFloat()) * 0.2F + 1.0F);
+        if (player.getRandom().nextInt(5) == 0 && !event.getSource().is(DamageTypeTags.IS_PROJECTILE)) {
+            ((LivingEntity) attacker).addEffect(new MobEffectInstance(MobEffects.LEVITATION, 100));
+            player.level().playSound(null, player.blockPosition(), SoundEvents.SHULKER_SHOOT, SoundSource.PLAYERS,
+                    2.0F, (player.getRandom().nextFloat() - player.getRandom().nextFloat()) * 0.2F + 1.0F);
         }
 
         player.level().playSound(null, player.blockPosition(), SoundEvents.SHULKER_HURT_CLOSED, SoundSource.PLAYERS, 1f, 1f);
@@ -91,17 +93,34 @@ public class ShulkerAbility implements IMobAbility {
 
 
     public static void shulkerHurt(LivingAttackEvent event) {
-        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        Entity sourceEntity = event.getSource().getEntity();
+        Entity targetEntity = event.getEntity();
 
-        if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:shulker"))) return;
+        //Deflect arrows
+        if (targetEntity instanceof ServerPlayer player) {
+            if (TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:shulker")) &&
+                    player.isCrouching()) {
 
-        DamageSource source = event.getSource();
+                if (event.getSource().getDirectEntity() instanceof AbstractArrow) {
+                    event.setCanceled(true);
 
-        if (source.getDirectEntity() instanceof AbstractArrow && player.getRandom().nextInt(2) == 0) {
-            event.setCanceled(true);
+                    player.level().playSound(null, player.blockPosition(), SoundEvents.SHULKER_HURT_CLOSED,
+                            SoundSource.PLAYERS, 1.0f, 1.0f);
+                    return;
+                }
+            }
+        }
 
-            player.level().playSound(null, player.blockPosition(), SoundEvents.SHULKER_HURT_CLOSED,
-                    SoundSource.PLAYERS, 1.0f, 1.0f);
+        //Prevent attacking
+        if (sourceEntity instanceof ServerPlayer player) {
+            if (TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:shulker")) &&
+                    player.isCrouching()) {
+
+                event.setCanceled(true);
+
+                player.level().playSound(null, player.blockPosition(), SoundEvents.SHULKER_CLOSE,
+                        SoundSource.PLAYERS, 0.6f, 1.1f);
+            }
         }
     }
 }

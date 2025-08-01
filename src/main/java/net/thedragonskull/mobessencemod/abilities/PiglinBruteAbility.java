@@ -53,9 +53,11 @@ public class PiglinBruteAbility implements IMobAbility {
         if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:piglin_brute"))) return;
 
         if (!(player.getMainHandItem().getItem() instanceof AxeItem)) return;
+        if (player.getAttackStrengthScale(0.0F) < 1.0F) return;
+
         LivingEntity target = event.getEntity();
 
-        if (player.level().getRandom().nextInt(10) == 0) {
+        if (player.level().getRandom().nextInt(6) == 0) {
             ItemStack targetWeapon = target.getMainHandItem();
             if (!targetWeapon.isEmpty()) {
                 target.spawnAtLocation(targetWeapon);
@@ -78,5 +80,8 @@ public class PiglinBruteAbility implements IMobAbility {
             float original = event.getAmount();
             event.setAmount(original * 2.0f);
         }
+
     }
+
+    //DiggerItemMixin
 }
