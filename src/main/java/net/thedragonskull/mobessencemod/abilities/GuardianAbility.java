@@ -72,11 +72,11 @@ public class GuardianAbility implements IMobAbility {
 
         if (!mob.getUUID().equals(focusedMobId)) return;
 
-        player.displayClientMessage(Component.literal("Before reduction: " + event.getAmount()), false);
+        //player.displayClientMessage(Component.literal("Before reduction: " + event.getAmount()), false);
 
         float reduction = player.isUnderWater() ? 0.5f : 0.75f;
         event.setAmount(event.getAmount() * reduction);
 
-        player.displayClientMessage(Component.literal("After reduction: " + event.getAmount()), false);
+        //player.displayClientMessage(Component.literal("After reduction: " + event.getAmount()), false);
     }
 }

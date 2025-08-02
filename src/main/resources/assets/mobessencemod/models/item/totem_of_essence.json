@@ -339,6 +339,10 @@
     {
       "predicate": { "essence_killer_bunny": 1 },
       "model": "mobessencemod:item/totem_of_essence_killer_bunny"
+    },
+    {
+      "predicate": { "essence_illusioner": 1 },
+      "model": "mobessencemod:item/totem_of_essence_illusioner"
     }
   ]
 }

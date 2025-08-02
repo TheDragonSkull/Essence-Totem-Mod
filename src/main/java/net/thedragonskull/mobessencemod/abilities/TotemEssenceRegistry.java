@@ -590,6 +590,13 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.SPECIAL
         );
 
+        register("minecraft:illusioner", "essence_illusioner",
+                new TotemTooltipData("???", "???"),
+                SoundEvents.ILLUSIONER_HURT,
+                new IllusionerAbility(),
+                TotemMobCategory.SPECIAL
+        );
+
         // BOSS
         register("minecraft:wither", "essence_wither",
                 new TotemTooltipData("Withering Destruction", "Hurl death from its hollow grin. Death protects, and arrows turn"),

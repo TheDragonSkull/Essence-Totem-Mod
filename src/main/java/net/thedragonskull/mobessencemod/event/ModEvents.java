@@ -11,15 +11,11 @@ import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.RegistryObject;
 import net.thedragonskull.mobessencemod.MobEssenceMod;
-import net.thedragonskull.mobessencemod.item.ModItems;
-import net.thedragonskull.mobessencemod.item.custom.TotemOfEssenceItem;
 import net.thedragonskull.mobessencemod.particle.ModParticles;
 import net.thedragonskull.mobessencemod.particle.custom.HealingGlitterParticles;
 import net.thedragonskull.mobessencemod.render.*;
 import net.thedragonskull.mobessencemod.util.KeyBindings;
-import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
 @Mod.EventBusSubscriber(modid = MobEssenceMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ModEvents {
@@ -34,7 +30,6 @@ public class ModEvents {
                 ModelPart villagerNosePart = event.getEntityModels().bakeLayer(VillagerNoseModel.LAYER_LOCATION);
                 ModelPart witchNosePart = event.getEntityModels().bakeLayer(WitchNoseModel.LAYER_LOCATION);
                 playerRenderer.addLayer(new VillagerNoseLayer(renderer, villagerNosePart, witchNosePart));
-
                 playerRenderer.addLayer(new FractureOverlayLayer(playerRenderer));
                 playerRenderer.addLayer(new PlayerEnergyArmorLayer(renderer, event.getEntityModels()));
             }
