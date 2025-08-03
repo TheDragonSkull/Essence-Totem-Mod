@@ -1,8 +1,9 @@
 package net.thedragonskull.mobessencemod.abilities;
 
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -65,12 +66,12 @@ public class GuardianAbility implements IMobAbility {
         if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:guardian"))) return;
 
         Entity sourceEntity = event.getSource().getEntity();
-        if (!(sourceEntity instanceof LivingEntity mob)) return;
+        if (!(sourceEntity instanceof LivingEntity livingEntity)) return;
 
         UUID focusedMobId = focusedMobs.get(player.getUUID());
         if (focusedMobId == null) return;
 
-        if (!mob.getUUID().equals(focusedMobId)) return;
+        if (!livingEntity.getUUID().equals(focusedMobId)) return;
 
         //player.displayClientMessage(Component.literal("Before reduction: " + event.getAmount()), false);
 
@@ -78,5 +79,21 @@ public class GuardianAbility implements IMobAbility {
         event.setAmount(event.getAmount() * reduction);
 
         //player.displayClientMessage(Component.literal("After reduction: " + event.getAmount()), false);
+    }
+
+    public static void onGuardianRefillAir(LivingHurtEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:guardian"))) return;
+
+        if (!player.isUnderWater()) return;
+
+        Entity sourceEntity = event.getSource().getEntity();
+        if (!(sourceEntity instanceof LivingEntity)) return;
+
+        if (player.level().random.nextFloat() < 0.25f) {
+            player.setAirSupply(player.getMaxAirSupply());
+            player.level().playSound(null, player.blockPosition(),
+                    SoundEvents.BUBBLE_COLUMN_UPWARDS_INSIDE, SoundSource.PLAYERS, 1.0f, 1.2f);
+        }
     }
 }

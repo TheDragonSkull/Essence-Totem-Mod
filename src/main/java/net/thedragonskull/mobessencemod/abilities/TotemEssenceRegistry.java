@@ -400,7 +400,7 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.HOSTILE
         );
 
-        register("minecraft:guardian", "essence_guardian",
+        register("minecraft:guardian", "essence_guardian", //todo test multiplayer y añadir refill air a la desc.
                 new TotemTooltipData("Gaze of the Deep", "The stare of the deep draws strength away from the bold"),
                 SoundEvents.GUARDIAN_HURT,
                 new GuardianAbility(),
