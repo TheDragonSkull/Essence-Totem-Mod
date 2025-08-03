@@ -4,9 +4,13 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -15,6 +19,9 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.event.ViewportEvent;
@@ -50,6 +57,8 @@ import top.theillusivec4.curios.api.SlotResult;
 import java.util.Objects;
 import java.util.Optional;
 
+import static net.minecraft.world.level.block.EnchantmentTableBlock.BOOKSHELF_OFFSETS;
+import static net.thedragonskull.mobessencemod.util.TotemUtils.hasTotemWithEssenceServer;
 import static net.thedragonskull.mobessencemod.util.TotemUtils.syncAdvancementsToCrownGems;
 
 @Mod.EventBusSubscriber(modid = MobEssenceMod.MOD_ID)
@@ -370,6 +379,57 @@ public class CommonEvents {
         PigAbility.onTotemTransform(event);
         HorseAbility.onSkeletonHorseTransform(event);
     }
+
+    @SubscribeEvent
+    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+        if (event.phase != TickEvent.Phase.END) return;
+        if (!(event.player instanceof ServerPlayer player)) return;
+
+/*        if (!(hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:pillager")) ||
+                hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:vindicator")) ||
+                hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:evoker")))) return;
+
+        if (!player.isSleeping()) return;*//*
+
+        ServerLevel level = (ServerLevel) player.level();
+        BlockPos bedPos = player.getSleepingPos().orElse(player.blockPosition());
+        Vec3 playerPos = new Vec3(player.getX(), player.getY() + 1.0, player.getZ());
+
+        final int[] bookshelfCount = {0};
+        int maxBookshelves = 12;
+        int radius = 3;
+
+
+        BlockPos.betweenClosedStream(bedPos.offset(-radius, -1, -radius), bedPos.offset(radius, 2, radius)).forEach(pos -> {
+            if (bookshelfCount[0] >= maxBookshelves) return;
+            BlockState state = level.getBlockState(pos);
+            if (state.is(Blocks.BOOKSHELF)) {
+                Vec3 shelfCenter = new Vec3(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
+                spawnParticleBeam(level, shelfCenter, playerPos, ParticleTypes.ENCHANT, 12);
+                bookshelfCount[0]++;
+            }
+        });*/
+    }
+
+    public static void spawnParticleBeam(ServerLevel level, Vec3 start, Vec3 end, ParticleOptions particle, int steps) {
+        Vec3 direction = end.subtract(start);
+        double distance = direction.length();
+
+        if (distance < 0.2) {
+            Vec3 mid = start.add(direction.scale(0.5));
+            level.sendParticles(particle, mid.x, mid.y, mid.z, 1, 0, 0, 0, 0);
+            return;
+        }
+
+        direction = direction.normalize();
+
+        for (int i = 0; i < steps; i++) {
+            double progress = (i / (double) steps) * distance;
+            Vec3 point = start.add(direction.scale(progress));
+            level.sendParticles(particle, point.x, point.y, point.z, 1, 0, 0, 0, 0);
+        }
+    }
+
 
     @SubscribeEvent
     public static void attachCapabilities(AttachCapabilitiesEvent<Entity> event) {
