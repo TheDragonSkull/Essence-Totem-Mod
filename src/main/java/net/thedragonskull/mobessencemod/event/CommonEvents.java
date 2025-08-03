@@ -133,9 +133,7 @@ public class CommonEvents {
         ZoglinAbility.onZoglinSummon(event);
         PlayerAbility.onPlayerTp(event);
         HorseAbility.onZombieHorseTransform(event);
-        IllusionerAbility.onBlindnessSpell(event);
-        IllusionerAbility.onSmokeBomb(event);
-        IllusionerAbility.onDecoyEscape(event);
+        IllusionerAbility.onSpellCast(event);
     }
 
     @SubscribeEvent

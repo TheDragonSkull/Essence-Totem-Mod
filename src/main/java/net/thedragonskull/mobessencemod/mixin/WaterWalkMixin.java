@@ -35,7 +35,7 @@ public class WaterWalkMixin {
         if (player.isCrouching()) return;
         if (player.isInWater()) return;
 
-        if (state.getFluidState().is(Fluids.WATER)) {
+        if (state.getFluidState().is(Fluids.WATER) || state.getFluidState().is(Fluids.FLOWING_WATER)) {
             cir.setReturnValue(Shapes.block());
         }
     }
