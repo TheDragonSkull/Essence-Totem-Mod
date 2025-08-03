@@ -21,6 +21,7 @@ import net.minecraftforge.client.event.ViewportEvent;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.*;
@@ -33,6 +34,8 @@ import net.thedragonskull.mobessencemod.abilities.*;
 import net.thedragonskull.mobessencemod.capability.CrownGemCapProvider;
 import net.thedragonskull.mobessencemod.capability.MobEssenceCapProvider;
 import net.thedragonskull.mobessencemod.capability.MobEssenceCapabilities;
+import net.thedragonskull.mobessencemod.entity.ModEntities;
+import net.thedragonskull.mobessencemod.entity.custom.IllusionDecoyEntity;
 import net.thedragonskull.mobessencemod.item.custom.TotemOfEssenceItem;
 import net.thedragonskull.mobessencemod.network.C2SSwapTotemPacket;
 import net.thedragonskull.mobessencemod.network.PacketHandler;
@@ -132,6 +135,7 @@ public class CommonEvents {
         HorseAbility.onZombieHorseTransform(event);
         IllusionerAbility.onBlindnessSpell(event);
         IllusionerAbility.onSmokeBomb(event);
+        IllusionerAbility.onDecoyEscape(event);
     }
 
     @SubscribeEvent

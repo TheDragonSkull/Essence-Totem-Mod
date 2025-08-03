@@ -13,7 +13,10 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -21,8 +24,12 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.thedragonskull.mobessencemod.entity.ModEntities;
+import net.thedragonskull.mobessencemod.entity.custom.IllusionDecoyEntity;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
 import org.joml.Vector3f;
+
+import static net.thedragonskull.mobessencemod.entity.custom.IllusionDecoyEntity.createPlayerHead;
 
 public class IllusionerAbility implements IMobAbility {
 
@@ -82,7 +89,7 @@ public class IllusionerAbility implements IMobAbility {
         if (!(source.getEntity() instanceof LivingEntity attacker)) return;
         if (source.is(DamageTypeTags.IS_PROJECTILE)) return;
 
-        if (player.level().getRandom().nextInt(1) == 0) { //todo 1/5
+        if (player.level().getRandom().nextInt(500) == 0) { //todo 1/5
             Level level = player.level();
             DustParticleOptions pinkDust = new DustParticleOptions(new Vector3f(1.0F, 0.0F, 0.7F), 1.0F);
 
@@ -121,9 +128,8 @@ public class IllusionerAbility implements IMobAbility {
         DamageSource source = event.getSource();
         if (!(source.getEntity() instanceof LivingEntity attacker)) return;
 
-        if (player.level().getRandom().nextInt(1) == 0) { //todo 1/5
+        if (player.level().getRandom().nextInt(500) == 0) { //todo 1/5
             Level level = player.level();
-            DustParticleOptions pinkDust = new DustParticleOptions(new Vector3f(1.0F, 0.0F, 0.7F), 1.0F);
 
             double distanceSq = player.distanceToSqr(attacker);
             if (distanceSq <= 4.0) {
@@ -148,10 +154,44 @@ public class IllusionerAbility implements IMobAbility {
                 }
             }
 
-            player.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 100, 0, false, false, true));
+            if (attacker instanceof Mob mob) {
+                mob.setTarget(null);
+                mob.getNavigation().stop();
+            }
 
-            level.playSound(null, player.blockPosition(), SoundEvents.ILLUSIONER_PREPARE_MIRROR, SoundSource.PLAYERS, 1.0f, 1.0f);
+            player.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 120, 0, false, false, true));
+
+            level.playSound(null, player.blockPosition(), SoundEvents.ILLUSIONER_CAST_SPELL, SoundSource.PLAYERS, 1.0f, 1.0f);
         }
+    }
+
+    public static void onDecoyEscape(LivingHurtEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:illusioner"))) return;
+
+        if (!(event.getSource().getEntity() instanceof LivingEntity attacker)) return;
+        if (player.level().getRandom().nextInt(1) != 0) return;
+
+        ServerLevel level = (ServerLevel) player.level();
+
+        Vec3 look = player.getLookAngle().normalize().scale(-5);
+        Vec3 tpPos = player.position().add(look);
+        BlockPos pos = BlockPos.containing(tpPos);
+
+        if (level.getBlockState(pos.below()).isSolid()) {
+            player.teleportTo(tpPos.x, tpPos.y, tpPos.z);
+        }
+
+        IllusionDecoyEntity decoy = new IllusionDecoyEntity(ModEntities.ILLUSION_DECOY.get(), level);
+        decoy.moveTo(player.getX(), player.getY(), player.getZ());
+
+        ItemStack head = createPlayerHead(player);
+        decoy.setItemSlot(EquipmentSlot.HEAD, head);
+
+        level.addFreshEntity(decoy);
+
+        level.playSound(null, player.blockPosition(), SoundEvents.ILLUSIONER_PREPARE_MIRROR, SoundSource.PLAYERS, 1.0F, 1.0F);
+        level.sendParticles(ParticleTypes.SMOKE, player.getX(), player.getY(), player.getZ(), 30, 0.5, 1, 0.5, 0.01);
     }
 
 
