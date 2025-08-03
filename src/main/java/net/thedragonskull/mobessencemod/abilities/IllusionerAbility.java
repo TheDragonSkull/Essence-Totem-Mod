@@ -19,6 +19,7 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.TickEvent;
@@ -50,24 +51,27 @@ public class IllusionerAbility implements IMobAbility {
 
         BlockPos below = BlockPos.containing(player.getX(), player.getY() - 0.1, player.getZ());
         BlockState belowState = level.getBlockState(below);
-        if (!belowState.getFluidState().is(Fluids.WATER)) return;
-        if (!belowState.getFluidState().is(Fluids.FLOWING_WATER)) return;
+        FluidState fluid = belowState.getFluidState();
+
+        if (!fluid.getType().isSame(Fluids.WATER)) return;
+
+        float waterHeight = fluid.getHeight(level, below);
+        double y = below.getY() + waterHeight;
 
         double speed = player.getDeltaMovement().horizontalDistanceSqr();
         double splashPower = Mth.clamp(speed * 20.0, 0.1, 2.0);
         double particleCount = Mth.clamp(player.getSpeed() * 20.0, 1, 10.0);
 
+        ServerLevel serverLevel = (ServerLevel) level;
+
         for (int i = 0; i < particleCount; i++) {
             double offsetX = (Math.random() - 0.5) * 0.8;
             double offsetZ = (Math.random() - 0.5) * 0.8;
+            double x = player.getX() + offsetX;
+            double z = player.getZ() + offsetZ;
 
-            ((ServerLevel) player.level()).sendParticles(ParticleTypes.SPLASH,
-                    player.getX() + offsetX, player.getY(), player.getZ() + offsetZ,
-                    1, 0, 0, 0, 0.05 * splashPower);
-
-            ((ServerLevel) player.level()).sendParticles(ParticleTypes.BUBBLE_POP,
-                    player.getX() + offsetX, player.getY(), player.getZ() + offsetZ,
-                    1, 0, 0, 0, 0.05 * splashPower);
+            serverLevel.sendParticles(ParticleTypes.SPLASH, x, y + 0.01, z, 1, 0, 0, 0, 0.05 * splashPower);
+            serverLevel.sendParticles(ParticleTypes.BUBBLE_POP, x, y, z, 1, 0, 0, 0, 0.05 * splashPower);
         }
 
         if (player.tickCount % 10 == 0) {

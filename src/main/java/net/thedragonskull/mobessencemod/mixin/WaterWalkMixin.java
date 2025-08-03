@@ -6,6 +6,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.EntityCollisionContext;
@@ -35,8 +36,13 @@ public class WaterWalkMixin {
         if (player.isCrouching()) return;
         if (player.isInWater()) return;
 
-        if (state.getFluidState().is(Fluids.WATER) || state.getFluidState().is(Fluids.FLOWING_WATER)) {
-            cir.setReturnValue(Shapes.block());
+        FluidState fluidState = state.getFluidState();
+
+        if (fluidState.is(Fluids.WATER) || fluidState.is(Fluids.FLOWING_WATER)) {
+            float height = fluidState.getHeight(level, pos);
+            float clamped = Math.max(height, 0.01F);
+
+            cir.setReturnValue(Shapes.box(0.0, 0.0, 0.0, 1.0, clamped, 1.0));
         }
     }
 }
