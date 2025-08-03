@@ -5,6 +5,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -12,14 +13,17 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
 
 public class IllusionDecoyEntity extends ArmorStand {
     private int hitCounter = 0;
@@ -37,7 +41,7 @@ public class IllusionDecoyEntity extends ArmorStand {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return ArmorStand.createLivingAttributes().add(Attributes.LUCK,1);
+        return ArmorStand.createLivingAttributes();
     }
 
     @Override
@@ -77,11 +81,6 @@ public class IllusionDecoyEntity extends ArmorStand {
             triggerPoofAndRemove();
         }
         return true;
-    }
-
-    @Override
-    public void setItemSlot(EquipmentSlot pSlot, ItemStack pStack) {
-        super.setItemSlot(pSlot, pStack);
     }
 
     public static ItemStack createPlayerHead(ServerPlayer player) {

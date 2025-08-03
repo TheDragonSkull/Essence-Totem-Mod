@@ -14,9 +14,8 @@ public class ModEntities {
             DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, MobEssenceMod.MOD_ID);
 
     public static final RegistryObject<EntityType<IllusionDecoyEntity>> ILLUSION_DECOY =
-            ENTITY_TYPES.register("illusion_decoy", () -> EntityType.Builder
-                    .of(IllusionDecoyEntity::new, MobCategory.MISC)
-                    .sized(0.6f, 1.8f)
+            ENTITY_TYPES.register("illusion_decoy", () -> EntityType.Builder.of(IllusionDecoyEntity::new, MobCategory.MISC)
+                    .sized(0.5f, 1.975f)
                     .clientTrackingRange(8)
                     .updateInterval(1)
                     .build("illusion_decoy"));

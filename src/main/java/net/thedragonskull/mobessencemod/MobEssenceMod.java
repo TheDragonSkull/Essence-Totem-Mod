@@ -1,6 +1,8 @@
 package net.thedragonskull.mobessencemod;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.renderer.entity.ArmorStandRenderer;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -67,6 +69,9 @@ public class MobEssenceMod {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
+
+            EntityRenderers.register(ModEntities.ILLUSION_DECOY.get(), ArmorStandRenderer::new);
+
             event.enqueueWork(() -> {
                 event.enqueueWork(ModItemProperties::addCustomItemProperties);
                 event.enqueueWork(PacketHandler::register);

@@ -174,6 +174,17 @@ public class IllusionerAbility implements IMobAbility {
 
         ServerLevel level = (ServerLevel) player.level();
 
+        IllusionDecoyEntity decoy = ModEntities.ILLUSION_DECOY.get().create(level);
+
+        if (decoy != null) {
+            decoy.moveTo(player.getX(), player.getY(), player.getZ());
+
+            ItemStack head = createPlayerHead(player);
+            decoy.setItemSlot(EquipmentSlot.HEAD, head);
+
+            level.addFreshEntity(decoy);
+        }
+
         Vec3 look = player.getLookAngle().normalize().scale(-5);
         Vec3 tpPos = player.position().add(look);
         BlockPos pos = BlockPos.containing(tpPos);
@@ -182,16 +193,9 @@ public class IllusionerAbility implements IMobAbility {
             player.teleportTo(tpPos.x, tpPos.y, tpPos.z);
         }
 
-        IllusionDecoyEntity decoy = new IllusionDecoyEntity(ModEntities.ILLUSION_DECOY.get(), level);
-        decoy.moveTo(player.getX(), player.getY(), player.getZ());
-
-        ItemStack head = createPlayerHead(player);
-        decoy.setItemSlot(EquipmentSlot.HEAD, head);
-
-        level.addFreshEntity(decoy);
-
         level.playSound(null, player.blockPosition(), SoundEvents.ILLUSIONER_PREPARE_MIRROR, SoundSource.PLAYERS, 1.0F, 1.0F);
         level.sendParticles(ParticleTypes.SMOKE, player.getX(), player.getY(), player.getZ(), 30, 0.5, 1, 0.5, 0.01);
+
     }
 
 
