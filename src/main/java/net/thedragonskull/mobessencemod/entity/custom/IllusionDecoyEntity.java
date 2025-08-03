@@ -35,7 +35,7 @@ public class IllusionDecoyEntity extends ArmorStand {
         this.setInvisible(false);
         this.setInvulnerable(false);
         this.setNoGravity(false);
-        this.setCustomName(Component.literal("Illusion"));
+        this.setCustomName(Component.literal("Substitute"));
         this.setCustomNameVisible(false);
         this.setSilent(true);
     }
@@ -50,47 +50,42 @@ public class IllusionDecoyEntity extends ArmorStand {
         if (!level().isClientSide) {
             lifetimeTicks++;
             if (lifetimeTicks >= 200) { //todo 600
-                triggerPoofAndRemove();
+                triggerIllusion(true);
             }
         }
     }
 
-    private void triggerPoofAndRemove() {
-        if (level() instanceof ServerLevel serverLevel) {
-            for (int i = 0; i < 3; i++) {
-                serverLevel.sendParticles(
-                        ParticleTypes.POOF,
-                        this.getX(),
-                        this.getY() + 1.0,
-                        this.getZ(),
-                        10,
-                        0.3, 0.5, 0.3,
-                        0.01
-                );
-            }
-
-            this.level().playSound(null, this.blockPosition(), SoundEvents.ILLUSIONER_PREPARE_MIRROR, SoundSource.PLAYERS, 1.0F, 1.0F);
-        }
-        this.discard();
+    @Override
+    public void onAddedToWorld() {
+        super.onAddedToWorld();
+        triggerIllusion(false);
     }
 
     @Override
     public boolean hurt(DamageSource pSource, float pAmount) {
         hitCounter++;
         if (hitCounter >= 3) {
-            triggerPoofAndRemove();
+            triggerIllusion(true);
         }
         return true;
     }
 
-    public static ItemStack createPlayerHead(ServerPlayer player) {
-        ItemStack head = new ItemStack(Items.PLAYER_HEAD);
-        CompoundTag tag = head.getOrCreateTag();
-        CompoundTag skullOwner = new CompoundTag();
-        skullOwner.putString("Name", player.getGameProfile().getName());
-        tag.put("SkullOwner", skullOwner);
-        head.setTag(tag);
-        return head;
+    @Override
+    public void addAdditionalSaveData(CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        tag.putInt("IllusionHits", this.hitCounter);
+        tag.putInt("IllusionLifetime", this.lifetimeTicks);
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        if (tag.contains("IllusionHits")) {
+            this.hitCounter = tag.getInt("IllusionHits");
+        }
+        if (tag.contains("IllusionLifetime")) {
+            this.lifetimeTicks = tag.getInt("IllusionLifetime");
+        }
     }
 
     @Override
@@ -120,5 +115,37 @@ public class IllusionDecoyEntity extends ArmorStand {
 
     @Override
     protected void dropAllDeathLoot(DamageSource source) {
+    }
+
+    public static ItemStack createPlayerHead(ServerPlayer player) {
+        ItemStack head = new ItemStack(Items.PLAYER_HEAD);
+        CompoundTag tag = head.getOrCreateTag();
+        CompoundTag skullOwner = new CompoundTag();
+        skullOwner.putString("Name", player.getGameProfile().getName());
+        tag.put("SkullOwner", skullOwner);
+        head.setTag(tag);
+        return head;
+    }
+
+    private void triggerIllusion(boolean remove) {
+        if (level() instanceof ServerLevel serverLevel) {
+            for (int i = 0; i < 3; i++) {
+                serverLevel.sendParticles(
+                        ParticleTypes.POOF,
+                        this.getX(),
+                        this.getY() + 1.0,
+                        this.getZ(),
+                        10,
+                        0.3, 0.5, 0.3,
+                        0.01
+                );
+            }
+
+            this.level().playSound(null, this.blockPosition(), SoundEvents.ILLUSIONER_PREPARE_MIRROR, SoundSource.PLAYERS, 1.0F, 1.0F);
+        }
+
+        if (remove) {
+            this.discard();
+        }
     }
 }

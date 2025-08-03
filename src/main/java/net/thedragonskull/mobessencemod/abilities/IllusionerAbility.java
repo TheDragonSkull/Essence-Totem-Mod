@@ -192,10 +192,6 @@ public class IllusionerAbility implements IMobAbility {
         if (level.getBlockState(pos.below()).isSolid()) {
             player.teleportTo(tpPos.x, tpPos.y, tpPos.z);
         }
-
-        level.playSound(null, player.blockPosition(), SoundEvents.ILLUSIONER_PREPARE_MIRROR, SoundSource.PLAYERS, 1.0F, 1.0F);
-        level.sendParticles(ParticleTypes.SMOKE, player.getX(), player.getY(), player.getZ(), 30, 0.5, 1, 0.5, 0.01);
-
     }
 
 
