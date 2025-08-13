@@ -493,49 +493,49 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:red_mooshroom", "essence_red_mooshroom",
-                new TotemTooltipData("Cleansing Feast", "Chance of cleansing a harmful effect (1/3) when applied while the totem is equipped + chance of filling +1 hunger when eating non harmful food (1/3)"),
+                new TotemTooltipData("Cleansing Feast", "In the hush of the brown grove, misfortune often turns away, and the meekest morsel may swell the belly"),
                 SoundEvents.COW_HURT,
                 new RedMooshroomAbility(),
                 TotemMobCategory.SPECIAL
         );
 
         register("minecraft:brown_mooshroom", "essence_brown_mooshroom",
-                new TotemTooltipData("Enriched Cleanse", "Chance of cleansing a harmful effect (1/3) when applied while the totem is equipped + chance of adding +1 saturation after eating non harmful food (1/3)"),
+                new TotemTooltipData("Enriched Cleanse", "Beneath the earth-toned crown, afflictions may falter at your door, and each mouthful plants endurance in the soul"),
                 SoundEvents.COW_HURT,
                 new BrownMooshroomAbility(),
                 TotemMobCategory.SPECIAL
         );
 
         register("minecraft:mule", "essence_mule",
-                new TotemTooltipData("Leaping Hauler", "Upgraded jump when sprinting for more than 3 seconds without stopping + chests drop themselves with the items inside instead of dropping the contents + chance to donkey kick if melee attacked from behind (1/3)"),
+                new TotemTooltipData("Leaping Hauler", "The burdened runner gathers strength with every stride, guards its trove as one, and strikes swift at the coward’s reach"),
                 SoundEvents.MULE_HURT,
                 new MuleAbility(),
                 TotemMobCategory.SPECIAL
         );
 
         register("minecraft:zombie_horse", "essence_zombie_horse",
-                new TotemTooltipData("Undead Power Leap", "Upgraded jump when sprinting for more than 3 seconds without stopping + chance to horse kick if melee attacked from behind (1/3) + if killed by an entity, instantly revive with half a heart (one time use)"),
+                new TotemTooltipData("Undead Power Leap", "In the gallop of the grave, sinew winds for the sky, the hind hoof strikes true, and death is but a pause"),
                 SoundEvents.ZOMBIE_HORSE_HURT,
                 new ZombieHorseAbility(),
                 TotemMobCategory.SPECIAL
         );
 
         register("minecraft:skeleton_horse", "essence_skeleton_horse",
-                new TotemTooltipData("Leaping Bone Quiver", "Upgraded jump when sprinting for more than 3 seconds without stopping + chance to horse kick if melee attacked from behind (1/3) + less arrow charge time on a bow"),
+                new TotemTooltipData("Leaping Bone Quiver", "The hollow steed springs skyward with the long run, hurls its heel at the creeping hand, and looses death before the string can sing"),
                 SoundEvents.SKELETON_HORSE_HURT,
                 new SkeletonHorseAbility(),
                 TotemMobCategory.SPECIAL
         );
 
         register("minecraft:witch", "essence_witch",
-                new TotemTooltipData("Coven's Blessing", "Cats no longer run away from the player + some damage types are reduced by 25% + chance to drink a potion depending on the situation"),
+                new TotemTooltipData("Coven's Blessing", "The covenant’s shadow softens the claws of the small, turns certain pains to whispers, and from hidden folds, the right draught finds your hand"),
                 SoundEvents.WITCH_HURT,
                 new WitchAbility(),
                 TotemMobCategory.SPECIAL
         );
 
         register("minecraft:elder_guardian", "essence_elder_guardian",
-                new TotemTooltipData("Ominous Look", "Reduce incoming damage when looking at the attacker (25% on land, 50% underwater) + no mining speed decrease underwater"),
+                new TotemTooltipData("Ominous Look", "The ancient eye weighs heavy on the bold, and the depths offer no chains to your hands"),
                 SoundEvents.ELDER_GUARDIAN_HURT,
                 new ElderGuardianAbility(),
                 TotemMobCategory.SPECIAL

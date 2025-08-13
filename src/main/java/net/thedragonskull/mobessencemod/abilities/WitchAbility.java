@@ -30,7 +30,7 @@ public class WitchAbility implements IMobAbility {
         DamageSource source = event.getSource();
 
         if (source.is(DamageTypeTags.WITCH_RESISTANT_TO)) {
-            float reduced = event.getAmount() * 0F;
+            float reduced = event.getAmount() * 0.75F;
             event.setAmount(reduced);
         }
 
