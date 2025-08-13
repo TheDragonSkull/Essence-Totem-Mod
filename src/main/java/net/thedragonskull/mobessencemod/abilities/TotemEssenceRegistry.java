@@ -400,8 +400,8 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.HOSTILE
         );
 
-        register("minecraft:guardian", "essence_guardian", //todo test multiplayer y añadir refill air a la desc.
-                new TotemTooltipData("Gaze of the Deep", "The stare of the deep draws strength away from the bold"),
+        register("minecraft:guardian", "essence_guardian",
+                new TotemTooltipData("Gaze of the Deep", "The stare of the deep draws strength away from the bold; and in the strike’s wake, the sea answers with a borrowed breath"),
                 SoundEvents.GUARDIAN_HURT,
                 new GuardianAbility(),
                 TotemMobCategory.HOSTILE
@@ -472,21 +472,21 @@ public class TotemEssenceRegistry {
 
         // SPECIAL
         register("minecraft:zombie_villager", "essence_zombie_villager",
-                new TotemTooltipData("Undead Scent of the Money", "Grow a big nose to smell nearby emerald ores (~20 blocks) + if killed by an entity, instantly revive with half a heart (one time use)"),
+                new TotemTooltipData("Undead Scent of the Money", "The cursed merchant’s shadow hungers still; its crooked scent guides toward buried promise, and death is but a fleeting bargain"),
                 SoundEvents.ZOMBIE_VILLAGER_HURT,
                 new ZombieVillagerAbility(),
                 TotemMobCategory.SPECIAL
         );
 
         register("minecraft:wandering_trader", "essence_wandering_trader",
-                new TotemTooltipData("Llama Whisperer", "Llamas won't spit at the player + control llamas while riding"),
+                new TotemTooltipData("Llama Whisperer", "Through untraveled roads, the murmurs of the nomad tame both temper and tread"),
                 SoundEvents.WANDERING_TRADER_HURT,
                 new WanderingTraderAbility(),
                 TotemMobCategory.SPECIAL
         );
 
         register("minecraft:trader_llama", "essence_trader_llama",
-                new TotemTooltipData("Caravan Aura", "Automatically spits at hostile mobs nearby dealing damage and knockback (every 5 seconds) + nearby creatures follow the player (5 blocks radius)"),
+                new TotemTooltipData("Caravan Aura", "The caravan’s watch needs no command; in measured breath, it drives away the bold, and gentler feet gather in its wake"),
                 SoundEvents.LLAMA_HURT,
                 new TraderLlamaAbility(),
                 TotemMobCategory.SPECIAL

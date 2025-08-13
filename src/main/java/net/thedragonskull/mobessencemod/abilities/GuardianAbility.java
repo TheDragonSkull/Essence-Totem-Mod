@@ -93,7 +93,7 @@ public class GuardianAbility implements IMobAbility {
         if (player.level().random.nextFloat() < 0.25f) {
             player.setAirSupply(player.getMaxAirSupply());
             player.level().playSound(null, player.blockPosition(),
-                    SoundEvents.BUBBLE_COLUMN_UPWARDS_INSIDE, SoundSource.PLAYERS, 1.0f, 1.2f);
+                    SoundEvents.PLAYER_BREATH, SoundSource.PLAYERS, 1.0f, 1.2f);
         }
     }
 }
