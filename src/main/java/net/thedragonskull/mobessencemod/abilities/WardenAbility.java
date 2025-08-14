@@ -14,10 +14,12 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
 
 import java.util.HashMap;
@@ -42,17 +44,6 @@ public class WardenAbility implements IMobAbility {
         return getAnger(player) > 0;
     }
 
-    public static void resetAnger(ServerPlayer player) {
-        UUID id = player.getUUID();
-        angerLevels.remove(id);
-        lastAngerTick.remove(id);
-
-        ServerBossEvent bar = bossBars.remove(id);
-        if (bar != null) {
-            bar.removePlayer(player);
-        }
-    }
-
     @Override
     public void tick(ServerPlayer player, ItemStack totemStack) {
         UUID id = player.getUUID();
@@ -72,6 +63,7 @@ public class WardenAbility implements IMobAbility {
             });
 
             ServerBossEvent bar = bossBars.get(id);
+
             bar.setProgress(anger / (float) MAX_ANGER);
             bar.setColor(getColorForAnger(anger));
             bar.setVisible(true);
@@ -85,7 +77,8 @@ public class WardenAbility implements IMobAbility {
         // Increment anger
         long last = lastAngerTick.getOrDefault(id, gameTime);
         if (anger > 0 && gameTime - last >= 200) {
-            angerLevels.put(id, Math.min(anger + 1, MAX_ANGER));
+            int newAnger = Math.min(anger + 1, MAX_ANGER);
+            setAnger(player, newAnger);
             lastAngerTick.put(id, gameTime);
         }
 
@@ -94,8 +87,7 @@ public class WardenAbility implements IMobAbility {
             List<LivingEntity> nearbyEnemies = player.level().getEntitiesOfClass(
                     LivingEntity.class,
                     player.getBoundingBox().inflate(15),
-                    entity -> entity instanceof Mob
-            );
+                    entity -> (entity instanceof Mob || entity instanceof Player) && entity != player);
 
             for (LivingEntity enemy : nearbyEnemies) {
                 enemy.addEffect(new MobEffectInstance(MobEffects.GLOWING, 2, 0, false, false));
@@ -125,7 +117,7 @@ public class WardenAbility implements IMobAbility {
             UUID id = player.getUUID();
             int anger = Math.min(getAnger(player) + 1, MAX_ANGER);
 
-            angerLevels.put(id, anger);
+            setAnger(player, anger);
             lastAngerTick.put(id, player.level().getGameTime());
 
             float reduced = event.getAmount() / (1 + 0.2f * anger);
@@ -174,5 +166,57 @@ public class WardenAbility implements IMobAbility {
         }
 
         resetAnger(player);
+    }
+
+    public static void setAnger(ServerPlayer player, int anger) {
+        UUID id = player.getUUID();
+
+        if (anger <= 0) {
+            resetAnger(player);
+            return;
+        }
+
+        angerLevels.put(id, anger);
+        player.getPersistentData().putInt("wardenAnger", anger);
+
+        ServerBossEvent bar = bossBars.computeIfAbsent(id, uuid ->
+                new ServerBossEvent(
+                        Component.literal("ANGER"),
+                        getColorForAnger(anger),
+                        BossEvent.BossBarOverlay.PROGRESS
+                )
+        );
+
+        bar.addPlayer(player);
+
+        bar.setProgress(anger / (float) MAX_ANGER);
+        bar.setColor(getColorForAnger(anger));
+        bar.setVisible(true);
+    }
+
+    public static void resetAnger(ServerPlayer player) {
+        UUID id = player.getUUID();
+        angerLevels.remove(id);
+        lastAngerTick.remove(id);
+        player.getPersistentData().remove("wardenAnger");
+
+        ServerBossEvent bar = bossBars.get(id);
+        if (bar != null) {
+            bar.removePlayer(player);
+        }
+    }
+
+    public static void restoreAnger(ServerPlayer player, int anger) {
+        setAnger(player, Math.min(Math.max(anger, 0), MAX_ANGER));
+    }
+
+
+    public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+
+        int anger = player.getPersistentData().getInt("wardenAnger");
+        if (anger > 0) {
+            restoreAnger(player, anger);
+        }
     }
 }

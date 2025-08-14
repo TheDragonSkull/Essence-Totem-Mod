@@ -337,6 +337,7 @@ public class EssenceAdvancementGenerator implements ForgeAdvancementProvider.Adv
             SUBGROUPS.put("vindicator", "pillager");
             SUBGROUPS.put("ravager", "pillager");
             SUBGROUPS.put("evoker", "pillager");
+            SUBGROUPS.put("illusioner", "pillager");
 
             SUBGROUPS.put("skeleton_horse", "skeleton");
             SUBGROUPS.put("stray", "skeleton");

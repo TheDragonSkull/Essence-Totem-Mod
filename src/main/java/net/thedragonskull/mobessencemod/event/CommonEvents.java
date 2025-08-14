@@ -4,13 +4,9 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -19,16 +15,12 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.event.ViewportEvent;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.*;
@@ -41,8 +33,6 @@ import net.thedragonskull.mobessencemod.abilities.*;
 import net.thedragonskull.mobessencemod.capability.CrownGemCapProvider;
 import net.thedragonskull.mobessencemod.capability.MobEssenceCapProvider;
 import net.thedragonskull.mobessencemod.capability.MobEssenceCapabilities;
-import net.thedragonskull.mobessencemod.entity.ModEntities;
-import net.thedragonskull.mobessencemod.entity.custom.IllusionDecoyEntity;
 import net.thedragonskull.mobessencemod.item.custom.TotemOfEssenceItem;
 import net.thedragonskull.mobessencemod.network.C2SSwapTotemPacket;
 import net.thedragonskull.mobessencemod.network.PacketHandler;
@@ -57,8 +47,6 @@ import top.theillusivec4.curios.api.SlotResult;
 import java.util.Objects;
 import java.util.Optional;
 
-import static net.minecraft.world.level.block.EnchantmentTableBlock.BOOKSHELF_OFFSETS;
-import static net.thedragonskull.mobessencemod.util.TotemUtils.hasTotemWithEssenceServer;
 import static net.thedragonskull.mobessencemod.util.TotemUtils.syncAdvancementsToCrownGems;
 
 @Mod.EventBusSubscriber(modid = MobEssenceMod.MOD_ID)
@@ -343,6 +331,7 @@ public class CommonEvents {
     @SubscribeEvent
     public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
         PlayerAbility.onPlayerLogin(event);
+        WardenAbility.onPlayerJoin(event);
     }
 
     @SubscribeEvent

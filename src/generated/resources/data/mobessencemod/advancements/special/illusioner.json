@@ -1,14 +1,14 @@
 {
-  "parent": "mobessencemod:passive/cow",
+  "parent": "mobessencemod:hostile/pillager",
   "criteria": {
-    "has_brown_mooshroom": {
+    "has_illusioner": {
       "conditions": {
         "items": [
           {
             "items": [
               "mobessencemod:totem_of_essence"
             ],
-            "nbt": "{Essence:\"minecraft:brown_mooshroom\"}"
+            "nbt": "{Essence:\"minecraft:illusioner\"}"
           }
         ]
       },
@@ -22,7 +22,7 @@
       "extra": [
         {
           "color": "gray",
-          "text": "Beneath the earth-toned crown, afflictions may falter at your door, and each mouthful plants endurance in the soul"
+          "text": "???"
         }
       ],
       "text": "[SPECIAL] "
@@ -31,16 +31,16 @@
     "hidden": false,
     "icon": {
       "item": "mobessencemod:totem_of_essence",
-      "nbt": "{Essence:\"minecraft:brown_mooshroom\"}"
+      "nbt": "{Essence:\"minecraft:illusioner\"}"
     },
     "show_toast": true,
     "title": {
-      "text": "Essence of the Brown Mooshroom"
+      "text": "Essence of the Illusioner"
     }
   },
   "requirements": [
     [
-      "has_brown_mooshroom"
+      "has_illusioner"
     ]
   ],
   "rewards": {

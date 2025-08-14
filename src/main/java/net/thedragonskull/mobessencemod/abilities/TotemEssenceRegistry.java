@@ -315,8 +315,8 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.NEUTRAL
         );
 
-        register("minecraft:zombified_piglin", "essence_zombified_piglin",  //todo usar "and pain may rouse the wrath of the rotting tusk" para el Zoglin
-                new TotemTooltipData("Hell's wrath", "The sky holds no sway over you, and pain may rouse the wrath of the rotting death"),
+        register("minecraft:zombified_piglin", "essence_zombified_piglin",
+                new TotemTooltipData("Hell's wrath", "The sky holds no sway over you, and pain may rouse the wrath of the rotting tusk"),
                 SoundEvents.ZOMBIFIED_PIGLIN_HURT,
                 new ZombifiedPiglinAbility(),
                 TotemMobCategory.NEUTRAL
@@ -576,8 +576,8 @@ public class TotemEssenceRegistry {
                 TotemMobCategory.SPECIAL
         );
 
-        register("minecraft:zoglin", "essence_zoglin",  //todo usar "and pain may rouse the wrath of the rotting tusk" para el Zoglin
-                new TotemTooltipData("Hell's Savage Slam", "Reduced knockback + zoglins ignore the player + chance to launch the target into the air when melee hit (1/3) + when damaged, chance of summoning a zoglin targeting the attacker (1/12)"),
+        register("minecraft:zoglin", "essence_zoglin",
+                new TotemTooltipData("Hell's Savage Slam", "In the ashlands’ din, the savage walks unshaken, the tusked fiends parting before him; each swing may crown the air with prey and his blood calls beasts from the flame"),
                 SoundEvents.ZOGLIN_HURT,
                 new ZoglinAbility(),
                 TotemMobCategory.SPECIAL
@@ -591,7 +591,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:illusioner", "essence_illusioner",
-                new TotemTooltipData("???", "???"),
+                new TotemTooltipData("Mirrorveil Charm", "From the hush of twelve tomes rises the masked one; he treads the mirror-skin of water, and when struck, the stage swells with trickery: smoke, shadow, or the echo of himself"),
                 SoundEvents.ILLUSIONER_HURT,
                 new IllusionerAbility(),
                 TotemMobCategory.SPECIAL

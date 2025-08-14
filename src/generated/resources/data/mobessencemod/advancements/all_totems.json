@@ -404,6 +404,19 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "has_illusioner": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mobessencemod:totem_of_essence"
+            ],
+            "nbt": "{Essence:\"minecraft:illusioner\"}"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_iron_golem": {
       "conditions": {
         "items": [
@@ -1349,6 +1362,9 @@
     ],
     [
       "has_killer_bunny"
+    ],
+    [
+      "has_illusioner"
     ],
     [
       "has_wither"
