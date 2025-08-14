@@ -542,28 +542,28 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:vex", "essence_vex",
-                new TotemTooltipData("Spectral Stride", "While sprinting, dash through walls that are one block thick while sprinting and chance of dealing a critical blow (1/3)"),
+                new TotemTooltipData("Spectral Stride", "Walls are but veils to the swift shade, whose touch may bite deeper than the eye can follow"),
                 SoundEvents.VEX_HURT,
                 new VexAbility(),
                 TotemMobCategory.SPECIAL
         );
 
         register("minecraft:ravager", "essence_ravager",
-                new TotemTooltipData("Sturdy Beast", "Tackle any mob in your way while running + 50% less knockback received + when melee attacked, chance to roar and make any mob in the surroundings take damage and knockback"),
+                new TotemTooltipData("Sturdy Beast", "In the run, all paths are cleared; in the clash, it stands unmoved, and the bellow may break the bold"),
                 SoundEvents.RAVAGER_HURT,
                 new RavagerAbility(),
                 TotemMobCategory.SPECIAL
         );
 
         register("minecraft:iron_golem", "essence_iron_golem",
-                new TotemTooltipData("Steelbound", "When melee attacking, chance to launch enemies into the air (1/4) + consume iron ingots to heal half a heart + 1/4 chance to block melee attacks, but for the next 5 seconds any hit deals double [this persists even after unequipping the totem]"),
+                new TotemTooltipData("Steelbound", "Its strike may send the bold aloft, its heart is fed with iron, and its guard may carry the shadow of retribution"),
                 SoundEvents.IRON_GOLEM_HURT,
                 new IronGolemAbility(),
                 TotemMobCategory.SPECIAL
         );
 
         register("minecraft:snow_golem", "essence_snow_golem",
-                new TotemTooltipData("Snowball Fight", "Immunity to freezing + walk over powder snow blocks + automatically shoot snowballs at hostile mobs nearby, dealing knockback (every 2 seconds)"),
+                new TotemTooltipData("Snowball Fight", "Winter bends to your tread, and its breath drives the bold back two steps"),
                 SoundEvents.SNOW_GOLEM_HURT,
                 new SnowGolemAbility(),
                 TotemMobCategory.SPECIAL

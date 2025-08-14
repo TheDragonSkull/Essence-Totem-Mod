@@ -27,7 +27,7 @@ public class FractureOverlayLayer extends RenderLayer<AbstractClientPlayer, Play
                        AbstractClientPlayer player, float limbSwing, float limbSwingAmount,
                        float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
 
-        if (!IronGolemAbility.isFractured(player)) return;
+        if (!IronGolemAbility.IronGolemAbilityClient.isFractured(player)) return;
 
         VertexConsumer consumer = buffer.getBuffer(RenderType.entityTranslucent(CRACK_TEXTURE));
 

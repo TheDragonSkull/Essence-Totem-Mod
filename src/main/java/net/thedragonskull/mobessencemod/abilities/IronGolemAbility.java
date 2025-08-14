@@ -24,13 +24,18 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.network.PacketDistributor;
 import net.thedragonskull.mobessencemod.MobEssenceMod;
+import net.thedragonskull.mobessencemod.network.PacketHandler;
+import net.thedragonskull.mobessencemod.network.S2CIronGolemFractureSyncPacket;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
 
 import java.util.*;
@@ -53,6 +58,8 @@ public class IronGolemAbility implements IMobAbility {
             event.setAmount(event.getAmount() * 2f);
             fracturedPlayers.remove(id);
             fractureExpiry.remove(id);
+            PacketHandler.INSTANCE.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> player),
+                    new S2CIronGolemFractureSyncPacket(id, false));
             player.level().playSound(null, player.blockPosition(), SoundEvents.IRON_GOLEM_HURT, SoundSource.PLAYERS, 1f, 1f);
             return;
         }
@@ -62,6 +69,8 @@ public class IronGolemAbility implements IMobAbility {
             event.setCanceled(true);
             fracturedPlayers.add(id);
             fractureExpiry.put(id, player.level().getGameTime() + 100);
+            PacketHandler.INSTANCE.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> player),
+                    new S2CIronGolemFractureSyncPacket(id, true));
 
             player.level().playSound(null, player.blockPosition(), SoundEvents.IRON_GOLEM_DAMAGE, SoundSource.PLAYERS, 1f, 1f);
         }
@@ -77,6 +86,8 @@ public class IronGolemAbility implements IMobAbility {
             if (player.level().getGameTime() >= fractureExpiry.get(id)) {
                 fracturedPlayers.remove(id);
                 fractureExpiry.remove(id);
+                PacketHandler.INSTANCE.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> player),
+                        new S2CIronGolemFractureSyncPacket(id, false));
             }
         }
     }
@@ -125,14 +136,10 @@ public class IronGolemAbility implements IMobAbility {
         }
     }
 
-    public static boolean isFractured(Player player) {
-        return fracturedPlayers.contains(player.getUUID());
-    }
-
     public static void onOverlayRender(RenderGuiOverlayEvent.Post event) {
         Minecraft mc = Minecraft.getInstance();
         LocalPlayer player = mc.player;
-        if (player == null || !IronGolemAbility.isFractured(player)) return;
+        if (player == null || !IronGolemAbilityClient.isFractured(player)) return;
         if (!mc.options.getCameraType().isFirstPerson()) return;
 
         int screenWidth = mc.getWindow().getGuiScaledWidth();
@@ -153,6 +160,23 @@ public class IronGolemAbility implements IMobAbility {
 
     @Override
     public void tick(ServerPlayer player, ItemStack totemStack) {
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public static class IronGolemAbilityClient {
+        private static final Set<UUID> fracturedPlayers = new HashSet<>();
+
+        public static void addFractured(UUID id) {
+            fracturedPlayers.add(id);
+        }
+
+        public static void removeFractured(UUID id) {
+            fracturedPlayers.remove(id);
+        }
+
+        public static boolean isFractured(Player player) {
+            return fracturedPlayers.contains(player.getUUID());
+        }
     }
 
 }

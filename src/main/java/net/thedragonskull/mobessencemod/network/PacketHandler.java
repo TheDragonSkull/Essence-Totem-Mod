@@ -49,6 +49,12 @@ public class PacketHandler {
                 .decoder(S2CCrownGemSyncPacket::new)
                 .consumerMainThread(S2CCrownGemSyncPacket::handle)
                 .add();
+
+        INSTANCE.messageBuilder(S2CIronGolemFractureSyncPacket.class, id++, NetworkDirection.PLAY_TO_CLIENT)
+                .encoder(S2CIronGolemFractureSyncPacket::encode)
+                .decoder(S2CIronGolemFractureSyncPacket::new)
+                .consumerMainThread(S2CIronGolemFractureSyncPacket::handle)
+                .add();
     }
 
     public static void sendToServer(Object msg) {
