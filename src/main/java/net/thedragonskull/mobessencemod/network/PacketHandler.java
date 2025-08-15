@@ -44,6 +44,12 @@ public class PacketHandler {
                 .consumerMainThread(C2SCamelDashPacket::handle)
                 .add();
 
+        INSTANCE.messageBuilder(C2SFlapActionPacket.class, id++, NetworkDirection.PLAY_TO_SERVER)
+                .encoder(C2SFlapActionPacket::encode)
+                .decoder(C2SFlapActionPacket::new)
+                .consumerMainThread(C2SFlapActionPacket::handle)
+                .add();
+
         INSTANCE.messageBuilder(S2CCrownGemSyncPacket.class, id++, NetworkDirection.PLAY_TO_CLIENT)
                 .encoder(S2CCrownGemSyncPacket::encode)
                 .decoder(S2CCrownGemSyncPacket::new)

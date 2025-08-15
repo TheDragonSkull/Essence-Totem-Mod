@@ -1,8 +1,8 @@
-// 1.20.1	2025-08-14T12:34:37.7049403	Advancements
+// 1.20.1	2025-08-15T08:26:06.8397268	Advancements
 45c5751f0d991d65071e2049f8ed1c9eac0c0807 data/mobessencemod/advancements/all_totems.json
 615bf11b631ab66f111a6ab74e4f7f01cc5791b5 data/mobessencemod/advancements/boss/ender_dragon.json
 18035ecc3c5871b755854f80663e1618441df559 data/mobessencemod/advancements/boss/root.json
-a52e7d1692f0cc08160e972c032dd3ed3cb1b014 data/mobessencemod/advancements/boss/wither.json
+b23a96cf8350d01567833d1cd30abcc8e10a6ece data/mobessencemod/advancements/boss/wither.json
 4804f295031db6208bfb4deb5a832625a9bce28b data/mobessencemod/advancements/hostile/blaze.json
 7c88de22f2b19aa36c49bf450028392cb632ed27 data/mobessencemod/advancements/hostile/creeper.json
 2dfd1532f3d60c374f47ec5680b8eb6f0f4646d3 data/mobessencemod/advancements/hostile/drowned.json
@@ -39,8 +39,8 @@ cc4b821c448155d4769c8eeedd8a4ce75794b014 data/mobessencemod/advancements/neutral
 77faf7db3e05eb0e3cbc889ace5f97c0f6ea4ff8 data/mobessencemod/advancements/neutral/spider.json
 a159277d3653f77605053a15d54b0fd610b4fd3d data/mobessencemod/advancements/neutral/wolf.json
 599ceada1f0a7fa79747087224b79ba6759e75b3 data/mobessencemod/advancements/neutral/zombified_piglin.json
-9aade8fc2e2a693889a8e8898c0801009f339619 data/mobessencemod/advancements/non_mob/armor_stand.json
-dedcf94dac2f932094bc8a19b6121c11f3228722 data/mobessencemod/advancements/non_mob/player.json
+335968c23a5d02c8bc17459b7d31a1516da4d843 data/mobessencemod/advancements/non_mob/armor_stand.json
+dfa71d0617f9c17e1a342b70c391b1d29061db6c data/mobessencemod/advancements/non_mob/player.json
 c555fd39e21f0b618422f355cb5c0283642bf761 data/mobessencemod/advancements/non_mob/root.json
 d35fb3892c5aca698c73d145a5ff2bc483062af5 data/mobessencemod/advancements/passive/allay.json
 3e965c242dc4d5ec787daef04539fc37c89dc762 data/mobessencemod/advancements/passive/axolotl.json
@@ -75,7 +75,7 @@ b7ce4c36e510edc062252da0bd5ea33e01dcb8ce data/mobessencemod/advancements/passive
 e8b76730758975b9b625deb57319146cca2ed423 data/mobessencemod/advancements/root.json
 2daf07d1d33e15c507009f8492d071cba5536fa2 data/mobessencemod/advancements/special/brown_mooshroom.json
 f88247132fdb54d41ac1295d0adb9b6366bb0081 data/mobessencemod/advancements/special/elder_guardian.json
-de3211ce008910cae8bce0a12707292b77523248 data/mobessencemod/advancements/special/illusioner.json
+8780a1b71825c9f7fc8dd06ca45f33918a047c25 data/mobessencemod/advancements/special/illusioner.json
 2c935c98546a1b297c356b631e4ef614e4711a87 data/mobessencemod/advancements/special/iron_golem.json
 a518b08d9ca0f179c024ba33f1128e96f09e16a5 data/mobessencemod/advancements/special/killer_bunny.json
 fc9ddf70bbd79011ecfa90b59959b6a26ce3fd7c data/mobessencemod/advancements/special/mule.json

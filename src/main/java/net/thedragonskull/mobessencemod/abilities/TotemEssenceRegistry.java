@@ -599,7 +599,7 @@ public class TotemEssenceRegistry {
 
         // BOSS
         register("minecraft:wither", "essence_wither",
-                new TotemTooltipData("Withering Destruction", "Hurl death from its hollow grin. Death protects, and arrows turn"),
+                new TotemTooltipData("Withering Destruction", "Hurl death from its hollow grin. Death protects, and arrows bend"),
                 SoundEvents.WITHER_HURT,
                 new WitherAbility(),
                 TotemMobCategory.BOSS
@@ -614,14 +614,14 @@ public class TotemEssenceRegistry {
 
         // NON MOB
         register("minecraft:armor_stand", "essence_armor_stand",
-                new TotemTooltipData("Soulless Entity", "Become as still as stone. In absolute immobility, even danger forgets you exist"),
+                new TotemTooltipData("Soulless Entity", "Become as still as stone. In absolute immobility, even danger forgets your existence"),
                 SoundEvents.ARMOR_STAND_HIT,
                 new ArmorStandAbility(),
                 TotemMobCategory.NON_MOB
         );
 
         register("minecraft:player", "essence_player",
-                new TotemTooltipData("/cmd", "You feel like you’re cheating... but are you?"),
+                new TotemTooltipData("/cmd", "You feel like you’re cheating... but are you? The world bends in small, improbable ways: loss is stayed, falls are undone, skies shift, and even the sun waits for your nod"),
                 SoundEvents.PLAYER_HURT,
                 new PlayerAbility(),
                 TotemMobCategory.NON_MOB

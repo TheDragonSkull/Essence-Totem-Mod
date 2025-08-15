@@ -35,7 +35,7 @@ public class PlayerAbility implements IMobAbility {
 
     // EFFECT GIVE NIGHT VISION
     private static final Set<UUID> givenNightVision = new HashSet<>();
-    private static boolean wasDay = true;
+    private static final Map<UUID, Boolean> wasDayMap = new HashMap<>();
 
     @Override
     public void tick(ServerPlayer player, ItemStack totemStack) {
@@ -49,8 +49,10 @@ public class PlayerAbility implements IMobAbility {
         long timeOfDay = level.getDayTime() % 24000;
         boolean isNowNight = timeOfDay >= 13000 && timeOfDay <= 23000;
 
+        boolean wasDay = wasDayMap.getOrDefault(player.getUUID(), true);
+
         if (wasDay && isNowNight) {
-            wasDay = false;
+            wasDayMap.put(player.getUUID(), false);
 
             if (!givenNightVision.contains(player.getUUID()) && player.getRandom().nextInt(8) == 0) {
                 player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 20 * 60 * 5, 0)); // 5 minutes
@@ -70,7 +72,7 @@ public class PlayerAbility implements IMobAbility {
 
 
         } else if (!isNowNight) {
-            wasDay = true;
+            wasDayMap.put(player.getUUID(), true);
             givenNightVision.clear();
         }
 

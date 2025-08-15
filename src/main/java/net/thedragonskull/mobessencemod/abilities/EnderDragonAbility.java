@@ -34,6 +34,7 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.thedragonskull.mobessencemod.block.ModBlocks;
+import net.thedragonskull.mobessencemod.network.C2SFlapActionPacket;
 import net.thedragonskull.mobessencemod.network.C2SFlapSoundPacket;
 import net.thedragonskull.mobessencemod.network.PacketHandler;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
@@ -44,7 +45,7 @@ import java.util.*;
 public class EnderDragonAbility implements IMobAbility {
 
     private static final Map<UUID, Integer> flapCount = new HashMap<>();
-    private static boolean wasJumpKeyDown = false;
+    private static final Map<UUID, Boolean> wasJumpKeyDown = new HashMap<>();
 
     private static final int MAX_FLAPS = 5;
     private static final double MIN_FALL_DISTANCE = 5.0;
@@ -56,7 +57,7 @@ public class EnderDragonAbility implements IMobAbility {
     @Override
     public void tick(ServerPlayer player, ItemStack totemStack) {
         if (player.onGround() || player.isInWater() || player.isInLava() || player.isSwimming()) {
-            flapCount.remove(player.getUUID());
+            flapCount.put(player.getUUID(), 0);
         }
     }
 
@@ -117,35 +118,38 @@ public class EnderDragonAbility implements IMobAbility {
         if (player.onGround() && flapCount.getOrDefault(uuid, 0) >= MAX_FLAPS) {
             if (player.fallDistance >= MIN_FALL_DISTANCE && timeSince >= DRAGON_BREATH_COOLDOWN_TICKS) {
                 player.fallDistance = 0.0F;
-
-                AreaEffectCloud cloud = new AreaEffectCloud(player.level(), player.getX(), player.getY(), player.getZ());
-                cloud.setRadius(3.5F);
-                cloud.setDuration(100);
-                cloud.setParticle(ParticleTypes.DRAGON_BREATH);
-                cloud.setOwner(player);
-                cloud.addEffect(new MobEffectInstance(MobEffects.HARM, 1, 0));
-                player.level().addFreshEntity(cloud);
-
-                player.level().playSound(null, player.blockPosition(), SoundEvents.ENDER_DRAGON_SHOOT, SoundSource.PLAYERS, 2.0f, 1.0f);
-                player.level().playSound(null, player.blockPosition(), SoundEvents.ENDER_DRAGON_AMBIENT, SoundSource.PLAYERS, 2.0f, 1.0f);
-
-                BlockPos under = player.blockPosition().below();
-                BlockState blockState = player.level().getBlockState(under);
-
-                ((ServerLevel) player.level()).sendParticles(
-                        new BlockParticleOption(ParticleTypes.BLOCK, blockState),
-                        player.getX(), player.getY(), player.getZ(),
-                        100,
-                        0.5, 0.5, 0.5,
-                        0.1
-                );
-
+                spawnDragonBreath(player);
                 dragonBreathCooldowns.put(uuid, currentTick);
                 notifiedReady.remove(uuid);
+                flapCount.put(uuid, 0);
             }
 
             flapCount.put(uuid, 0);
         }
+    }
+
+    private static void spawnDragonBreath(ServerPlayer player) {
+        AreaEffectCloud cloud = new AreaEffectCloud(player.level(), player.getX(), player.getY(), player.getZ());
+        cloud.setRadius(3.5F);
+        cloud.setDuration(100);
+        cloud.setParticle(ParticleTypes.DRAGON_BREATH);
+        cloud.setOwner(player);
+        cloud.addEffect(new MobEffectInstance(MobEffects.HARM, 1, 0));
+        player.level().addFreshEntity(cloud);
+
+        player.level().playSound(null, player.blockPosition(), SoundEvents.ENDER_DRAGON_SHOOT, SoundSource.PLAYERS, 2.0f, 1.0f);
+        player.level().playSound(null, player.blockPosition(), SoundEvents.ENDER_DRAGON_AMBIENT, SoundSource.PLAYERS, 2.0f, 1.0f);
+
+        BlockPos under = player.blockPosition().below();
+        BlockState blockState = player.level().getBlockState(under);
+
+        ((ServerLevel) player.level()).sendParticles(
+                new BlockParticleOption(ParticleTypes.BLOCK, blockState),
+                player.getX(), player.getY(), player.getZ(),
+                100,
+                0.5, 0.5, 0.5,
+                0.1
+        );
     }
 
     public static void onEffectAdded(LivingAttackEvent event) {
@@ -186,7 +190,27 @@ public class EnderDragonAbility implements IMobAbility {
         }
     }
 
-    public static void flap(InputEvent.Key event) {
+    public static void handleFlapPacket(ServerPlayer player) {
+        UUID uuid = player.getUUID();
+        int currentFlaps = flapCount.getOrDefault(uuid, 0);
+
+        boolean isFlying = player.getAbilities().flying;
+        boolean isEligible = !player.onGround() && !isFlying && !player.isInWater() && !player.isInLava() && !player.isSwimming();
+
+        if (isEligible && currentFlaps < MAX_FLAPS) {
+            Vec3 motion = player.getDeltaMovement();
+            double verticalBoost = 0.45 + (0.02 * currentFlaps);
+            player.setDeltaMovement(motion.x, verticalBoost, motion.z);
+            player.hasImpulse = true;
+            player.hurtMarked = true;
+
+            player.level().playSound(null, player.blockPosition(), SoundEvents.ENDER_DRAGON_FLAP, SoundSource.PLAYERS, 1.0f, 1.0f);
+
+            flapCount.put(uuid, currentFlaps + 1);
+        }
+    }
+
+    public static void flapClient(InputEvent.Key event) {
         Minecraft mc = Minecraft.getInstance();
         Player player = mc.player;
         if (player == null || mc.level == null) return;
@@ -195,25 +219,13 @@ public class EnderDragonAbility implements IMobAbility {
             return;
 
         UUID uuid = player.getUUID();
-        int currentFlaps = flapCount.getOrDefault(uuid, 0);
         boolean jumpKeyDown = mc.options.keyJump.isDown();
+        boolean prevState = wasJumpKeyDown.getOrDefault(uuid, false);
 
-        if (jumpKeyDown && !wasJumpKeyDown) {
-            boolean isFlying = player.getAbilities().flying;
-            boolean isEligible = !player.onGround() && !isFlying && !player.isInWater() && !player.isInLava() && !player.isSwimming();
-
-            if (isEligible && currentFlaps < MAX_FLAPS) {
-                Vec3 motion = player.getDeltaMovement();
-                double verticalBoost = 0.45 + (0.02 * currentFlaps);
-                player.setDeltaMovement(motion.x, verticalBoost, motion.z);
-                player.hasImpulse = true;
-
-                PacketHandler.sendToServer(new C2SFlapSoundPacket(ResourceLocation.parse("minecraft:ender_dragon")));
-
-                flapCount.put(uuid, currentFlaps + 1);
-            }
+        if (jumpKeyDown && !prevState) {
+            PacketHandler.sendToServer(new C2SFlapActionPacket());
         }
 
-        wasJumpKeyDown = jumpKeyDown;
+        wasJumpKeyDown.put(uuid, jumpKeyDown);
     }
 }
