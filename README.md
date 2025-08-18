@@ -21,7 +21,8 @@ Use the new [*Totem of Essence*](???) to collect the essence of every Minecraft 
 
 - For more info, visit the mod [Wiki](https://github.com/TheDragonSkull/Essence-Totem-Mod/wiki).
 
- You can comment on your ideas and maybe I'll end up including them in the mod.     
+ You can comment on your ideas and maybe I'll end up including them in the mod.\
+ This mod supports multiplayer.\
  If you find bugs please report so I can try to fix them.
 
  ---
