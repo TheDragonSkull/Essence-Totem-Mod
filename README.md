@@ -6,9 +6,10 @@
 📖 About:
 
 
-Wanted to vape in Minecraft? This is your mod!
+This mod gives you the opportunity to harness the power of every mob in Minecraft.
 
-Introducing a new way to manage potion effects by using vapes of various colors.
+Use the new [*Totem of Essence*](???) to collect the essence of every Minecraft mob, granting special abilities inspired by each creature.  
+Unlock advancements progressing through each category, earn rewards, and complete the ultimate visual prize: the **Crown of Essence**.
 
 ---
 
@@ -19,7 +20,7 @@ Introducing a new way to manage potion effects by using vapes of various colors.
 - Vape Catalog - A new block that lets you purchase all the vapes available and some more special offers.
 - Vape Shopkeeper - A new NPC that sells colored vapes.
 
-- For more info visit the mod [Wiki](https://github.com/TheDragonSkull/Vapes-Mod/wiki).
+- For more info visit the mod [Wiki](???).
 
  You can comment on your ideas and maybe I'll end up including them in the mod.     
  If you find bugs please report so I can try to fix them.
