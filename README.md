@@ -16,9 +16,9 @@ Unlock advancements progressing through each category, earn rewards, and complet
 ⭐ Features:
 
 
-- Vapes - A new item that lets you vape the Minecraft potions, literally.
-- Vape Catalog - A new block that lets you purchase all the vapes available and some more special offers.
-- Vape Shopkeeper - A new NPC that sells colored vapes.
+- **Totem of Essence** → Obtain a mob’s essence and bind it to the Totem, gaining a unique ability related to that mob.
+- **Advancements & Rewards** → Each Totem unlocks an advancement. Completing categories grants XP and items, and bonuses.
+- **Crown of Essence** → A permanent visual reward that grows as you complete categories, filling with gems.  
 
 - For more info visit the mod [Wiki](???).
 
