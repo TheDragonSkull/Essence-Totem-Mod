@@ -8,8 +8,7 @@
 
 This mod gives you the opportunity to harness the power of every mob in Minecraft.
 
-Use the new [*Totem of Essence*](???) to collect the essence of every Minecraft mob, granting special abilities inspired by each creature.  
-Unlock advancements progressing through each category, earn rewards, and complete the ultimate visual prize: the **Crown of Essence**.
+Use the new [*Totem of Essence*](???) to collect the essence of every Minecraft mob, granting special abilities inspired by each creature. Unlock advancements progressing through each category, earn rewards, and complete the ultimate visual prize: the [*Crown of Essence*](???).
 
 ---
 
