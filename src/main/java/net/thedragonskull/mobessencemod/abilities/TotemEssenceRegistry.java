@@ -112,7 +112,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:donkey", "essence_donkey",
-                new TotemTooltipData("Burden Bearer", "The burden remains whole. What is carried shall not scatter, and betrayal meets a hindleg’s truth"),
+                new TotemTooltipData("Burden Bearer", "The humble bearer teaches slyness in toil; hands need not reach, for the load finds its place on its own"),
                 SoundEvents.DONKEY_HURT,
                 new DonkeyAbility(),
                 TotemMobCategory.PASSIVE
@@ -507,7 +507,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:mule", "essence_mule",
-                new TotemTooltipData("Leaping Hauler", "The burdened runner gathers strength with every stride, guards its trove as one, and strikes swift at the coward’s reach"),
+                new TotemTooltipData("Leaping Hauler", "The laden runner learns to leap when the miles weigh heavy, guards its flank with iron heel, and keeps the pack ever close at hand"),
                 SoundEvents.MULE_HURT,
                 new MuleAbility(),
                 TotemMobCategory.SPECIAL

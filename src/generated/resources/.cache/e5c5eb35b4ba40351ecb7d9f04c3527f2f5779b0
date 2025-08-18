@@ -1,4 +1,4 @@
-// 1.20.1	2025-08-15T08:26:06.8397268	Advancements
+// 1.20.1	2025-08-18T07:44:36.6176482	Advancements
 45c5751f0d991d65071e2049f8ed1c9eac0c0807 data/mobessencemod/advancements/all_totems.json
 615bf11b631ab66f111a6ab74e4f7f01cc5791b5 data/mobessencemod/advancements/boss/ender_dragon.json
 18035ecc3c5871b755854f80663e1618441df559 data/mobessencemod/advancements/boss/root.json
@@ -51,7 +51,7 @@ d271c0e9d030020e11e9831b9a4b64a6224b8c50 data/mobessencemod/advancements/passive
 665fb2350894f92baceeaabac6d58c90753d5e04 data/mobessencemod/advancements/passive/cod.json
 18537a6a46eefdda9d59851252579ad55eade95c data/mobessencemod/advancements/passive/cold_frog.json
 f307fe4de7703f1ea0fb99d2b31503dbc06f76af data/mobessencemod/advancements/passive/cow.json
-ae3af73b12143f59d7f4d11719b8a569a13dcb79 data/mobessencemod/advancements/passive/donkey.json
+f7ed72a92c93f8e4507ad126d15d4cfa32965bad data/mobessencemod/advancements/passive/donkey.json
 9f792ccbd446c52afa6b88197c98c0ea2901c045 data/mobessencemod/advancements/passive/fox.json
 b9e51d4f612418e79efadd7ea341221f3abdf495 data/mobessencemod/advancements/passive/glow_squid.json
 2eba8cdcdb6e974dd5f33542a2c857b26cb53df0 data/mobessencemod/advancements/passive/horse.json
@@ -78,7 +78,7 @@ f88247132fdb54d41ac1295d0adb9b6366bb0081 data/mobessencemod/advancements/special
 8780a1b71825c9f7fc8dd06ca45f33918a047c25 data/mobessencemod/advancements/special/illusioner.json
 2c935c98546a1b297c356b631e4ef614e4711a87 data/mobessencemod/advancements/special/iron_golem.json
 a518b08d9ca0f179c024ba33f1128e96f09e16a5 data/mobessencemod/advancements/special/killer_bunny.json
-fc9ddf70bbd79011ecfa90b59959b6a26ce3fd7c data/mobessencemod/advancements/special/mule.json
+9848c379a3d6da20516b1bbad63321b52614378e data/mobessencemod/advancements/special/mule.json
 874ddba49e06e8f09ce4abb914ec77f08ee5bb41 data/mobessencemod/advancements/special/ravager.json
 cd7ee989a761a33eda4ce10587060d269c5d9377 data/mobessencemod/advancements/special/red_mooshroom.json
 b9a3df111922177bf56229ef24ef721c0450f313 data/mobessencemod/advancements/special/root.json

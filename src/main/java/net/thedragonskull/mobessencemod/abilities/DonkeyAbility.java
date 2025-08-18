@@ -8,13 +8,25 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.Container;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ChestBlock;
+import net.minecraft.world.level.block.ShulkerBoxBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
+
+import java.util.List;
 
 public class DonkeyAbility implements IMobAbility {
 
@@ -63,5 +75,57 @@ public class DonkeyAbility implements IMobAbility {
         }
     }
 
+    public static void onBlockPlace(BlockEvent.EntityPlaceEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+
+        if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:donkey"))) return;
+
+        Block block = event.getPlacedBlock().getBlock();
+        if (!(block instanceof ChestBlock || block instanceof ShulkerBoxBlock)) return;
+
+        Level level = player.level();
+        BlockPos pos = event.getPos();
+
+        AABB area = new AABB(pos).inflate(5);
+        List<ItemEntity> items = level.getEntitiesOfClass(ItemEntity.class, area);
+
+        BlockEntity be = level.getBlockEntity(pos);
+        if (!(be instanceof Container container)) return;
+
+        for (ItemEntity itemEntity : items) {
+            ItemStack stack = itemEntity.getItem();
+
+            ItemStack remaining = stack.copy();
+            for (int i = 0; i < container.getContainerSize(); i++) {
+                ItemStack slot = container.getItem(i);
+
+                if (stack.getItem() instanceof BlockItem bi && bi.getBlock() instanceof ShulkerBoxBlock) {
+                    continue;
+                }
+
+                if (slot.isEmpty()) {
+                    container.setItem(i, remaining);
+                    remaining = ItemStack.EMPTY;
+                    break;
+                } else if (ItemStack.isSameItemSameTags(slot, remaining)) {
+                    int max = Math.min(slot.getMaxStackSize(), container.getMaxStackSize());
+                    int canMove = Math.min(max - slot.getCount(), remaining.getCount());
+                    if (canMove > 0) {
+                        slot.grow(canMove);
+                        remaining.shrink(canMove);
+                        if (remaining.isEmpty()) break;
+                    }
+                }
+            }
+
+            if (remaining.isEmpty()) {
+                itemEntity.remove(Entity.RemovalReason.DISCARDED);
+            } else {
+                itemEntity.setItem(remaining);
+            }
+        }
+
+        container.setChanged();
+    }
 
 }

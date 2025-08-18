@@ -365,6 +365,16 @@ public class CommonEvents {
     }
 
     @SubscribeEvent
+    public static void onBlockPlace(BlockEvent.EntityPlaceEvent event) {
+        DonkeyAbility.onBlockPlace(event);
+    }
+
+    @SubscribeEvent
+    public static void onItemPickup(EntityItemPickupEvent event) {
+        CommonAbilityUtils.onItemPickup(event);
+    }
+
+    @SubscribeEvent
     public static void onTotemTransform(EntityStruckByLightningEvent event) {
         PigAbility.onTotemTransform(event);
         HorseAbility.onSkeletonHorseTransform(event);
