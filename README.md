@@ -16,10 +16,10 @@ Use the new [*Totem of Essence*](???) to collect the essence of every Minecraft 
 
 
 - **Totem of Essence** → Obtain a mob’s essence and bind it to the Totem, gaining a unique ability related to that mob.
-- **Advancements & Rewards** → Each Totem unlocks an advancement. Completing categories grants XP and items, and bonuses.
+- **Advancements & Rewards** → Each totem unlocks an advancement. Completing categories grants XP and items and bonuses.
 - **Crown of Essence** → A permanent visual reward that grows as you complete categories, filling with gems.  
 
-- For more info visit the mod [Wiki](https://github.com/TheDragonSkull/Essence-Totem-Mod/wiki).
+- For more info, visit the mod [Wiki](https://github.com/TheDragonSkull/Essence-Totem-Mod/wiki).
 
  You can comment on your ideas and maybe I'll end up including them in the mod.     
  If you find bugs please report so I can try to fix them.
