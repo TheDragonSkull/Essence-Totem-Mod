@@ -316,6 +316,7 @@ public class CommonEvents {
         CommonAbilityUtils.onCreeperTarget(event);
         EvokerAbility.onVexTarget(event);
         CommonAbilityUtils.onRavagerTarget(event);
+        OcelotAbility.onMobTarget(event);
     }
 
     @SubscribeEvent

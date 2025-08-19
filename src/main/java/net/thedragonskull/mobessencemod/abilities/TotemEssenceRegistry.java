@@ -161,7 +161,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:ocelot", "essence_ocelot",
-                new TotemTooltipData("Feline Grace", "You land with grace, while the hissing stalker flee from your gaze"),
+                new TotemTooltipData("Feline Grace", "You land with grace, the hissing stalker flee from your gaze, and the watchful creatures blink slower when you slip into the shadows"),
                 SoundEvents.OCELOT_HURT,
                 new OcelotAbility(),
                 TotemMobCategory.PASSIVE

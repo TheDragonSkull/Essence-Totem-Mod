@@ -1,4 +1,4 @@
-// 1.20.1	2025-08-18T07:44:36.6176482	Advancements
+// 1.20.1	2025-08-19T17:17:15.4890666	Advancements
 45c5751f0d991d65071e2049f8ed1c9eac0c0807 data/mobessencemod/advancements/all_totems.json
 615bf11b631ab66f111a6ab74e4f7f01cc5791b5 data/mobessencemod/advancements/boss/ender_dragon.json
 18035ecc3c5871b755854f80663e1618441df559 data/mobessencemod/advancements/boss/root.json
@@ -55,7 +55,7 @@ f7ed72a92c93f8e4507ad126d15d4cfa32965bad data/mobessencemod/advancements/passive
 9f792ccbd446c52afa6b88197c98c0ea2901c045 data/mobessencemod/advancements/passive/fox.json
 b9e51d4f612418e79efadd7ea341221f3abdf495 data/mobessencemod/advancements/passive/glow_squid.json
 2eba8cdcdb6e974dd5f33542a2c857b26cb53df0 data/mobessencemod/advancements/passive/horse.json
-bf47a447021be0e7a2d1d9e43f92625ba4c7c68a data/mobessencemod/advancements/passive/ocelot.json
+db7a955001e8a8db3fec46f96e797b8d8bf28abb data/mobessencemod/advancements/passive/ocelot.json
 1a25f7b848c6ae83d0aa9f62dced5e74b3cf4a4c data/mobessencemod/advancements/passive/parrot.json
 69f1a736907368691b1ebf44ad03e6f7361c2a3c data/mobessencemod/advancements/passive/pig.json
 33cd68ee8f6862d6e49f0a6098b8857498cb91b7 data/mobessencemod/advancements/passive/rabbit.json
