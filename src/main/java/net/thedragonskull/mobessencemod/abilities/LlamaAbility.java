@@ -1,18 +1,24 @@
 package net.thedragonskull.mobessencemod.abilities;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.animal.horse.Llama;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.LlamaSpit;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.pathfinder.Path;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
+import net.thedragonskull.mobessencemod.util.TotemUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -83,6 +89,68 @@ public class LlamaAbility implements IMobAbility {
         // Cancel dmg
         event.setImpactResult(ProjectileImpactEvent.ImpactResult.STOP_AT_CURRENT_NO_DAMAGE);
 
+    }
+
+    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+        if (event.phase != TickEvent.Phase.END) return;
+        if (!(event.player instanceof ServerPlayer player)) return;
+
+        if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:llama"))) return;
+
+        applyCaravanAura(player);
+    }
+
+    private static final double AURA_RADIUS = 5.0;
+
+    private static void applyCaravanAura(ServerPlayer player) {
+        Level level = player.level();
+        AABB area = player.getBoundingBox().inflate(AURA_RADIUS);
+
+        List<Mob> nearbyMobs = level.getEntitiesOfClass(Mob.class, area, mob -> {
+            if (mob.isDeadOrDying()) return false;
+
+            MobCategory mobCategory = mob.getType().getCategory();
+            if (mobCategory == MobCategory.MISC ||
+                    mobCategory == MobCategory.MONSTER ||
+                    mobCategory == MobCategory.AXOLOTLS ||
+                    mobCategory == MobCategory.UNDERGROUND_WATER_CREATURE ||
+                    mobCategory == MobCategory.WATER_CREATURE ||
+                    mobCategory == MobCategory.WATER_AMBIENT
+            ) return false;
+
+            if (mob.getTarget() != null || mob.isPassenger() || mob.isVehicle()) return false;
+
+            if (mob.isLeashed() && !(mob.getLeashHolder() instanceof Player)) return false;
+
+            return true;
+        });
+
+        for (Mob mob : nearbyMobs) {
+            double distance = mob.distanceTo(player);
+
+            if (distance > AURA_RADIUS) {
+                if (isFollowingPlayer(mob, player)) {
+                    mob.getNavigation().stop();
+                    mob.getBrain().eraseMemory(MemoryModuleType.WALK_TARGET);
+                }
+                continue;
+            }
+
+            if (!isFollowingPlayer(mob, player)) {
+                Vec3 pos = player.getEyePosition();
+                mob.getNavigation().moveTo(pos.x, pos.y, pos.z, 1.0);
+            }
+        }
+    }
+
+    private static boolean isFollowingPlayer(Mob mob, Player player) {
+        Path path = mob.getNavigation().getPath();
+        if (path == null || path.isDone()) return false;
+
+        BlockPos targetPos = path.getTarget();
+
+        Vec3 targetVec = Vec3.atCenterOf(targetPos);
+        return targetVec.distanceTo(player.position()) < 2.5;
     }
 
 }

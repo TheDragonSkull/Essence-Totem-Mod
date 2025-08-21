@@ -274,7 +274,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:llama", "essence_llama",
-                new TotemTooltipData("Spit Happens", "Hostility finds itself met with swift disdain, hurled from deep within"),
+                new TotemTooltipData("Caravan Aura", "The caravan’s watch needs no command; in measured breath, it drives away the bold, and gentler feet gather in its wake"),
                 SoundEvents.LLAMA_HURT,
                 new LlamaAbility(),
                 TotemMobCategory.NEUTRAL
@@ -479,14 +479,14 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:wandering_trader", "essence_wandering_trader",
-                new TotemTooltipData("Llama Whisperer", "Through untraveled roads, the murmurs of the nomad tame both temper and tread"),
+                new TotemTooltipData("Llama Whisperer", "Through untraveled roads, the murmurs of the nomad tame both temper and tread, while emeralds may be traded for mysterious wares"),
                 SoundEvents.WANDERING_TRADER_HURT,
                 new WanderingTraderAbility(),
                 TotemMobCategory.SPECIAL
         );
 
         register("minecraft:trader_llama", "essence_trader_llama",
-                new TotemTooltipData("Caravan Aura", "The caravan’s watch needs no command; in measured breath, it drives away the bold, and gentler feet gather in its wake"),
+                new TotemTooltipData("Guild’s Favor", "With each sharp spit the guardian wards off foes, and those sworn to the guild find their bargains blessed with doubled returns"),
                 SoundEvents.LLAMA_HURT,
                 new TraderLlamaAbility(),
                 TotemMobCategory.SPECIAL

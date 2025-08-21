@@ -91,6 +91,7 @@ public class CommonEvents {
         PandaAbility.onPandaEat(event);
         IronGolemAbility.onUseIron(event);
         WitherAbility.onUseWitherSkull(event);
+        WanderingTraderAbility.onUseEmerald(event);
     }
 
     @SubscribeEvent
@@ -212,7 +213,7 @@ public class CommonEvents {
         GoatAbility.applyRamAttack(event);
         BlazeAbility.blazeLevitate(event);
         MagmaCubeAbility.setOnFireOnContact(event);
-        TraderLlamaAbility.onPlayerTick(event);
+        LlamaAbility.onPlayerTick(event);
         DolphinAbility.swimBoost(event);
         DolphinAbility.dolphinAutoSpinDash(event);
         GlowSquidAbility.followGlowSquid(event);
@@ -373,6 +374,11 @@ public class CommonEvents {
     @SubscribeEvent
     public static void onItemPickup(EntityItemPickupEvent event) {
         CommonAbilityUtils.onItemPickup(event);
+    }
+
+    @SubscribeEvent
+    public static void onTrade(TradeWithVillagerEvent event) {
+        TraderLlamaAbility.onTrade(event);
     }
 
     @SubscribeEvent

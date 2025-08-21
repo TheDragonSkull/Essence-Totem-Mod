@@ -1,4 +1,4 @@
-// 1.20.1	2025-08-19T17:17:15.4890666	Advancements
+// 1.20.1	2025-08-21T15:16:28.9818533	Advancements
 45c5751f0d991d65071e2049f8ed1c9eac0c0807 data/mobessencemod/advancements/all_totems.json
 615bf11b631ab66f111a6ab74e4f7f01cc5791b5 data/mobessencemod/advancements/boss/ender_dragon.json
 18035ecc3c5871b755854f80663e1618441df559 data/mobessencemod/advancements/boss/root.json
@@ -30,7 +30,7 @@ f3fb43c5efdae5a6af4457b4b0a41e207bcfed58 data/mobessencemod/advancements/neutral
 2056f5225c1aa95fa56e60eff81272a15fcd1738 data/mobessencemod/advancements/neutral/dolphin.json
 c9dcc782db9a7160a42a20d7f921c35a04e6336f data/mobessencemod/advancements/neutral/enderman.json
 63109bbc5b72a521ef939946d0e62ea91e20782a data/mobessencemod/advancements/neutral/goat.json
-6b369fcc488533dad20906e8edcbf538049ff8fa data/mobessencemod/advancements/neutral/llama.json
+3742108c82f65117386f46948e47e1f6c284636c data/mobessencemod/advancements/neutral/llama.json
 bce35b7884379246fffa2425b2b36c32ee754acf data/mobessencemod/advancements/neutral/panda.json
 9f270ecd353ecb022102ba0892ff16f79ad52039 data/mobessencemod/advancements/neutral/piglin.json
 9719448f26104cdad5f4a7c2206a65267802d52c data/mobessencemod/advancements/neutral/polar_bear.json
@@ -84,9 +84,9 @@ cd7ee989a761a33eda4ce10587060d269c5d9377 data/mobessencemod/advancements/special
 b9a3df111922177bf56229ef24ef721c0450f313 data/mobessencemod/advancements/special/root.json
 54462e576f8708ccc24dd8229f8f5201a91cd277 data/mobessencemod/advancements/special/skeleton_horse.json
 475670dddc89a03752912f2595118edd95845e30 data/mobessencemod/advancements/special/snow_golem.json
-17cfaf0aabd092eb2827512d56ce95f2e73a8af5 data/mobessencemod/advancements/special/trader_llama.json
+549e4a42c818282ca97d34fdec87c641bee8249c data/mobessencemod/advancements/special/trader_llama.json
 4e768bd203761a05822ace8d562bda4b049e1359 data/mobessencemod/advancements/special/vex.json
-f61b18381f9693c570f264a5b32ab14f524ef011 data/mobessencemod/advancements/special/wandering_trader.json
+54abf1e4164437a827758ea0009492ff15e727aa data/mobessencemod/advancements/special/wandering_trader.json
 b76dfd0dd72c9bbd3159dc515e31934fd1aeba0d data/mobessencemod/advancements/special/warden.json
 6b6fb00754d096d1af2f0b45e1488c5cd3fa4e3d data/mobessencemod/advancements/special/witch.json
 3b4426f9139a93ef5995ef08f6a31f0f5f17780d data/mobessencemod/advancements/special/zoglin.json
