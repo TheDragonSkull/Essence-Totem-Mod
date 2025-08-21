@@ -28,7 +28,7 @@
       "text": "[NON_MOB] "
     },
     "frame": "task",
-    "hidden": false,
+    "hidden": true,
     "icon": {
       "item": "mobessencemod:totem_of_essence",
       "nbt": "{Essence:\"minecraft:player\"}"

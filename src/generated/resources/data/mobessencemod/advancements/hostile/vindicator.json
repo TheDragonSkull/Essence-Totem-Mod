@@ -28,7 +28,7 @@
       "text": "[HOSTILE] "
     },
     "frame": "task",
-    "hidden": false,
+    "hidden": true,
     "icon": {
       "item": "mobessencemod:totem_of_essence",
       "nbt": "{Essence:\"minecraft:vindicator\"}"
