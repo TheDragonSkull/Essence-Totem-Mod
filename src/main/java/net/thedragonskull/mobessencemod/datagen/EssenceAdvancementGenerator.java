@@ -261,7 +261,7 @@ public class EssenceAdvancementGenerator implements ForgeAdvancementProvider.Adv
                         description,
                         null,
                         FrameType.TASK,
-                        true, true, false) //todo: hidden true
+                        true, true, true)
                 .rewards(AdvancementRewards.Builder.experience(expReward))
                 .addCriterion("has_" + mobId, InventoryChangeTrigger.TriggerInstance.hasItems(
                         ItemPredicate.Builder.item()
