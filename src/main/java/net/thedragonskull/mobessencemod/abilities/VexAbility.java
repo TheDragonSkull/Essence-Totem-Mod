@@ -63,7 +63,7 @@ public class VexAbility implements IMobAbility {
 
         if (!TotemUtils.hasTotemWithEssenceServer(serverPlayer, ResourceLocation.parse("minecraft:vex"))) return;
 
-        if (player.isSprinting() && event.getTarget() instanceof LivingEntity target) {
+        if (player.isSprinting() && !player.isCrouching() && event.getTarget() instanceof LivingEntity target) {
             if (player.getRandom().nextInt(3) == 0) {
                 float baseDamage = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE);
                 float totalDamage = baseDamage * 1.5F;

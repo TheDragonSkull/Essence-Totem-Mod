@@ -1,5 +1,7 @@
 package net.thedragonskull.mobessencemod.abilities;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -11,6 +13,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
 
@@ -60,6 +63,19 @@ public class CreeperAbility implements IMobAbility {
 
         level.sendParticles(ParticleTypes.EXPLOSION, player.getX(), player.getY() + 0.5, player.getZ(), 5, 0.45, 0.3, 0.45, 0.02);
         level.sendParticles(ParticleTypes.SMOKE, player.getX(), player.getY() + 0.5, player.getZ(), 8, 0.4, 0.2, 0.4, 0.02);
+
+        BlockPos under = player.blockPosition().below();
+        BlockState blockState = player.level().getBlockState(under);
+
+        for (int i = 0; i < 30; i++) {
+            ((ServerLevel) player.level()).sendParticles(
+                    new BlockParticleOption(ParticleTypes.BLOCK, blockState),
+                    player.getX(), player.getY(), player.getZ(),
+                    10,
+                    0.5, 0.5, 0.5,
+                    0.05
+            );
+        }
 
         level.playSound(null, player.blockPosition(), SoundEvents.CREEPER_PRIMED, SoundSource.PLAYERS, 1.0F, 1.0F);
     }
