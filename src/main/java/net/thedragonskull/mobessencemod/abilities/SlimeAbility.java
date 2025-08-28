@@ -30,7 +30,7 @@ public class SlimeAbility implements IMobAbility {
 
         if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:slime"))) return;
 
-        if (player.onGround() && player.isShiftKeyDown()) {
+        if (player.onGround() && player.isCrouching()) {
             fallVelocities.remove(id);
         }
 
@@ -38,7 +38,7 @@ public class SlimeAbility implements IMobAbility {
             fallVelocities.put(id, player.getDeltaMovement().y);
         }
 
-        if (player.onGround() && fallVelocities.containsKey(id) && !player.isShiftKeyDown()) {
+        if (player.onGround() && fallVelocities.containsKey(id) && !player.isCrouching()) {
             double originalFallSpeed = fallVelocities.remove(id);
             bounceState.put(id, originalFallSpeed);
             double bounceY = -originalFallSpeed * 0.9;
@@ -68,7 +68,7 @@ public class SlimeAbility implements IMobAbility {
         DamageSource source = event.getSource();
 
         // Part 1: fall damage reduction
-        if (source.is(DamageTypeTags.IS_FALL) && !player.isShiftKeyDown()) {
+        if (source.is(DamageTypeTags.IS_FALL) && !player.isCrouching()) {
             if (bounceState.containsKey(player.getUUID())) {
                 event.setAmount(FALL_DAMAGE_WHEN_REBOUNDING);
                 bounceState.remove(player.getUUID());

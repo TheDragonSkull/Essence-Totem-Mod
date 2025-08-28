@@ -4,8 +4,8 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
@@ -25,7 +25,7 @@ public class BlazeAbility implements IMobAbility {
 
         if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:blaze"))) return;
 
-        if (!player.onGround() && player.isShiftKeyDown() && !player.isInWater() && !player.isInLava()) {
+        if (!player.onGround() && player.isCrouching() && !player.isInWater() && !player.isInLava()) {
             Vec3 motion = player.getDeltaMovement();
 
             player.setDeltaMovement(new Vec3(motion.x, 0.15, motion.z));
@@ -38,6 +38,10 @@ public class BlazeAbility implements IMobAbility {
             ((ServerLevel) player.level()).sendParticles(ParticleTypes.SMOKE,
                     player.getX(), player.getY(), player.getZ(),
                     2, 0.1, 0.1, 0.1, 0.01);
+
+            if (player.tickCount % 2 == 0) {
+                player.level().playSound(null, player.blockPosition(), SoundEvents.BLAZE_SHOOT, SoundSource.PLAYERS, 0.5f, 1.0f);
+            }
         }
 
     }

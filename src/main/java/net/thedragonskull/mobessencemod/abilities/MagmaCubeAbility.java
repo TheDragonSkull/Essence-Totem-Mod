@@ -8,12 +8,9 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.thedragonskull.mobessencemod.util.TotemUtils;
@@ -33,7 +30,7 @@ public class MagmaCubeAbility implements IMobAbility {
 
         if (!TotemUtils.hasTotemWithEssenceServer(player, ResourceLocation.parse("minecraft:magma_cube"))) return;
 
-        if (player.onGround() && player.isShiftKeyDown()) {
+        if (player.onGround() && player.isCrouching()) {
             fallVelocities.remove(id);
         }
 
@@ -41,7 +38,7 @@ public class MagmaCubeAbility implements IMobAbility {
             fallVelocities.put(id, player.getDeltaMovement().y);
         }
 
-        if (player.onGround() && fallVelocities.containsKey(id) && !player.isShiftKeyDown()) {
+        if (player.onGround() && fallVelocities.containsKey(id) && !player.isCrouching()) {
             double originalFallSpeed = fallVelocities.remove(id);
             bounceState.put(id, originalFallSpeed);
             double bounceY = -originalFallSpeed * 0.9;
@@ -70,7 +67,7 @@ public class MagmaCubeAbility implements IMobAbility {
 
         DamageSource source = event.getSource();
 
-        if (source.is(DamageTypeTags.IS_FALL) && !player.isShiftKeyDown()) {
+        if (source.is(DamageTypeTags.IS_FALL) && !player.isCrouching()) {
             if (bounceState.containsKey(player.getUUID())) {
                 event.setAmount(FALL_DAMAGE_WHEN_REBOUNDING);
                 bounceState.remove(player.getUUID());

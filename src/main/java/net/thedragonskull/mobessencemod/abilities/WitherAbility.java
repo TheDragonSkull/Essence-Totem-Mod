@@ -55,7 +55,7 @@ public class WitherAbility implements IMobAbility {
 
         level.addFreshEntity(skull);
 
-        //player.getCooldowns().addCooldown(Items.WITHER_SKELETON_SKULL, 600);
+        player.getCooldowns().addCooldown(Items.WITHER_SKELETON_SKULL, 600);
 
         level.playSound(null, player.blockPosition(),
                 SoundEvents.WITHER_SHOOT, SoundSource.PLAYERS, 1.0f, isBlue ? 0.5f : 1.0f);

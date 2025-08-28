@@ -43,7 +43,7 @@ public class CommonAbilityUtils {
 
         DamageSource source = event.getSource();
 
-        if (source.is(DamageTypes.FALL) && player.isShiftKeyDown()) {
+        if (source.is(DamageTypes.FALL) && player.isCrouching()) {
             event.setAmount(event.getAmount() * 0.5F);
         }
     }

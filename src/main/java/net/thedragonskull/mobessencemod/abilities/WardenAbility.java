@@ -83,7 +83,7 @@ public class WardenAbility implements IMobAbility {
         }
 
         // Glowing skill
-        if (player.isShiftKeyDown()) {
+        if (player.isCrouching()) {
             List<LivingEntity> nearbyEnemies = player.level().getEntitiesOfClass(
                     LivingEntity.class,
                     player.getBoundingBox().inflate(15),
@@ -109,6 +109,8 @@ public class WardenAbility implements IMobAbility {
     public static void onPlayerHurt(LivingHurtEvent event) {
         Entity source = event.getSource().getEntity();
         Entity target = event.getEntity();
+
+        if (!(source instanceof LivingEntity)) return;
 
         // Player DMG reduction
         if (target instanceof ServerPlayer player) {

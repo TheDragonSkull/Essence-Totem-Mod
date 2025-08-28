@@ -16,7 +16,7 @@ public class BatAbility implements IMobAbility {
     public void tick(ServerPlayer player, ItemStack stack) {
         if (player == null) return;
 
-        if (!player.isShiftKeyDown()) return;
+        if (!player.isCrouching()) return;
 
         List<LivingEntity> nearbyEnemies = player.level().getEntitiesOfClass(LivingEntity.class,
                 player.getBoundingBox().inflate(15),
