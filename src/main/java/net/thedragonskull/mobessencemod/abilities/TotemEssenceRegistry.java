@@ -28,7 +28,7 @@ public class TotemEssenceRegistry {
 
         // PASSIVE
         register("minecraft:pig", "essence_pig",
-                new TotemTooltipData("Cast-Iron Stomach", "The glutton fears no poison. And should the storm choose thee, a new form walks: horned, golden, and wrathful"),
+                new TotemTooltipData("Cast-Iron Stomach", "The glutton fears no poison, for iron lines his gut and hunger bows before him\n§3[Transform]§7 Should the storm choose thee, a new form walks: horned, golden, and wrathful..."),
                 SoundEvents.PIG_HURT,
                 new PigAbility(),
                 TotemMobCategory.PASSIVE
@@ -105,7 +105,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:horse", "essence_horse",
-                new TotemTooltipData("Power Leap", "Momentum becomes flight. Let none stand behind you, lest they taste your fury"),
+                new TotemTooltipData("Power Leap", "Momentum becomes flight. Let none stand behind you, lest they taste your fury\n§3[Transform]§7 When struck by creatures of the rotten kind, your equine form may begin to wither...\n§3[Transform]§7 Should the light strike your equine body, the spark may burn away all flesh, leaving behind nothing but bones..."),
                 SoundEvents.HORSE_HURT,
                 new HorseAbility(),
                 TotemMobCategory.PASSIVE
@@ -217,7 +217,7 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:rabbit", "essence_rabbit",
-                new TotemTooltipData("Forager's Spring", "With nimble bounds and forager’s scent, what lies beneath the overgrowth is not always weeds"),
+                new TotemTooltipData("Forager's Spring", "With nimble bounds and forager’s scent, what lies beneath the overgrowth is not always weeds\n§3[Transform]§7 Each time you claim a life, the fragile veil of innocence trembles..."),
                 SoundEvents.RABBIT_HURT,
                 new RabbitAbility(),
                 TotemMobCategory.PASSIVE
@@ -415,21 +415,21 @@ public class TotemEssenceRegistry {
         );
 
         register("minecraft:evoker", "essence_evoker",
-                new TotemTooltipData("Wicked Covenant", "Let them taste your wrath... Devils and Fangs shall strike those who dare attack you"),
+                new TotemTooltipData("Wicked Covenant", "Let them taste your wrath... Devils and Fangs shall strike those who dare attack you\n§3[Transform]§7 Encircled by twelve ancient tomes, the essence rests upon the ground as the air shivers with anticipation..."),
                 SoundEvents.EVOKER_HURT,
                 new EvokerAbility(),
                 TotemMobCategory.HOSTILE
         );
 
         register("minecraft:pillager", "essence_pillager",
-                new TotemTooltipData("Beastmaster's Wrath", "The colossal beasts heed your command, and perched atop, the locked tension sings, delivering thunderous strikes with unerring force"),
+                new TotemTooltipData("Beastmaster's Wrath", "The colossal beasts heed your command, and perched atop, the locked tension sings, delivering thunderous strikes with unerring force\n§3[Transform]§7 Encircled by twelve ancient tomes, the essence rests upon the ground as the air shivers with anticipation..."),
                 SoundEvents.PILLAGER_HURT,
                 new PillagerAbility(),
                 TotemMobCategory.HOSTILE
         );
 
         register("minecraft:vindicator", "essence_vindicator",
-                new TotemTooltipData("Ravaging Axe", "The beast does not question your grip on the reins and the cleaving strike rings truer from its throne. Blood quickens when prey draws near, iron hungers, and your step grows swift"),
+                new TotemTooltipData("Ravaging Axe", "The beast does not question your grip on the reins and the cleaving strike rings truer from its throne. Blood quickens when prey draws near, iron hungers, and your step grows swift\n§3[Transform]§7 Encircled by twelve ancient tomes, the essence rests upon the ground as the air shivers with anticipation..."),
                 SoundEvents.VINDICATOR_HURT,
                 new VindicatorAbility(),
                 TotemMobCategory.HOSTILE
