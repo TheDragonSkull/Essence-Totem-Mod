@@ -2,8 +2,8 @@
 
 ---
 
-[![CurseForge Versions](https://cf.way2muchnoise.eu/versions/1337311.svg)](https://www.curseforge.com/minecraft/mc-mods/thedragons-vapes)
-[![CurseForge Downloads](https://cf.way2muchnoise.eu/short_1337311_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/thedragons-vapes) 
+[![CurseForge Versions](https://cf.way2muchnoise.eu/versions/1337311.svg)](https://www.curseforge.com/minecraft/mc-mods/thedragons-essence-totem)
+[![CurseForge Downloads](https://cf.way2muchnoise.eu/short_1337311_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/thedragons-essence-totem) 
 
 ---
 
