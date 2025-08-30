@@ -34,8 +34,8 @@ public class MobEssenceMod {
     public static final String MOD_ID = "mobessencemod";
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public MobEssenceMod(FMLJavaModLoadingContext context) {
-        IEventBus modEventBus = context.getModEventBus();
+    public MobEssenceMod() {
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
