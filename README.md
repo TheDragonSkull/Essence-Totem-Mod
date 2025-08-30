@@ -1,5 +1,9 @@
-<img width="2048" height="411" alt="essence_totem_mod_banner" src="https://github.com/user-attachments/assets/1426cfdf-d923-4048-abcd-b3dc159a7b3a" />
+<img width="2048" height="411" alt="essence_totem_mod_banner_og" src="https://github.com/user-attachments/assets/71b18fa3-ef80-4937-a46a-50007f156cd5" />
 
+---
+
+[![CurseForge Versions](https://cf.way2muchnoise.eu/versions/1337311.svg)](https://www.curseforge.com/minecraft/mc-mods/thedragons-essence-totem)
+[![CurseForge Downloads](https://cf.way2muchnoise.eu/short_1337311_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/thedragons-essence-totem) 
 
 ---
 
