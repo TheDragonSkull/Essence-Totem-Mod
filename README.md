@@ -5,6 +5,9 @@
 [![CurseForge Versions](https://cf.way2muchnoise.eu/versions/1337311.svg)](https://www.curseforge.com/minecraft/mc-mods/thedragons-essence-totem)
 [![CurseForge Downloads](https://cf.way2muchnoise.eu/short_1337311_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/thedragons-essence-totem) 
 
+[![Modrinth Versions](https://img.shields.io/modrinth/game-versions/eqvGpeIx?label=Avaliable%20for&color=82ff80)](https://modrinth.com/mod/thedragons-essence-totem) 
+[![Modrinth Downloads](https://img.shields.io/modrinth/dt/eqvGpeIx?logo=modrinth&color=82ff80)](https://modrinth.com/mod/thedragons-essence-totem)
+
 ---
 
 📖 About:
